@@ -12,6 +12,8 @@
 		69C6442E1A0A8FA4007BA4CA /* CreateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442D1A0A8FA4007BA4CA /* CreateListViewController.m */; };
 		69C644311A0A8FA9007BA4CA /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644301A0A8FA9007BA4CA /* InventoryViewController.m */; };
 		69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */; };
+		69C644361A0AB4AE007BA4CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C644351A0AB4AE007BA4CA /* MapKit.framework */; };
+		69C644381A0AB4B4007BA4CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C644371A0AB4B4007BA4CA /* CoreLocation.framework */; };
 		6CDB20011A0A782400F614DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20001A0A782400F614DD /* main.m */; };
 		6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20031A0A782400F614DD /* AppDelegate.m */; };
 		6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20051A0A782400F614DD /* Stockd.xcdatamodeld */; };
@@ -43,6 +45,8 @@
 		69C644301A0A8FA9007BA4CA /* InventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
 		69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresNearbyViewController.h; sourceTree = "<group>"; };
 		69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresNearbyViewController.m; sourceTree = "<group>"; };
+		69C644351A0AB4AE007BA4CA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		69C644371A0AB4B4007BA4CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6CDB1FFB1A0A782400F614DD /* Stockd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stockd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDB1FFF1A0A782400F614DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CDB20001A0A782400F614DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69C644381A0AB4B4007BA4CA /* CoreLocation.framework in Frameworks */,
+				69C644361A0AB4AE007BA4CA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,8 @@
 		6CDB1FF21A0A782400F614DD = {
 			isa = PBXGroup;
 			children = (
+				69C644371A0AB4B4007BA4CA /* CoreLocation.framework */,
+				69C644351A0AB4AE007BA4CA /* MapKit.framework */,
 				6CDB1FFD1A0A782400F614DD /* Stockd */,
 				6CDB201A1A0A782400F614DD /* StockdTests */,
 				6CDB1FFC1A0A782400F614DD /* Products */,
