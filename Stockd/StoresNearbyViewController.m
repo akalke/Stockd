@@ -9,11 +9,13 @@
 #import "StoresNearbyViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "Store.h"
 
 @interface StoresNearbyViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property CLLocationManager *locationManager;
+@property NSMutableArray *storeArray;
 
 @end
 
@@ -25,6 +27,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager requestWhenInUseAuthorization];
     self.locationManager.delegate = self;
+    
+    self.storeArray = [NSMutableArray array];
 }
 
 #pragma mark - MapView Methods
@@ -61,20 +65,74 @@
     }
 }
 
-#pragma mark - Helper Methods
-
 - (void)reverseGeocode:(CLLocation *)location {
     CLGeocoder *geocoder = [CLGeocoder new];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *placemark = placemarks.firstObject;
         NSString *address = [NSString stringWithFormat:@"%@ %@, %@, %@", placemark.subThoroughfare, placemark.thoroughfare, placemark.locality, placemark.administrativeArea];
         self.textView.text = [NSString stringWithFormat:@"Your location: %@", address];
+        [self findStoresNearby:location];
     }];
 }
+
+- (void)findStoresNearby:(CLLocation *)location {
+    MKLocalSearchRequest *request = [MKLocalSearchRequest new];
+    request.naturalLanguageQuery = @"grocery";
+    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.1, 0.1));
+    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        NSMutableArray *array = [NSMutableArray array];
+        NSArray *mapItems = response.mapItems;
+        for (MKMapItem *item in mapItems) {
+            Store *store = [[Store alloc] init];
+            store.name = item.name;
+            store.phoneNumber = item.phoneNumber;
+            store.placemark = item.placemark;
+            
+            CLLocation *location = item.placemark.location;
+            store.latitude = location.coordinate.latitude;
+            store.longitude = location.coordinate.longitude;
+            
+            store.distance = [store.placemark.location distanceFromLocation:location];
+            [array addObject:store];
+        }
+        self.storeArray = array;
+        [self setStorePins];
+    }];
+}
+
+#pragma mark - Helper Methods
+
+- (void)setStorePins {
+    for (Store *store in self.storeArray) {
+        CLLocationCoordinate2D coord;
+        coord.latitude = store.latitude;
+        coord.longitude = store.longitude;
+        
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        annotation.coordinate = coord;
+        annotation.title = store.name;
+
+        [self.mapView addAnnotation:annotation];
+    }
+}
+
+#pragma mark - IBActions
 
 - (IBAction)onButtonPressed:(id)sender {
     [self.locationManager startUpdatingLocation];
     self.textView.text = @"Locating Nearby Stores";
+    
+    CLLocationCoordinate2D center = self.mapView.userLocation.location.coordinate;
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.1;
+    span.longitudeDelta = 0.1;
+    
+    MKCoordinateRegion region;
+    region.center = center;
+    region.span = span;
+    
+    [self.mapView setRegion:region animated:YES];
 }
 
 @end
