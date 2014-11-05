@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644271A0A8F97007BA4CA /* LoginViewController.m */; };
+		69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */; };
+		69C6442E1A0A8FA4007BA4CA /* CreateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442D1A0A8FA4007BA4CA /* CreateListViewController.m */; };
+		69C644311A0A8FA9007BA4CA /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644301A0A8FA9007BA4CA /* InventoryViewController.m */; };
+		69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */; };
 		6CDB20011A0A782400F614DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20001A0A782400F614DD /* main.m */; };
 		6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20031A0A782400F614DD /* AppDelegate.m */; };
 		6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20051A0A782400F614DD /* Stockd.xcdatamodeld */; };
-		6CDB200A1A0A782400F614DD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20091A0A782400F614DD /* ViewController.m */; };
+		6CDB200A1A0A782400F614DD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20091A0A782400F614DD /* SettingsViewController.m */; };
 		6CDB200D1A0A782400F614DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB200B1A0A782400F614DD /* Main.storyboard */; };
 		6CDB200F1A0A782400F614DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB200E1A0A782400F614DD /* Images.xcassets */; };
 		6CDB20121A0A782400F614DD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB20101A0A782400F614DD /* LaunchScreen.xib */; };
@@ -28,14 +33,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69C644261A0A8F97007BA4CA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		69C644271A0A8F97007BA4CA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		69C644291A0A8F9D007BA4CA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		69C6442C1A0A8FA4007BA4CA /* CreateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateListViewController.h; sourceTree = "<group>"; };
+		69C6442D1A0A8FA4007BA4CA /* CreateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateListViewController.m; sourceTree = "<group>"; };
+		69C6442F1A0A8FA9007BA4CA /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
+		69C644301A0A8FA9007BA4CA /* InventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
+		69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresNearbyViewController.h; sourceTree = "<group>"; };
+		69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresNearbyViewController.m; sourceTree = "<group>"; };
 		6CDB1FFB1A0A782400F614DD /* Stockd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stockd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDB1FFF1A0A782400F614DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CDB20001A0A782400F614DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CDB20021A0A782400F614DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6CDB20031A0A782400F614DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6CDB20061A0A782400F614DD /* Stockd.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stockd.xcdatamodel; sourceTree = "<group>"; };
-		6CDB20081A0A782400F614DD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6CDB20091A0A782400F614DD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6CDB20081A0A782400F614DD /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		6CDB20091A0A782400F614DD /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6CDB200C1A0A782400F614DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6CDB200E1A0A782400F614DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6CDB20111A0A782400F614DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -85,8 +100,18 @@
 			children = (
 				6CDB20021A0A782400F614DD /* AppDelegate.h */,
 				6CDB20031A0A782400F614DD /* AppDelegate.m */,
-				6CDB20081A0A782400F614DD /* ViewController.h */,
-				6CDB20091A0A782400F614DD /* ViewController.m */,
+				69C644261A0A8F97007BA4CA /* LoginViewController.h */,
+				69C644271A0A8F97007BA4CA /* LoginViewController.m */,
+				69C644291A0A8F9D007BA4CA /* HomeViewController.h */,
+				69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */,
+				69C6442C1A0A8FA4007BA4CA /* CreateListViewController.h */,
+				69C6442D1A0A8FA4007BA4CA /* CreateListViewController.m */,
+				69C6442F1A0A8FA9007BA4CA /* InventoryViewController.h */,
+				69C644301A0A8FA9007BA4CA /* InventoryViewController.m */,
+				69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */,
+				69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */,
+				6CDB20081A0A782400F614DD /* SettingsViewController.h */,
+				6CDB20091A0A782400F614DD /* SettingsViewController.m */,
 				6CDB200B1A0A782400F614DD /* Main.storyboard */,
 				6CDB200E1A0A782400F614DD /* Images.xcassets */,
 				6CDB20101A0A782400F614DD /* LaunchScreen.xib */,
@@ -223,9 +248,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */,
+				69C644311A0A8FA9007BA4CA /* InventoryViewController.m in Sources */,
 				6CDB20011A0A782400F614DD /* main.m in Sources */,
-				6CDB200A1A0A782400F614DD /* ViewController.m in Sources */,
+				6CDB200A1A0A782400F614DD /* SettingsViewController.m in Sources */,
 				6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */,
+				69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */,
+				69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */,
+				69C6442E1A0A8FA4007BA4CA /* CreateListViewController.m in Sources */,
+				69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +446,7 @@
 				6CDB20231A0A782400F614DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6CDB20241A0A782400F614DD /* Build configuration list for PBXNativeTarget "StockdTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +455,7 @@
 				6CDB20261A0A782400F614DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
