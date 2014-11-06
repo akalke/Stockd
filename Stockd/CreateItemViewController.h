@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateListViewController : UIViewController
+@interface CreateItemViewController : UIViewController
 
 @end

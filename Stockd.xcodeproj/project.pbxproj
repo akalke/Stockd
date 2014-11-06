@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644271A0A8F97007BA4CA /* LoginViewController.m */; };
 		69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */; };
-		69C6442E1A0A8FA4007BA4CA /* CreateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442D1A0A8FA4007BA4CA /* CreateListViewController.m */; };
+		69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */; };
 		69C644311A0A8FA9007BA4CA /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644301A0A8FA9007BA4CA /* InventoryViewController.m */; };
 		69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */; };
 		69C644361A0AB4AE007BA4CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C644351A0AB4AE007BA4CA /* MapKit.framework */; };
@@ -55,8 +55,8 @@
 		69C644271A0A8F97007BA4CA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		69C644291A0A8F9D007BA4CA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		69C6442C1A0A8FA4007BA4CA /* CreateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateListViewController.h; sourceTree = "<group>"; };
-		69C6442D1A0A8FA4007BA4CA /* CreateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateListViewController.m; sourceTree = "<group>"; };
+		69C6442C1A0A8FA4007BA4CA /* CreateItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateItemViewController.h; sourceTree = "<group>"; };
+		69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateItemViewController.m; sourceTree = "<group>"; };
 		69C6442F1A0A8FA9007BA4CA /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
 		69C644301A0A8FA9007BA4CA /* InventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
 		69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresNearbyViewController.h; sourceTree = "<group>"; };
@@ -134,12 +134,6 @@
 		6C3364A51A0BBDD000DC1166 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				6C33633B1A0BB90C00DC1166 /* Item.h */,
-				6C33633C1A0BB90C00DC1166 /* Item.m */,
-				6C3363381A0BB90C00DC1166 /* List.h */,
-				6C3363391A0BB90C00DC1166 /* List.m */,
-				6C3363351A0BB90B00DC1166 /* User.h */,
-				6C3363361A0BB90B00DC1166 /* User.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -172,8 +166,8 @@
 				69C644271A0A8F97007BA4CA /* LoginViewController.m */,
 				69C644291A0A8F9D007BA4CA /* HomeViewController.h */,
 				69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */,
-				69C6442C1A0A8FA4007BA4CA /* CreateListViewController.h */,
-				69C6442D1A0A8FA4007BA4CA /* CreateListViewController.m */,
+				69C6442C1A0A8FA4007BA4CA /* CreateItemViewController.h */,
+				69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */,
 				69C6442F1A0A8FA9007BA4CA /* InventoryViewController.h */,
 				69C644301A0A8FA9007BA4CA /* InventoryViewController.m */,
 				69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */,
@@ -348,7 +342,7 @@
 				69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */,
 				69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */,
 				6C33633A1A0BB90C00DC1166 /* List.m in Sources */,
-				69C6442E1A0A8FA4007BA4CA /* CreateListViewController.m in Sources */,
+				69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */,
 				69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
-#import "CreateListViewController.h"
+#import "CreateItemViewController.h"
 
-@interface CreateListViewController ()
+@interface CreateItemViewController ()
 
 @end
 
-@implementation CreateListViewController
+@implementation CreateItemViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -14,8 +14,11 @@
 @interface StoresNearbyViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *mapsButton;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
+@property NSString *locationAddress;
+@property MKMapItem *mapItem;
 
 @end
 
@@ -29,6 +32,23 @@
     self.locationManager.delegate = self;
     
     self.storeArray = [NSMutableArray array];
+    
+    self.mapsButton.hidden = YES;
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        NSString *title = @"Turn On Location Services to Allow Stock'd to Determine Your Current Location";
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            return;
+        }];
+        
+        [alert addAction:settings];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 #pragma mark - MapView Methods
@@ -40,17 +60,41 @@
     
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
     pin.canShowCallout = YES;
-    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
     
     return pin;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    NSString *storePin = [NSString stringWithFormat:@"%@", view.annotation.title];
-    for (Store *store in self.storeArray) {
-        if ([store.name isEqualToString:storePin]) {
-            NSString *address = [NSString stringWithFormat:@"%@ %@, %@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
-            self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, address, store.placemark.postalCode, store.phoneNumber];
+    NSString *pin = [NSString stringWithFormat:@"%@", view.annotation.title];
+    if ([self.mapView.userLocation.title isEqualToString:pin]) {
+        self.textView.text = [NSString stringWithFormat:@"%@", self.locationAddress];
+        self.mapsButton.hidden = YES;
+    } else {
+        for (Store *store in self.storeArray) {
+            if ([store.name isEqualToString:pin]) {
+                NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
+                self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, address, store.placemark.postalCode, store.phoneNumber];
+                
+                MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
+                self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
+                
+                self.mapsButton.hidden = NO;
+            }
+        }
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    NSString *pin = [NSString stringWithFormat:@"%@", view.annotation.title];
+    if ([self.mapView.userLocation.title isEqualToString:pin]) {
+        return;
+    } else {
+        for (Store *store in self.storeArray) {
+            if ([store.name isEqualToString:pin]) {
+                NSString *stringURL = [NSString stringWithFormat:@"tel:%@", store.phoneNumber];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringURL]];
+            }
         }
     }
 }
@@ -77,8 +121,8 @@
     CLGeocoder *geocoder = [CLGeocoder new];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *placemark = placemarks.firstObject;
-        NSString *address = [NSString stringWithFormat:@"%@ %@, %@, %@", placemark.subThoroughfare, placemark.thoroughfare, placemark.locality, placemark.administrativeArea];
-        self.textView.text = [NSString stringWithFormat:@"Your location: %@", address];
+        self.locationAddress = [NSString stringWithFormat:@"%@ \n%@ %@ \n%@, %@ \n%@", @"Address:", placemark.subThoroughfare, placemark.thoroughfare, placemark.locality, placemark.administrativeArea, placemark.postalCode];
+        self.textView.text = [NSString stringWithFormat:@"%@", self.locationAddress];
         [self findStoresNearby:location];
     }];
 }
@@ -96,11 +140,8 @@
             store.name = item.name;
             store.phoneNumber = item.phoneNumber;
             store.placemark = item.placemark;
-            
-            CLLocation *location = item.placemark.location;
-            store.latitude = location.coordinate.latitude;
-            store.longitude = location.coordinate.longitude;
-            
+            store.latitude = item.placemark.location.coordinate.latitude;
+            store.longitude = item.placemark.location.coordinate.longitude;
             store.distance = [store.placemark.location distanceFromLocation:location];
             [array addObject:store];
         }
@@ -120,18 +161,14 @@
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
         annotation.coordinate = coord;
         annotation.title = store.name;
-
+        annotation.subtitle = [NSString stringWithFormat:@"Tap to Call: %@", store.phoneNumber];
+        
         [self.mapView addAnnotation:annotation];
     }
 }
 
-#pragma mark - IBActions
-
-- (IBAction)onButtonPressed:(id)sender {
-    [self.locationManager startUpdatingLocation];
-    self.textView.text = @"Locating Nearby Stores";
-    
-    CLLocationCoordinate2D center = self.mapView.userLocation.location.coordinate;
+- (void)zoomMapWith:(CLLocation *)location {
+    CLLocationCoordinate2D center = location.coordinate;
     MKCoordinateSpan span;
     span.latitudeDelta = 0.105;
     span.longitudeDelta = 0.105;
@@ -141,6 +178,19 @@
     region.span = span;
     
     [self.mapView setRegion:region animated:YES];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)onButtonPressed:(id)sender {
+    [self.locationManager startUpdatingLocation];
+    self.textView.text = @"Locating Nearby Stores";
+    
+    [self zoomMapWith:self.mapView.userLocation.location];
+}
+
+- (IBAction)onOpenMapsbuttonPressed:(id)sender {
+    [self.mapItem openInMapsWithLaunchOptions:nil];
 }
 
 @end
