@@ -46,7 +46,12 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    self.textView.text = [NSString stringWithFormat:@"%@", view.annotation.title];
+    NSString *storePin = [NSString stringWithFormat:@"%@", view.annotation.title];
+    for (Store *store in self.storeArray) {
+        if ([store.name isEqualToString:storePin]) {
+            self.textView.text = [NSString stringWithFormat:@"%@", store.phoneNumber];
+        }
+    }
 }
 
 #pragma mark - LocationManager Methods
