@@ -49,7 +49,8 @@
     NSString *storePin = [NSString stringWithFormat:@"%@", view.annotation.title];
     for (Store *store in self.storeArray) {
         if ([store.name isEqualToString:storePin]) {
-            self.textView.text = [NSString stringWithFormat:@"%@", store.phoneNumber];
+            NSString *address = [NSString stringWithFormat:@"%@ %@, %@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
+            self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, address, store.placemark.postalCode, store.phoneNumber];
         }
     }
 }
