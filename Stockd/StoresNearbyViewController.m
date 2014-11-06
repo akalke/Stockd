@@ -133,8 +133,8 @@
     
     CLLocationCoordinate2D center = self.mapView.userLocation.location.coordinate;
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.1;
-    span.longitudeDelta = 0.1;
+    span.latitudeDelta = 0.105;
+    span.longitudeDelta = 0.105;
     
     MKCoordinateRegion region;
     region.center = center;

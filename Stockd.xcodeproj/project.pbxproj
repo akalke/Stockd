@@ -130,8 +130,6 @@
 				69C644301A0A8FA9007BA4CA /* InventoryViewController.m */,
 				69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */,
 				69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */,
-				69C644391A0AD099007BA4CA /* Store.h */,
-				69C6443A1A0AD099007BA4CA /* Store.m */,
 				6CDB20081A0A782400F614DD /* SettingsViewController.h */,
 				6CDB20091A0A782400F614DD /* SettingsViewController.m */,
 				6CDB200B1A0A782400F614DD /* Main.storyboard */,
@@ -145,6 +143,8 @@
 				6C3363391A0BB90C00DC1166 /* List.m */,
 				6C3363351A0BB90B00DC1166 /* User.h */,
 				6C3363361A0BB90B00DC1166 /* User.m */,
+				69C644391A0AD099007BA4CA /* Store.h */,
+				69C6443A1A0AD099007BA4CA /* Store.m */,
 			);
 			path = Stockd;
 			sourceTree = "<group>";
