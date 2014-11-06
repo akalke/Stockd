@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="isRunningLow" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="list_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="item_of_list" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="lists_with_item" inverseEntity="List" syncable="YES"/>
+        <relationship name="item_of_user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="users_items" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="List" representedClassName="List" syncable="YES">
+        <attribute name="isQuickList" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isShared" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lists_for_user" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="users_lists" inverseEntity="User" syncable="YES"/>
+        <relationship name="lists_with_item" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="item_of_list" inverseEntity="Item" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="users_items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="item_of_user" inverseEntity="Item" syncable="YES"/>
+        <relationship name="users_lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="List" inverseName="lists_for_user" inverseEntity="List" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-36" positionY="9" width="128" height="103"/>
+        <element name="Item" positionX="0" positionY="45" width="128" height="178"/>
+        <element name="List" positionX="27" positionY="72" width="128" height="133"/>
+    </elements>
 </model>
