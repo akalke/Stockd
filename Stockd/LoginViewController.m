@@ -24,12 +24,12 @@
     [self presentViewController:login animated:YES completion:nil];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showTabBarSegue"]) {
-        UITabBarController *tabBarController = segue.destinationViewController;
-        [tabBarController setSelectedIndex:0];
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([[segue identifier] isEqualToString:@"showTabBarSegue"]) {
+//        UITabBarController *tabBarController = segue.destinationViewController;
+//        [tabBarController setSelectedIndex:0];
+//    }
+//}
 
 - (IBAction)loginUserOnButtonPress:(id)sender {
     [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error) {
