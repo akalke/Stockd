@@ -64,8 +64,8 @@
     }];
 }
 
--(NSArray *)getListsForUser: (User *)user{
-    NSPredicate *findLists = [NSPredicate predicateWithFormat:@"userID = %@", user.objectId];
+-(NSArray *)getListsForUser: (NSString *)userID{
+    NSPredicate *findLists = [NSPredicate predicateWithFormat:@"userID = %@", userID];
     PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findLists];
     [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
@@ -80,7 +80,7 @@
     return self.listsArray;
 }
 
--(void)deleteListForuser: (User *)user{
+-(void)deleteListForUser: (User *)user{
     [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);

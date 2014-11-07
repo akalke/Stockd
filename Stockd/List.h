@@ -20,6 +20,6 @@
 -(void)createNewList: (User *)user :(NSString *)listName;
 -(void)createNewQuickList:(User *)user;
 -(NSArray *)getListsForUser: (User *)user;
--(void)deleteListForuser: (User *)user;
+-(void)deleteListForUser: (User *)user;
 
 @end
