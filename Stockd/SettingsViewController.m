@@ -7,6 +7,8 @@
 //
 
 #import "SettingsViewController.h"
+#import <Parse/Parse.h>
+#import "LoginViewController.h"
 
 @interface SettingsViewController ()
 
@@ -22,6 +24,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)logUserOutOnButtonPress:(id)sender {
+    [PFUser logOut];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateInitialViewController];
+    [self presentViewController:loginViewController animated:YES completion:nil];
+    return;
 }
 
 @end

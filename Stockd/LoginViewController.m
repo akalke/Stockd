@@ -20,10 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    PFLogInViewController *login = [[PFLogInViewController alloc] init];
-    [self presentViewController:login animated:YES completion:nil];
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -35,6 +31,13 @@
 //        [tabBarController setSelectedIndex:0];
 //    }
 //}
+
+-(void)viewDidAppear:(BOOL)animated{
+    PFUser *user = [PFUser currentUser];
+    if(user.username != nil){
+        [self performSegueWithIdentifier:@"showTabBarSegue" sender:self];
+    }
+}
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"showTabBarSegue"]) {
