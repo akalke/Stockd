@@ -20,6 +20,7 @@
 @property NSMutableArray *storeArray;
 @property NSString *locationAddress;
 @property MKMapItem *mapItem;
+@property BOOL userLocationUpdated;
 
 @end
 
@@ -58,6 +59,14 @@
     pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
     
     return pin;
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    self.userLocationUpdated = YES;
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -147,18 +156,9 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if ([self.searchBar.text isEqualToString:@"Current Location"]) {
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-            NSString *title = @"Allow Stock'd to Access Location to Determine Your Current Location";
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-            }];
-            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                self.searchBar.text = @"";
-            }];
-            
-            [alert addAction:settings];
-            [alert addAction:cancel];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self currentLocationOffAlert];
+        } else {
+            [self useCurrentLocation];
         }
     } else {
         [self.mapView removeAnnotations:self.mapView.annotations];
@@ -204,21 +204,42 @@
 }
 
 - (void)useCurrentLocation {
-    [self.locationManager startUpdatingLocation];
-    
-    [self zoomMapWith:self.mapView.userLocation.location];
+    if (self.userLocationUpdated == YES) {
+        self.searchBar.text = @"Current Location";
+        
+        [self.locationManager startUpdatingLocation];
+        
+        [self zoomMapWith:self.mapView.userLocation.location];
+    }
 }
 
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self.searchBar resignFirstResponder];
 }
 
+- (void)currentLocationOffAlert {
+    NSString *title = @"Allow Stock'd to Access Location to Determine Your Current Location";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        self.searchBar.text = @"";
+    }];
+    
+    [alert addAction:settings];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)onUseCurrentLocationButtonPressed:(id)sender {
-    self.searchBar.text = @"Current Location";
-    
-    [self useCurrentLocation];
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        [self currentLocationOffAlert];
+    } else {
+        [self useCurrentLocation];
+    }
 }
 
 - (IBAction)onOpenMapsButtonPressed:(id)sender {
