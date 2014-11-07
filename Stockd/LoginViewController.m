@@ -100,7 +100,7 @@
             self.overlayViewLeftConstraint.constant = -600;
         }];
         NSLog(@"User created");
-    }ad
+    }
     else{
         NSLog(@"Passwords don't match");
     }
