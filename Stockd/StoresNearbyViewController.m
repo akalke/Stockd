@@ -40,6 +40,8 @@
     [self setSearchBarText];
     self.searchBar.placeholder = @"Search by Location";
     
+    self.textView.text = @"";
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -180,10 +182,6 @@
         NSString *searchQuery = [NSString stringWithFormat:@"%@", self.searchBar.text];
         [geocoder geocodeAddressString:searchQuery completionHandler:^(NSArray *placemarks, NSError *error) {
             for (CLPlacemark *placemark in placemarks) {
-                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-                annotation.coordinate = placemark.location.coordinate;
-                [self.mapView addAnnotation:annotation];
-                
                 [self findStoresNearby:placemark.location];
                 
                 [self zoomMapWith:placemark.location];
