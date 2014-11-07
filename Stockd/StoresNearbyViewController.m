@@ -37,11 +37,18 @@
     
     self.mapsButton.hidden = YES;
     
-    self.searchBar.text = @"Current Location";
+    [self setSearchBarText];
     self.searchBar.placeholder = @"Search by Location";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([self.searchBar.text isEqualToString:@""]) {
+        [self setSearchBarText];
+    }
 }
 
 #pragma mark - MapView Methods
@@ -215,6 +222,14 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender {
     [self.searchBar resignFirstResponder];
+}
+
+- (void)setSearchBarText {
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        self.searchBar.text = @"";
+    } else {
+        self.searchBar.text = @"Current Location";
+    }
 }
 
 #pragma mark - IBActions
