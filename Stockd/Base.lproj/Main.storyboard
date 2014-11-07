@@ -82,7 +82,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginUserOnButtonPress:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="U1E-0Y-46F"/>
-                                    <segue destination="qV9-KS-hcA" kind="show" identifier="showTabBarSegue" id="XB9-Cl-jUR"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
