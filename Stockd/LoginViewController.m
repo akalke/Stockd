@@ -48,6 +48,10 @@
 #pragma mark - Helper Methods
 
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self resignKeyboard];
+}
+
+- (void)resignKeyboard {
     [self.usernameTextField resignFirstResponder];
     [self.passwordTextField resignFirstResponder];
 }
@@ -62,6 +66,7 @@
         else {
             self.loginSuccess = YES;
             NSLog(@"success!");
+            [self resignKeyboard];
             [self performSegueWithIdentifier:@"showTabBarSegue" sender:sender];
         }
     }];

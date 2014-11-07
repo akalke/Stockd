@@ -38,26 +38,12 @@
     
     self.mapsButton.hidden = YES;
     
-    [self setSearchBarText];
     self.searchBar.placeholder = @"Search by Location";
     
     self.textView.text = @"";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if ([self.searchBar.text isEqualToString:@""]) {
-        [self setSearchBarText];
-    }
-    
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [self.locationManager startUpdatingLocation];
-        
-        [self zoomMapWith:self.mapView.userLocation.location];
-    }
 }
 
 #pragma mark - MapView Methods
@@ -174,11 +160,10 @@
             [alert addAction:cancel];
             [self presentViewController:alert animated:YES completion:nil];
         } else {
+            // is this necessary?
             [self.mapView removeAnnotations:self.mapView.annotations];
             
-            [self.locationManager startUpdatingLocation];
-            
-            [self zoomMapWith:self.mapView.userLocation.location];
+            [self useCurrentLocation];
             
             [self.searchBar resignFirstResponder];
         }
@@ -225,16 +210,14 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
-    [self.searchBar resignFirstResponder];
+- (void)useCurrentLocation {
+    [self.locationManager startUpdatingLocation];
+    
+    [self zoomMapWith:self.mapView.userLocation.location];
 }
 
-- (void)setSearchBarText {
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        self.searchBar.text = @"";
-    } else {
-        self.searchBar.text = @"Current Location";
-    }
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - IBActions
@@ -242,9 +225,7 @@
 - (IBAction)onUseCurrentLocationButtonPressed:(id)sender {
     self.searchBar.text = @"Current Location";
     
-    [self.locationManager startUpdatingLocation];
-    
-    [self zoomMapWith:self.mapView.userLocation.location];
+    [self useCurrentLocation];
 }
 
 - (IBAction)onOpenMapsButtonPressed:(id)sender {
