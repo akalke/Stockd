@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    PFLogInViewController *login = [[PFLogInViewController alloc] init];
+    [self presentViewController:login animated:YES completion:^{
+        return;
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -25,5 +30,7 @@
         [tabBarController setSelectedIndex:0];
     }
 }
+
+
 
 @end
