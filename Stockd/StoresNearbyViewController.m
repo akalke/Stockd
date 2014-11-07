@@ -43,7 +43,7 @@
     
     self.textView.text = @"";
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
 
@@ -225,7 +225,7 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)handleSingleTap:(UITapGestureRecognizer *)sender {
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self.searchBar resignFirstResponder];
 }
 
@@ -239,7 +239,15 @@
 
 #pragma mark - IBActions
 
-- (IBAction)onOpenMapsbuttonPressed:(id)sender {
+- (IBAction)onUseCurrentLocationButtonPressed:(id)sender {
+    self.searchBar.text = @"Current Location";
+    
+    [self.locationManager startUpdatingLocation];
+    
+    [self zoomMapWith:self.mapView.userLocation.location];
+}
+
+- (IBAction)onOpenMapsButtonPressed:(id)sender {
     [self.mapItem openInMapsWithLaunchOptions:nil];
 }
 
