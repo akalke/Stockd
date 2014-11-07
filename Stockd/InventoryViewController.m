@@ -8,7 +8,7 @@
 
 #import "InventoryViewController.h"
 
-@interface InventoryViewController ()
+@interface InventoryViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -22,6 +22,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyInventoryCell" forIndexPath: indexPath];
+    return cell;
 }
 
 /*

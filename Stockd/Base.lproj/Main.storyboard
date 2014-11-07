@@ -15,7 +15,28 @@
                     <view key="view" contentMode="scaleToFill" id="DVo-JD-1iW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Slw-ZP-I7L">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyInventoryCell" id="9Is-hW-gCc">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Is-hW-gCc" id="Dkf-k7-f0Q">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Slw-ZP-I7L" secondAttribute="trailing" id="DbC-tV-mZJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Slw-ZP-I7L" secondAttribute="bottom" id="EEK-Nt-HCG"/>
+                            <constraint firstItem="Slw-ZP-I7L" firstAttribute="leading" secondItem="DVo-JD-1iW" secondAttribute="leading" id="e2D-N0-4nv"/>
+                            <constraint firstItem="Slw-ZP-I7L" firstAttribute="top" secondItem="DVo-JD-1iW" secondAttribute="top" id="nsQ-qr-22b"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c5P-yR-Gqr"/>
                 </viewController>
@@ -86,7 +107,28 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="12C-j2-YwH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyListsCell" id="6V2-Ks-UQU">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6V2-Ks-UQU" id="v9z-Ca-pDD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="12C-j2-YwH" secondAttribute="trailing" id="Uq6-0C-P2M"/>
+                            <constraint firstItem="12C-j2-YwH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="f9W-u2-m5g"/>
+                            <constraint firstItem="12C-j2-YwH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="jEk-aD-4SM"/>
+                            <constraint firstAttribute="bottom" secondItem="12C-j2-YwH" secondAttribute="bottom" id="l31-wq-vqo"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oY3-5J-jpv"/>
                 </viewController>
