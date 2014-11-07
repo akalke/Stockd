@@ -30,6 +30,7 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager requestWhenInUseAuthorization];
+    
     self.locationManager.delegate = self;
     self.searchBar.delegate = self;
     
@@ -50,6 +51,12 @@
     [super viewWillAppear:animated];
     if ([self.searchBar.text isEqualToString:@""]) {
         [self setSearchBarText];
+    }
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.locationManager startUpdatingLocation];
+        
+        [self zoomMapWith:self.mapView.userLocation.location];
     }
 }
 
