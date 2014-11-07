@@ -11,10 +11,11 @@
 #import <MapKit/MapKit.h>
 #import "Store.h"
 
-@interface StoresNearbyViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface StoresNearbyViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *mapsButton;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
 @property NSString *locationAddress;
@@ -30,13 +31,14 @@
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager requestWhenInUseAuthorization];
     self.locationManager.delegate = self;
+    self.searchBar.delegate = self;
     
     self.storeArray = [NSMutableArray array];
     
     self.mapsButton.hidden = YES;
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        NSString *title = @"Turn On Location Services to Allow Stock'd to Determine Your Current Location";
+        NSString *title = @"Allow Stock'd to Access Location to Determine Your Current Location";
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
@@ -49,6 +51,9 @@
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
     }
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 #pragma mark - MapView Methods
@@ -68,7 +73,6 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSString *pin = [NSString stringWithFormat:@"%@", view.annotation.title];
     if ([self.mapView.userLocation.title isEqualToString:pin]) {
-        self.textView.text = [NSString stringWithFormat:@"%@", self.locationAddress];
         self.mapsButton.hidden = YES;
     } else {
         for (Store *store in self.storeArray) {
@@ -150,6 +154,13 @@
     }];
 }
 
+#pragma mark - SearchBar Methods
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.textView.text = self.searchBar.text;
+    [self.searchBar resignFirstResponder];
+}
+
 #pragma mark - Helper Methods
 
 - (void)setStorePins {
@@ -178,6 +189,10 @@
     region.span = span;
     
     [self.mapView setRegion:region animated:YES];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)sender {
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - IBActions

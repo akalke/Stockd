@@ -147,27 +147,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kL8-4p-arw">
-                                <rect key="frame" x="0.0" y="64" width="600" height="300"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vpz-u8-6js" id="bXg-Hi-5QO"/>
-                                </connections>
-                            </mapView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8M9-Yg-HCg">
-                                <rect key="frame" x="0.0" y="410" width="600" height="140"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="act-gO-sG5"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VgM-eb-x8Q">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-M8-WQW">
-                                <rect key="frame" x="252" y="372" width="97" height="30"/>
+                                <rect key="frame" x="252" y="366" width="97" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="WX4-xi-9hp"/>
-                                    <constraint firstAttribute="height" constant="30" id="znz-Hp-BE3"/>
+                                    <constraint firstAttribute="height" constant="25" id="PSI-Hp-N9l"/>
+                                    <constraint firstAttribute="width" constant="97" id="hiZ-8d-2d5"/>
                                 </constraints>
                                 <state key="normal" title="Open In Maps">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -176,21 +164,43 @@
                                     <action selector="onOpenMapsbuttonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="YK6-Rh-0em"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="for-Ee-Cli">
+                                <rect key="frame" x="0.0" y="108" width="600" height="250"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vpz-u8-6js" id="jq9-p6-yaC"/>
+                                </connections>
+                            </mapView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L48-Nu-THh">
+                                <rect key="frame" x="0.0" y="399" width="600" height="152"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="152" id="Z9l-cX-KIF"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="a6K-M8-WQW" firstAttribute="top" secondItem="kL8-4p-arw" secondAttribute="bottom" constant="8" id="Dej-9Z-TWG"/>
-                            <constraint firstItem="kL8-4p-arw" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="EYq-PR-0KO"/>
-                            <constraint firstItem="8M9-Yg-HCg" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="HeA-R7-y8g"/>
-                            <constraint firstItem="8M9-Yg-HCg" firstAttribute="top" secondItem="kL8-4p-arw" secondAttribute="bottom" constant="46" id="KMi-jd-Hkr"/>
-                            <constraint firstItem="kL8-4p-arw" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="NL7-Ii-tHV"/>
-                            <constraint firstAttribute="trailing" secondItem="8M9-Yg-HCg" secondAttribute="trailing" id="b0M-bK-KgE"/>
-                            <constraint firstItem="8M9-Yg-HCg" firstAttribute="top" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="8" id="cqq-kH-GW8"/>
-                            <constraint firstItem="8M9-Yg-HCg" firstAttribute="top" secondItem="kL8-4p-arw" secondAttribute="bottom" constant="46" id="ddH-oM-Dd9"/>
-                            <constraint firstAttribute="centerX" secondItem="a6K-M8-WQW" secondAttribute="centerX" id="hN0-GI-tRj"/>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="8M9-Yg-HCg" secondAttribute="bottom" constant="1" id="nXO-d7-4cR"/>
-                            <constraint firstAttribute="trailing" secondItem="kL8-4p-arw" secondAttribute="trailing" id="ukl-41-3Gn"/>
+                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" constant="41" id="CU5-Cz-fqF"/>
+                            <constraint firstItem="VgM-eb-x8Q" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="DaN-Tf-ISJ"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="EJE-Pd-LwK"/>
+                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="P4i-MU-l1h"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="L48-Nu-THh" secondAttribute="bottom" id="Rop-Lg-CAn"/>
+                            <constraint firstAttribute="trailing" secondItem="VgM-eb-x8Q" secondAttribute="trailing" id="VPx-Lo-dnI"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="VgM-eb-x8Q" secondAttribute="bottom" id="Vp1-Wj-c7f"/>
+                            <constraint firstAttribute="centerX" secondItem="a6K-M8-WQW" secondAttribute="centerX" id="WCp-lC-JOh"/>
+                            <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" id="ZwK-6Q-7dI"/>
+                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" constant="41" id="hns-b2-evT"/>
+                            <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="oBQ-X8-X7s"/>
+                            <constraint firstItem="VgM-eb-x8Q" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="rQW-8u-xh0"/>
+                            <constraint firstItem="a6K-M8-WQW" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" constant="8" id="yAX-Ga-Bme"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="DYQ-1X-ked" appends="YES" id="y8o-YW-aPz"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="jQI-Hx-CrO">
                         <nil key="title"/>
@@ -206,12 +216,18 @@
                         </button>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="kL8-4p-arw" id="fTS-KQ-vbj"/>
-                        <outlet property="mapsButton" destination="a6K-M8-WQW" id="bFZ-yy-acW"/>
-                        <outlet property="textView" destination="8M9-Yg-HCg" id="RiY-g9-qew"/>
+                        <outlet property="mapView" destination="for-Ee-Cli" id="A6N-lZ-xbj"/>
+                        <outlet property="mapsButton" destination="a6K-M8-WQW" id="kjQ-fI-uF8"/>
+                        <outlet property="searchBar" destination="VgM-eb-x8Q" id="Fqa-Dy-4o0"/>
+                        <outlet property="textView" destination="L48-Nu-THh" id="vSS-sT-7i8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRX-fo-SYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DYQ-1X-ked">
+                    <connections>
+                        <outlet property="delegate" destination="vpz-u8-6js" id="0ch-FK-UqP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1625" y="840"/>
         </scene>
