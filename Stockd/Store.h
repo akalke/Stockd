@@ -13,8 +13,6 @@
 @property NSString *name;
 @property NSString *phoneNumber;
 @property CLPlacemark *placemark;
-@property CLLocationDegrees latitude;
-@property CLLocationDegrees longitude;
 @property CGFloat distance;
 
 @end

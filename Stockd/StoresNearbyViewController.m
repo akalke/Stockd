@@ -37,20 +37,8 @@
     
     self.mapsButton.hidden = YES;
     
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        NSString *title = @"Allow Stock'd to Access Location to Determine Your Current Location";
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-        }];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            return;
-        }];
-        
-        [alert addAction:settings];
-        [alert addAction:cancel];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+    self.searchBar.text = @"Current Location";
+    self.searchBar.placeholder = @"Search by Location";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [self.view addGestureRecognizer:tapGesture];
@@ -122,7 +110,7 @@
 }
 
 - (void)reverseGeocode:(CLLocation *)location {
-    CLGeocoder *geocoder = [CLGeocoder new];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *placemark = placemarks.firstObject;
         self.locationAddress = [NSString stringWithFormat:@"%@ \n%@ %@ \n%@, %@ \n%@", @"Address:", placemark.subThoroughfare, placemark.thoroughfare, placemark.locality, placemark.administrativeArea, placemark.postalCode];
@@ -132,7 +120,7 @@
 }
 
 - (void)findStoresNearby:(CLLocation *)location {
-    MKLocalSearchRequest *request = [MKLocalSearchRequest new];
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = @"grocery";
     request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.1, 0.1));
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
@@ -144,8 +132,6 @@
             store.name = item.name;
             store.phoneNumber = item.phoneNumber;
             store.placemark = item.placemark;
-            store.latitude = item.placemark.location.coordinate.latitude;
-            store.longitude = item.placemark.location.coordinate.longitude;
             store.distance = [store.placemark.location distanceFromLocation:location];
             [array addObject:store];
         }
@@ -157,20 +143,56 @@
 #pragma mark - SearchBar Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    self.textView.text = self.searchBar.text;
-    [self.searchBar resignFirstResponder];
+    if ([self.searchBar.text isEqualToString:@"Current Location"]) {
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+            NSString *title = @"Allow Stock'd to Access Location to Determine Your Current Location";
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                self.searchBar.text = @"";
+            }];
+            
+            [alert addAction:settings];
+            [alert addAction:cancel];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            [self.mapView removeAnnotations:self.mapView.annotations];
+            
+            [self.locationManager startUpdatingLocation];
+            
+            [self zoomMapWith:self.mapView.userLocation.location];
+            
+            [self.searchBar resignFirstResponder];
+        }
+    } else {
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        NSString *searchQuery = [NSString stringWithFormat:@"%@", self.searchBar.text];
+        [geocoder geocodeAddressString:searchQuery completionHandler:^(NSArray *placemarks, NSError *error) {
+            for (CLPlacemark *placemark in placemarks) {
+                MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = placemark.location.coordinate;
+                [self.mapView addAnnotation:annotation];
+                
+                [self findStoresNearby:placemark.location];
+                
+                [self zoomMapWith:placemark.location];
+                
+                [self.searchBar resignFirstResponder];
+            }
+        }];
+    }
 }
 
 #pragma mark - Helper Methods
 
 - (void)setStorePins {
     for (Store *store in self.storeArray) {
-        CLLocationCoordinate2D coord;
-        coord.latitude = store.latitude;
-        coord.longitude = store.longitude;
-        
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        annotation.coordinate = coord;
+        annotation.coordinate = store.placemark.location.coordinate;
         annotation.title = store.name;
         annotation.subtitle = [NSString stringWithFormat:@"Tap to Call: %@", store.phoneNumber];
         
