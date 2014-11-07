@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -75,8 +75,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fiber_adventure_weekend_7_11" translatesAutoresizingMaskIntoConstraints="NO" id="XU9-VW-wgv">
+                                <rect key="frame" x="0.0" y="-2" width="600" height="602"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-wM-yqw">
+                                <rect key="frame" x="345" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMk-nj-Xyi">
+                                        <rect key="frame" x="184" y="55" width="233" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-Nu-Z82">
+                                        <rect key="frame" x="184" y="107" width="233" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="492-h7-p5O">
+                                        <rect key="frame" x="184" y="154" width="233" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geR-nQ-Xzr">
+                                        <rect key="frame" x="257" y="229" width="87" height="30"/>
+                                        <state key="normal" title="Register Me!">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
                                 <rect key="frame" x="185" y="70" width="230" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.68024668050000003" blue="0.41238133690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="a9h-M9-1yn"/>
                                     <constraint firstAttribute="width" constant="230" id="mV1-HP-65L"/>
@@ -84,8 +115,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OCX-1h-fdP">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OCX-1h-fdP">
                                 <rect key="frame" x="185" y="134" width="230" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.68024668050000003" blue="0.41238133690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="MyZ-FK-pnB"/>
                                     <constraint firstAttribute="height" constant="30" id="xEZ-Se-wfS"/>
@@ -107,16 +139,28 @@
                                     <segue destination="qV9-KS-hcA" kind="show" identifier="showTabBarSegue" id="VP3-XV-7qB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-09-dEu">
+                                <rect key="frame" x="270" y="223" width="61" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5Q7-OT-a2W"/>
+                                    <constraint firstAttribute="width" constant="61" id="t22-lj-D91"/>
+                                </constraints>
+                                <state key="normal" title="Register!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="cDi-Rz-KSf" firstAttribute="top" secondItem="HBO-yp-JYt" secondAttribute="bottom" constant="50" id="Foz-4T-Qc0"/>
+                            <constraint firstItem="zJx-09-dEu" firstAttribute="top" secondItem="8y2-ty-k6G" secondAttribute="bottom" constant="8" id="GWH-tA-wRO"/>
                             <constraint firstAttribute="centerX" secondItem="OCX-1h-fdP" secondAttribute="centerX" id="XG2-wm-cPn"/>
                             <constraint firstItem="OCX-1h-fdP" firstAttribute="top" secondItem="cDi-Rz-KSf" secondAttribute="bottom" constant="34" id="dgg-Zo-juv"/>
                             <constraint firstItem="8y2-ty-k6G" firstAttribute="top" secondItem="OCX-1h-fdP" secondAttribute="bottom" constant="21" id="k4e-CL-Kd1"/>
                             <constraint firstAttribute="centerX" secondItem="8y2-ty-k6G" secondAttribute="centerX" id="vL7-KP-Asw"/>
                             <constraint firstAttribute="centerX" secondItem="cDi-Rz-KSf" secondAttribute="centerX" id="wdx-sh-gI0"/>
+                            <constraint firstAttribute="centerX" secondItem="zJx-09-dEu" secondAttribute="centerX" id="xYk-S6-vT4"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="FLd-xJ-ECS" appends="YES" id="BeG-P3-HTZ"/>
@@ -134,7 +178,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-491" y="144"/>
+            <point key="canvasLocation" x="-603" y="144"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -209,7 +253,22 @@
                     <view key="view" contentMode="scaleToFill" id="8iZ-Ot-epN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hp3-dE-Sg3">
+                                <rect key="frame" x="233" y="285" width="134" height="30"/>
+                                <state key="normal" title="Log Me Out Scotty!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logUserOutOnButtonPress:" destination="WJf-lj-nZo" eventType="touchUpInside" id="ZnN-1u-EA3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Hp3-dE-Sg3" secondAttribute="centerX" id="6Lb-1z-EUz"/>
+                            <constraint firstAttribute="centerY" secondItem="Hp3-dE-Sg3" secondAttribute="centerY" id="ehA-bI-i31"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZdX-2P-K87"/>
                 </viewController>
@@ -416,6 +475,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
         <image name="stockd_tabbaricon-createlist" width="37" height="37"/>
         <image name="stockd_tabbaricon-home" width="37" height="37"/>
         <image name="stockd_tabbaricon-inventory" width="37" height="37"/>
