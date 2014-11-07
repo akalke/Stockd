@@ -124,7 +124,7 @@
 - (void)findStoresNearby:(CLLocation *)location {
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = @"grocery";
-    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.1, 0.1));
+    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(.1, .1));
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         NSMutableArray *array = [NSMutableArray array];
@@ -159,13 +159,6 @@
             [alert addAction:settings];
             [alert addAction:cancel];
             [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            // is this necessary?
-            [self.mapView removeAnnotations:self.mapView.annotations];
-            
-            [self useCurrentLocation];
-            
-            [self.searchBar resignFirstResponder];
         }
     } else {
         [self.mapView removeAnnotations:self.mapView.annotations];
@@ -200,8 +193,8 @@
 - (void)zoomMapWith:(CLLocation *)location {
     CLLocationCoordinate2D center = location.coordinate;
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.105;
-    span.longitudeDelta = 0.105;
+    span.latitudeDelta = 0.1;
+    span.longitudeDelta = 0.1;
     
     MKCoordinateRegion region;
     region.center = center;
