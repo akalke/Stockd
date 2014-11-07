@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
@@ -19,9 +21,7 @@
     // Do any additional setup after loading the view.
 
     PFLogInViewController *login = [[PFLogInViewController alloc] init];
-    [self presentViewController:login animated:YES completion:^{
-        return;
-    }];
+    [self presentViewController:login animated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -31,6 +31,16 @@
     }
 }
 
+- (IBAction)loginUserOnButtonPress:(id)sender {
+    [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error) {
+        if(error){
+            NSLog(@"Login Error! %@", error);
+        }
+        else{
+            [self performSegueWithIdentifier:@"showTabBarSegue" sender:self];
+        }
+    }];
+}
 
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -76,21 +76,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgd-gI-9am">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="261" y="285" width="77" height="30"/>
+                                <state key="normal" title="Log  Me In!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="loginUserOnButtonPress:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="U1E-0Y-46F"/>
                                     <segue destination="qV9-KS-hcA" kind="show" identifier="showTabBarSegue" id="XB9-Cl-jUR"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
+                                <rect key="frame" x="185" y="70" width="230" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="TLl-cC-x2c"/>
+                                    <constraint firstAttribute="height" constant="30" id="use-la-xzR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OCX-1h-fdP">
+                                <rect key="frame" x="185" y="134" width="230" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="2zH-pe-nIC"/>
+                                    <constraint firstAttribute="height" constant="30" id="mkh-bE-heB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Sgd-gI-9am" secondAttribute="centerX" id="2Fk-rE-aBU"/>
+                            <constraint firstItem="Sgd-gI-9am" firstAttribute="top" secondItem="OCX-1h-fdP" secondAttribute="bottom" constant="121" id="Ohs-8a-eun"/>
+                            <constraint firstItem="OCX-1h-fdP" firstAttribute="top" secondItem="cDi-Rz-KSf" secondAttribute="bottom" constant="34" id="UGi-9I-Lu7"/>
+                            <constraint firstItem="cDi-Rz-KSf" firstAttribute="top" secondItem="HBO-yp-JYt" secondAttribute="bottom" constant="50" id="UUF-XS-dQF"/>
+                            <constraint firstAttribute="centerX" secondItem="OCX-1h-fdP" secondAttribute="centerX" id="beG-op-EmL"/>
+                            <constraint firstAttribute="centerX" secondItem="cDi-Rz-KSf" secondAttribute="centerX" id="k6H-4T-Lc5"/>
                             <constraint firstAttribute="centerY" secondItem="Sgd-gI-9am" secondAttribute="centerY" id="tYM-C4-Ve4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="OCX-1h-fdP" id="z0q-Vh-15b"/>
+                        <outlet property="usernameTextField" destination="cDi-Rz-KSf" id="sAH-tn-qZ6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a9E-rB-9z8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
