@@ -37,7 +37,10 @@
             NSLog(@"Login Error! %@", error);
         }
         else{
-            [self performSegueWithIdentifier:@"showTabBarSegue" sender:self];
+            NSLog(@"Login Successful");
+            UITabBarController *tabController;
+            [self presentViewController:tabController animated:YES completion:nil];
+            //[self performSegueWithIdentifier:@"showTabBarSegue" sender:self];
         }
     }];
 }
