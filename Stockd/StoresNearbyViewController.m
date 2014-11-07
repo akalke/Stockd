@@ -219,13 +219,6 @@
 
 #pragma mark - IBActions
 
-- (IBAction)onButtonPressed:(id)sender {
-    [self.locationManager startUpdatingLocation];
-    self.textView.text = @"Locating Nearby Stores";
-    
-    [self zoomMapWith:self.mapView.userLocation.location];
-}
-
 - (IBAction)onOpenMapsbuttonPressed:(id)sender {
     [self.mapItem openInMapsWithLaunchOptions:nil];
 }

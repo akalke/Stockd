@@ -204,16 +204,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="jQI-Hx-CrO">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R8B-7g-jaG">
-                            <rect key="frame" x="180" y="7" width="240" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="onButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="W29-8H-jKx"/>
-                            </connections>
-                        </button>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="for-Ee-Cli" id="A6N-lZ-xbj"/>
