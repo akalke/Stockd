@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *registerPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *registerConfirmPasswordTextField;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *overlayViewLeftConstraint;
-@property CGRect frame;
+@property CGRect overlayFrame;
 
 @end
 
@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.frame = self.registerUserOverlayView.bounds;
+    self.overlayFrame = self.registerUserOverlayView.frame;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -99,7 +99,7 @@
 //        newUser.password = self.registerPasswordTextField.text;
 //
         [UIView animateWithDuration:0.3 animations:^{
-            self.registerUserOverlayView.frame = self.frame;
+            self.registerUserOverlayView.frame = self.overlayFrame;
         }];
         NSLog(@"User created");
     }
