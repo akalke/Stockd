@@ -157,6 +157,7 @@
 #pragma mark - SearchBar Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.textView.text = @"";
     if ([self.searchBar.text isEqualToString:@"Current Location"]) {
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
             [self currentLocationOffAlert];
