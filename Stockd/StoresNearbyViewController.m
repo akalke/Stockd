@@ -187,7 +187,6 @@
             }
         }];
     }
-    NSLog(@"he");
 }
 
 #pragma mark - Helper Methods
