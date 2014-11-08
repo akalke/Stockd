@@ -56,9 +56,9 @@
     }
     
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+    pin.image = [UIImage imageNamed:@"stockd_annotation"];
     pin.canShowCallout = YES;
     pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    pin.animatesDrop = YES;
     
     return pin;
 }
