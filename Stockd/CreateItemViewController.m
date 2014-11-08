@@ -7,6 +7,7 @@
 //
 
 #import "CreateItemViewController.h"
+#import "Item.h"
 
 @interface CreateItemViewController ()
 
@@ -16,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    Item *item = [[Item alloc] init];
+    [item createNewItem:@"chicken" :@"perdue" :nil :@"my list"];
     // Do any additional setup after loading the view.
 }
 

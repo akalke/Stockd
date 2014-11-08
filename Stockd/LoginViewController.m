@@ -98,6 +98,8 @@
 //        newUser.username = self.registerUsernameTextField.text;
 //        newUser.password = self.registerPasswordTextField.text;
 //
+
+        //TO DO: fix bug with registration text fields and fix animation back out to login
         [UIView animateWithDuration:0.3 animations:^{
             self.registerUserOverlayView.frame = self.overlayFrame;
         }];
