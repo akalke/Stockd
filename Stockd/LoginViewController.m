@@ -12,6 +12,12 @@
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property BOOL loginSuccess;
+@property (strong, nonatomic) IBOutlet UIView *registerUserOverlayView;
+@property (strong, nonatomic) IBOutlet UITextField *registerUsernameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *registerPasswordTextField;
+@property (strong, nonatomic) IBOutlet UITextField *registerConfirmPasswordTextField;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *overlayViewLeftConstraint;
+@property CGRect overlayFrame;
 
 @end
 
@@ -20,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.overlayFrame = self.registerUserOverlayView.frame;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -75,5 +82,31 @@
     }];
 }
 
+- (IBAction)registerUserOnButtonPress:(id)sender {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.registerUserOverlayView.frame = self.view.frame;
+    }];
+
+}
+
+- (IBAction)createUserOnRegister:(id)sender {
+
+
+    //TO DO: Check for existing username
+    if([self.registerUsernameTextField.text isEqualToString:self.registerConfirmPasswordTextField.text]){
+//        PFUser *newUser = [PFUser user];
+//        newUser.username = self.registerUsernameTextField.text;
+//        newUser.password = self.registerPasswordTextField.text;
+//
+        [UIView animateWithDuration:0.3 animations:^{
+            self.registerUserOverlayView.frame = self.overlayFrame;
+        }];
+        NSLog(@"User created");
+    }
+    else{
+        NSLog(@"Passwords don't match");
+    }
+
+}
 
 @end

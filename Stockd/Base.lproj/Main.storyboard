@@ -76,35 +76,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fiber_adventure_weekend_7_11" translatesAutoresizingMaskIntoConstraints="NO" id="XU9-VW-wgv">
-                                <rect key="frame" x="0.0" y="-2" width="600" height="602"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-wM-yqw">
-                                <rect key="frame" x="345" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMk-nj-Xyi">
-                                        <rect key="frame" x="184" y="55" width="233" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-Nu-Z82">
-                                        <rect key="frame" x="184" y="107" width="233" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="492-h7-p5O">
-                                        <rect key="frame" x="184" y="154" width="233" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geR-nQ-Xzr">
-                                        <rect key="frame" x="257" y="229" width="87" height="30"/>
-                                        <state key="normal" title="Register Me!">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
                                 <rect key="frame" x="185" y="70" width="230" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.68024668050000003" blue="0.41238133690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,7 +121,40 @@
                                 <state key="normal" title="Register!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerUserOnButtonPress:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="shf-oi-nFe"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-wM-yqw">
+                                <rect key="frame" x="600" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMk-nj-Xyi">
+                                        <rect key="frame" x="184" y="55" width="233" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-Nu-Z82">
+                                        <rect key="frame" x="184" y="107" width="233" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="492-h7-p5O">
+                                        <rect key="frame" x="184" y="154" width="233" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geR-nQ-Xzr">
+                                        <rect key="frame" x="257" y="229" width="85" height="30"/>
+                                        <state key="normal" title="Sign Me Up!">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createUserOnRegister:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="Rhk-Dl-33m"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -168,6 +174,10 @@
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="OCX-1h-fdP" id="z0q-Vh-15b"/>
+                        <outlet property="registerConfirmPasswordTextField" destination="492-h7-p5O" id="FOq-vs-Dng"/>
+                        <outlet property="registerPasswordTextField" destination="HUd-Nu-Z82" id="eN8-tx-cKJ"/>
+                        <outlet property="registerUserOverlayView" destination="IW9-wM-yqw" id="urJ-q6-hsi"/>
+                        <outlet property="registerUsernameTextField" destination="gMk-nj-Xyi" id="2Qg-ZL-46K"/>
                         <outlet property="usernameTextField" destination="cDi-Rz-KSf" id="sAH-tn-qZ6"/>
                     </connections>
                 </viewController>
