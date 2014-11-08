@@ -18,9 +18,10 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
-@property NSString *locationAddress;
 @property MKMapItem *mapItem;
 @property BOOL userLocationUpdated;
+@property BOOL didSearchForNearbyStores;
+
 
 @end
 
@@ -39,7 +40,7 @@
     
     self.mapsButton.hidden = YES;
     
-    self.searchBar.placeholder = @"Search by Location";
+    self.searchBar.placeholder = @"Search by City, Zip, or Current Location";
     
     self.textView.text = @"";
     
@@ -57,6 +58,7 @@
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
     pin.canShowCallout = YES;
     pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    pin.animatesDrop = YES;
     
     return pin;
 }
@@ -66,7 +68,10 @@
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    
+    if (self.didSearchForNearbyStores == YES) {
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        [self findStoresNearby:mapView.centerCoordinate];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -120,20 +125,19 @@
     }
 }
 
+#pragma mark - FindLocations Methods
+
 - (void)reverseGeocode:(CLLocation *)location {
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = placemarks.firstObject;
-        self.locationAddress = [NSString stringWithFormat:@"%@ \n%@ %@ \n%@, %@ \n%@", @"Address:", placemark.subThoroughfare, placemark.thoroughfare, placemark.locality, placemark.administrativeArea, placemark.postalCode];
-        self.textView.text = [NSString stringWithFormat:@"%@", self.locationAddress];
-        [self findStoresNearby:location];
+        [self findStoresNearby:location.coordinate];
     }];
 }
 
-- (void)findStoresNearby:(CLLocation *)location {
+- (void)findStoresNearby:(CLLocationCoordinate2D)coordinate {
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = @"grocery";
-    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(.1, .1));
+    request.region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.03, 0.03));
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         NSMutableArray *array = [NSMutableArray array];
@@ -143,7 +147,6 @@
             store.name = item.name;
             store.phoneNumber = item.phoneNumber;
             store.placemark = item.placemark;
-            store.distance = [store.placemark.location distanceFromLocation:location];
             [array addObject:store];
         }
         self.storeArray = array;
@@ -154,11 +157,18 @@
 #pragma mark - SearchBar Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.textView.text = @"";
     if ([self.searchBar.text isEqualToString:@"Current Location"]) {
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
             [self currentLocationOffAlert];
         } else {
+            [self.mapView removeAnnotations:self.mapView.annotations];
+            
             [self useCurrentLocation];
+            
+            self.didSearchForNearbyStores = YES;
+            
+            [self.searchBar resignFirstResponder];
         }
     } else {
         [self.mapView removeAnnotations:self.mapView.annotations];
@@ -167,9 +177,11 @@
         NSString *searchQuery = [NSString stringWithFormat:@"%@", self.searchBar.text];
         [geocoder geocodeAddressString:searchQuery completionHandler:^(NSArray *placemarks, NSError *error) {
             for (CLPlacemark *placemark in placemarks) {
-                [self findStoresNearby:placemark.location];
+                [self findStoresNearby:placemark.location.coordinate];
                 
                 [self zoomMapWith:placemark.location];
+                
+                self.didSearchForNearbyStores = YES;
                 
                 [self.searchBar resignFirstResponder];
             }
@@ -193,14 +205,14 @@
 - (void)zoomMapWith:(CLLocation *)location {
     CLLocationCoordinate2D center = location.coordinate;
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.1;
-    span.longitudeDelta = 0.1;
+    span.latitudeDelta = 0.03;
+    span.longitudeDelta = 0.03;
     
     MKCoordinateRegion region;
     region.center = center;
     region.span = span;
     
-    [self.mapView setRegion:region animated:YES];
+    [self.mapView setRegion:region animated:NO];
 }
 
 - (void)useCurrentLocation {
@@ -238,7 +250,11 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         [self currentLocationOffAlert];
     } else {
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        
         [self useCurrentLocation];
+        
+        self.didSearchForNearbyStores = YES;
     }
 }
 
