@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getItems:self.listID];
     // Do any additional setup after loading the view.
 }
 
@@ -33,17 +34,17 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    Item *item = [self.items objectAtIndex:indexPath.row];
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
+    cell.textLabel.text = item.type;
     return cell;
 }
 
--(void) getItems: (NSString *)listID{
+-(void)getItems: (NSString *)listID{
     NSPredicate *findItemsForList = [NSPredicate predicateWithFormat:@"listID = %@", listID];
-
-    NSLog(@"running query");
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForList];
-    NSLog(@"query complete");
-
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);

@@ -57,32 +57,23 @@
 
 -(void) getLists: (PFUser *)currentUser{
     NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
-
-    NSLog(@"running query");
     PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
-    NSLog(@"query complete");
-
     [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);
         }
         else{
             self.lists = objects;
-            NSLog(@"%@", objects);
             [self.tableView reloadData];
         }
     }];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.listID = [[self.lists objectAtIndex:indexPath.row] objectId];
-    [self performSegueWithIdentifier:@"listDetailSegue" sender:self];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"listDetailSegue"]){
-        ListDetailViewController *listDetailVC = segue.destinationViewController;
-        listDetailVC.listID = self.listID;
+        UINavigationController *navigationVC = (UINavigationController *)segue.destinationViewController;
+        ListDetailViewController *listDetailVC = (ListDetailViewController *)navigationVC.topViewController;
+        listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] objectId];
     }
 }
 

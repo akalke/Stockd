@@ -41,11 +41,7 @@
 
 -(void) getInventory: (PFUser *)currentUser{
     NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
-
-    NSLog(@"running query");
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];
-    NSLog(@"query complete");
-
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);
