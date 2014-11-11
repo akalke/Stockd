@@ -13,6 +13,5 @@
 @property NSString *name;
 @property NSString *phoneNumber;
 @property CLPlacemark *placemark;
-@property CGFloat distance;
 
 @end

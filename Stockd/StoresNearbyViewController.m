@@ -31,20 +31,21 @@
     [super viewDidLoad];
     
     self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
     
-    self.locationManager.delegate = self;
     self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search by City, Zip, or Current Location";
     
     self.storeArray = [NSMutableArray array];
     
     self.mapsButton.hidden = YES;
     
-    self.searchBar.placeholder = @"Search by City, Zip, or Current Location";
-    
     self.textView.text = @"";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
 }
 
@@ -76,13 +77,29 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSString *pin = [NSString stringWithFormat:@"%@", view.annotation.title];
+    NSString *pinSubtitle = [NSString stringWithFormat:@"%@", view.annotation.subtitle];
     if ([self.mapView.userLocation.title isEqualToString:pin]) {
         self.mapsButton.hidden = YES;
     } else {
         for (Store *store in self.storeArray) {
-            if ([store.name isEqualToString:pin]) {
+            if ([store.placemark.subThoroughfare isEqualToString:@"(null)"]) {
+                NSLog(@"hello");
+            }
+            if ([pinSubtitle containsString:store.phoneNumber]) {
                 NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
-                self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, address, store.placemark.postalCode, store.phoneNumber];
+                NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
+                
+                self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode, store.phoneNumber];
+                
+                MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
+                self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
+                
+                self.mapsButton.hidden = NO;
+            } else if (!store.phoneNumber && [store.name isEqualToString:pin]) {
+                NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
+                NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
+                
+                self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode, store.phoneNumber];
                 
                 MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
                 self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
