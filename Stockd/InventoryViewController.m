@@ -53,6 +53,16 @@
     }];
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    PFUser *user = [PFUser currentUser];
+    Item *item =[self.inventory objectAtIndex:indexPath.row];
+
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        [item deleteItem];
+        [self getInventory:user];
+    }
+    
+}
 
 
 /*

@@ -23,8 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PFUser *user = [PFUser currentUser];
-    [self getLists: user];
+    [self getLists: [PFUser currentUser]];
+    [self checkForQuickList];
     // Do any additional setup after loading the view.
 }
 
@@ -32,6 +32,21 @@
     [super viewWillAppear:animated];
     PFUser *user = [PFUser currentUser];
     [self getLists: user];
+    [self.tableView reloadData];
+}
+
+-(void)checkForQuickList{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if([[userDefaults stringForKey:@"QUICKLIST_EXISTS"] isEqualToString:@"YES"]){
+        NSLog(@"Quick list exists");
+        return;
+    }
+    else{
+        NSLog(@"Creating quick list");
+        List *list = [[List alloc]init];
+        [list createNewQuickList:[PFUser currentUser]];
+        [userDefaults setValue:@"YES" forKey:@"QUICKLIST_EXISTS"];
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -46,12 +61,33 @@
     return cell;
 }
 
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    List *list = [self.lists objectAtIndex:indexPath.row];
+    if([list.name isEqualToString:@"Quick List"]){
+        return UITableViewCellEditingStyleNone;
+    }
+    else{
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    PFUser *user = [PFUser currentUser];
+    List *list =[self.lists objectAtIndex:indexPath.row];
+
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        [list deleteList];
+        [self getLists:user];
+    }
+
+}
+
 - (IBAction)createListOnButtonPress:(id)sender {
     List *list = [[List alloc]init];
     PFUser *user = [PFUser currentUser];
     [list createNewList:user :self.listName.text];
-    [self getLists:user];
     self.listName.text = @"";
+    [self getLists:user];
 }
 
 

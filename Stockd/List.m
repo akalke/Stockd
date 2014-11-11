@@ -80,7 +80,7 @@
     return self.listsArray;
 }
 
--(void)deleteListForUser: (PFUser *)user{
+-(void)deleteList{
     [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);
