@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ListDetailViewController : UIViewController
+@property NSString *listID;
 
 @end

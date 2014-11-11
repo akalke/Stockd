@@ -9,11 +9,14 @@
 #import "HomeViewController.h"
 #import <Parse/Parse.h>
 #import "List.h"
+#import "ListDetailViewController.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITextField *listName;
+@property List *list;
 @property NSArray *lists;
+@property NSString *listID;
 @end
 
 @implementation HomeViewController
@@ -70,6 +73,17 @@
     }];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.listID = [[self.lists objectAtIndex:indexPath.row] objectId];
+    [self performSegueWithIdentifier:@"listDetailSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"listDetailSegue"]){
+        ListDetailViewController *listDetailVC = segue.destinationViewController;
+        listDetailVC.listID = self.listID;
+    }
+}
 
 /*
 #pragma mark - Navigation

@@ -37,8 +37,8 @@
     return cell;
 }
 
--(void) getItems: (List *)list{
-    NSPredicate *findItemsForList = [NSPredicate predicateWithFormat:@"listID = %@", list.objectId];
+-(void) getItems: (NSString *)listID{
+    NSPredicate *findItemsForList = [NSPredicate predicateWithFormat:@"listID = %@", listID];
 
     NSLog(@"running query");
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForList];
