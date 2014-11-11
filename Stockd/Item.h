@@ -17,6 +17,9 @@
 @property NSString *brand;
 @property NSInteger *quantity;
 @property UIImage *photo;
+@property BOOL isInQuickList;
+@property BOOL isInFavoriteList;
+@property BOOL isInInventory;
 @property NSString *listID;
 @property NSString *userID;
 

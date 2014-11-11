@@ -19,6 +19,9 @@
 @dynamic type;
 @dynamic quantity;
 @dynamic userID;
+@dynamic isInFavoriteList;
+@dynamic isInQuickList;
+@dynamic isInInventory;
 @dynamic photo;
 @dynamic listID;
 

@@ -42,7 +42,13 @@
                             <constraint firstItem="Slw-ZP-I7L" firstAttribute="top" secondItem="DVo-JD-1iW" secondAttribute="top" id="nsQ-qr-22b"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="c5P-yR-Gqr"/>
+                    <navigationItem key="navigationItem" id="c5P-yR-Gqr">
+                        <barButtonItem key="rightBarButtonItem" title="Add Item" id="0ld-uY-Png">
+                            <connections>
+                                <segue destination="MeP-8f-b7H" kind="show" identifier="addItemInventorySegue" id="rCt-St-bq1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Slw-ZP-I7L" id="EES-ED-3Ib"/>
                     </connections>
@@ -220,7 +226,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="rnk-Mx-dZb" kind="show" identifier="listDetailSegue" id="3XG-ts-IQd"/>
+                                            <segue destination="2uG-5k-wdS" kind="show" identifier="listDetailSegue" id="3XG-ts-IQd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -299,13 +305,20 @@
                             <constraint firstAttribute="trailing" secondItem="H4u-YI-pB3" secondAttribute="trailing" id="ew9-SK-drG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="aYD-yz-R9u">
+                        <barButtonItem key="rightBarButtonItem" title="Add Item" id="1Dh-lf-XMt">
+                            <connections>
+                                <segue destination="MeP-8f-b7H" kind="show" identifier="addItemListSegue" id="PJd-4Y-UR4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="H4u-YI-pB3" id="vJA-A6-cKB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oda-2V-sNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="-1256"/>
+            <point key="canvasLocation" x="2369" y="144"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j3z-vX-7g9">
@@ -560,6 +573,24 @@
             </objects>
             <point key="canvasLocation" x="905" y="1536"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BdB-fD-iSU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2uG-5k-wdS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w1M-RY-Cgw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rnk-Mx-dZb" kind="relationship" relationship="rootViewController" id="Vwz-ht-duc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hJY-Pb-wG4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2369" y="-1256"/>
+        </scene>
     </scenes>
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
@@ -569,4 +600,7 @@
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="PJd-4Y-UR4"/>
+    </inferredMetricsTieBreakers>
 </document>

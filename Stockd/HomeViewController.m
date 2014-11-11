@@ -30,7 +30,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    PFUser *user = [PFUser currentUser];
+    [self getLists: user];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -49,7 +50,7 @@
     List *list = [[List alloc]init];
     PFUser *user = [PFUser currentUser];
     [list createNewList:user :self.listName.text];
-    [self.tableView reloadData];
+    [self getLists:user];
     self.listName.text = @"";
 }
 

@@ -31,14 +31,6 @@
     [self.view addGestureRecognizer:tapGesture];
 }
 
-// If we want to change what bar is selected by default
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([[segue identifier] isEqualToString:@"showTabBarSegue"]) {
-//        UITabBarController *tabBarController = segue.destinationViewController;
-//        [tabBarController setSelectedIndex:0];
-//    }
-//}
-
 -(void)viewDidAppear:(BOOL)animated{
     PFUser *user = [PFUser currentUser];
     if(user.username != nil){
