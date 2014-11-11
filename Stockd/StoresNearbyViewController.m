@@ -82,9 +82,6 @@
         self.mapsButton.hidden = YES;
     } else {
         for (Store *store in self.storeArray) {
-            if ([store.placemark.subThoroughfare isEqualToString:@"(null)"]) {
-                NSLog(@"hello");
-            }
             if ([pinSubtitle containsString:store.phoneNumber]) {
                 [self fillTextViewAndMakeMapItemWith:store];
             } else if (!store.phoneNumber && [store.name isEqualToString:pin]) {
