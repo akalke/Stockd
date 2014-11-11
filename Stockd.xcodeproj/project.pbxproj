@@ -32,6 +32,7 @@
 		6C68083F1A0D03AA009340D8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68083E1A0D03AA009340D8 /* User.m */; };
 		6C6808421A0D03B6009340D8 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808411A0D03B6009340D8 /* List.m */; };
 		6C6808451A0D03C5009340D8 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808441A0D03C5009340D8 /* Item.m */; };
+		6C6808481A119771009340D8 /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808471A119771009340D8 /* ListDetailViewController.m */; };
 		6CDB20011A0A782400F614DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20001A0A782400F614DD /* main.m */; };
 		6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20031A0A782400F614DD /* AppDelegate.m */; };
 		6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20051A0A782400F614DD /* Stockd.xcdatamodeld */; };
@@ -87,6 +88,8 @@
 		6C6808411A0D03B6009340D8 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 		6C6808431A0D03C5009340D8 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		6C6808441A0D03C5009340D8 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		6C6808461A119771009340D8 /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDetailViewController.h; sourceTree = "<group>"; };
+		6C6808471A119771009340D8 /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDetailViewController.m; sourceTree = "<group>"; };
 		6CDB1FFB1A0A782400F614DD /* Stockd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stockd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDB1FFF1A0A782400F614DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CDB20001A0A782400F614DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */,
 				69C6442F1A0A8FA9007BA4CA /* InventoryViewController.h */,
 				69C644301A0A8FA9007BA4CA /* InventoryViewController.m */,
+				6C6808461A119771009340D8 /* ListDetailViewController.h */,
+				6C6808471A119771009340D8 /* ListDetailViewController.m */,
 				69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */,
 				69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */,
 				6CDB20081A0A782400F614DD /* SettingsViewController.h */,
@@ -348,6 +353,7 @@
 				6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */,
 				6C68083F1A0D03AA009340D8 /* User.m in Sources */,
 				69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */,
+				6C6808481A119771009340D8 /* ListDetailViewController.m in Sources */,
 				69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */,
 				6C6808421A0D03B6009340D8 /* List.m in Sources */,
 				69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */,

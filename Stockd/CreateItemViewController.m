@@ -18,7 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     Item *item = [[Item alloc] init];
-    [item createNewItem:@"chicken" :@"perdue" :nil :@"my list"];
+    PFUser *user = [PFUser currentUser];
+    [item createNewItem:@"chicken" :@"perdue" :user :@"my list"];
     // Do any additional setup after loading the view.
 }
 
