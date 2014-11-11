@@ -1,49 +1,47 @@
 //
-//  InventoryViewController.m
+//  ListDetailViewController.m
 //  Stockd
 //
-//  Created by Adam Duflo on 11/5/14.
+//  Created by Amaeya Kalke on 11/10/14.
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
-#import "InventoryViewController.h"
+#import "ListDetailViewController.h"
 #import <Parse/Parse.h>
 #import "Item.h"
+#import "List.h"
 
-@interface InventoryViewController () <UITableViewDelegate, UITableViewDataSource>
-@property NSArray *inventory;
-@property Item *items;
-@property NSString *userID;
+@interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate>
+@property NSArray *items;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
-@implementation InventoryViewController
+@implementation ListDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PFUser *currentUser = [PFUser currentUser];
-    [self getInventory:currentUser];
     // Do any additional setup after loading the view.
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.inventory.count;
+    return self.items.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    Item *item = [self.inventory objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyInventoryCell" forIndexPath: indexPath];
-    cell.textLabel.text = item.type;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
     return cell;
 }
 
--(void) getInventory: (PFUser *)currentUser{
-    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
+-(void) getItems: (List *)list{
+    NSPredicate *findItemsForList = [NSPredicate predicateWithFormat:@"listID = %@", list.objectId];
 
     NSLog(@"running query");
-    PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];
+    PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForList];
     NSLog(@"query complete");
 
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -51,13 +49,11 @@
             NSLog(@"%@", error);
         }
         else{
-            self.inventory = objects;
+            self.items = objects;
             [self.tableView reloadData];
         }
     }];
 }
-
-
 
 /*
 #pragma mark - Navigation

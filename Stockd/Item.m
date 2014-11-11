@@ -32,7 +32,7 @@
 }
 
 #pragma mark Modify/Grab Item Data
--(void)createNewItem: (NSString *)itemBrand :(NSString *)itemType :(User *)user :(NSString *)list{
+-(void)createNewItem: (NSString *)itemBrand :(NSString *)itemType :(PFUser *)user :(NSString *)list{
     self.brand = itemBrand;
     self.type = itemType;
     self.userID = user.objectId;
@@ -75,20 +75,20 @@
     return self.itemsForList;
 }
 
--(NSArray *) getItemsForUser: (NSString *)currentUserID{
-    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUserID];
-    PFQuery *itemQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findItemsForUser];
-    [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(error) {
-            NSLog(@"%@", error);
-            NSArray *array = [NSArray new];
-            self.itemsForUser = array;
-        }
-        else{
-            self.itemsForUser = objects;
-        }
-    }];
-    return self.itemsForUser;
-}
+//-(NSArray *) getItemsForUser: (PFUser *)currentUser{
+//    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
+//    PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];
+//    [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if(error) {
+//            NSLog(@"%@", error);
+//            NSArray *array = [NSArray new];
+//            self.itemsForUser = array;
+//        }
+//        else{
+//            self.itemsForUser = objects;
+//        }
+//        return self.itemsForUser;
+//    }];
+//}
 
 @end

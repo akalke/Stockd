@@ -20,9 +20,8 @@
 @property NSString *listID;
 @property NSString *userID;
 
--(void)createNewItem: (NSString *)itemBrand :(NSString *)itemType :(User *)user :(NSString *)list;
+-(void)createNewItem: (NSString *)itemBrand :(NSString *)itemType :(PFUser *)user :(NSString *)list;
 -(void)deleteItem;
 -(NSArray *)getItemsForList: (NSString *)currentListID;
--(NSArray *) getItemsForUser: (NSString *)currentUserID;
-
+-(void) getItemsForUser: (PFUser *)currentUser andComplete:(void(^)(NSArray *items))complete;
 @end

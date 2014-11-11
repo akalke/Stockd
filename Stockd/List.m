@@ -49,7 +49,7 @@
     }
 }
 
--(void)createNewQuickList:(User *)user{
+-(void)createNewQuickList:(PFUser *)user{
     self.userID = user.objectId;
     self.name = @"Quick List";
     self.isQuickList = YES;
@@ -80,7 +80,7 @@
     return self.listsArray;
 }
 
--(void)deleteListForUser: (User *)user{
+-(void)deleteListForUser: (PFUser *)user{
     [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);
