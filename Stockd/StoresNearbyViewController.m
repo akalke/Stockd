@@ -86,25 +86,9 @@
                 NSLog(@"hello");
             }
             if ([pinSubtitle containsString:store.phoneNumber]) {
-                NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
-                NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
-                
-                self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode, store.phoneNumber];
-                
-                MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
-                self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
-                
-                self.mapsButton.hidden = NO;
+                [self fillTextViewAndMakeMapItemWith:store];
             } else if (!store.phoneNumber && [store.name isEqualToString:pin]) {
-                NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
-                NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
-                
-                self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode, store.phoneNumber];
-                
-                MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
-                self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
-                
-                self.mapsButton.hidden = NO;
+                [self fillTextViewAndMakeMapItemWith:store];
             }
         }
     }
@@ -207,6 +191,18 @@
 }
 
 #pragma mark - Helper Methods
+
+- (void)fillTextViewAndMakeMapItemWith:(Store *)store {
+    NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
+    NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
+    
+    self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode, store.phoneNumber];
+    
+    MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
+    self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
+    
+    self.mapsButton.hidden = NO;
+}
 
 - (void)setStorePins {
     for (Store *store in self.storeArray) {
