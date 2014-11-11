@@ -76,19 +76,13 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    NSString *pin = [NSString stringWithFormat:@"%@", view.annotation.title];
-    NSString *pinSubtitle = [NSString stringWithFormat:@"%@", view.annotation.subtitle];
-    if ([self.mapView.userLocation.title isEqualToString:pin]) {
+    if (view.annotation == mapView.userLocation) {
         self.mapsButton.hidden = YES;
-    } else {
-        for (Store *store in self.storeArray) {
-            if ([pinSubtitle containsString:store.phoneNumber]) {
-                [self fillTextViewAndMakeMapItemWith:store];
-            } else if (!store.phoneNumber && [store.name isEqualToString:pin]) {
-                [self fillTextViewAndMakeMapItemWith:store];
-            }
-        }
+        return;
     }
+    
+    Store *store = view.annotation;
+    [self fillTextViewAndMakeMapItemWith:store];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
@@ -113,9 +107,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     for (CLLocation *location in locations) {
-        if (location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000) {
-            self.textView.text = @"Found Your Location";
-            
+        if (location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000) {            
             [self reverseGeocode:location];
             [self.locationManager stopUpdatingLocation];
             break;
@@ -203,12 +195,7 @@
 
 - (void)setStorePins {
     for (Store *store in self.storeArray) {
-        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        annotation.coordinate = store.placemark.location.coordinate;
-        annotation.title = store.name;
-        annotation.subtitle = [NSString stringWithFormat:@"Tap to Call: %@", store.phoneNumber];
-        
-        [self.mapView addAnnotation:annotation];
+        [self.mapView addAnnotation:store];
     }
 }
 

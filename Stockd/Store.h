@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface Store : NSObject
+@interface Store : NSObject <MKAnnotation>
 @property NSString *name;
 @property NSString *phoneNumber;
 @property CLPlacemark *placemark;
+
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, copy) NSString *subtitle;
 
 @end
