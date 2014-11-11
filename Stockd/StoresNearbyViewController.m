@@ -78,6 +78,7 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (view.annotation == mapView.userLocation) {
         self.mapsButton.hidden = YES;
+        self.textView.text = @"";
         return;
     }
     
@@ -86,17 +87,13 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    NSString *pin = [NSString stringWithFormat:@"%@", view.annotation.title];
-    if ([self.mapView.userLocation.title isEqualToString:pin]) {
+    if (view.annotation == mapView.userLocation) {
         return;
-    } else {
-        for (Store *store in self.storeArray) {
-            if ([store.name isEqualToString:pin]) {
-                NSString *stringURL = [NSString stringWithFormat:@"tel:%@", store.phoneNumber];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringURL]];
-            }
-        }
     }
+    
+    Store *store = view.annotation;
+    NSString *stringURL = [NSString stringWithFormat:@"tel:%@", store.phoneNumber];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringURL]];
 }
 
 #pragma mark - LocationManager Methods
@@ -107,7 +104,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     for (CLLocation *location in locations) {
-        if (location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000) {            
+        if (location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000) {
             [self reverseGeocode:location];
             [self.locationManager stopUpdatingLocation];
             break;
@@ -157,8 +154,6 @@
             [self useCurrentLocation];
             
             self.didSearchForNearbyStores = YES;
-            
-            [self.searchBar resignFirstResponder];
         }
     } else {
         [self.mapView removeAnnotations:self.mapView.annotations];
@@ -172,11 +167,21 @@
                 [self zoomMapWith:placemark.location];
                 
                 self.didSearchForNearbyStores = YES;
-                
-                [self.searchBar resignFirstResponder];
             }
         }];
     }
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.text = @"";
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - Helper Methods
@@ -223,6 +228,7 @@
 }
 
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
 }
 
