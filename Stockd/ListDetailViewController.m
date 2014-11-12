@@ -79,6 +79,10 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+-(IBAction)unwindFromInventorySelection:(UIStoryboardSegue *)segue{
+    InventoryViewController *inventoryVC = segue.sourceViewController;
+}
+
 
 /*
 #pragma mark - Navigation
