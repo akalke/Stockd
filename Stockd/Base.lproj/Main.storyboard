@@ -7,7 +7,7 @@
         <!--Inventory View Controller-->
         <scene sceneID="woq-vE-1o3">
             <objects>
-                <viewController id="qrq-r8-Dt3" customClass="InventoryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InventoryViewController" id="qrq-r8-Dt3" customClass="InventoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1kp-VZ-vd6"/>
                         <viewControllerLayoutGuide type="bottom" id="XFj-Cr-X4e"/>
@@ -45,22 +45,23 @@
                     <navigationItem key="navigationItem" id="c5P-yR-Gqr">
                         <barButtonItem key="rightBarButtonItem" title="Add Item" id="0ld-uY-Png">
                             <connections>
-                                <segue destination="MeP-8f-b7H" kind="show" identifier="addItemInventorySegue" id="rCt-St-bq1"/>
+                                <action selector="addItemOnButtonPress:" destination="qrq-r8-Dt3" id="qCM-Kd-qKw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Slw-ZP-I7L" id="EES-ED-3Ib"/>
+                        <segue destination="MeP-8f-b7H" kind="show" identifier="createNewItemFromInventorySegue" id="bp2-ue-hzf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYI-UN-aAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1625" y="-558"/>
         </scene>
-        <!--Create Item View Controller-->
+        <!--CreateItemViewController-->
         <scene sceneID="tSp-RP-UI2">
             <objects>
-                <viewController id="MeP-8f-b7H" customClass="CreateItemViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateItemViewController" title="CreateItemViewController" id="MeP-8f-b7H" customClass="CreateItemViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9WO-ap-kp5"/>
                         <viewControllerLayoutGuide type="bottom" id="hFq-xz-GZ1"/>
@@ -68,7 +69,70 @@
                     <view key="view" contentMode="scaleToFill" id="A9t-aN-FRi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Item Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OY7-Jg-SkZ">
+                                <rect key="frame" x="187" y="115" width="227" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="I4b-9Z-ggv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-pQ-2jI">
+                                <rect key="frame" x="365" y="175" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Save to inventory?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aby-8W-aQy">
+                                <rect key="frame" x="194" y="180" width="143" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kap-5U-HSG">
+                                <rect key="frame" x="180" y="260" width="240" height="238"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="9lt-HK-f0K"/>
+                                    <constraint firstAttribute="height" constant="238" id="sEr-8d-eEa"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGb-o9-1bE">
+                                <rect key="frame" x="253" y="217" width="95" height="30"/>
+                                <state key="normal" title="Upload Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qC-Pc-1nT">
+                                <rect key="frame" x="187" y="513" width="43" height="30"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addItemOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="ynS-oC-1qG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-hE-pXi">
+                                <rect key="frame" x="359" y="513" width="61" height="30"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelItemCreationOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="fy9-E2-hTT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aby-8W-aQy" firstAttribute="top" secondItem="OY7-Jg-SkZ" secondAttribute="bottom" constant="35" id="5qN-k0-VNM"/>
+                            <constraint firstItem="nPA-pQ-2jI" firstAttribute="leading" secondItem="aby-8W-aQy" secondAttribute="trailing" constant="28" id="FQt-dy-u4i"/>
+                            <constraint firstItem="kap-5U-HSG" firstAttribute="top" secondItem="cGb-o9-1bE" secondAttribute="bottom" constant="29" id="GVo-Lr-hZl"/>
+                            <constraint firstItem="cGb-o9-1bE" firstAttribute="centerX" secondItem="OY7-Jg-SkZ" secondAttribute="centerX" id="R0J-rc-f84"/>
+                            <constraint firstItem="cGb-o9-1bE" firstAttribute="centerX" secondItem="A9t-aN-FRi" secondAttribute="centerX" id="Ze8-rt-iFA"/>
+                            <constraint firstAttribute="bottom" secondItem="kap-5U-HSG" secondAttribute="bottom" id="a1n-X4-vDY"/>
+                            <constraint firstItem="OY7-Jg-SkZ" firstAttribute="top" secondItem="9WO-ap-kp5" secondAttribute="bottom" constant="51" id="fZq-sV-CVa"/>
+                            <constraint firstItem="OY7-Jg-SkZ" firstAttribute="trailing" secondItem="nPA-pQ-2jI" secondAttribute="trailing" id="iyE-L7-7cX"/>
+                            <constraint firstItem="nPA-pQ-2jI" firstAttribute="top" secondItem="OY7-Jg-SkZ" secondAttribute="bottom" constant="30" id="m84-vk-Fv3"/>
+                            <constraint firstItem="aby-8W-aQy" firstAttribute="centerY" secondItem="nPA-pQ-2jI" secondAttribute="centerY" id="uNQ-JJ-tNH"/>
+                            <constraint firstItem="kap-5U-HSG" firstAttribute="leading" secondItem="OY7-Jg-SkZ" secondAttribute="leading" id="xlC-Ua-UYN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cmC-51-sno"/>
                 </viewController>
@@ -308,12 +372,14 @@
                     <navigationItem key="navigationItem" id="aYD-yz-R9u">
                         <barButtonItem key="rightBarButtonItem" title="Add Item" id="1Dh-lf-XMt">
                             <connections>
-                                <segue destination="MeP-8f-b7H" kind="show" identifier="addItemListSegue" id="PJd-4Y-UR4"/>
+                                <action selector="addItemOnButtonPress:" destination="rnk-Mx-dZb" id="GQO-K8-Kdy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="H4u-YI-pB3" id="vJA-A6-cKB"/>
+                        <segue destination="MeP-8f-b7H" kind="show" identifier="createNewItemFromListSegue" id="3fI-09-ph0"/>
+                        <segue destination="qrq-r8-Dt3" kind="show" identifier="addItemFromInventorySegue" id="rYD-BQ-DL4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oda-2V-sNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,9 +593,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="MeP-8f-b7H" kind="relationship" relationship="rootViewController" id="06J-me-mXq"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CxP-IJ-u17" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -601,6 +664,7 @@
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PJd-4Y-UR4"/>
+        <segue reference="3fI-09-ph0"/>
+        <segue reference="rYD-BQ-DL4"/>
     </inferredMetricsTieBreakers>
 </document>

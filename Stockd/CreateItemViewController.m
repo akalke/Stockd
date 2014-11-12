@@ -17,9 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Item *item = [[Item alloc] init];
-    PFUser *user = [PFUser currentUser];
-    [item createNewItem:@"chicken" :@"perdue" :user :@"my list"];
+
     // Do any additional setup after loading the view.
 }
 
@@ -27,6 +25,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)addItemOnButtonPress:(id)sender {
+    Item *item = [[Item alloc] init];
+    PFUser *user = [PFUser currentUser];
+    [item createNewItem:@"chicken" :@"perdue" :user :@"my list"];
+}
+
+- (IBAction)cancelItemCreationOnButtonPress:(id)sender {
+}
+
 
 /*
 #pragma mark - Navigation

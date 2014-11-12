@@ -9,6 +9,7 @@
 #import "InventoryViewController.h"
 #import <Parse/Parse.h>
 #import "Item.h"
+#import "CreateItemViewController.h"
 
 @interface InventoryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property NSArray *inventory;
@@ -64,6 +65,22 @@
     
 }
 
+- (IBAction)addItemOnButtonPress:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add new item" message:@"Do you want to add item from inventory or create a new item for this list?" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *createNewItem = [UIAlertAction actionWithTitle:@"Create new item" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:nil];
+    }];
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        return;
+    }];
+
+    [alert addAction:createNewItem];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-()
 
 /*
 #pragma mark - Navigation
