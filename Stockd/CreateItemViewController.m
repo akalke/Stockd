@@ -25,10 +25,11 @@
     Item *item = [[Item alloc] init];
     PFUser *user = [PFUser currentUser];
     [item createNewItem:@"chicken" :@"perdue" :user :@"my list"];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)cancelItemCreationOnButtonPress:(id)sender {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
