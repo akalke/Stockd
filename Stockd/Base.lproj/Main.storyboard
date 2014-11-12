@@ -98,6 +98,9 @@
                                 <state key="normal" title="Upload Photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="uploadPhotoOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="8Xi-Bi-l09"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-pQ-2jI">
                                 <rect key="frame" x="365" y="122" width="51" height="31"/>
@@ -174,6 +177,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cmC-51-sno"/>
+                    <connections>
+                        <outlet property="favoritesLabel" destination="aby-8W-aQy" id="Yhz-5h-U3s"/>
+                        <outlet property="favoritesSwitch" destination="nPA-pQ-2jI" id="ndq-T4-Wr1"/>
+                        <outlet property="imageView" destination="BE8-N9-lVM" id="Rjv-eF-sIo"/>
+                        <outlet property="itemDescriptionTextField" destination="OY7-Jg-SkZ" id="evO-xS-x6M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52e-FF-Tcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -699,7 +708,7 @@
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3fI-09-ph0"/>
+        <segue reference="bp2-ue-hzf"/>
         <segue reference="rYD-BQ-DL4"/>
     </inferredMetricsTieBreakers>
 </document>

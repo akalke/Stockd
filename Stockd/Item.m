@@ -35,11 +35,11 @@
 }
 
 #pragma mark Modify/Grab Item Data
--(void)createNewItem: (NSString *)itemBrand :(NSString *)itemType :(PFUser *)user :(NSString *)list{
-    self.brand = itemBrand;
+-(void)createNewItemWithType: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list andInInventory: (BOOL)isInventory {
     self.type = itemType;
     self.userID = user.objectId;
     self.listID = list;
+    self.isInInventory = isInventory;
 
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){

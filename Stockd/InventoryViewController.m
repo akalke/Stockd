@@ -36,6 +36,20 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    [self getInventory:currentUser];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"createNewItemFromInventorySegue"]) {
+        CreateItemViewController *createItemVC = segue.destinationViewController;
+        createItemVC.fromInventory = YES;
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.inventory.count;
 }
@@ -49,7 +63,7 @@
 }
 
 -(void) getInventory: (PFUser *)currentUser{
-    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
+    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInInventory = true)", currentUser.objectId];
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];
     itemQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -124,17 +138,5 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
