@@ -264,9 +264,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerNewUser:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="bhM-Xm-lHM"/>
-                                    <action selector="registerUserOnButtonPress:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="shf-oi-nFe"/>
-                                    <segue destination="RCI-mT-dWH" kind="show" identifier="registerNewUserSegue" id="flH-O9-0qQ"/>
+                                    <action selector="registerNewUser:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="Y0z-g4-MWs"/>
+                                    <segue destination="RCI-mT-dWH" kind="presentation" identifier="registerNewUserSegue" id="vJO-kn-Qne"/>
                                 </connections>
                             </button>
                         </subviews>
