@@ -13,7 +13,7 @@
 #import "CreateItemViewController.h"
 #import "InventoryViewController.h"
 
-@interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate>
 @property NSArray *items;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -26,9 +26,20 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tabBarController.delegate = self;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if (tabBarController.selectedIndex == 0) {
+        [(UINavigationController *)viewController popToRootViewControllerAnimated:YES];
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

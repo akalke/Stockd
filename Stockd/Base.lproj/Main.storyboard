@@ -138,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52e-FF-Tcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="144"/>
+            <point key="canvasLocation" x="2369" y="-558"/>
         </scene>
         <!--Register New User View Controller-->
         <scene sceneID="TPT-gX-4hh">
@@ -322,7 +322,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="2uG-5k-wdS" kind="show" identifier="listDetailSegue" id="3XG-ts-IQd"/>
+                                            <segue destination="rnk-Mx-dZb" kind="show" identifier="listDetailsSegue" id="Dgl-KE-Uqa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -416,7 +416,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oda-2V-sNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="-558"/>
+            <point key="canvasLocation" x="2369" y="-1256"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j3z-vX-7g9">
@@ -651,24 +651,6 @@
             </objects>
             <point key="canvasLocation" x="911" y="840"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="BdB-fD-iSU">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2uG-5k-wdS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w1M-RY-Cgw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="rnk-Mx-dZb" kind="relationship" relationship="rootViewController" id="Vwz-ht-duc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hJY-Pb-wG4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2369" y="-1256"/>
-        </scene>
     </scenes>
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
@@ -679,6 +661,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rYD-BQ-DL4"/>
-        <segue reference="bp2-ue-hzf"/>
+        <segue reference="3fI-09-ph0"/>
     </inferredMetricsTieBreakers>
 </document>
