@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -138,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52e-FF-Tcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1625" y="144"/>
+            <point key="canvasLocation" x="2369" y="144"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="SXJ-My-Bzg">
@@ -384,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oda-2V-sNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="144"/>
+            <point key="canvasLocation" x="2369" y="-558"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j3z-vX-7g9">
@@ -399,7 +399,6 @@
                     <connections>
                         <segue destination="sFF-9w-XYw" kind="relationship" relationship="viewControllers" id="cH0-2n-SSv"/>
                         <segue destination="uuO-1R-fZo" kind="relationship" relationship="viewControllers" id="nOh-Sn-TRO"/>
-                        <segue destination="0ay-V9-X4c" kind="relationship" relationship="viewControllers" id="Rcb-7X-TlQ"/>
                         <segue destination="lno-vx-EEn" kind="relationship" relationship="viewControllers" id="zoB-Wb-BwI"/>
                         <segue destination="ba6-6j-ayV" kind="relationship" relationship="viewControllers" id="qFU-qD-kqw"/>
                     </connections>
@@ -440,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IXX-Ba-KJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1625" y="1536"/>
+            <point key="canvasLocation" x="1631" y="840"/>
         </scene>
         <!--Stores Nearby View Controller-->
         <scene sceneID="jz7-3Y-W8b">
@@ -542,7 +541,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1625" y="840"/>
+            <point key="canvasLocation" x="1631" y="144"/>
         </scene>
         <!--Home-->
         <scene sceneID="6f3-t9-Zar">
@@ -582,22 +581,6 @@
             </objects>
             <point key="canvasLocation" x="905" y="-558"/>
         </scene>
-        <!--Create Item-->
-        <scene sceneID="6JD-s8-CXO">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0ay-V9-X4c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create Item" image="stockd_tabbaricon-createlist" id="FNm-Kj-IaX"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Ug-aE-njz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CxP-IJ-u17" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="905" y="144"/>
-        </scene>
         <!--Stores Nearby-->
         <scene sceneID="0zE-Oa-69l">
             <objects>
@@ -615,7 +598,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2j-o7-4gh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="840"/>
+            <point key="canvasLocation" x="911" y="144"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oqC-SV-6Wv">
@@ -634,7 +617,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5eR-28-hIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="1536"/>
+            <point key="canvasLocation" x="911" y="840"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BdB-fD-iSU">
@@ -657,14 +640,13 @@
     </scenes>
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
-        <image name="stockd_tabbaricon-createlist" width="37" height="37"/>
         <image name="stockd_tabbaricon-home" width="37" height="37"/>
         <image name="stockd_tabbaricon-inventory" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3fI-09-ph0"/>
         <segue reference="rYD-BQ-DL4"/>
+        <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
 </document>
