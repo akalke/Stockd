@@ -39,8 +39,10 @@
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
         }
-        else{
+        else
             if(![self.registerPasswordTextField.text isEqualToString:self.registerConfirmPasswordTextField.text]){
+
+                NSLog(@"passwords do not match");
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Passwords do not match! Please re-enter your passwords" preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     self.registerConfirmPasswordTextField.text = @"";
@@ -50,6 +52,7 @@
                 [self presentViewController:alert animated:YES completion:nil];
             }
             else if(self.registerUsernameTextField.text && [self.registerUsernameTextField.text rangeOfString:@"@"].location == NSNotFound){
+                NSLog(@"no valid email");
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Please enter a valid email" preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     self.registerConfirmPasswordTextField.text = @"";
@@ -59,6 +62,7 @@
                 [self presentViewController:alert animated:YES completion:nil];
             }
             else{
+                NSLog(@"Create new user");
                 PFQuery *userQuery = [PFUser query];
                 [userQuery whereKey:@"username" equalTo:self.registerUsernameTextField.text];
                 NSLog(@"%@", userQuery);
@@ -67,7 +71,7 @@
                 newUser.password = self.registerPasswordTextField.text;
             }
         }
-    }
+
 }
 
 
