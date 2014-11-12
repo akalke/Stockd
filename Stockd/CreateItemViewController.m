@@ -25,12 +25,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.fromInventory == NO) {
+    if (self.fromListDetails == YES) {
         self.favoritesLabel.hidden = YES;
         self.favoritesSwitch.hidden = YES;
         self.favoritesSwitch.userInteractionEnabled = NO;
+    } else if (self.fromInventory == YES) {
+        self.favoritesLabel.hidden = NO;
+        self.favoritesSwitch.hidden = NO;
+        self.favoritesSwitch.userInteractionEnabled = YES;
     }
 }
+
+#pragma mark - IBActions
 
 - (IBAction)addItemOnButtonPress:(id)sender {
     Item *item = [[Item alloc] init];
@@ -45,6 +51,8 @@
     } else {
         if (self.fromInventory == YES) {
             [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:nil andInInventory:YES];
+        } else if (self.fromListDetails == YES) {
+            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID andInInventory:NO];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }

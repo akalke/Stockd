@@ -47,6 +47,7 @@
     if ([[segue identifier] isEqualToString:@"createNewItemFromInventorySegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
         createItemVC.fromInventory = YES;
+        createItemVC.fromListDetails = NO;
     }
 }
 

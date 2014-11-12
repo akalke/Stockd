@@ -32,7 +32,6 @@
     [super viewWillAppear:animated];
     PFUser *user = [PFUser currentUser];
     [self getLists: user];
-    [self.tableView reloadData];
 }
 
 -(void)checkForQuickList{
@@ -106,9 +105,8 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"listDetailSegue"]){
-        UINavigationController *navigationVC = (UINavigationController *)segue.destinationViewController;
-        ListDetailViewController *listDetailVC = (ListDetailViewController *)navigationVC.topViewController;
+    if([segue.identifier isEqualToString:@"listDetailsSegue"]){
+        ListDetailViewController *listDetailVC = segue.destinationViewController;
         listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] objectId];
     }
 }

@@ -708,7 +708,7 @@
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bp2-ue-hzf"/>
+        <segue reference="3fI-09-ph0"/>
         <segue reference="rYD-BQ-DL4"/>
     </inferredMetricsTieBreakers>
 </document>
