@@ -12,12 +12,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property BOOL loginSuccess;
-@property (strong, nonatomic) IBOutlet UIView *registerUserOverlayView;
-@property (strong, nonatomic) IBOutlet UITextField *registerUsernameTextField;
-@property (strong, nonatomic) IBOutlet UITextField *registerPasswordTextField;
-@property (strong, nonatomic) IBOutlet UITextField *registerConfirmPasswordTextField;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *overlayViewLeftConstraint;
-@property CGRect overlayFrame;
 
 @end
 
@@ -26,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.overlayFrame = self.registerUserOverlayView.frame;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -41,6 +34,9 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"showTabBarSegue"]) {
         if (self.loginSuccess == YES) {
+            return YES;
+        }
+        else if ([identifier isEqualToString:@"registerNewUserSegue"]){
             return YES;
         }
     }
@@ -62,8 +58,23 @@
 
 - (IBAction)loginUserOnButtonPress:(id)sender {
     [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error) {
-        if(error || [self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]) {
+
+        if([self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"You need to enter a valid username and password!" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                return;
+            }];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else if(error){
             NSLog(@"Login Error! %@", error);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:[NSString stringWithFormat:@"%@", error] preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                return;
+            }];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         else {
             self.loginSuccess = YES;
@@ -74,33 +85,8 @@
     }];
 }
 
-- (IBAction)registerUserOnButtonPress:(id)sender {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.registerUserOverlayView.frame = self.view.frame;
-    }];
-
-}
-
-- (IBAction)createUserOnRegister:(id)sender {
-
-
-    //TO DO: Check for existing username
-    if([self.registerUsernameTextField.text isEqualToString:self.registerConfirmPasswordTextField.text]){
-//        PFUser *newUser = [PFUser user];
-//        newUser.username = self.registerUsernameTextField.text;
-//        newUser.password = self.registerPasswordTextField.text;
-//
-
-        //TO DO: fix bug with registration text fields and fix animation back out to login
-        [UIView animateWithDuration:0.3 animations:^{
-            self.registerUserOverlayView.frame = self.overlayFrame;
-        }];
-        NSLog(@"User created");
-    }
-    else{
-        NSLog(@"Passwords don't match");
-    }
-
+- (IBAction)registerNewUser:(id)sender {
+    [self performSegueWithIdentifier:@"registerNewUserSegue" sender:self];
 }
 
 @end

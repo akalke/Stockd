@@ -140,6 +140,71 @@
             </objects>
             <point key="canvasLocation" x="2369" y="144"/>
         </scene>
+        <!--Register New User View Controller-->
+        <scene sceneID="TPT-gX-4hh">
+            <objects>
+                <viewController id="RCI-mT-dWH" customClass="RegisterNewUserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sVb-Wn-ENz"/>
+                        <viewControllerLayoutGuide type="bottom" id="CdB-zm-hrE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UGf-15-kpG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYG-mj-rpS">
+                                <rect key="frame" x="184" y="120" width="233" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="233" id="LMH-q4-S14"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bd4-AH-bOW">
+                                <rect key="frame" x="184" y="172" width="233" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vQH-ry-NGn">
+                                <rect key="frame" x="184" y="219" width="233" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsL-ES-4pj">
+                                <rect key="frame" x="257" y="294" width="85" height="30"/>
+                                <state key="normal" title="Sign Me Up!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createUserOnRegister:" destination="RCI-mT-dWH" eventType="touchUpInside" id="4hf-n2-Idm"/>
+                                    <action selector="createUserOnRegister:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="k04-1q-hFP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vQH-ry-NGn" firstAttribute="top" secondItem="Bd4-AH-bOW" secondAttribute="bottom" constant="17" id="0HN-0j-Jqe"/>
+                            <constraint firstItem="vQH-ry-NGn" firstAttribute="trailing" secondItem="Bd4-AH-bOW" secondAttribute="trailing" id="3V2-oe-syX"/>
+                            <constraint firstItem="wsL-ES-4pj" firstAttribute="top" secondItem="vQH-ry-NGn" secondAttribute="bottom" constant="45" id="6Wa-2b-bNk"/>
+                            <constraint firstItem="dYG-mj-rpS" firstAttribute="trailing" secondItem="Bd4-AH-bOW" secondAttribute="trailing" id="JUx-XE-hJA"/>
+                            <constraint firstItem="Bd4-AH-bOW" firstAttribute="leading" secondItem="vQH-ry-NGn" secondAttribute="leading" id="Sqa-xj-4Ue"/>
+                            <constraint firstItem="Bd4-AH-bOW" firstAttribute="leading" secondItem="dYG-mj-rpS" secondAttribute="leading" id="cHa-qt-9n5"/>
+                            <constraint firstItem="wsL-ES-4pj" firstAttribute="leading" secondItem="UGf-15-kpG" secondAttribute="leading" constant="257" id="dGU-Ka-64D"/>
+                            <constraint firstItem="vQH-ry-NGn" firstAttribute="centerX" secondItem="UGf-15-kpG" secondAttribute="centerX" id="dRW-7q-hpJ"/>
+                            <constraint firstItem="dYG-mj-rpS" firstAttribute="top" secondItem="sVb-Wn-ENz" secondAttribute="bottom" constant="100" id="hui-qB-qGb"/>
+                            <constraint firstItem="Bd4-AH-bOW" firstAttribute="top" secondItem="dYG-mj-rpS" secondAttribute="bottom" constant="22" id="xRb-fb-RcW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="registerConfirmPasswordTextField" destination="vQH-ry-NGn" id="Fhi-Bi-OLu"/>
+                        <outlet property="registerPasswordTextField" destination="Bd4-AH-bOW" id="Tpd-H6-lIV"/>
+                        <outlet property="registerUsernameTextField" destination="dYG-mj-rpS" id="XZf-Y9-eNT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gM-wF-AVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-585" y="-553"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="SXJ-My-Bzg">
             <objects>
@@ -199,39 +264,11 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="registerNewUser:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="bhM-Xm-lHM"/>
                                     <action selector="registerUserOnButtonPress:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="shf-oi-nFe"/>
+                                    <segue destination="RCI-mT-dWH" kind="show" identifier="registerNewUserSegue" id="flH-O9-0qQ"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-wM-yqw">
-                                <rect key="frame" x="600" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMk-nj-Xyi">
-                                        <rect key="frame" x="184" y="55" width="233" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-Nu-Z82">
-                                        <rect key="frame" x="184" y="107" width="233" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="492-h7-p5O">
-                                        <rect key="frame" x="184" y="154" width="233" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geR-nQ-Xzr">
-                                        <rect key="frame" x="257" y="229" width="85" height="30"/>
-                                        <state key="normal" title="Sign Me Up!">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="createUserOnRegister:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="Rhk-Dl-33m"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -251,10 +288,6 @@
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="OCX-1h-fdP" id="z0q-Vh-15b"/>
-                        <outlet property="registerConfirmPasswordTextField" destination="492-h7-p5O" id="FOq-vs-Dng"/>
-                        <outlet property="registerPasswordTextField" destination="HUd-Nu-Z82" id="eN8-tx-cKJ"/>
-                        <outlet property="registerUserOverlayView" destination="IW9-wM-yqw" id="urJ-q6-hsi"/>
-                        <outlet property="registerUsernameTextField" destination="gMk-nj-Xyi" id="2Qg-ZL-46K"/>
                         <outlet property="usernameTextField" destination="cDi-Rz-KSf" id="sAH-tn-qZ6"/>
                     </connections>
                 </viewController>

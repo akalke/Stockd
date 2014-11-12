@@ -79,10 +79,12 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(IBAction)unwindFromInventorySelection:(UIStoryboardSegue *)segue{
-    InventoryViewController *inventoryVC = segue.sourceViewController;
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"addItemFromInventorySegue"]){
+        InventoryViewController *inventoryVC = segue.destinationViewController;
+        inventoryVC.fromListDetail = YES;
+    }
 }
-
 
 /*
 #pragma mark - Navigation

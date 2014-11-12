@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface InventoryViewController : UIViewController
+@property BOOL fromListDetail;
 
 @end
