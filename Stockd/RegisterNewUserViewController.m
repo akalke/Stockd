@@ -7,6 +7,7 @@
 //
 
 #import "RegisterNewUserViewController.h"
+#import "User.h"
 
 @interface RegisterNewUserViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *registerUsernameTextField;
@@ -21,6 +22,32 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)createNewUser{
+    NSLog(@"Create new user");
+    PFUser *newUser = [PFUser user];
+    newUser.username = @"Dance";
+    newUser.password = @"pablo";
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(error){
+            NSLog(@"%@", error);
+        }
+        else{
+            if(succeeded){
+                NSLog(@"User Created!");
+            }
+            else{
+                NSLog(@"User already exists!");
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was a problem with your request or that username exists already" preferredStyle:UIAlertControllerStyleActionSheet];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    return;
+                }];
+                [alert addAction:action];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -29,7 +56,6 @@
 - (IBAction)createUserOnRegister:(id)sender {
 
     //TO DO: Check for existing username
-    if([self.registerUsernameTextField.text isEqualToString:self.registerConfirmPasswordTextField.text]){
         if([self.registerConfirmPasswordTextField.text isEqualToString:@""] || [self.registerPasswordTextField.text isEqualToString:@""] || [self.registerUsernameTextField.text isEqualToString:@""]){
 
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Please enter your information fully" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -40,6 +66,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else
+        {
             if(![self.registerPasswordTextField.text isEqualToString:self.registerConfirmPasswordTextField.text]){
 
                 NSLog(@"passwords do not match");
@@ -62,28 +89,10 @@
                 [self presentViewController:alert animated:YES completion:nil];
             }
             else{
-                NSLog(@"Create new user");
-                PFQuery *userQuery = [PFUser query];
-                [userQuery whereKey:@"username" equalTo:self.registerUsernameTextField.text];
-                NSLog(@"%@", userQuery);
-                PFUser *newUser = [PFUser user];
-                newUser.username = self.registerUsernameTextField.text;
-                newUser.password = self.registerPasswordTextField.text;
+                [self createNewUser];
             }
         }
-
 }
 
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
