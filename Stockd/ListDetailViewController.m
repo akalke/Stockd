@@ -16,6 +16,7 @@
 @property NSArray *items;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addItemButton;
+@property BOOL didSelectItem;
 @end
 
 @implementation ListDetailViewController
@@ -60,6 +61,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
     cell.textLabel.text = item.type;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.didSelectItem = YES;
+    [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 
 -(void)getItemsForQuickList{
@@ -122,8 +128,15 @@
         inventoryVC.fromListDetail = YES;
     } else if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
-        createItemVC.fromListDetails = YES;
-        createItemVC.listID = self.listID;
+        if (self.didSelectItem == YES) {
+            createItemVC.editingFromListDetails = YES;
+            
+            Item *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+            createItemVC.item = item;
+        } else {
+            createItemVC.fromListDetails = YES;
+            createItemVC.listID = self.listID;
+        }
     }
 }
 
