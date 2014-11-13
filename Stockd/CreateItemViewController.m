@@ -7,7 +7,6 @@
 //
 
 #import "CreateItemViewController.h"
-#import "Item.h"
 #import "Photo.h"
 
 @interface CreateItemViewController ()
@@ -35,6 +34,17 @@
         self.quickListLabel.hidden = NO;
         self.quickListSwitch.hidden = NO;
         self.quickListSwitch.userInteractionEnabled = YES;
+    } else if (self.editingFromInventory == YES) {
+        if (self.item.isInQuickList == YES) {
+            [self.quickListSwitch setOn:YES];
+        } else {
+            [self.quickListSwitch setOn:NO];
+        }
+        self.quickListLabel.hidden = NO;
+        self.quickListLabel.text = @"In Quick List";
+        self.quickListSwitch.hidden = NO;
+        self.quickListSwitch.userInteractionEnabled = YES;
+        self.itemDescriptionTextField.text = self.item.type;
     }
 }
 
@@ -56,12 +66,22 @@
         } else if (self.fromListDetails == YES) {
             [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO];
         }
+        [self resetBOOLs];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 - (IBAction)cancelItemCreationOnButtonPress:(id)sender {
+    [self resetBOOLs];
+    self.quickListLabel.text = @"Add to Quick List?";
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)resetBOOLs {
+    self.fromInventory = NO;
+    self.fromListDetails = NO;
+    self.editingFromInventory = NO;
+    self.editingFromListDetails = NO;
 }
 
 - (IBAction)uploadPhotoOnButtonPress:(id)sender {

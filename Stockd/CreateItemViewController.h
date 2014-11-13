@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Item.h"
 
 @interface CreateItemViewController : UIViewController
 @property BOOL fromInventory;
 @property BOOL fromListDetails;
+@property BOOL editingFromInventory;
+@property BOOL editingFromListDetails;
 @property NSString *listID;
+@property Item *item;
 
 @end

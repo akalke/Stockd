@@ -123,7 +123,6 @@
     } else if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
         createItemVC.fromListDetails = YES;
-        createItemVC.fromInventory = NO;
         createItemVC.listID = self.listID;
     }
 }

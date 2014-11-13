@@ -144,10 +144,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lw-tw-8Yw">
                                 <rect key="frame" x="190" y="408" width="220" height="51"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Quicklist?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aby-8W-aQy">
-                                        <rect key="frame" x="8" y="15" width="132" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Quick List?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aby-8W-aQy">
+                                        <rect key="frame" x="8" y="15" width="145" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="132" id="YRC-fP-0zp"/>
+                                            <constraint firstAttribute="width" constant="145" id="YRC-fP-0zp"/>
                                             <constraint firstAttribute="height" constant="21" id="mmq-pv-stZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
