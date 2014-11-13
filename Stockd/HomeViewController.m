@@ -32,7 +32,6 @@
     [super viewWillAppear:animated];
     PFUser *user = [PFUser currentUser];
     [self getLists: user];
-    [self.tableView reloadData];
 }
 
 -(void)checkForQuickList{
@@ -106,21 +105,10 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"listDetailSegue"]){
-        UINavigationController *navigationVC = (UINavigationController *)segue.destinationViewController;
-        ListDetailViewController *listDetailVC = (ListDetailViewController *)navigationVC.topViewController;
+    if([segue.identifier isEqualToString:@"listDetailsSegue"]){
+        ListDetailViewController *listDetailVC = segue.destinationViewController;
         listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] objectId];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

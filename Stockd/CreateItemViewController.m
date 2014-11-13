@@ -10,6 +10,10 @@
 #import "Item.h"
 
 @interface CreateItemViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
+@property (weak, nonatomic) IBOutlet UILabel *favoritesLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *favoritesSwitch;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -17,19 +21,58 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Do any additional setup after loading the view.
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.fromListDetails == YES) {
+        self.favoritesLabel.hidden = YES;
+        self.favoritesSwitch.hidden = YES;
+        self.favoritesSwitch.userInteractionEnabled = NO;
+    } else if (self.fromInventory == YES) {
+        [self.favoritesSwitch setOn:NO];
+        self.favoritesLabel.hidden = NO;
+        self.favoritesSwitch.hidden = NO;
+        self.favoritesSwitch.userInteractionEnabled = YES;
+    }
+}
+
+#pragma mark - IBActions
 
 - (IBAction)addItemOnButtonPress:(id)sender {
     Item *item = [[Item alloc] init];
     PFUser *user = [PFUser currentUser];
-    [item createNewItem:@"chicken" :@"perdue" :user :@"my list"];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Missing Information" message:@"Please fill item description" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        }];
+        
+        [alert addAction:okay];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        if (self.fromInventory == YES) {
+            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES inFavorites:self.favoritesSwitch.isOn];
+        } else if (self.fromListDetails == YES) {
+            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO inFavorites:NO];
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)cancelItemCreationOnButtonPress:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)uploadPhotoOnButtonPress:(id)sender {
+    
+}
+
+- (IBAction)setFavoriteOnSwitch:(id)sender {
+    if ([self.favoritesSwitch isOn]) {
+        [self.favoritesSwitch setOn:YES animated:YES];
+    } else {
+        [self.favoritesSwitch setOn:NO animated:YES];
+    }
 }
 
 @end

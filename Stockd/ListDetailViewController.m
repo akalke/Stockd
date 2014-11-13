@@ -31,11 +31,6 @@
     self.tabBarController.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex == 0) {
         [(UINavigationController *)viewController popToRootViewControllerAnimated:YES];
@@ -94,6 +89,11 @@
     if([segue.identifier isEqualToString:@"addItemFromInventorySegue"]){
         InventoryViewController *inventoryVC = segue.destinationViewController;
         inventoryVC.fromListDetail = YES;
+    } else if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
+        CreateItemViewController *createItemVC = segue.destinationViewController;
+        createItemVC.fromListDetails = YES;
+        createItemVC.fromInventory = NO;
+        createItemVC.listID = self.listID;
     }
 }
 

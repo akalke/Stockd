@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateItemViewController : UIViewController
+@property BOOL fromInventory;
+@property BOOL fromListDetails;
+@property NSString *listID;
 
 @end
