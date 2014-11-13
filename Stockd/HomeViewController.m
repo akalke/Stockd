@@ -36,7 +36,8 @@
 
 -(void)checkForQuickList{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if([[userDefaults stringForKey:@"QUICKLIST_EXISTS"] isEqualToString:@"YES"]){
+    PFUser *user = [PFUser currentUser];
+    if([[userDefaults stringForKey:@"QUICKLIST_EXISTS"] isEqualToString:@"YES"] && [[userDefaults stringForKey:@"USER"] isEqualToString:user.username]){
         NSLog(@"Quick list exists");
         return;
     }
@@ -45,6 +46,7 @@
         List *list = [[List alloc]init];
         [list createNewQuickList:[PFUser currentUser]];
         [userDefaults setValue:@"YES" forKey:@"QUICKLIST_EXISTS"];
+        [userDefaults setValue:user.username forKey:@"USER"];
     }
 }
 
@@ -82,18 +84,28 @@
 }
 
 - (IBAction)createListOnButtonPress:(id)sender {
-    List *list = [[List alloc]init];
-    PFUser *user = [PFUser currentUser];
-    [list createNewList:user :self.listName.text];
-    self.listName.text = @"";
-    [self getLists:user];
+    if([self.listName.text isEqualToString:@""]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"YO!" message:@"check yourself before you wreck yourself. Need a title buddy" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            return;
+        }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else{
+        List *list = [[List alloc]init];
+        PFUser *user = [PFUser currentUser];
+        [list createNewList:user :self.listName.text];
+        self.listName.text = @"";
+        [self getLists:user];
+    }
 }
 
 
 -(void) getLists: (PFUser *)currentUser{
     NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
     PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
-    listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    listQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
     [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);

@@ -33,7 +33,7 @@
     self.userID = user.objectId;
     self.isQuickList = NO;
 
-    if(![listName isEqualToString:@"Quick List"]){
+    if(![listName isEqualToString:@"Quick List"] || ![listName isEqualToString:@""]){
         self.name = listName;
         [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if(error){
