@@ -9,7 +9,6 @@
 #import "ListDetailViewController.h"
 #import <Parse/Parse.h>
 #import "Item.h"
-#import "List.h"
 #import "CreateItemViewController.h"
 #import "InventoryViewController.h"
 
@@ -28,6 +27,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.title = [NSString stringWithFormat:@"%@ (%lu)", self.list.name, (unsigned long)self.items.count];
+    
+    if (self.list.isQuickList == YES) {
+        // hide '+' button
+    }
+    
     self.tabBarController.delegate = self;
 }
 

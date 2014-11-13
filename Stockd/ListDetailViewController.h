@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "List.h"
 
 @interface ListDetailViewController : UIViewController
 @property NSString *listID;
+@property List *list;
 
 @end
