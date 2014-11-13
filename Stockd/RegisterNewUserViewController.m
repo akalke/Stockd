@@ -25,8 +25,8 @@
 -(void)createNewUser{
     NSLog(@"Create new user");
     PFUser *newUser = [PFUser user];
-    newUser.username = @"Dance";
-    newUser.password = @"pablo";
+    newUser.username = self.registerUsernameTextField.text;
+    newUser.password = self.registerPasswordTextField.text;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);
@@ -90,6 +90,9 @@
             }
             else{
                 [self createNewUser];
+                [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text block:^(PFUser *user, NSError *error){
+                    [self performSegueWithIdentifier:@"registeredUserSegue" sender:self];
+                }];
             }
         }
 }

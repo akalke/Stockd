@@ -93,6 +93,7 @@
 -(void) getLists: (PFUser *)currentUser{
     NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
     PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
+    listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
     [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);
