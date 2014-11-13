@@ -12,8 +12,8 @@
 
 @interface CreateItemViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
-@property (weak, nonatomic) IBOutlet UILabel *favoritesLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *favoritesSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *quickListLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *quickListSwitch;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
@@ -27,14 +27,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.fromListDetails == YES) {
-        self.favoritesLabel.hidden = YES;
-        self.favoritesSwitch.hidden = YES;
-        self.favoritesSwitch.userInteractionEnabled = NO;
+        self.quickListLabel.hidden = YES;
+        self.quickListSwitch.hidden = YES;
+        self.quickListSwitch.userInteractionEnabled = NO;
     } else if (self.fromInventory == YES) {
-        [self.favoritesSwitch setOn:NO];
-        self.favoritesLabel.hidden = NO;
-        self.favoritesSwitch.hidden = NO;
-        self.favoritesSwitch.userInteractionEnabled = YES;
+        [self.quickListSwitch setOn:NO];
+        self.quickListLabel.hidden = NO;
+        self.quickListSwitch.hidden = NO;
+        self.quickListSwitch.userInteractionEnabled = YES;
     }
 }
 
@@ -52,9 +52,9 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else {
         if (self.fromInventory == YES) {
-            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES inFavorites:self.favoritesSwitch.isOn];
+            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn];
         } else if (self.fromListDetails == YES) {
-            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO inFavorites:NO];
+            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -91,12 +91,12 @@
 //    }];
 }
 
-- (IBAction)setFavoriteOnSwitch:(id)sender {
+- (IBAction)setQuickListOnSwitch:(id)sender {
 
-    if ([self.favoritesSwitch isOn]) {
-        [self.favoritesSwitch setOn:YES animated:YES];
+    if ([self.quickListSwitch isOn]) {
+        [self.quickListSwitch setOn:YES animated:YES];
     } else {
-        [self.favoritesSwitch setOn:NO animated:YES];
+        [self.quickListSwitch setOn:NO animated:YES];
     }
 }
 

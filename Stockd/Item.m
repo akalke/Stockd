@@ -35,12 +35,12 @@
 }
 
 #pragma mark Modify/Grab Item Data
--(void)createNewItemWithType: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory inFavorites: (BOOL) isInFavoritesList{
+-(void)createNewItemWithType: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList{
     self.type = itemType;
     self.userID = user.objectId;
     self.listID = list;
     self.isInInventory = isInInventory;
-    self.isInFavoriteList = isInFavoritesList;
+    self.isInQuickList = isInQuickList;
 
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){

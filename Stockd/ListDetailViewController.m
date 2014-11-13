@@ -15,24 +15,25 @@
 @interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate>
 @property NSArray *items;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addItemButton;
 @end
 
 @implementation ListDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getItems:self.listID];
-    // Do any additional setup after loading the view.
+    
+    if (self.list.isQuickList == YES) {
+        self.addItemButton.enabled = NO;
+        self.addItemButton.title = @"";
+        [self getItemsForQuickList];
+    } else {
+        [self getItems:self.listID];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    self.title = [NSString stringWithFormat:@"%@ (%lu)", self.list.name, (unsigned long)self.items.count];
-    
-    if (self.list.isQuickList == YES) {
-        // hide '+' button
-    }
     
     self.tabBarController.delegate = self;
 }
@@ -44,7 +45,7 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex == 0) {
-        [(UINavigationController *)viewController popToRootViewControllerAnimated:YES];
+        [(UINavigationController *)viewController popToRootViewControllerAnimated:NO];
     }
 }
 
@@ -53,12 +54,29 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     Item *item = [self.items objectAtIndex:indexPath.row];
-
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
     cell.textLabel.text = item.type;
     return cell;
+}
+
+-(void)getItemsForQuickList{
+    PFUser *user = [PFUser currentUser];
+    NSPredicate *findQuickList = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInQuickList = true)", user.objectId];
+    PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findQuickList];
+    [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(error) {
+            NSLog(@"%@", error);
+        }
+        else{
+            self.items = objects;
+            [self.tableView reloadData];
+            
+            self.title = [NSString stringWithFormat:@"%@ (%lu)", self.list.name, (unsigned long)self.items.count];
+        }
+    }];
 }
 
 -(void)getItems: (NSString *)listID{
@@ -71,25 +89,27 @@
         else{
             self.items = objects;
             [self.tableView reloadData];
+            
+            self.title = [NSString stringWithFormat:@"%@ (%lu)", self.list.name, (unsigned long)self.items.count];
         }
     }];
 }
 
 - (IBAction)addItemOnButtonPress:(id)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add new item" message:@"Do you want to add item from inventory or create a new item for this list?" preferredStyle:UIAlertControllerStyleActionSheet];
-
+    
     UIAlertAction *createNewItem = [UIAlertAction actionWithTitle:@"Create new item" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
     }];
-
+    
     UIAlertAction *addFromInventory = [UIAlertAction actionWithTitle:@"Add item from inventory" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self performSegueWithIdentifier:@"addItemFromInventorySegue" sender:self];
     }];
-
+    
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         return;
     }];
-
+    
     [alert addAction:createNewItem];
     [alert addAction:addFromInventory];
     [alert addAction:cancel];
@@ -107,15 +127,5 @@
         createItemVC.listID = self.listID;
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

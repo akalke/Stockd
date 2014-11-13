@@ -121,6 +121,8 @@
     if([segue.identifier isEqualToString:@"listDetailsSegue"]){
         ListDetailViewController *listDetailVC = segue.destinationViewController;
         listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] objectId];
+        List *list = [self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        listDetailVC.list = list;
     }
 }
 
