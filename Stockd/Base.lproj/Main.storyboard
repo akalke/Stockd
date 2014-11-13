@@ -108,6 +108,9 @@
                                     <constraint firstAttribute="height" constant="31" id="6Gl-7X-oBD"/>
                                     <constraint firstAttribute="width" constant="49" id="LCF-oM-DIK"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="setFavoriteOnSwitch:" destination="MeP-8f-b7H" eventType="valueChanged" id="fsg-by-mWJ"/>
+                                </connections>
                             </switch>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8X-ic-Qg5">
                                 <rect key="frame" x="0.0" y="20" width="600" height="40"/>
@@ -179,7 +182,7 @@
                     <navigationItem key="navigationItem" id="cmC-51-sno"/>
                     <connections>
                         <outlet property="favoritesLabel" destination="aby-8W-aQy" id="Yhz-5h-U3s"/>
-                        <outlet property="favoritesSwitch" destination="nPA-pQ-2jI" id="ndq-T4-Wr1"/>
+                        <outlet property="favoritesSwitch" destination="nPA-pQ-2jI" id="7f1-s9-XYS"/>
                         <outlet property="imageView" destination="BE8-N9-lVM" id="Rjv-eF-sIo"/>
                         <outlet property="itemDescriptionTextField" destination="OY7-Jg-SkZ" id="evO-xS-x6M"/>
                     </connections>

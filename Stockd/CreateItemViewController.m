@@ -30,6 +30,7 @@
         self.favoritesSwitch.hidden = YES;
         self.favoritesSwitch.userInteractionEnabled = NO;
     } else if (self.fromInventory == YES) {
+        [self.favoritesSwitch setOn:NO];
         self.favoritesLabel.hidden = NO;
         self.favoritesSwitch.hidden = NO;
         self.favoritesSwitch.userInteractionEnabled = YES;
@@ -50,9 +51,9 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else {
         if (self.fromInventory == YES) {
-            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:nil andInInventory:YES];
+            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES inFavorites:self.favoritesSwitch.isOn];
         } else if (self.fromListDetails == YES) {
-            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID andInInventory:NO];
+            [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO inFavorites:NO];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -64,6 +65,14 @@
 
 - (IBAction)uploadPhotoOnButtonPress:(id)sender {
     
+}
+
+- (IBAction)setFavoriteOnSwitch:(id)sender {
+    if ([self.favoritesSwitch isOn]) {
+        [self.favoritesSwitch setOn:YES animated:YES];
+    } else {
+        [self.favoritesSwitch setOn:NO animated:YES];
+    }
 }
 
 @end

@@ -23,7 +23,7 @@
 @property NSString *listID;
 @property NSString *userID;
 
--(void)createNewItemWithType: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list andInInventory: (BOOL)isInventory;
+-(void)createNewItemWithType: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory inFavorites: (BOOL) isInFavoritesList;
 -(void)deleteItem;
 -(NSArray *)getItemsForList: (NSString *)currentListID;
 -(void) getItemsForUser: (PFUser *)currentUser andComplete:(void(^)(NSArray *items))complete;
