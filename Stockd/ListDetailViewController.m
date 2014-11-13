@@ -31,6 +31,11 @@
     self.tabBarController.delegate = self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.tabBarController.delegate = nil;
+}
+
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex == 0) {
         [(UINavigationController *)viewController popToRootViewControllerAnimated:YES];
