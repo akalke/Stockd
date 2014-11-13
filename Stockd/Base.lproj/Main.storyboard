@@ -100,6 +100,7 @@
                                 </state>
                                 <connections>
                                     <action selector="uploadPhotoOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="8Xi-Bi-l09"/>
+                                    <segue destination="q8A-HR-S7J" kind="show" identifier="cameraSegue" id="lcp-9D-yUr"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-pQ-2jI">
@@ -190,6 +191,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52e-FF-Tcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2369" y="-558"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="GS1-4Y-tAz">
+            <objects>
+                <viewController id="q8A-HR-S7J" customClass="CameraViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ww0-AT-Rya"/>
+                        <viewControllerLayoutGuide type="bottom" id="3RJ-Pn-pke"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VyC-HT-9Q5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qmK-BF-IQP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXn-o8-KIf">
+                                <rect key="frame" x="0.0" y="507" width="600" height="93"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUQ-Y1-SUV">
+                                        <rect key="frame" x="262" y="8" width="77" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="77" id="GIP-xG-VHh"/>
+                                            <constraint firstAttribute="height" constant="30" id="lHu-ok-KaT"/>
+                                        </constraints>
+                                        <state key="normal" title="Take Photo">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="takePhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="ux1-D3-Yi7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEK-IL-HXm">
+                                        <rect key="frame" x="256" y="32" width="88" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="F0J-qE-lrt"/>
+                                            <constraint firstAttribute="width" constant="88" id="p7M-PX-OLH"/>
+                                        </constraints>
+                                        <state key="normal" title="Select Photo">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectPhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="T7l-II-sPH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hb4-VO-tmA">
+                                        <rect key="frame" x="249" y="55" width="110" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="0UN-mC-BAX"/>
+                                            <constraint firstAttribute="width" constant="110" id="4Tb-ss-TtA"/>
+                                        </constraints>
+                                        <state key="normal" title="Add This Photo!">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addThisPhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="QPA-KZ-r0p"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="MUQ-Y1-SUV" secondAttribute="centerX" id="1eJ-Pd-KxQ"/>
+                                    <constraint firstItem="hb4-VO-tmA" firstAttribute="top" secondItem="MUQ-Y1-SUV" secondAttribute="bottom" constant="17" id="2yK-A2-tHp"/>
+                                    <constraint firstAttribute="centerX" secondItem="hb4-VO-tmA" secondAttribute="centerX" constant="-4" id="3BW-Cs-nJH"/>
+                                    <constraint firstItem="xEK-IL-HXm" firstAttribute="top" secondItem="MUQ-Y1-SUV" secondAttribute="bottom" constant="-6" id="4I6-Vr-hIY"/>
+                                    <constraint firstAttribute="bottom" secondItem="xEK-IL-HXm" secondAttribute="bottom" constant="31" id="WNB-6b-tMc"/>
+                                    <constraint firstAttribute="bottom" secondItem="hb4-VO-tmA" secondAttribute="bottom" constant="8" id="hnu-vi-oLb"/>
+                                    <constraint firstAttribute="height" constant="93" id="jwC-9a-zGL"/>
+                                    <constraint firstAttribute="centerX" secondItem="xEK-IL-HXm" secondAttribute="centerX" id="ovm-cn-3RD"/>
+                                    <constraint firstItem="MUQ-Y1-SUV" firstAttribute="top" secondItem="FXn-o8-KIf" secondAttribute="top" constant="8" id="zAf-Lq-Joe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qmK-BF-IQP" firstAttribute="top" secondItem="VyC-HT-9Q5" secondAttribute="top" id="3KE-9i-HBo"/>
+                            <constraint firstItem="3RJ-Pn-pke" firstAttribute="top" secondItem="FXn-o8-KIf" secondAttribute="bottom" id="QJH-YF-JTp"/>
+                            <constraint firstItem="3RJ-Pn-pke" firstAttribute="top" secondItem="qmK-BF-IQP" secondAttribute="bottom" id="RQX-mQ-3D3"/>
+                            <constraint firstAttribute="trailing" secondItem="qmK-BF-IQP" secondAttribute="trailing" id="Tqa-Jf-XcN"/>
+                            <constraint firstItem="FXn-o8-KIf" firstAttribute="leading" secondItem="VyC-HT-9Q5" secondAttribute="leading" id="WHQ-Rq-mq1"/>
+                            <constraint firstAttribute="trailing" secondItem="FXn-o8-KIf" secondAttribute="trailing" id="vHi-Bg-qfX"/>
+                            <constraint firstItem="qmK-BF-IQP" firstAttribute="leading" secondItem="VyC-HT-9Q5" secondAttribute="leading" id="vgd-UY-GLi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="qmK-BF-IQP" id="tJZ-Fj-WGq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PXM-YX-eAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2369" y="144"/>
         </scene>
         <!--Register New User View Controller-->
         <scene sceneID="TPT-gX-4hh">

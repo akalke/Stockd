@@ -8,6 +8,7 @@
 
 #import "CreateItemViewController.h"
 #import "Item.h"
+#import "Photo.h"
 
 @interface CreateItemViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
@@ -64,10 +65,34 @@
 }
 
 - (IBAction)uploadPhotoOnButtonPress:(id)sender {
-    
+//    NSData *data = UIImagePNGRepresentation(self.imageView.image);
+//    PFFile *imageFile = [PFFile fileWithData:data];
+//    PFUser *currentUser = [PFUser currentUser];
+//
+//    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if(!error){
+//            Photo *newPhotoObject = [Photo objectWithClassName: @"Photo"];
+//            [newPhotoObject setObject:imageFile forKey:@"image"];
+//
+//            [newPhotoObject createPhotoObject: nil :currentUser];
+//
+//            [newPhotoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                if(error){
+//                    NSLog(@"%@", error);
+//                }
+//                else{
+//                    NSLog(@"Image Saved");
+//                }
+//            }];
+//        }
+//        else{
+//            NSLog(@"%@", error);
+//        }
+//    }];
 }
 
 - (IBAction)setFavoriteOnSwitch:(id)sender {
+
     if ([self.favoritesSwitch isOn]) {
         [self.favoritesSwitch setOn:YES animated:YES];
     } else {
