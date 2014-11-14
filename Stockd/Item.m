@@ -41,7 +41,10 @@
     self.userID = user.objectId;
     self.listID = list;
     self.isInQuickList = isInQuickList;
-    [self savePhotoToParse:image];
+
+    NSData *data = UIImagePNGRepresentation(image);
+    PFFile *imageFile = [PFFile fileWithData:data];
+    self.image = imageFile;
 
 
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -79,28 +82,6 @@
         }
     }];
     return self.itemsForList;
-}
-
--(void)savePhotoToParse: (UIImage *)image{
-        NSData *data = UIImagePNGRepresentation(image);
-        PFFile *imageFile = [PFFile fileWithData:data];
-    
-        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if(!error){
-                [self setObject:imageFile forKey:@"image"];
-                [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if(error){
-                        NSLog(@"%@", error);
-                    }
-                    else{
-                        NSLog(@"Image Saved");
-                    }
-                }];
-            }
-            else{
-                NSLog(@"%@", error);
-            }
-        }];
 }
 
 //-(NSArray *) getItemsForUser: (PFUser *)currentUser{

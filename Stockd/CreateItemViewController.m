@@ -22,6 +22,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    PFFile *image = [self.item objectForKey:@"image"];
+    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            self.imageView.image = [UIImage imageWithData:data];
+        }
+    }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,13 +97,9 @@
             [self noDescriptionAlert];
         } else {
             if (self.fromInventory == YES) {
-                [item createNewItem:self.itemDescriptionTextField.text
-                            forUser:user inList:nil
-                        inInventory:YES
-                      isInQuickList:self.quickListSwitch.isOn
-                          withImage:self.imageView.image];
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image];
             } else if (self.fromListDetails == YES) {
-                //[item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image];
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image];
             }
             [self dismissViewControllerAnimated:YES completion:^{
                 [self resetBOOLs];

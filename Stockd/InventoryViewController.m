@@ -70,6 +70,14 @@
     
     Item *item = [self.inventory objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyInventoryCell" forIndexPath: indexPath];
+    PFFile *image = [item objectForKey:@"image"];
+    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            cell.imageView.image = [UIImage imageWithData:data];
+        }
+    }];
     cell.textLabel.text = item.type;
     return cell;
 }
@@ -77,7 +85,6 @@
 -(void) getInventory: (PFUser *)currentUser{
     NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInInventory = true)", currentUser.objectId];
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];
-    itemQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);

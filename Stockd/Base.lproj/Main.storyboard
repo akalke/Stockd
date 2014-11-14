@@ -106,8 +106,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addItemOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="ynS-oC-1qG"/>
-                                            <action selector="createItemOnDoneButton:" destination="MeP-8f-b7H" eventType="touchUpInside" id="meC-IJ-NYC"/>
+                                            <action selector="addItemOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="Fix-El-ePy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-hE-pXi">
