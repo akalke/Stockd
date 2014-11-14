@@ -34,7 +34,7 @@
 -(void)createNewList: (PFUser *)user :(NSString *)listName{
     self.userID = user.objectId;
     self.isQuickList = NO;
-    self.sourceListID =  self.objectId;
+    //self.sourceListID =  self.objectId;
 
     if(![listName isEqualToString:@"Quick List"] || ![listName isEqualToString:@""]){
         self.name = listName;
@@ -44,6 +44,8 @@
             }
             else{
                 NSLog(@"List Created");
+                [self setObject:self.objectId forKey:@"sourceListID"];
+                [self saveInBackground];
             }
         }];
     }
