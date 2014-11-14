@@ -59,6 +59,7 @@
     List *list = [self.lists objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyListsCell" forIndexPath: indexPath];
     cell.textLabel.text = list.name;
+    cell.imageView.image = [UIImage imageNamed:@"stockd_annotation"];
     return cell;
 }
 

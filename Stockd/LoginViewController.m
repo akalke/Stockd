@@ -91,7 +91,30 @@
 
 - (IBAction)forgotPasswordOnButtonPress:(id)sender {
     [PFUser requestPasswordResetForEmailInBackground:self.usernameTextField.text block:^(BOOL succeeded, NSError *error) {
-        return;
+        if(error){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was an error with your request, please try again later" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                return;
+            }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else if (succeeded){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email sent!" message:@"An email has been sent to you to reset your password" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                return;
+            }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else if(!succeeded){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"We are unable to reset your password" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                return;
+            }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }];
 }
 
