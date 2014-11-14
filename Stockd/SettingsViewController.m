@@ -12,6 +12,7 @@
 
 @interface SettingsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *accountCreatedAtLabel;
 @property (weak, nonatomic) IBOutlet UITextField *currentPasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *changePasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
@@ -32,6 +33,11 @@
     self.currentPasswordTextField.placeholder = @"Current Password";
     self.changePasswordTextField.placeholder = @"New Password";
     self.confirmPasswordTextField.placeholder = @"Confirm New Password";
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"MM-dd-yyyy"];
+    NSString *date = [format stringForObjectValue:self.user.createdAt];
+    self.accountCreatedAtLabel.text = [NSString stringWithFormat:@"Member Since: %@", date];
     
     [self hidePasswordFields];
 }
