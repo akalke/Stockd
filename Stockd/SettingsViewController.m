@@ -11,6 +11,13 @@
 #import "LoginViewController.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *currentPasswordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *changePasswordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
+@property (weak, nonatomic) IBOutlet UIView *optionsView;
+@property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
+@property BOOL isChangingPassword;
 
 @end
 
@@ -18,12 +25,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    PFUser *user = [PFUser currentUser];
+    self.usernameLabel.text = user.username;
+    self.currentPasswordTextField.placeholder = @"Current Password";
+    self.changePasswordTextField.placeholder = @"New Password";
+    self.confirmPasswordTextField.placeholder = @"Confirm New Password";
+    
+    [self hidePasswordFields];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Helper Methods
+
+- (void)showPasswordFields {
+    self.changePasswordButton.hidden = YES;
+    self.currentPasswordTextField.hidden = NO;
+    self.changePasswordTextField.hidden = NO;
+    self.confirmPasswordTextField.hidden = NO;
+    self.optionsView.hidden = NO;
+}
+
+- (void)hidePasswordFields {
+    self.changePasswordButton.hidden = NO;
+    self.currentPasswordTextField.hidden = YES;
+    self.changePasswordTextField.hidden = YES;
+    self.confirmPasswordTextField.hidden = YES;
+    self.optionsView.hidden = YES;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)onChangePasswordButtonPressed:(id)sender {
+    [self showPasswordFields];
+}
+
+- (IBAction)onCancelButtonPressed:(id)sender {
+    [self hidePasswordFields];
+}
+
+- (IBAction)onSaveButtonPressed:(id)sender {
+    
 }
 
 - (IBAction)logUserOutOnButtonPress:(id)sender {

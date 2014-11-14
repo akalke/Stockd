@@ -92,6 +92,7 @@
     removeQuickList.backgroundColor = [UIColor blueColor];
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // need completion block from deleteInBackgroundWithBlock method
         [item deleteItem];
         [self getItems:self.listID];
         
