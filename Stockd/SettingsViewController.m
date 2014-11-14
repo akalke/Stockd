@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIView *optionsView;
 @property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
+@property PFUser *user;
 @property BOOL isChangingPassword;
 
 @end
@@ -26,8 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    PFUser *user = [PFUser currentUser];
-    self.usernameLabel.text = user.username;
+    self.user = [PFUser currentUser];
+    self.usernameLabel.text = self.user.username;
     self.currentPasswordTextField.placeholder = @"Current Password";
     self.changePasswordTextField.placeholder = @"New Password";
     self.confirmPasswordTextField.placeholder = @"Confirm New Password";
@@ -53,6 +54,10 @@
     self.optionsView.hidden = YES;
 }
 
+- (void)saveIfPassCondtionals {
+    NSLog(@"%@", self.user.password);
+}
+
 #pragma mark - IBActions
 
 - (IBAction)onChangePasswordButtonPressed:(id)sender {
@@ -64,7 +69,8 @@
 }
 
 - (IBAction)onSaveButtonPressed:(id)sender {
-    
+    [self saveIfPassCondtionals];
+//    [self hidePasswordFields];
 }
 
 - (IBAction)logUserOutOnButtonPress:(id)sender {
