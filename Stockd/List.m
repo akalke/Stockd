@@ -17,6 +17,8 @@
 @dynamic userID;
 @dynamic name;
 @dynamic isQuickList;
+@dynamic sharedListID;
+@dynamic sourceListID;
 
 #pragma mark Register Parse Subclass
 +(NSString *)parseClassName{
@@ -32,6 +34,7 @@
 -(void)createNewList: (PFUser *)user :(NSString *)listName{
     self.userID = user.objectId;
     self.isQuickList = NO;
+    self.sourceListID =  self.objectId;
 
     if(![listName isEqualToString:@"Quick List"] || ![listName isEqualToString:@""]){
         self.name = listName;
@@ -64,22 +67,6 @@
     }];
 }
 
--(NSArray *)getListsForUser: (NSString *)userID{
-    NSPredicate *findLists = [NSPredicate predicateWithFormat:@"userID = %@", userID];
-    PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findLists];
-    [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(error) {
-            NSLog(@"%@", error);
-            NSArray *array = [NSArray new];
-            self.listsArray = array;
-        }
-        else{
-            self.listsArray = objects;
-        }
-    }];
-    return self.listsArray;
-}
-
 -(void)deleteList{
     [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
@@ -87,6 +74,36 @@
         }
         else{
             NSLog(@"List Deleted");
+        }
+    }];
+}
+
+-(void)shareThisList:(List *)list withThisUser:(NSString *)username{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username = %@", username];
+    PFQuery *userQuery = [PFQuery queryWithClassName:[PFUser parseClassName] predicate:predicate];
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(error){
+            NSLog(@"%@", error);
+        }
+        else if (objects.count != 0){
+            self.userID = [objects[0] objectId];
+            self.isQuickList = NO;
+            self.name = [NSString stringWithFormat:@"%@ (Shared)", list.name];
+            self.sourceListID = list.objectId;
+
+            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(error){
+                    NSLog(@"%@", error);
+                }
+                else{
+                    NSLog(@"List Created");
+                    [list setObject:list.objectId forKey:@"sourceListID"];
+                    [list saveInBackground];
+                }
+            }];
+        }
+        else{
+            NSLog(@"Can't share");
         }
     }];
 }

@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor lightGrayColor];
+    [self getLists: [PFUser currentUser]];
     // Do any additional setup after loading the view.
 }
 
@@ -65,8 +66,50 @@
         [list deleteList];
         [self getLists:user];
     }
-
 }
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    List *list =[self.lists objectAtIndex:indexPath.row];
+
+
+    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // need completion block from deleteInBackgroundWithBlock method
+        [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self getLists:[PFUser currentUser]];
+        }];
+
+        [self.tableView setEditing:NO];
+    }];
+
+    UITableViewRowAction *share = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Share It" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField = alert.textFields[0];
+        }];
+        UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            NSLog(@"share");
+            List *shareList = [[List alloc] init];
+            NSLog(@"%@", alert.textFields[0]);
+            [shareList shareThisList:list withThisUser: @"test@gmail.com"];
+        }];
+
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            return;
+        }];
+
+        [alert addAction:share];
+        [alert addAction:cancel];
+
+        [self presentViewController:alert animated:YES completion:nil];
+
+        [self.tableView setEditing:NO];
+    }];
+    share.backgroundColor = [UIColor lightGrayColor];
+
+    return @[delete, share];
+}
+
 
 - (IBAction)createListOnButtonPress:(id)sender {
     if([self.listName.text isEqualToString:@""]){
@@ -90,13 +133,14 @@
 -(void) getLists: (PFUser *)currentUser{
     NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
     PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
-    listQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
+    //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
     [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);
         }
         else{
             self.lists = objects;
+            NSLog(@"%@", objects);
             [self.tableView reloadData];
         }
     }];
@@ -105,7 +149,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"listDetailsSegue"]){
         ListDetailViewController *listDetailVC = segue.destinationViewController;
-        listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] objectId];
+        listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] sourceListID];
         List *list = [self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row];
         listDetailVC.list = list;
     }
