@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -107,6 +107,7 @@
                                         </state>
                                         <connections>
                                             <action selector="addItemOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="ynS-oC-1qG"/>
+                                            <action selector="createItemOnDoneButton:" destination="MeP-8f-b7H" eventType="touchUpInside" id="meC-IJ-NYC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-hE-pXi">
@@ -195,7 +196,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="cmC-51-sno"/>
                     <connections>
-                        <outlet property="imageView" destination="BE8-N9-lVM" id="Rjv-eF-sIo"/>
+                        <outlet property="imageView" destination="BE8-N9-lVM" id="Ug1-ii-x2H"/>
                         <outlet property="itemDescriptionTextField" destination="OY7-Jg-SkZ" id="evO-xS-x6M"/>
                         <outlet property="quickListLabel" destination="aby-8W-aQy" id="jdJ-LH-Rbe"/>
                         <outlet property="quickListSwitch" destination="nPA-pQ-2jI" id="9Hp-Ye-DZz"/>
@@ -259,7 +260,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addThisPhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="QPA-KZ-r0p"/>
+                                            <segue destination="5bT-bN-fHW" kind="unwind" unwindAction="unwindFromCameraSegue:" id="jEn-Yh-l62"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -293,6 +294,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXM-YX-eAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5bT-bN-fHW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2369" y="144"/>
         </scene>
@@ -819,7 +821,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="b3f-dZ-mbZ"/>
-        <segue reference="3fI-09-ph0"/>
         <segue reference="rYD-BQ-DL4"/>
+        <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
 </document>

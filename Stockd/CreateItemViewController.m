@@ -8,6 +8,7 @@
 
 #import "CreateItemViewController.h"
 #import "Photo.h"
+#import "CameraViewController.h"
 
 @interface CreateItemViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
@@ -86,9 +87,13 @@
             [self noDescriptionAlert];
         } else {
             if (self.fromInventory == YES) {
-                [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn];
+                [item createNewItem:self.itemDescriptionTextField.text
+                            forUser:user inList:nil
+                        inInventory:YES
+                      isInQuickList:self.quickListSwitch.isOn
+                          withImage:self.imageView.image];
             } else if (self.fromListDetails == YES) {
-                [item createNewItemWithType:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO];
+                //[item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image];
             }
             [self dismissViewControllerAnimated:YES completion:^{
                 [self resetBOOLs];
@@ -125,30 +130,7 @@
 }
 
 - (IBAction)uploadPhotoOnButtonPress:(id)sender {
-    //    NSData *data = UIImagePNGRepresentation(self.imageView.image);
-    //    PFFile *imageFile = [PFFile fileWithData:data];
-    //    PFUser *currentUser = [PFUser currentUser];
-    //
-    //    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-    //        if(!error){
-    //            Photo *newPhotoObject = [Photo objectWithClassName: @"Photo"];
-    //            [newPhotoObject setObject:imageFile forKey:@"image"];
-    //
-    //            [newPhotoObject createPhotoObject: nil :currentUser];
-    //
-    //            [newPhotoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-    //                if(error){
-    //                    NSLog(@"%@", error);
-    //                }
-    //                else{
-    //                    NSLog(@"Image Saved");
-    //                }
-    //            }];
-    //        }
-    //        else{
-    //            NSLog(@"%@", error);
-    //        }
-    //    }];
+
 }
 
 - (IBAction)setQuickListOnSwitch:(id)sender {
@@ -158,6 +140,11 @@
     } else {
         [self.quickListSwitch setOn:NO animated:YES];
     }
+}
+
+-(IBAction)unwindFromCameraSegue:(UIStoryboardSegue *)segue{
+    CameraViewController *cameraVC = segue.sourceViewController;
+    self.imageView.image = cameraVC.imageView.image;
 }
 
 @end

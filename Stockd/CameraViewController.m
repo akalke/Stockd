@@ -11,7 +11,6 @@
 #import "Photo.h"
 
 @interface CameraViewController ()
-
 @end
 
 @implementation CameraViewController
@@ -59,11 +58,6 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (IBAction)addThisPhoto:(id)sender {
-
-
-}
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -76,6 +70,9 @@
 
     [picker dismissViewControllerAnimated:YES completion:NULL];
 
+}
+
+- (IBAction)addThisPhoto:(id)sender{
 }
 
 

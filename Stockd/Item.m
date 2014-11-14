@@ -24,6 +24,7 @@
 @dynamic isInInventory;
 @dynamic photo;
 @dynamic listID;
+@dynamic image;
 
 #pragma mark Register Parse Subclass
 +(NSString *)parseClassName{
@@ -35,12 +36,13 @@
 }
 
 #pragma mark Modify/Grab Item Data
--(void)createNewItemWithType: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList{
+-(void)createNewItem: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList withImage: (UIImage *)image{
     self.type = itemType;
     self.userID = user.objectId;
     self.listID = list;
-    self.isInInventory = isInInventory;
     self.isInQuickList = isInQuickList;
+    [self savePhotoToParse:image];
+
 
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
@@ -77,6 +79,28 @@
         }
     }];
     return self.itemsForList;
+}
+
+-(void)savePhotoToParse: (UIImage *)image{
+        NSData *data = UIImagePNGRepresentation(image);
+        PFFile *imageFile = [PFFile fileWithData:data];
+    
+        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(!error){
+                [self setObject:imageFile forKey:@"image"];
+                [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if(error){
+                        NSLog(@"%@", error);
+                    }
+                    else{
+                        NSLog(@"Image Saved");
+                    }
+                }];
+            }
+            else{
+                NSLog(@"%@", error);
+            }
+        }];
 }
 
 //-(NSArray *) getItemsForUser: (PFUser *)currentUser{

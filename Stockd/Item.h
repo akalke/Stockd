@@ -22,8 +22,9 @@
 @property BOOL isInInventory;
 @property NSString *listID;
 @property NSString *userID;
+@property PFFile *image;
 
--(void)createNewItemWithType: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList;
+-(void)createNewItem: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList withImage: (UIImage *)image;
 -(void)deleteItem;
 -(NSArray *)getItemsForList: (NSString *)currentListID;
 -(void) getItemsForUser: (PFUser *)currentUser andComplete:(void(^)(NSArray *items))complete;
