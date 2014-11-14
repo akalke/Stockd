@@ -33,10 +33,7 @@
     [super viewWillAppear:animated];
     PFUser *currentUser = [PFUser currentUser];
     [self getInventory:currentUser];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+    
     self.didSelectItem = NO;
 }
 
@@ -105,6 +102,11 @@
     else{
         return UITableViewCellEditingStyleDelete;
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.didSelectItem = YES;
+    [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:self];
 }
 
 - (IBAction)addItemOnButtonPress:(id)sender {
