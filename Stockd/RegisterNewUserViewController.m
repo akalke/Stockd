@@ -35,6 +35,9 @@
         else{
             if(succeeded){
                 NSLog(@"User Created!");
+                List *list = [[List alloc]init];
+                [list createNewQuickList:newUser];
+                [self performSegueWithIdentifier:@"registeredUserSegue" sender:self];
             }
             else{
                 NSLog(@"User already exists!");
@@ -91,9 +94,7 @@
             else{
                 [self createNewUser];
                 [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text block:^(PFUser *user, NSError *error){
-                    [self performSegueWithIdentifier:@"registeredUserSegue" sender:self];
-                    List *list = [[List alloc]init];
-                    [list createNewQuickList:user];
+                    return;
                 }];
             }
         }
