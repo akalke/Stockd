@@ -23,8 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getLists: [PFUser currentUser]];
-    [self checkForQuickList];
     self.tableView.backgroundColor = [UIColor lightGrayColor];
     // Do any additional setup after loading the view.
 }
@@ -33,22 +31,6 @@
     [super viewWillAppear:animated];
     PFUser *user = [PFUser currentUser];
     [self getLists: user];
-}
-
--(void)checkForQuickList{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    PFUser *user = [PFUser currentUser];
-    if([[userDefaults stringForKey:@"QUICKLIST_EXISTS"] isEqualToString:@"YES"] && [[userDefaults stringForKey:@"USER"] isEqualToString:user.username]){
-        NSLog(@"Quick list exists");
-        return;
-    }
-    else{
-        NSLog(@"Creating quick list");
-        List *list = [[List alloc]init];
-        [list createNewQuickList:[PFUser currentUser]];
-        [userDefaults setValue:@"YES" forKey:@"QUICKLIST_EXISTS"];
-        [userDefaults setValue:user.username forKey:@"USER"];
-    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

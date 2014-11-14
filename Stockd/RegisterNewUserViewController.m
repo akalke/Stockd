@@ -7,6 +7,7 @@
 //
 
 #import "RegisterNewUserViewController.h"
+#import "List.h"
 
 @interface RegisterNewUserViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *registerUsernameTextField;
@@ -91,6 +92,8 @@
                 [self createNewUser];
                 [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text block:^(PFUser *user, NSError *error){
                     [self performSegueWithIdentifier:@"registeredUserSegue" sender:self];
+                    List *list = [[List alloc]init];
+                    [list createNewQuickList:user];
                 }];
             }
         }
