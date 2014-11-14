@@ -13,7 +13,6 @@
 @interface SettingsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountCreatedAtLabel;
-@property (weak, nonatomic) IBOutlet UITextField *currentPasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *changePasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIView *optionsView;
@@ -30,9 +29,8 @@
     
     self.user = [PFUser currentUser];
     self.usernameLabel.text = self.user.username;
-    self.currentPasswordTextField.placeholder = @"Current Password";
     self.changePasswordTextField.placeholder = @"New Password";
-    self.confirmPasswordTextField.placeholder = @"Confirm New Password";
+    self.confirmPasswordTextField.placeholder = @"Confirm Password";
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MM-dd-yyyy"];
@@ -46,7 +44,6 @@
 
 - (void)showPasswordFields {
     self.changePasswordButton.hidden = YES;
-    self.currentPasswordTextField.hidden = NO;
     self.changePasswordTextField.hidden = NO;
     self.confirmPasswordTextField.hidden = NO;
     self.optionsView.hidden = NO;
@@ -54,7 +51,6 @@
 
 - (void)hidePasswordFields {
     self.changePasswordButton.hidden = NO;
-    self.currentPasswordTextField.hidden = YES;
     self.changePasswordTextField.hidden = YES;
     self.confirmPasswordTextField.hidden = YES;
     self.optionsView.hidden = YES;
