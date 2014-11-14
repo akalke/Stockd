@@ -60,7 +60,7 @@
     Item *item = [self.items objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
-
+    
     [item.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -68,9 +68,41 @@
             cell.imageView.image = [UIImage imageWithData:data];
         }
     }];
-
+    
     cell.textLabel.text = item.type;
     return cell;
+}
+
+// needed for editActionsForRowAtIndexPath to work (it doesn't need anything inside)
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Item *item = [self.items objectAtIndex:indexPath.row];
+    UITableViewRowAction *removeQuickList = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Remove" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        removeQuickList.backgroundColor = [UIColor blueColor];
+        
+        [item setObject:[NSNumber numberWithBool:NO] forKey:@"isInQuickList"];
+        [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self.tableView reloadData];
+        }];
+        
+        [self.tableView setEditing:NO];
+    }];
+    
+    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        [item deleteItem];
+        [self getItems:self.listID];
+        
+        [self.tableView setEditing:NO];
+    }];
+    
+    if (self.list.isQuickList == YES) {
+        return @[removeQuickList];
+    } else {
+        return @[delete];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

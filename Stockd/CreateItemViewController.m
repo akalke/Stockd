@@ -111,7 +111,6 @@
             if (self.editingFromInventory) {
                 [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
             }
-            self.item.type = self.itemDescriptionTextField.text;
             [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
             
             [self.item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
