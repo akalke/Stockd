@@ -37,6 +37,7 @@
     [super viewWillAppear:animated];
     
     self.tabBarController.delegate = self;
+    self.didSelectItem = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
