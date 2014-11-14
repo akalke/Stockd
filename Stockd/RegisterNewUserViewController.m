@@ -27,6 +27,7 @@
     PFUser *newUser = [PFUser user];
     newUser.username = self.registerUsernameTextField.text;
     newUser.password = self.registerPasswordTextField.text;
+    newUser.email = self.registerUsernameTextField.text;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);

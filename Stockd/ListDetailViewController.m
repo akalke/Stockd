@@ -89,7 +89,6 @@
         else{
             self.items = objects;
             [self.tableView reloadData];
-            
             self.title = [NSString stringWithFormat:@"%@ (%lu)", self.list.name, (unsigned long)self.items.count];
         }
     }];
@@ -112,24 +111,7 @@
 }
 
 - (IBAction)addItemOnButtonPress:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add new item" message:@"Do you want to add item from inventory or create a new item for this list?" preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *createNewItem = [UIAlertAction actionWithTitle:@"Create new item" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
-    }];
-    
-    UIAlertAction *addFromInventory = [UIAlertAction actionWithTitle:@"Add item from inventory" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self performSegueWithIdentifier:@"addItemFromInventorySegue" sender:self];
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        return;
-    }];
-    
-    [alert addAction:createNewItem];
-    [alert addAction:addFromInventory];
-    [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -89,4 +89,10 @@
     [self performSegueWithIdentifier:@"registerNewUserSegue" sender:self];
 }
 
+- (IBAction)forgotPasswordOnButtonPress:(id)sender {
+    [PFUser requestPasswordResetForEmailInBackground:self.usernameTextField.text block:^(BOOL succeeded, NSError *error) {
+        return;
+    }];
+}
+
 @end

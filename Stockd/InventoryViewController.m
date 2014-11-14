@@ -27,18 +27,10 @@
     [super viewDidLoad];
     PFUser *currentUser = [PFUser currentUser];
     [self getInventory:currentUser];
-    
-    if(self.fromListDetail == YES){
-        self.fromListDetail = YES;
-    }
-    else{
-        self.fromListDetail = NO;
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     PFUser *currentUser = [PFUser currentUser];
     [self getInventory:currentUser];
 }
@@ -106,11 +98,6 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.didSelectItem = YES;
-    [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:self];
-}
-
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(self.fromListDetail == YES){
         return UITableViewCellEditingStyleNone;
@@ -121,8 +108,7 @@
 }
 
 - (IBAction)addItemOnButtonPress:(id)sender {
-    
-    if(self.fromListDetail != YES){
+
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add new item" message:@"Do you want to add item from inventory or create a new item for this list?" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *createNewItem = [UIAlertAction actionWithTitle:@"Create new item" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:nil];
@@ -135,23 +121,6 @@
         [alert addAction:createNewItem];
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
-    }
-    else{
-        //Add multiple
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add item?" message:@"Add these items?" preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            return;
-        }];
-        
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            return;
-        }];
-        
-        [alert addAction:ok];
-        [alert addAction:cancel];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
 }
 
 @end
