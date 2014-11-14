@@ -29,7 +29,7 @@
 
 
 #pragma mark Modify List Data
--(void)createNewList: (User *)user :(NSString *)listName{
+-(void)createNewList: (PFUser *)user :(NSString *)listName{
     self.userID = user.objectId;
     self.isQuickList = NO;
 

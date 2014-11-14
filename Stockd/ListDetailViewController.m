@@ -60,8 +60,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
 
-    PFFile *image = [item objectForKey:@"image"];
-    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+    [item.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         } else {

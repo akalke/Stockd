@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "User.h"
 #import "List.h"
 
 @interface Item : PFObject <PFSubclassing>

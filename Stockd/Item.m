@@ -37,25 +37,46 @@
 
 #pragma mark Modify/Grab Item Data
 -(void)createNewItem: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList withImage: (UIImage *)image{
-    self.type = itemType;
-    self.userID = user.objectId;
-    self.listID = list;
-    self.isInQuickList = isInQuickList;
 
-    NSData *data = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithData:data];
-    self.image = imageFile;
+    if(image){
+        self.type = itemType;
+        self.userID = user.objectId;
+        self.listID = list;
+        self.isInQuickList = isInQuickList;
+        self.isInInventory = isInInventory;
 
+        NSData *data = UIImagePNGRepresentation(image);
+        PFFile *imageFile = [PFFile fileWithData:data];
+        self.image = imageFile;
 
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(error){
-            NSLog(@"%@", error);
-        }
-        else{
-            NSLog(@"Item Created");
-        }
-    }];
+        [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(error){
+                NSLog(@"%@", error);
+            }
+            else{
+                NSLog(@"Item Created");
+            }
+        }];
+    }
+    else{
+        self.type = itemType;
+        self.userID = user.objectId;
+        self.listID = list;
+        self.isInQuickList = isInQuickList;
+        self.isInInventory = isInInventory;
+
+        [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(error){
+                NSLog(@"%@", error);
+            }
+            else{
+                NSLog(@"Item Created");
+            }
+        }];
+
+    }
 }
+
 
 -(void)deleteItem{
     [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -83,21 +104,5 @@
     }];
     return self.itemsForList;
 }
-
-//-(NSArray *) getItemsForUser: (PFUser *)currentUser{
-//    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
-//    PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];
-//    [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if(error) {
-//            NSLog(@"%@", error);
-//            NSArray *array = [NSArray new];
-//            self.itemsForUser = array;
-//        }
-//        else{
-//            self.itemsForUser = objects;
-//        }
-//        return self.itemsForUser;
-//    }];
-//}
 
 @end

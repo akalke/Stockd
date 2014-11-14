@@ -7,7 +7,6 @@
 //
 
 #import "RegisterNewUserViewController.h"
-#import "User.h"
 
 @interface RegisterNewUserViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *registerUsernameTextField;

@@ -8,7 +8,6 @@
 
 #import "CameraViewController.h"
 #import <Parse/Parse.h>
-#import "Photo.h"
 
 @interface CameraViewController ()
 @end

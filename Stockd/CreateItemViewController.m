@@ -7,7 +7,6 @@
 //
 
 #import "CreateItemViewController.h"
-#import "Photo.h"
 #import "CameraViewController.h"
 
 @interface CreateItemViewController ()
