@@ -25,6 +25,7 @@
     [super viewDidLoad];
     [self getLists: [PFUser currentUser]];
     [self checkForQuickList];
+    self.tableView.backgroundColor = [UIColor lightGrayColor];
     // Do any additional setup after loading the view.
 }
 
@@ -55,11 +56,12 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
     List *list = [self.lists objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyListsCell" forIndexPath: indexPath];
     cell.textLabel.text = list.name;
     cell.imageView.image = [UIImage imageNamed:@"stockd_annotation"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",list.createdAt];
+
     return cell;
 }
 
