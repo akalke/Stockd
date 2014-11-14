@@ -67,6 +67,12 @@
             cell.imageView.image = [UIImage imageWithData:data];
         }
     }];
+    
+    if (item.isInQuickList == YES) {
+        cell.textLabel.textColor = [UIColor blueColor];
+    } else {
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
     cell.textLabel.text = item.type;
     return cell;
 }
@@ -78,21 +84,22 @@
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     Item *item = [self.inventory objectAtIndex:indexPath.row];
+    PFUser *user = [PFUser currentUser];
     UITableViewRowAction *quickList = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Quick List" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        quickList.backgroundColor = [UIColor blueColor];
-        
         if (item.isInQuickList == YES) {
             [item setObject:[NSNumber numberWithBool:NO] forKey:@"isInQuickList"];
         } else if (item.isInQuickList == NO) {
             [item setObject:[NSNumber numberWithBool:YES] forKey:@"isInQuickList"];
         }
-        [item saveInBackground];
+        [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self getInventory:user];
+        }];
         
         [self.tableView setEditing:NO];
     }];
+    quickList.backgroundColor = [UIColor blueColor];
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        PFUser *user = [PFUser currentUser];
         [item deleteItem];
         [self getInventory:user];
         

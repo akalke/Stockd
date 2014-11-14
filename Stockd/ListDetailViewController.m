@@ -81,15 +81,15 @@
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     Item *item = [self.items objectAtIndex:indexPath.row];
     UITableViewRowAction *removeQuickList = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Remove" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        removeQuickList.backgroundColor = [UIColor blueColor];
         
         [item setObject:[NSNumber numberWithBool:NO] forKey:@"isInQuickList"];
         [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self.tableView reloadData];
+            [self getItemsForQuickList];
         }];
         
         [self.tableView setEditing:NO];
     }];
+    removeQuickList.backgroundColor = [UIColor blueColor];
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [item deleteItem];
