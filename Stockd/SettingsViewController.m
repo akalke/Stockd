@@ -44,7 +44,9 @@
 
 - (void)showPasswordFields {
     self.changePasswordButton.hidden = YES;
+    self.changePasswordTextField.text = @"";
     self.changePasswordTextField.hidden = NO;
+    self.confirmPasswordTextField.text = @"";
     self.confirmPasswordTextField.hidden = NO;
     self.optionsView.hidden = NO;
 }
@@ -57,13 +59,28 @@
 }
 
 - (void)saveIfPassCondtionals {
-    NSLog(@"%@", self.user.password);
+    if ([self.changePasswordTextField.text isEqualToString:self.confirmPasswordTextField.text] && ![self.changePasswordTextField.text isEqualToString:@""]) {
+        self.user.password = self.changePasswordTextField.text;
+        [self.user saveInBackground];
+        [self hidePasswordFields];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Passwords don't match." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            self.changePasswordTextField.text = @"";
+            self.confirmPasswordTextField.text = @"";
+            [self.changePasswordTextField becomeFirstResponder];
+        }];
+        
+        [alert addAction:okay];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 #pragma mark - IBActions
 
 - (IBAction)onChangePasswordButtonPressed:(id)sender {
     [self showPasswordFields];
+    [self.changePasswordTextField becomeFirstResponder];
 }
 
 - (IBAction)onCancelButtonPressed:(id)sender {
@@ -72,7 +89,6 @@
 
 - (IBAction)onSaveButtonPressed:(id)sender {
     [self saveIfPassCondtionals];
-//    [self hidePasswordFields];
 }
 
 - (IBAction)logUserOutOnButtonPress:(id)sender {
