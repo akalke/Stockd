@@ -36,7 +36,7 @@
 }
 
 #pragma mark Modify/Grab Item Data
--(void)createNewItem: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList withImage: (UIImage *)image{
+-(void)createNewItem: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList withImage: (UIImage *)image withBlock:(void(^)(void))block{
 
     if(image){
         self.type = itemType;
@@ -55,6 +55,7 @@
             }
             else{
                 NSLog(@"Item Created");
+                block();
             }
         }];
     }
@@ -71,6 +72,7 @@
             }
             else{
                 NSLog(@"Item Created");
+                block();
             }
         }];
 
@@ -78,13 +80,14 @@
 }
 
 
--(void)deleteItem{
+-(void)deleteItemWithBlock:(void(^)(void))block{
     [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);
         }
         else{
             NSLog(@"Item Deleted");
+            block();
         }
     }];
 }

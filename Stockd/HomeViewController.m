@@ -63,8 +63,12 @@
     List *list =[self.lists objectAtIndex:indexPath.row];
 
     if(editingStyle == UITableViewCellEditingStyleDelete){
-        [list deleteList];
-        [self getLists:user];
+        [list deleteListWithBlock:^{
+            [self getLists:user];
+        }];
+//        [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            [self getLists:user];
+//        }];
     }
 }
 
@@ -123,9 +127,10 @@
     else{
         List *list = [[List alloc]init];
         PFUser *user = [PFUser currentUser];
-        [list createNewList:user :self.listName.text];
-        self.listName.text = @"";
-        [self getLists:user];
+        [list createNewList:user :self.listName.text withBlock:^{
+            self.listName.text = @"";
+            [self getLists:user];
+        }];
     }
 }
 

@@ -8,6 +8,8 @@
 
 #import "CreateItemViewController.h"
 #import "CameraViewController.h"
+#import "InventoryViewController.h"
+#import "ListDetailViewController.h"
 
 @interface CreateItemViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
@@ -96,13 +98,20 @@
             [self noDescriptionAlert];
         } else {
             if (self.fromInventory == YES) {
-                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image];
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        [self resetBOOLs];
+                    }];
+                }];
             } else if (self.fromListDetails == YES) {
-                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image];
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image withBlock:^{
+                    ListDetailViewController *listDetailVC;
+                    [listDetailVC getItems:self.listID];
+                }];
             }
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self resetBOOLs];
-            }];
+//            [self dismissViewControllerAnimated:YES completion:^{
+//                [self resetBOOLs];
+//            }];
         }
     } else if (self.editingFromInventory || self.editingFromListDetails) {
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {

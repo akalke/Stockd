@@ -101,9 +101,12 @@
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // need completion block from deleteInBackgroundWithBlock method
-        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [item deleteItemWithBlock:^{
             [self getInventory:user];
         }];
+//        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            [self getInventory:user];
+//        }];
         
         [self.tableView setEditing:NO];
     }];

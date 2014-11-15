@@ -31,11 +31,11 @@
 
 
 #pragma mark Modify List Data
--(void)createNewList: (PFUser *)user :(NSString *)listName{
+-(void)createNewList: (PFUser *)user :(NSString *)listName withBlock:(void(^)(void))block{
     self.userID = user.objectId;
     self.isQuickList = NO;
     //self.sourceListID =  self.objectId;
-
+    
     if(![listName isEqualToString:@"Quick List"] || ![listName isEqualToString:@""]){
         self.name = listName;
         [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -45,7 +45,13 @@
             else{
                 NSLog(@"List Created");
                 [self setObject:self.objectId forKey:@"sourceListID"];
-                [self saveInBackground];
+                [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (error) {
+                        NSLog(@"%@", error);
+                    } else {
+                        block();
+                    }
+                }];
             }
         }];
     }
@@ -54,28 +60,30 @@
     }
 }
 
--(void)createNewQuickList:(PFUser *)user{
+-(void)createNewQuickList:(PFUser *)user withBlock:(void(^)(void))block{
     self.userID = user.objectId;
     self.name = @"Quick List";
     self.isQuickList = YES;
-
+    
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);
         }
         else{
             NSLog(@"List Created");
+            block();
         }
     }];
 }
 
--(void)deleteList{
+-(void)deleteListWithBlock:(void(^)(void))block{
     [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
             NSLog(@"%@", error);
         }
         else{
             NSLog(@"List Deleted");
+            block();
         }
     }];
 }
@@ -92,7 +100,7 @@
             self.isQuickList = NO;
             self.name = [NSString stringWithFormat:@"%@ (Shared)", list.name];
             self.sourceListID = list.objectId;
-
+            
             [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(error){
                     NSLog(@"%@", error);

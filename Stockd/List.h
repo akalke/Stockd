@@ -18,10 +18,10 @@
 @property NSString *sharedListID;
 @property NSString *sourceListID;
 
--(void)createNewList: (PFUser *)user :(NSString *)listName;
--(void)createNewQuickList:(PFUser *)user;
+-(void)createNewList: (PFUser *)user :(NSString *)listName withBlock:(void(^)(void))block;
+-(void)createNewQuickList:(PFUser *)user withBlock:(void(^)(void))block;
 -(NSArray *)getListsForUser: (PFUser *)user;
--(void)deleteList;
+-(void)deleteListWithBlock:(void(^)(void))block;
 -(void)shareThisList:(List *)list withThisUser:(NSString *)username;
 
 @end

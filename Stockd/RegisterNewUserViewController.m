@@ -36,8 +36,10 @@
             if(succeeded){
                 NSLog(@"User Created!");
                 List *list = [[List alloc]init];
-                [list createNewQuickList:newUser];
-                [self performSegueWithIdentifier:@"registeredUserSegue" sender:self];
+                [list createNewQuickList:newUser withBlock:^{
+                    [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text];
+                    [self performSegueWithIdentifier:@"registeredUserSegue" sender:self];
+                }];
             }
             else{
                 NSLog(@"User already exists!");
@@ -93,9 +95,10 @@
             }
             else{
                 [self createNewUser];
-                [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text block:^(PFUser *user, NSError *error){
-                    return;
-                }];
+                // Implemented this line above in a block for createNewQuickList to make explicity order of operations
+//                [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text block:^(PFUser *user, NSError *error){
+//                    return;
+//                }];
             }
         }
 }

@@ -31,7 +31,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="qrq-r8-Dt3" id="cpD-yf-B6E"/>
-                                    <outlet property="delegate" destination="qrq-r8-Dt3" id="X1B-J2-Bj5"/>
+                                    <outlet property="delegate" destination="qrq-r8-Dt3" id="EzR-S2-JtZ"/>
                                 </connections>
                             </tableView>
                         </subviews>
