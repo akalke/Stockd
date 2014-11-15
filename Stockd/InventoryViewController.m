@@ -93,9 +93,8 @@
         }
         [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self getInventory:user];
+            [self.tableView setEditing:NO];
         }];
-        
-        [self.tableView setEditing:NO];
     }];
     quickList.backgroundColor = [UIColor blueColor];
     
@@ -103,12 +102,12 @@
         // need completion block from deleteInBackgroundWithBlock method
         [item deleteItemWithBlock:^{
             [self getInventory:user];
+            [self.tableView setEditing:NO];
         }];
 //        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 //            [self getInventory:user];
+//            [self.tableView setEditing:NO];
 //        }];
-        
-        [self.tableView setEditing:NO];
     }];
     
     return @[delete, quickList];

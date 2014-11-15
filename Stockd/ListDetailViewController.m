@@ -81,9 +81,8 @@
         [item setObject:[NSNumber numberWithBool:NO] forKey:@"isInQuickList"];
         [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self getItemsForQuickList];
+            [self.tableView setEditing:NO];
         }];
-        
-        [self.tableView setEditing:NO];
     }];
     removeQuickList.backgroundColor = [UIColor blueColor];
     
@@ -91,12 +90,12 @@
         // need completion block from deleteInBackgroundWithBlock method
         [item deleteItemWithBlock:^{
             [self getItems:self.listID];
+            [self.tableView setEditing:NO];
         }];
 //        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 //            [self getItems:self.listID];
+//            [self.tableView setEditing:NO];
 //        }];
-        
-        [self.tableView setEditing:NO];
     }];
     
     if (self.list.isQuickList == YES) {

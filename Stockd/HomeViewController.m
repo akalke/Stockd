@@ -80,9 +80,8 @@
         // need completion block from deleteInBackgroundWithBlock method
         [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self getLists:[PFUser currentUser]];
+            [self.tableView setEditing:NO];
         }];
-
-        [self.tableView setEditing:NO];
     }];
 
     UITableViewRowAction *share = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Share It" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
