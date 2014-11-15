@@ -116,6 +116,10 @@
             }
             [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
             
+            NSData *data = UIImagePNGRepresentation(self.imageView.image);
+            PFFile *imageFile = [PFFile fileWithData:data];
+            [self.item setObject:imageFile forKey:@"image"];
+            
             [self.item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (error) {
                     NSLog(@"%@", error);
