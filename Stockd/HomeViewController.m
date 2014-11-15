@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
+#define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
+#define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+
 #import "HomeViewController.h"
 #import <Parse/Parse.h>
 #import "List.h"
@@ -25,6 +28,19 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor lightGrayColor];
     [self getLists: [PFUser currentUser]];
+    
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    tabBar.barTintColor = stockdBlueColor;
+    tabBar.tintColor = stockdOrangeColor;
+    tabBar.translucent = NO;
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:stockdOrangeColor} forState:UIControlStateSelected];
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    
     // Do any additional setup after loading the view.
 }
 

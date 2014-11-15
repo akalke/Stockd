@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
+#define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
+#define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+
 #import "InventoryViewController.h"
 #import <Parse/Parse.h>
 #import "Item.h"
@@ -27,6 +30,15 @@
     [super viewDidLoad];
     PFUser *currentUser = [PFUser currentUser];
     [self getInventory:currentUser];
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+    //    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbar-image"]];
+    //    self.navigationItem.titleView = imageView;
+    self.navigationItem.title = @"Stock'd";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:30.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

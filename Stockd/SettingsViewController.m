@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
+#define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
+#define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+
 #import "SettingsViewController.h"
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
@@ -38,6 +41,13 @@
     self.accountCreatedAtLabel.text = [NSString stringWithFormat:@"Member Since: %@", date];
     
     [self hidePasswordFields];
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationItem.title = @"Settings";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:24.0f],NSForegroundColorAttributeName:stockdOrangeColor};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
 #pragma mark - Helper Methods

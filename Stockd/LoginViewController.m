@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
+#define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
+#define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+
 #import "LoginViewController.h"
 
 @interface LoginViewController () <UIGestureRecognizerDelegate>

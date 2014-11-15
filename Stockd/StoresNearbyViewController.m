@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
+#define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
+#define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+
 #import "StoresNearbyViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
@@ -15,10 +18,10 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *mapsButton;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
 @property MKMapItem *mapItem;
+@property UISearchBar *searchBar;
 @property BOOL userLocationUpdated;
 @property BOOL didSearchForNearbyStores;
 
@@ -34,10 +37,17 @@
     self.locationManager.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
     
+    self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by City, Zip, or Current Location";
-    self.searchBar.tintColor = [UIColor grayColor];
-    self.searchBar.barTintColor = [UIColor blueColor];
+    
+    self.navigationItem.titleView = self.searchBar;
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
     self.storeArray = [NSMutableArray array];
     

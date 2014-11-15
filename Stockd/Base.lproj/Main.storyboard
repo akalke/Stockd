@@ -44,7 +44,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c5P-yR-Gqr">
-                        <barButtonItem key="rightBarButtonItem" title="Add Item" id="0ld-uY-Png">
+                        <barButtonItem key="rightBarButtonItem" image="stockd_navbaricon-createlist" id="0ld-uY-Png">
                             <connections>
                                 <action selector="addItemOnButtonPress:" destination="qrq-r8-Dt3" id="qCM-Kd-qKw"/>
                             </connections>
@@ -296,7 +296,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXM-YX-eAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5bT-bN-fHW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="144"/>
+            <point key="canvasLocation" x="3181" y="144"/>
         </scene>
         <!--Register New User View Controller-->
         <scene sceneID="TPT-gX-4hh">
@@ -548,10 +548,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="12C-j2-YwH" secondAttribute="trailing" id="Uq6-0C-P2M"/>
-                            <constraint firstItem="12C-j2-YwH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="f9W-u2-m5g"/>
-                            <constraint firstItem="12C-j2-YwH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="jEk-aD-4SM"/>
-                            <constraint firstAttribute="bottom" secondItem="12C-j2-YwH" secondAttribute="bottom" constant="49" id="l31-wq-vqo"/>
+                            <constraint firstItem="12C-j2-YwH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="7Mj-qy-Dv4"/>
+                            <constraint firstAttribute="trailing" secondItem="12C-j2-YwH" secondAttribute="trailing" id="B7I-Y5-Slh"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="12C-j2-YwH" secondAttribute="bottom" id="adr-OY-u3b"/>
+                            <constraint firstItem="12C-j2-YwH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="x6b-Cc-qKt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oY3-5J-jpv">
@@ -616,7 +616,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aYD-yz-R9u">
-                        <barButtonItem key="rightBarButtonItem" title="Add Item" id="1Dh-lf-XMt">
+                        <barButtonItem key="rightBarButtonItem" image="stockd_navbaricon-createlist" id="1Dh-lf-XMt">
                             <connections>
                                 <action selector="addItemOnButtonPress:" destination="rnk-Mx-dZb" id="GQO-K8-Kdy"/>
                             </connections>
@@ -646,7 +646,7 @@
                     <connections>
                         <segue destination="sFF-9w-XYw" kind="relationship" relationship="viewControllers" id="cH0-2n-SSv"/>
                         <segue destination="uuO-1R-fZo" kind="relationship" relationship="viewControllers" id="nOh-Sn-TRO"/>
-                        <segue destination="vpz-u8-6js" kind="relationship" relationship="viewControllers" id="2qD-6n-5Jp"/>
+                        <segue destination="fzq-uf-8Eo" kind="relationship" relationship="viewControllers" id="GeE-R2-phW"/>
                         <segue destination="ba6-6j-ayV" kind="relationship" relationship="viewControllers" id="qFU-qD-kqw"/>
                     </connections>
                 </tabBarController>
@@ -820,7 +820,7 @@
             </objects>
             <point key="canvasLocation" x="1631" y="840"/>
         </scene>
-        <!--Stores Nearby-->
+        <!--Stores Nearby View Controller-->
         <scene sceneID="jz7-3Y-W8b">
             <objects>
                 <viewController id="vpz-u8-6js" customClass="StoresNearbyViewController" sceneMemberID="viewController">
@@ -832,13 +832,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VgM-eb-x8Q">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="aPe-VL-Ych"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="for-Ee-Cli">
                                 <rect key="frame" x="0.0" y="64" width="600" height="359"/>
                                 <connections>
@@ -849,7 +842,7 @@
                                 <rect key="frame" x="0.0" y="431" width="600" height="120"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="thU-0B-mAI"/>
+                                    <constraint firstAttribute="height" constant="120" id="Dxo-9B-9Sp"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -858,8 +851,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed1-Wr-0Te">
                                 <rect key="frame" x="470" y="71" width="130" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="COH-SY-l1w"/>
-                                    <constraint firstAttribute="height" constant="15" id="PcE-FH-8qg"/>
+                                    <constraint firstAttribute="width" constant="130" id="Szy-ce-Ns1"/>
+                                    <constraint firstAttribute="height" constant="15" id="ZQb-5H-Qqw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Use Current Location">
@@ -872,8 +865,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-M8-WQW">
                                 <rect key="frame" x="252" y="431" width="97" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="LJE-x1-Fo3"/>
-                                    <constraint firstAttribute="width" constant="97" id="mc9-uB-Ctb"/>
+                                    <constraint firstAttribute="width" constant="97" id="c3f-U1-Zs4"/>
+                                    <constraint firstAttribute="height" constant="25" id="qnh-z7-gqr"/>
                                 </constraints>
                                 <state key="normal" title="Open In Maps">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -886,33 +879,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="VgM-eb-x8Q" secondAttribute="bottom" id="BKT-5D-lUz"/>
-                            <constraint firstItem="VgM-eb-x8Q" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="Ge6-VY-sAG"/>
-                            <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="K46-dO-mWi"/>
-                            <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" id="Ksv-Me-LWj"/>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="L48-Nu-THh" secondAttribute="bottom" id="S7W-Mc-dmf"/>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="TMh-Qs-YWZ"/>
-                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" constant="8" id="ZgH-6M-khr"/>
-                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="-25" id="cSd-td-STB"/>
-                            <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="VgM-eb-x8Q" secondAttribute="bottom" constant="7" id="cgc-aQ-SBp"/>
-                            <constraint firstItem="VgM-eb-x8Q" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="dKo-44-GV4"/>
-                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="etT-LB-kyk"/>
-                            <constraint firstAttribute="centerX" secondItem="a6K-M8-WQW" secondAttribute="centerX" id="iXH-Gu-hdX"/>
-                            <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="qtu-wb-WcJ"/>
-                            <constraint firstAttribute="trailing" secondItem="VgM-eb-x8Q" secondAttribute="trailing" id="rKX-gd-1XN"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="95" id="25J-aZ-kiI"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="Abo-Lw-8fg"/>
+                            <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="E4K-T2-mZ1"/>
+                            <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="EU5-F2-vaS"/>
+                            <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" constant="7" id="HTL-S6-0dC"/>
+                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="Hcw-h2-Mis"/>
+                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" constant="8" id="K5D-nD-V6p"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="L48-Nu-THh" secondAttribute="bottom" id="WQt-YF-6EI"/>
+                            <constraint firstAttribute="centerX" secondItem="a6K-M8-WQW" secondAttribute="centerX" id="fR7-Bo-UeW"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="fad-Pb-azT"/>
+                            <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" id="mgI-z6-CHb"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="DYQ-1X-ked" appends="YES" id="y8o-YW-aPz"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stores Nearby" image="stockd_tabbaricon-storesnearby" id="iiU-Ka-7g4"/>
                     <navigationItem key="navigationItem" id="jQI-Hx-CrO">
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="for-Ee-Cli" id="A6N-lZ-xbj"/>
                         <outlet property="mapsButton" destination="a6K-M8-WQW" id="kjQ-fI-uF8"/>
-                        <outlet property="searchBar" destination="VgM-eb-x8Q" id="Fqa-Dy-4o0"/>
                         <outlet property="textView" destination="L48-Nu-THh" id="vSS-sT-7i8"/>
                     </connections>
                 </viewController>
@@ -923,7 +911,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="911" y="144"/>
+            <point key="canvasLocation" x="1625" y="144"/>
         </scene>
         <!--Home-->
         <scene sceneID="6f3-t9-Zar">
@@ -982,9 +970,29 @@
             </objects>
             <point key="canvasLocation" x="911" y="840"/>
         </scene>
+        <!--Stores Nearby-->
+        <scene sceneID="cC5-wq-NGh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fzq-uf-8Eo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Stores Nearby" image="stockd_tabbaricon-storesnearby" id="iiU-Ka-7g4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="33p-Uj-2E1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vpz-u8-6js" kind="relationship" relationship="rootViewController" id="RaF-KA-UmI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lCQ-5c-qIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905" y="144"/>
+        </scene>
     </scenes>
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
+        <image name="stockd_navbaricon-createlist" width="37" height="37"/>
         <image name="stockd_tabbaricon-home" width="37" height="37"/>
         <image name="stockd_tabbaricon-inventory" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
