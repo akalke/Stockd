@@ -24,17 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.list.isQuickList == YES) {
-        self.addItemButton.enabled = NO;
-        self.addItemButton.title = @"";
-        [self getItemsForQuickList];
-    } else {
-        [self getItems:self.listID];
-    }
+    [self getItemsForConditional];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self getItemsForConditional];
     
     self.tabBarController.delegate = self;
     self.didSelectItem = NO;
@@ -43,6 +39,16 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.tabBarController.delegate = nil;
+}
+
+- (void)getItemsForConditional {
+    if (self.list.isQuickList == YES) {
+        self.addItemButton.enabled = NO;
+        self.addItemButton.title = @"";
+        [self getItemsForQuickList];
+    } else {
+        [self getItems:self.listID];
+    }
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
@@ -93,8 +99,12 @@
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // need completion block from deleteInBackgroundWithBlock method
-        [item deleteItem];
-        [self getItems:self.listID];
+        [item deleteItemWithBlock:^{
+            [self getItems:self.listID];
+        }];
+//        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            [self getItems:self.listID];
+//        }];
         
         [self.tableView setEditing:NO];
     }];

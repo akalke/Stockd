@@ -8,8 +8,6 @@
 
 #import "CreateItemViewController.h"
 #import "CameraViewController.h"
-#import "InventoryViewController.h"
-#import "ListDetailViewController.h"
 
 @interface CreateItemViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
@@ -60,13 +58,6 @@
 
 #pragma mark - Helper Methods
 
-- (void)resetBOOLs {
-    self.fromInventory = NO;
-    self.fromListDetails = NO;
-    self.editingFromInventory = NO;
-    self.editingFromListDetails = NO;
-}
-
 - (void)hideQuickListObjects {
     self.quickListLabel.hidden = YES;
     self.quickListSwitch.hidden = YES;
@@ -88,6 +79,15 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)dismissViewControllerAndResetBOOLs {
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.fromInventory = NO;
+        self.fromListDetails = NO;
+        self.editingFromInventory = NO;
+        self.editingFromListDetails = NO;
+    }];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)addItemOnButtonPress:(id)sender {
@@ -99,19 +99,13 @@
         } else {
             if (self.fromInventory == YES) {
                 [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        [self resetBOOLs];
-                    }];
+                    [self dismissViewControllerAndResetBOOLs];
                 }];
             } else if (self.fromListDetails == YES) {
                 [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image withBlock:^{
-                    ListDetailViewController *listDetailVC;
-                    [listDetailVC getItems:self.listID];
+                    [self dismissViewControllerAndResetBOOLs];
                 }];
             }
-//            [self dismissViewControllerAnimated:YES completion:^{
-//                [self resetBOOLs];
-//            }];
         }
     } else if (self.editingFromInventory || self.editingFromListDetails) {
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
@@ -126,9 +120,7 @@
                 if (error) {
                     NSLog(@"%@", error);
                 } else if (succeeded) {
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        [self resetBOOLs];
-                    }];
+                    [self dismissViewControllerAndResetBOOLs];
                 }
             }];
         }
@@ -137,9 +129,7 @@
 
 - (IBAction)cancelItemCreationOnButtonPress:(id)sender {
     self.quickListLabel.text = @"Add to Quick List?";
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self resetBOOLs];
-    }];
+    [self dismissViewControllerAndResetBOOLs];
 }
 
 - (IBAction)uploadPhotoOnButtonPress:(id)sender {
