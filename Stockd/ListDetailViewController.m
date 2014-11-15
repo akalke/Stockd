@@ -41,16 +41,6 @@
     self.tabBarController.delegate = nil;
 }
 
-- (void)getItemsForConditional {
-    if (self.list.isQuickList == YES) {
-        self.addItemButton.enabled = NO;
-        self.addItemButton.title = @"";
-        [self getItemsForQuickList];
-    } else {
-        [self getItems:self.listID];
-    }
-}
-
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex == 0) {
         [(UINavigationController *)viewController popToRootViewControllerAnimated:NO];
@@ -119,6 +109,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.didSelectItem = YES;
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
+}
+
+- (void)getItemsForConditional {
+    if (self.list.isQuickList == YES) {
+        self.addItemButton.enabled = NO;
+        self.addItemButton.title = @"";
+        [self getItemsForQuickList];
+    } else {
+        [self getItems:self.listID];
+    }
 }
 
 -(void)getItemsForQuickList{

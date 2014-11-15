@@ -134,19 +134,31 @@
     }
 }
 
-
 -(void) getLists: (PFUser *)currentUser{
-    NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"userID = %@", currentUser.objectId];
-    PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
+    NSPredicate *quickListPredicate = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = true)", currentUser.objectId];
+    PFQuery *quickListQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: quickListPredicate];
     //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
-    [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [quickListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);
         }
         else{
-            self.lists = objects;
-            NSLog(@"%@", objects);
-            [self.tableView reloadData];
+            NSArray *quickList = objects;
+            
+            NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = false)", currentUser.objectId];
+            PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
+            //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
+            [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if(error) {
+                    NSLog(@"%@", error);
+                }
+                else{
+                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+                    NSArray *sortedListsArray = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+                    self.lists = [quickList arrayByAddingObjectsFromArray:sortedListsArray];
+                    [self.tableView reloadData];
+                }
+            }];
         }
     }];
 }

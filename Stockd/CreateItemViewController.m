@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     PFFile *image = [self.item objectForKey:@"image"];
     [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
@@ -30,7 +30,7 @@
             self.imageView.image = [UIImage imageWithData:data];
         }
     }];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -111,22 +111,37 @@
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
             [self noDescriptionAlert];
         } else {
-            if (self.editingFromInventory) {
-                [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
-            }
-            [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
-            
-            NSData *data = UIImagePNGRepresentation(self.imageView.image);
-            PFFile *imageFile = [PFFile fileWithData:data];
-            [self.item setObject:imageFile forKey:@"image"];
-            
-            [self.item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (error) {
-                    NSLog(@"%@", error);
-                } else if (succeeded) {
-                    [self dismissViewControllerAndResetBOOLs];
+            if (self.imageView.image) {
+                if (self.editingFromInventory) {
+                    [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
                 }
-            }];
+                [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
+                
+                NSData *data = UIImagePNGRepresentation(self.imageView.image);
+                PFFile *imageFile = [PFFile fileWithData:data];
+                [self.item setObject:imageFile forKey:@"image"];
+                
+                [self.item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (error) {
+                        NSLog(@"%@", error);
+                    } else if (succeeded) {
+                        [self dismissViewControllerAndResetBOOLs];
+                    }
+                }];
+            } else {
+                if (self.editingFromInventory) {
+                    [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
+                }
+                [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
+                
+                [self.item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (error) {
+                        NSLog(@"%@", error);
+                    } else if (succeeded) {
+                        [self dismissViewControllerAndResetBOOLs];
+                    }
+                }];
+            }
         }
     }
 }
@@ -137,7 +152,7 @@
 }
 
 - (IBAction)uploadPhotoOnButtonPress:(id)sender {
-
+    
 }
 
 - (IBAction)setQuickListOnSwitch:(id)sender {

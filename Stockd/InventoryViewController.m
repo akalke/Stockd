@@ -127,7 +127,8 @@
             NSLog(@"%@", error);
         }
         else{
-            self.inventory = objects;
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES];
+            self.inventory = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
             [self.tableView reloadData];
         }
     }];
