@@ -16,9 +16,9 @@
 #import "InventoryViewController.h"
 
 @interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate>
-@property NSArray *items;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addItemButton;
+@property NSArray *items;
 @property BOOL didSelectItem;
 @end
 

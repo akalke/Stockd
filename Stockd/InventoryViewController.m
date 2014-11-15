@@ -15,11 +15,10 @@
 #import "CreateItemViewController.h"
 
 @interface InventoryViewController () <UITableViewDelegate, UITableViewDataSource>
-@property NSArray *inventory;
-@property Item *items;
-@property NSString *userID;
-@property NSMutableArray *addItemsToList;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property Item *items;
+@property NSArray *inventory;
+@property NSMutableArray *addItemsToList;
 @property BOOL didSelectItem;
 
 @end

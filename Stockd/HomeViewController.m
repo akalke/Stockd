@@ -19,7 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *listName;
 @property List *list;
 @property NSArray *lists;
-@property NSString *listID;
 @end
 
 @implementation HomeViewController

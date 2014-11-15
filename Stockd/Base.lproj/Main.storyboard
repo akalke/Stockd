@@ -44,7 +44,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c5P-yR-Gqr">
-                        <barButtonItem key="rightBarButtonItem" image="stockd_navbaricon-createlist" id="0ld-uY-Png">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="0ld-uY-Png">
                             <connections>
                                 <action selector="addItemOnButtonPress:" destination="qrq-r8-Dt3" id="qCM-Kd-qKw"/>
                             </connections>
@@ -155,12 +155,12 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="cmC-51-sno">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dKR-1S-tJC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dKR-1S-tJC">
                             <connections>
                                 <action selector="cancelItemCreationOnButtonPress:" destination="MeP-8f-b7H" id="Gcg-Td-Kg4"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="BV2-cT-Kgq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="BV2-cT-Kgq">
                             <connections>
                                 <action selector="addItemOnButtonPress:" destination="MeP-8f-b7H" id="SDC-Ae-jDF"/>
                             </connections>
@@ -601,7 +601,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aYD-yz-R9u">
-                        <barButtonItem key="rightBarButtonItem" image="stockd_navbaricon-createlist" id="1Dh-lf-XMt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="1Dh-lf-XMt">
                             <connections>
                                 <action selector="addItemOnButtonPress:" destination="rnk-Mx-dZb" id="GQO-K8-Kdy"/>
                             </connections>
@@ -986,15 +986,14 @@
     </scenes>
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
-        <image name="stockd_navbaricon-createlist" width="37" height="37"/>
         <image name="stockd_tabbaricon-home" width="37" height="37"/>
         <image name="stockd_tabbaricon-inventory" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3fI-09-ph0"/>
         <segue reference="VP3-XV-7qB"/>
         <segue reference="rYD-BQ-DL4"/>
+        <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
 </document>

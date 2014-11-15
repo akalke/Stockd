@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *quickListLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *quickListSwitch;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIView *topView;
 
 @end
 
@@ -41,9 +40,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.topView.backgroundColor = stockdBlueColor;
-    self.topView.tintColor = stockdOrangeColor;
+
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
     if (self.fromListDetails == YES || self.fromInventory == YES) {
         self.title = @"Create Item";
@@ -164,8 +167,6 @@
 }
 
 - (IBAction)cancelItemCreationOnButtonPress:(id)sender {
-    self.quickListLabel.text = @"Add to Quick List?";
-    
     [self.itemDescriptionTextField resignFirstResponder];
     
     [self dismissViewControllerAndResetBOOLs];
