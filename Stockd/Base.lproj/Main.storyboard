@@ -547,7 +547,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="JfN-V3-Wsy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JfN-V3-Wsy">
                             <connections>
                                 <action selector="createListOnButtonPress:" destination="vXZ-lx-hvc" id="INx-4u-IZl"/>
                             </connections>
@@ -992,8 +992,8 @@
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VP3-XV-7qB"/>
         <segue reference="rYD-BQ-DL4"/>
-        <segue reference="bp2-ue-hzf"/>
+        <segue reference="VP3-XV-7qB"/>
+        <segue reference="3fI-09-ph0"/>
     </inferredMetricsTieBreakers>
 </document>
