@@ -115,6 +115,7 @@
     PFUser *user = [PFUser currentUser];
     NSPredicate *findQuickList = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInQuickList = true)", user.objectId];
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findQuickList];
+    itemQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"%@", error);
