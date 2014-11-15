@@ -36,6 +36,7 @@
     
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by City, Zip, or Current Location";
+    self.searchBar.tintColor = [UIColor grayColor];
     
     self.storeArray = [NSMutableArray array];
     
