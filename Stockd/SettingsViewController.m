@@ -13,7 +13,7 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 
-@interface SettingsViewController ()
+@interface SettingsViewController () <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountCreatedAtLabel;
 @property (weak, nonatomic) IBOutlet UITextField *changePasswordTextField;
@@ -42,6 +42,13 @@
     
     [self hidePasswordFields];
     
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
     self.navigationController.navigationBar.translucent = NO;
@@ -68,11 +75,21 @@
     self.optionsView.hidden = YES;
 }
 
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self resignKeyboard];
+}
+
+- (void)resignKeyboard {
+    [self.changePasswordTextField resignFirstResponder];
+    [self.confirmPasswordTextField resignFirstResponder];
+}
+
 - (void)saveIfPassCondtionals {
     if ([self.changePasswordTextField.text isEqualToString:self.confirmPasswordTextField.text] && ![self.changePasswordTextField.text isEqualToString:@""]) {
         self.user.password = self.changePasswordTextField.text;
         [self.user saveInBackground];
         [self hidePasswordFields];
+        [self resignKeyboard];
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Passwords don't match." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -95,6 +112,7 @@
 
 - (IBAction)onCancelButtonPressed:(id)sender {
     [self hidePasswordFields];
+    [self resignKeyboard];
 }
 
 - (IBAction)onSaveButtonPressed:(id)sender {

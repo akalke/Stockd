@@ -65,7 +65,7 @@
         if([self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"You need to enter a valid username and password!" preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                return;
+                [self.usernameTextField becomeFirstResponder];
             }];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];

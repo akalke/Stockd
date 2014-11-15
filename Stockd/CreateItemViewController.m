@@ -12,7 +12,7 @@
 #import "CreateItemViewController.h"
 #import "CameraViewController.h"
 
-@interface CreateItemViewController ()
+@interface CreateItemViewController () <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
 @property (weak, nonatomic) IBOutlet UILabel *quickListLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *quickListSwitch;
@@ -35,6 +35,8 @@
         }
     }];
     
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -80,6 +82,10 @@
     self.quickListLabel.hidden = NO;
     self.quickListSwitch.hidden = NO;
     self.quickListSwitch.userInteractionEnabled = YES;
+}
+
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self.itemDescriptionTextField resignFirstResponder];
 }
 
 - (void)noDescriptionAlert {
@@ -159,6 +165,9 @@
 
 - (IBAction)cancelItemCreationOnButtonPress:(id)sender {
     self.quickListLabel.text = @"Add to Quick List?";
+    
+    [self.itemDescriptionTextField resignFirstResponder];
+    
     [self dismissViewControllerAndResetBOOLs];
 }
 

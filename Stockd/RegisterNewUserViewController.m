@@ -12,7 +12,7 @@
 #import "RegisterNewUserViewController.h"
 #import "List.h"
 
-@interface RegisterNewUserViewController ()
+@interface RegisterNewUserViewController () <UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *registerUsernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *registerPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *registerConfirmPasswordTextField;
@@ -23,6 +23,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self resignKeyboard];
+}
+
+- (void)resignKeyboard {
+    [self.registerUsernameTextField resignFirstResponder];
+    [self.registerPasswordTextField resignFirstResponder];
+    [self.registerConfirmPasswordTextField resignFirstResponder];
 }
 
 -(void)createNewUser{
@@ -41,6 +54,7 @@
                 List *list = [[List alloc]init];
                 [list createNewQuickList:newUser withBlock:^{
                     [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text];
+                    [self resignKeyboard];
                     [self performSegueWithIdentifier:@"registeredUserSegue" sender:self];
                 }];
             }
@@ -48,7 +62,7 @@
                 NSLog(@"User already exists!");
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was a problem with your request or that username exists already" preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    return;
+                    [self.registerUsernameTextField becomeFirstResponder];
                 }];
                 [alert addAction:action];
                 [self presentViewController:alert animated:YES completion:nil];
@@ -82,6 +96,7 @@
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     self.registerConfirmPasswordTextField.text = @"";
                     self.registerPasswordTextField.text = @"";
+                    [self.registerPasswordTextField becomeFirstResponder];
                 }];
                 [alert addAction:action];
                 [self presentViewController:alert animated:YES completion:nil];
@@ -92,6 +107,7 @@
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     self.registerConfirmPasswordTextField.text = @"";
                     self.registerPasswordTextField.text = @"";
+                    [self.registerUsernameTextField becomeFirstResponder];
                 }];
                 [alert addAction:action];
                 [self presentViewController:alert animated:YES completion:nil];
