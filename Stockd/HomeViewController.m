@@ -29,6 +29,14 @@
     self.tableView.backgroundColor = [UIColor lightGrayColor];
     [self getLists: [PFUser currentUser]];
     
+    // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    PFUser *user = [PFUser currentUser];
+    [self getLists: user];
+    
     UITabBar *tabBar = self.tabBarController.tabBar;
     tabBar.barTintColor = stockdBlueColor;
     tabBar.tintColor = stockdOrangeColor;
@@ -38,16 +46,8 @@
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
     self.navigationController.navigationBar.translucent = NO;
-
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
-    // Do any additional setup after loading the view.
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    PFUser *user = [PFUser currentUser];
-    [self getLists: user];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

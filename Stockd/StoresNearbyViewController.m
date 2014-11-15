@@ -43,12 +43,6 @@
     
     self.navigationItem.titleView = self.searchBar;
     
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
-    self.navigationController.navigationBar.translucent = NO;
-
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-    
     self.storeArray = [NSMutableArray array];
     
     self.mapsButton.hidden = YES;
@@ -59,6 +53,16 @@
     [tapGesture setNumberOfTapsRequired:1];
     [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+    
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
 #pragma mark - MapView Methods

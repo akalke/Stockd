@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *quickListLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *quickListSwitch;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *topView;
 
 @end
 
@@ -38,24 +39,32 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.topView.backgroundColor = stockdBlueColor;
+    self.topView.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
     
-    if (self.fromListDetails == YES) {
-        [self hideQuickListObjects];
-    } else if (self.fromInventory == YES) {
-        [self.quickListSwitch setOn:NO];
-        [self showQuickListObjects];
-    } else if (self.editingFromInventory == YES) {
-        if (self.item.isInQuickList == YES) {
-            [self.quickListSwitch setOn:YES];
-        } else {
+    if (self.fromListDetails == YES || self.fromInventory == YES) {
+        self.title = @"Create Item";
+        if (self.fromListDetails == YES) {
+            [self hideQuickListObjects];
+        } else if (self.fromInventory == YES) {
             [self.quickListSwitch setOn:NO];
+            [self showQuickListObjects];
         }
-        [self showQuickListObjects];
-        self.quickListLabel.text = @"In Quick List";
-        self.itemDescriptionTextField.text = self.item.type;
-    } else if (self.editingFromListDetails == YES) {
-        [self hideQuickListObjects];
-        self.itemDescriptionTextField.text = self.item.type;
+    } else if (self.editingFromListDetails == YES || self.editingFromInventory == YES) {
+        self.title = @"Edit Item";
+        if (self.editingFromInventory == YES) {
+            if (self.item.isInQuickList == YES) {
+                [self.quickListSwitch setOn:YES];
+            } else {
+                [self.quickListSwitch setOn:NO];
+            }
+            [self showQuickListObjects];
+            self.itemDescriptionTextField.text = self.item.type;
+        } else if (self.editingFromListDetails == YES) {
+            [self hideQuickListObjects];
+            self.itemDescriptionTextField.text = self.item.type;
+        }
     }
 }
 
@@ -83,12 +92,11 @@
 }
 
 - (void)dismissViewControllerAndResetBOOLs {
-    [self dismissViewControllerAnimated:YES completion:^{
-        self.fromInventory = NO;
-        self.fromListDetails = NO;
-        self.editingFromInventory = NO;
-        self.editingFromListDetails = NO;
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
+    self.fromInventory = NO;
+    self.fromListDetails = NO;
+    self.editingFromInventory = NO;
+    self.editingFromListDetails = NO;
 }
 
 #pragma mark - IBActions

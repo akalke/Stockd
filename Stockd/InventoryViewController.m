@@ -30,6 +30,12 @@
     [super viewDidLoad];
     PFUser *currentUser = [PFUser currentUser];
     [self getInventory:currentUser];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    PFUser *currentUser = [PFUser currentUser];
+    [self getInventory:currentUser];
     
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
@@ -39,12 +45,6 @@
     self.navigationItem.title = @"Stock'd";
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:30.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    PFUser *currentUser = [PFUser currentUser];
-    [self getInventory:currentUser];
     
     self.didSelectItem = NO;
 }
@@ -81,7 +81,7 @@
     }];
     
     if (item.isInQuickList == YES) {
-        cell.textLabel.textColor = [UIColor blueColor];
+        cell.textLabel.textColor = stockdOrangeColor;
     } else {
         cell.textLabel.textColor = [UIColor blackColor];
     }
@@ -108,7 +108,7 @@
             [self.tableView setEditing:NO];
         }];
     }];
-    quickList.backgroundColor = [UIColor blueColor];
+    quickList.backgroundColor = stockdOrangeColor;
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // need completion block from deleteInBackgroundWithBlock method
@@ -146,19 +146,7 @@
 }
 
 - (IBAction)addItemOnButtonPress:(id)sender {
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add new item" message:@"Do you want to add item from inventory or create a new item for this list?" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *createNewItem = [UIAlertAction actionWithTitle:@"Create new item" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:nil];
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        return;
-    }];
-    
-    [alert addAction:createNewItem];
-    [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:nil];
 }
 
 @end

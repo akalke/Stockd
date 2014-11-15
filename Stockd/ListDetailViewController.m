@@ -28,18 +28,18 @@
     [super viewDidLoad];
     
     [self getItemsForConditional];
-    
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self getItemsForConditional];
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
     self.tabBarController.delegate = self;
     self.didSelectItem = NO;
@@ -93,7 +93,7 @@
             [self.tableView setEditing:NO];
         }];
     }];
-    removeQuickList.backgroundColor = [UIColor blueColor];
+    removeQuickList.backgroundColor = stockdOrangeColor;
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // need completion block from deleteInBackgroundWithBlock method
