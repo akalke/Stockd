@@ -28,6 +28,8 @@
     [self.view addGestureRecognizer:tapGesture];
 }
 
+#pragma mark - Helper Methods
+
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self resignKeyboard];
 }
@@ -39,18 +41,16 @@
 }
 
 -(void)createNewUser{
-    NSLog(@"Create new user");
     PFUser *newUser = [PFUser user];
     newUser.username = self.registerUsernameTextField.text;
     newUser.password = self.registerPasswordTextField.text;
     newUser.email = self.registerUsernameTextField.text;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
-            NSLog(@"%@", error);
+            NSLog(@"Sign Up Error:%@", error);
         }
         else{
             if(succeeded){
-                NSLog(@"User Created!");
                 List *list = [[List alloc]init];
                 [list createNewQuickList:newUser withBlock:^{
                     [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text];
@@ -59,10 +59,13 @@
                 }];
             }
             else{
+                // Deos this work ?
                 NSLog(@"User already exists!");
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was a problem with your request or that username exists already" preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     [self.registerUsernameTextField becomeFirstResponder];
+                    self.registerPasswordTextField.text = @"";
+                    self.registerConfirmPasswordTextField.text = @"";
                 }];
                 [alert addAction:action];
                 [self presentViewController:alert animated:YES completion:nil];
@@ -71,6 +74,8 @@
     }];
 }
 
+#pragma mark - IBActions
+
 - (IBAction)onCancelButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -78,11 +83,17 @@
 - (IBAction)createUserOnRegister:(id)sender {
 
     //TO DO: Check for existing username
-        if([self.registerConfirmPasswordTextField.text isEqualToString:@""] || [self.registerPasswordTextField.text isEqualToString:@""] || [self.registerUsernameTextField.text isEqualToString:@""]){
+        if([self.registerUsernameTextField.text isEqualToString:@""] || [self.registerPasswordTextField.text isEqualToString:@""] || [self.registerConfirmPasswordTextField.text isEqualToString:@""]){
 
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Please enter your information fully" preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                return;
+                if ([self.registerUsernameTextField.text isEqualToString:@""]) {
+                    [self.registerUsernameTextField becomeFirstResponder];
+                } else if ([self.registerPasswordTextField.text isEqualToString:@""]) {
+                    [self.registerPasswordTextField becomeFirstResponder];
+                } else if ([self.registerConfirmPasswordTextField.text isEqualToString:@""]) {
+                    [self.registerConfirmPasswordTextField becomeFirstResponder];
+                }
             }];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
@@ -90,8 +101,7 @@
         else
         {
             if(![self.registerPasswordTextField.text isEqualToString:self.registerConfirmPasswordTextField.text]){
-
-                NSLog(@"passwords do not match");
+                
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Passwords do not match! Please re-enter your passwords" preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     self.registerConfirmPasswordTextField.text = @"";
@@ -114,10 +124,6 @@
             }
             else{
                 [self createNewUser];
-                // Implemented this line above in a block for createNewQuickList to make explicity order of operations
-//                [PFUser logInWithUsernameInBackground:self.registerUsernameTextField.text password:self.registerPasswordTextField.text block:^(PFUser *user, NSError *error){
-//                    return;
-//                }];
             }
         }
 }

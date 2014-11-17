@@ -143,6 +143,7 @@
         PFUser *user = [PFUser currentUser];
         [list createNewList:user :self.listName.text withBlock:^{
             self.listName.text = @"";
+            [self.listName resignFirstResponder];
             [self getLists:user];
         }];
     }
