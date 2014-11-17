@@ -82,17 +82,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    PFUser *user = [PFUser currentUser];
-    List *list =[self.lists objectAtIndex:indexPath.row];
 
-    if(editingStyle == UITableViewCellEditingStyleDelete){
-        [list deleteListWithBlock:^{
-            [self getLists:user];
-        }];
-//        [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            [self getLists:user];
-//        }];
-    }
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,8 +90,7 @@
 
 
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // need completion block from deleteInBackgroundWithBlock method
-        [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [list deleteListWithBlock:^{
             [self getLists:[PFUser currentUser]];
             [self.tableView setEditing:NO];
         }];
@@ -114,9 +103,8 @@
             textField = alert.textFields[0];
         }];
         UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            NSLog(@"share");
             List *shareList = [[List alloc] init];
-            NSLog(@"%@", alert.textFields[0]);
+            NSLog(@"Share List Alert: %@", alert.textFields[0]);
             [shareList shareThisList:list withThisUser: @"test@gmail.com"];
         }];
 
@@ -136,12 +124,44 @@
     return @[delete, share];
 }
 
+#pragma mark - Helper Methods
+
+-(void) getLists: (PFUser *)currentUser{
+    NSPredicate *quickListPredicate = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = true)", currentUser.objectId];
+    PFQuery *quickListQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: quickListPredicate];
+    //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    [quickListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(error) {
+            NSLog(@"Error finding Quick List: %@", error);
+        }
+        else{
+            NSArray *quickList = objects;
+            
+            NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = false)", currentUser.objectId];
+            PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
+            //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
+            [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if(error) {
+                    NSLog(@"Error finding lists: %@", error);
+                }
+                else{
+                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+                    NSArray *sortedListsArray = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+                    self.lists = [quickList arrayByAddingObjectsFromArray:sortedListsArray];
+                    [self.tableView reloadData];
+                }
+            }];
+        }
+    }];
+}
+
+#pragma mark - IBActions
 
 - (IBAction)createListOnButtonPress:(id)sender {
     if([self.listName.text isEqualToString:@""]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"YO!" message:@"check yourself before you wreck yourself. Need a title buddy" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Title missing!" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            return;
+            [self.listName becomeFirstResponder];
         }];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
@@ -155,35 +175,6 @@
             [self getLists:user];
         }];
     }
-}
-
--(void) getLists: (PFUser *)currentUser{
-    NSPredicate *quickListPredicate = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = true)", currentUser.objectId];
-    PFQuery *quickListQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: quickListPredicate];
-    //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
-    [quickListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(error) {
-            NSLog(@"%@", error);
-        }
-        else{
-            NSArray *quickList = objects;
-            
-            NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = false)", currentUser.objectId];
-            PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
-            //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
-            [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if(error) {
-                    NSLog(@"%@", error);
-                }
-                else{
-                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-                    NSArray *sortedListsArray = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-                    self.lists = [quickList arrayByAddingObjectsFromArray:sortedListsArray];
-                    [self.tableView reloadData];
-                }
-            }];
-        }
-    }];
 }
 
 @end
