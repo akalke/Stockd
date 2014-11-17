@@ -89,7 +89,7 @@
     //TO DO: Check for existing username
         if([self.registerUsernameTextField.text isEqualToString:@""] || [self.registerPasswordTextField.text isEqualToString:@""] || [self.registerConfirmPasswordTextField.text isEqualToString:@""]){
 
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Information is invalid!" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Information is missing!" preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 if ([self.registerUsernameTextField.text isEqualToString:@""]) {
                     [self.registerUsernameTextField becomeFirstResponder];
@@ -116,7 +116,6 @@
                 [self presentViewController:alert animated:YES completion:nil];
             }
             else if(self.registerUsernameTextField.text && [self.registerUsernameTextField.text rangeOfString:@"@"].location == NSNotFound){
-                NSLog(@"no valid email");
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Please enter a valid email address." preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     self.registerConfirmPasswordTextField.text = @"";

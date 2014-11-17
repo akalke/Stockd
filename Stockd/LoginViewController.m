@@ -63,7 +63,7 @@
     [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error) {
 
         if([self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Email address and password invalid!" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Email address or password missing!" preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 if ([self.usernameTextField.text isEqualToString:@""]) {
                     self.passwordTextField.text = @"";
@@ -76,9 +76,11 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:[NSString stringWithFormat:@"Login Error: %@", error] preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:[NSString stringWithFormat:@"Invalid login credentials!", error] preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                return;
+                self.usernameTextField.text = @"";
+                self.passwordTextField.text = @"";
+                [self.usernameTextField becomeFirstResponder];
             }];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];

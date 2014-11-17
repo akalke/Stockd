@@ -25,16 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor lightGrayColor];
     [self getLists: [PFUser currentUser]];
-    
-    // Do any additional setup after loading the view.
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    PFUser *user = [PFUser currentUser];
-    [self getLists: user];
     
     UITabBar *tabBar = self.tabBarController.tabBar;
     tabBar.barTintColor = stockdBlueColor;
@@ -42,12 +33,29 @@
     tabBar.translucent = NO;
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:stockdOrangeColor} forState:UIControlStateSelected];
     
+    self.tableView.backgroundColor = [UIColor lightGrayColor];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getLists: [PFUser currentUser]];
+    
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
     self.navigationController.navigationBar.translucent = NO;
-    
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"listDetailsSegue"]){
+        ListDetailViewController *listDetailVC = segue.destinationViewController;
+        listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] sourceListID];
+        List *list = [self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        listDetailVC.list = list;
+    }
+}
+
+#pragma mark - TableView Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.lists.count;
@@ -176,15 +184,6 @@
             }];
         }
     }];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"listDetailsSegue"]){
-        ListDetailViewController *listDetailVC = segue.destinationViewController;
-        listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] sourceListID];
-        List *list = [self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        listDetailVC.list = list;
-    }
 }
 
 @end

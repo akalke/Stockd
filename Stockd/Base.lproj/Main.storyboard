@@ -390,7 +390,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fiber_adventure_weekend_7_11" translatesAutoresizingMaskIntoConstraints="NO" id="XU9-VW-wgv">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
                                 <rect key="frame" x="185" y="70" width="230" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.68024668050000003" blue="0.41238133690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -541,7 +541,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oY3-5J-jpv">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a new list name" minimumFontSize="17" id="dfI-XG-EVL">
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a new list name" minimumFontSize="17" clearButtonMode="whileEditing" id="dfI-XG-EVL">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -992,7 +992,7 @@
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b3f-dZ-mbZ"/>
+        <segue reference="VP3-XV-7qB"/>
         <segue reference="rYD-BQ-DL4"/>
         <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
