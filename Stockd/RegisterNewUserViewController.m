@@ -22,7 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
@@ -78,7 +77,6 @@
 
 - (IBAction)createUserOnRegister:(id)sender {
     
-    //TO DO: Check for existing username
     if([self.registerUsernameTextField.text isEqualToString:@""] || [self.registerPasswordTextField.text isEqualToString:@""] || [self.registerConfirmPasswordTextField.text isEqualToString:@""]){
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Information is missing!" preferredStyle:UIAlertControllerStyleActionSheet];

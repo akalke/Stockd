@@ -10,9 +10,8 @@
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
 #import "MyPantryViewController.h"
-#import <Parse/Parse.h>
-#import "Item.h"
 #import "CreateItemViewController.h"
+#import "Item.h"
 
 @interface MyPantryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -27,14 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PFUser *currentUser = [PFUser currentUser];
-    [self getInventory:currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    PFUser *currentUser = [PFUser currentUser];
-    [self getInventory:currentUser];
+    [self getInventory:[PFUser currentUser]];
     
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
@@ -59,6 +55,8 @@
         }
     }
 }
+
+#pragma mark - TableView Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.inventory.count;
@@ -108,15 +106,10 @@
     quickList.backgroundColor = stockdOrangeColor;
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // need completion block from deleteInBackgroundWithBlock method
         [item deleteItemWithBlock:^{
             [self getInventory:user];
             [self.tableView setEditing:NO];
         }];
-//        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            [self getInventory:user];
-//            [self.tableView setEditing:NO];
-//        }];
     }];
     
     return @[delete, quickList];
@@ -126,6 +119,8 @@
     self.didSelectItem = YES;
     [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:self];
 }
+
+#pragma mark - Helper Methods
 
 -(void) getInventory: (PFUser *)currentUser{
     NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInInventory = true)", currentUser.objectId];
@@ -141,6 +136,8 @@
         }
     }];
 }
+
+#pragma mark - IBActions
 
 - (IBAction)addItemOnButtonPress:(id)sender {
     [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:nil];

@@ -10,9 +10,8 @@
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
 #import "HomeViewController.h"
-#import <Parse/Parse.h>
-#import "List.h"
 #import "ListDetailViewController.h"
+#import "List.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -25,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getLists: [PFUser currentUser]];
     
     UITabBar *tabBar = self.tabBarController.tabBar;
     tabBar.barTintColor = stockdBlueColor;
@@ -100,6 +98,7 @@
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with" preferredStyle:UIAlertControllerStyleAlert];
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            // Need to address this warning!
             textField = alert.textFields[0];
         }];
         UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -114,7 +113,6 @@
 
         [alert addAction:share];
         [alert addAction:cancel];
-
         [self presentViewController:alert animated:YES completion:nil];
 
         [self.tableView setEditing:NO];

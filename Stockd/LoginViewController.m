@@ -76,7 +76,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:[NSString stringWithFormat:@"Invalid login credentials!", error] preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Invalid login credentials!" preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.usernameTextField.text = @"";
                 self.passwordTextField.text = @"";

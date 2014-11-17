@@ -10,10 +10,9 @@
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
 #import "ListDetailViewController.h"
-#import <Parse/Parse.h>
-#import "Item.h"
 #import "CreateItemViewController.h"
 #import "MyPantryViewController.h"
+#import "Item.h"
 
 @interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -26,13 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self getItemsForConditional];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self getItemsForConditional];
     
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
@@ -42,6 +38,7 @@
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
     self.tabBarController.delegate = self;
+    
     self.didSelectItem = NO;
 }
 
@@ -49,6 +46,23 @@
     [super viewWillDisappear:animated];
     self.tabBarController.delegate = nil;
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
+        CreateItemViewController *createItemVC = segue.destinationViewController;
+        if (self.didSelectItem == YES) {
+            createItemVC.editingFromListDetails = YES;
+            
+            Item *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+            createItemVC.item = item;
+        } else {
+            createItemVC.fromListDetails = YES;
+            createItemVC.listID = self.listID;
+        }
+    }
+}
+
+#pragma mark - TableView Methods
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex == 0) {
@@ -119,6 +133,8 @@
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 
+#pragma mark - Helper Methods
+
 - (void)getItemsForConditional {
     if (self.list.isQuickList == YES) {
         self.addItemButton.tintColor = [UIColor clearColor];
@@ -136,7 +152,7 @@
     itemQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
-            NSLog(@"%@", error);
+            NSLog(@"Error finding Item: %@", error);
         }
         else{
             self.items = objects;
@@ -169,23 +185,10 @@
     }];
 }
 
+#pragma mark - IBActions
+
 - (IBAction)addItemOnButtonPress:(id)sender {
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
-        CreateItemViewController *createItemVC = segue.destinationViewController;
-        if (self.didSelectItem == YES) {
-            createItemVC.editingFromListDetails = YES;
-            
-            Item *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-            createItemVC.item = item;
-        } else {
-            createItemVC.fromListDetails = YES;
-            createItemVC.listID = self.listID;
-        }
-    }
 }
 
 @end
