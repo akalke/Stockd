@@ -29,6 +29,7 @@
     tabBar.barTintColor = stockdBlueColor;
     tabBar.tintColor = stockdOrangeColor;
     tabBar.translucent = NO;
+    
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:stockdOrangeColor} forState:UIControlStateSelected];
     
     self.tableView.backgroundColor = [UIColor lightGrayColor];
@@ -36,6 +37,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self getLists: [PFUser currentUser]];
     
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;

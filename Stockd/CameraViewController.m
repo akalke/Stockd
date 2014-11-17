@@ -26,6 +26,16 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+}
+
 #pragma mark - ImagePicker Methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

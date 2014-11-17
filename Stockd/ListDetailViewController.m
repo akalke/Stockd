@@ -29,6 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [self getItemsForConditional];
     
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
@@ -44,6 +45,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     self.tabBarController.delegate = nil;
 }
 

@@ -61,7 +61,6 @@
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
     self.navigationController.navigationBar.translucent = NO;
-    
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
@@ -202,6 +201,11 @@
 
 #pragma mark - Helper Methods
 
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
+}
+
 - (void)fillTextViewAndMakeMapItemWith:(Store *)store {
     NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
     NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
@@ -241,11 +245,6 @@
         
         [self zoomMapWith:self.mapView.userLocation.location];
     }
-}
-
-- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    [self.searchBar resignFirstResponder];
 }
 
 - (void)currentLocationOffAlert {

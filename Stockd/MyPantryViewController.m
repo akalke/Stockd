@@ -30,6 +30,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [self getInventory:[PFUser currentUser]];
     
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;

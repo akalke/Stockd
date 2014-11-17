@@ -24,10 +24,14 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
     PFUser *user = [PFUser currentUser];
     if(user.username != nil){
         [self performSegueWithIdentifier:@"showTabBarSegue" sender:self];

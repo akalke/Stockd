@@ -26,6 +26,8 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
 }
 
