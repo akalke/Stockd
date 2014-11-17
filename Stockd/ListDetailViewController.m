@@ -13,7 +13,7 @@
 #import <Parse/Parse.h>
 #import "Item.h"
 #import "CreateItemViewController.h"
-#import "InventoryViewController.h"
+#import "MyPantryViewController.h"
 
 @interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -174,10 +174,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"addItemFromInventorySegue"]){
-        InventoryViewController *inventoryVC = segue.destinationViewController;
-        inventoryVC.fromListDetail = YES;
-    } else if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
+    if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
         if (self.didSelectItem == YES) {
             createItemVC.editingFromListDetails = YES;

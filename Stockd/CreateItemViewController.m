@@ -28,7 +28,7 @@
     PFFile *image = [self.item objectForKey:@"image"];
     [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            NSLog(@"Error Getting Image: %@", error);
         } else {
             self.imageView.image = [UIImage imageWithData:data];
         }
@@ -48,17 +48,17 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
-    if (self.fromListDetails == YES || self.fromInventory == YES) {
+    if (self.fromListDetails == YES || self.fromMyPantry == YES) {
         self.title = @"Create Item";
         if (self.fromListDetails == YES) {
             [self hideQuickListObjects];
-        } else if (self.fromInventory == YES) {
+        } else if (self.fromMyPantry == YES) {
             [self.quickListSwitch setOn:NO];
             [self showQuickListObjects];
         }
-    } else if (self.editingFromListDetails == YES || self.editingFromInventory == YES) {
+    } else if (self.editingFromListDetails == YES || self.editingFromMyPantry == YES) {
         self.title = @"Edit Item";
-        if (self.editingFromInventory == YES) {
+        if (self.editingFromMyPantry == YES) {
             if (self.item.isInQuickList == YES) {
                 [self.quickListSwitch setOn:YES];
             } else {
@@ -102,9 +102,9 @@
 
 - (void)dismissViewControllerAndResetBOOLs {
     [self.navigationController popViewControllerAnimated:YES];
-    self.fromInventory = NO;
+    self.fromMyPantry = NO;
     self.fromListDetails = NO;
-    self.editingFromInventory = NO;
+    self.editingFromMyPantry = NO;
     self.editingFromListDetails = NO;
 }
 
@@ -112,12 +112,12 @@
 
 - (IBAction)addItemOnButtonPress:(id)sender {
     PFUser *user = [PFUser currentUser];
-    if (self.fromInventory || self.fromListDetails) {
+    if (self.fromMyPantry || self.fromListDetails) {
         Item *item = [[Item alloc] init];
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
             [self noDescriptionAlert];
         } else {
-            if (self.fromInventory == YES) {
+            if (self.fromMyPantry == YES) {
                 [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
                     [self dismissViewControllerAndResetBOOLs];
                 }];
@@ -127,12 +127,12 @@
                 }];
             }
         }
-    } else if (self.editingFromInventory || self.editingFromListDetails) {
+    } else if (self.editingFromMyPantry || self.editingFromListDetails) {
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
             [self noDescriptionAlert];
         } else {
             if (self.imageView.image) {
-                if (self.editingFromInventory) {
+                if (self.editingFromMyPantry) {
                     [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
                 }
                 [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
@@ -149,7 +149,7 @@
                     }
                 }];
             } else {
-                if (self.editingFromInventory) {
+                if (self.editingFromMyPantry) {
                     [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
                 }
                 [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];

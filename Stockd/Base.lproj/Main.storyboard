@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Inventory View Controller-->
+        <!--My Pantry View Controller-->
         <scene sceneID="woq-vE-1o3">
             <objects>
-                <viewController storyboardIdentifier="InventoryViewController" id="qrq-r8-Dt3" customClass="InventoryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InventoryViewController" id="qrq-r8-Dt3" customClass="MyPantryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1kp-VZ-vd6"/>
                         <viewControllerLayoutGuide type="bottom" id="XFj-Cr-X4e"/>
@@ -926,11 +926,11 @@
             </objects>
             <point key="canvasLocation" x="905" y="-1256"/>
         </scene>
-        <!--Inventory-->
+        <!--My Pantry-->
         <scene sceneID="bsx-J0-CEt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uuO-1R-fZo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Inventory" image="stockd_tabbaricon-inventory" id="6pi-u7-9uv"/>
+                    <tabBarItem key="tabBarItem" title="My Pantry" image="stockd_tabbaricon-inventory" id="6pi-u7-9uv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d2m-xp-L3f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -993,7 +993,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VP3-XV-7qB"/>
-        <segue reference="rYD-BQ-DL4"/>
+        <segue reference="AW5-X6-3e5"/>
         <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
 </document>

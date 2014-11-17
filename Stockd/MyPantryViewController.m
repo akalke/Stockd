@@ -9,12 +9,12 @@
 #define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
-#import "InventoryViewController.h"
+#import "MyPantryViewController.h"
 #import <Parse/Parse.h>
 #import "Item.h"
 #import "CreateItemViewController.h"
 
-@interface InventoryViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MyPantryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property Item *items;
 @property NSArray *inventory;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation InventoryViewController
+@implementation MyPantryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,9 +39,7 @@
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
     self.navigationController.navigationBar.translucent = NO;
-    //    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbar-image"]];
-    //    self.navigationItem.titleView = imageView;
-    self.navigationItem.title = @"Stock'd";
+    self.navigationItem.title = @"My Pantry";
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:30.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
@@ -52,12 +50,12 @@
     if ([[segue identifier] isEqualToString:@"createNewItemFromInventorySegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
         if (self.didSelectItem == YES) {
-            createItemVC.editingFromInventory = YES;
+            createItemVC.editingFromMyPantry = YES;
             
             Item *item = [self.inventory objectAtIndex:self.tableView.indexPathForSelectedRow.row];
             createItemVC.item = item;
         } else {
-            createItemVC.fromInventory = YES;
+            createItemVC.fromMyPantry = YES;
         }
     }
 }
