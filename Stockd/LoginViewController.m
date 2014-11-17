@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -63,16 +63,20 @@
     [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error) {
 
         if([self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"You need to enter a valid username and password!" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Email address and password invalid!" preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [self.usernameTextField becomeFirstResponder];
+                if ([self.usernameTextField.text isEqualToString:@""]) {
+                    self.passwordTextField.text = @"";
+                    [self.usernameTextField becomeFirstResponder];
+                } else if ([self.passwordTextField.text isEqualToString:@""]) {
+                    [self.passwordTextField becomeFirstResponder];
+                }
             }];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if(error){
-            NSLog(@"Login Error! %@", error);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:[NSString stringWithFormat:@"%@", error] preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:[NSString stringWithFormat:@"Login Error: %@", error] preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
@@ -81,7 +85,6 @@
         }
         else {
             self.loginSuccess = YES;
-            NSLog(@"success!");
             [self resignKeyboard];
             [self performSegueWithIdentifier:@"showTabBarSegue" sender:sender];
         }
@@ -95,7 +98,7 @@
 - (IBAction)forgotPasswordOnButtonPress:(id)sender {
     [PFUser requestPasswordResetForEmailInBackground:self.usernameTextField.text block:^(BOOL succeeded, NSError *error) {
         if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was an error with your request, please try again later" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
@@ -111,7 +114,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if(!succeeded){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"We are unable to reset your password" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"We are unable to reset your password." preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
