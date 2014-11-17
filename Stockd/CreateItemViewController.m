@@ -25,6 +25,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
+    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    
     PFFile *image = [self.item objectForKey:@"image"];
     [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
@@ -33,20 +46,6 @@
             self.imageView.image = [UIImage imageWithData:data];
         }
     }];
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
-    [self.view addGestureRecognizer:tapGesture];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
     if (self.fromListDetails == YES || self.fromMyPantry == YES) {
         self.title = @"Create Item";
@@ -177,7 +176,6 @@
 }
 
 - (IBAction)setQuickListOnSwitch:(id)sender {
-    
     if ([self.quickListSwitch isOn]) {
         [self.quickListSwitch setOn:YES animated:YES];
     } else {

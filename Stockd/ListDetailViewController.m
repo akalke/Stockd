@@ -79,16 +79,8 @@
     Item *item = [self.items objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
-    
-    [item.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            cell.imageView.image = [UIImage imageWithData:data];
-        }
-    }];
-    
     cell.textLabel.text = item.type;
+    
     return cell;
 }
 

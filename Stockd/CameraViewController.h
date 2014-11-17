@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
