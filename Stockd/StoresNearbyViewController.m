@@ -46,10 +46,7 @@
     
     self.storeArray = [NSMutableArray array];
     
-    [self hideMapsAndPhoneButtons];
-    
-    self.textView.hidden = YES;
-    self.textView.text = @"";
+    [self hideTextViewAndButtons];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
@@ -94,10 +91,7 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (view.annotation == mapView.userLocation) {
-        [self hideMapsAndPhoneButtons];
-        self.textView.text = @"";
-        self.textView.hidden = YES;
-        [self hideMapsAndPhoneButtons];
+        [self hideTextViewAndButtons];
         return;
     }
     
@@ -163,7 +157,7 @@
 #pragma mark - SearchBar Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    self.textView.text = @"";
+    [self hideTextViewAndButtons];
     if ([self.searchBar.text isEqualToString:@"Current Location"]) {
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
             [self currentLocationOffAlert];
@@ -210,7 +204,10 @@
     [self.searchBar resignFirstResponder];
 }
 
-- (void)hideMapsAndPhoneButtons {
+- (void)hideTextViewAndButtons {
+    self.textView.text = @"";
+    self.textView.hidden = YES;
+    
     self.mapsButton.hidden = YES;
     self.mapsButton.userInteractionEnabled = NO;
     
@@ -218,7 +215,9 @@
     self.phoneButton.userInteractionEnabled = NO;
 }
 
-- (void)showMapsAndPhoneButtons {
+- (void)showTextViewAndButtons {
+    self.textView.hidden = NO;
+    
     self.mapsButton.hidden = NO;
     self.mapsButton.userInteractionEnabled = YES;
     
@@ -231,14 +230,13 @@
     NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
     
     self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode];
-    self.textView.hidden = NO;
     
     self.storePhoneNumber = store.phoneNumber;
     
     MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
     self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
     
-    [self showMapsAndPhoneButtons];
+    [self showTextViewAndButtons];
 }
 
 - (void)setStorePins {
@@ -288,6 +286,7 @@
 #pragma mark - IBActions
 
 - (IBAction)onUseCurrentLocationButtonPressed:(id)sender {
+    [self hideTextViewAndButtons];
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         [self currentLocationOffAlert];
     } else {
@@ -304,8 +303,7 @@
 }
 
 - (IBAction)onPhoneButtonPressed:(id)sender {
-    NSString *stringURL = [NSString stringWithFormat:@"tel:%@", self.storePhoneNumber];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringURL]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.storePhoneNumber]]];
 }
 
 @end
