@@ -26,19 +26,12 @@
     [super viewDidLoad];
     [self setLoginScreen];
     
-//    self.usernameTextField.delegate = self;
-    
-    if (self.usernameTextField.isEditing) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.viewTopConstraint.constant = -50;
-            self.viewBottomConstraint.constant = 50;
-            [self.view layoutIfNeeded];
-        }];
-    }
+    self.usernameTextField.delegate = self;
+    self.passwordTextField.delegate = self;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.viewTopConstraint.constant = -50;
         self.viewBottomConstraint.constant = 50;
         [self.view layoutIfNeeded];
@@ -46,9 +39,9 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.25 animations:^{
-        self.viewTopConstraint.constant = 50;
-        self.viewBottomConstraint.constant = -50;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = 0;
+        self.viewBottomConstraint.constant = 0;
         [self.view layoutIfNeeded];
     }];
 }
@@ -89,6 +82,12 @@
 
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self resignKeyboard];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = 0;
+        self.viewBottomConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)resignKeyboard {
@@ -106,6 +105,7 @@
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 if ([self.usernameTextField.text isEqualToString:@""]) {
                     self.passwordTextField.text = @"";
+
                     [self.usernameTextField becomeFirstResponder];
                 } else if ([self.passwordTextField.text isEqualToString:@""]) {
                     [self.passwordTextField becomeFirstResponder];
@@ -119,6 +119,7 @@
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.usernameTextField.text = @"";
                 self.passwordTextField.text = @"";
+
                 [self.usernameTextField becomeFirstResponder];
             }];
             [alert addAction:action];
