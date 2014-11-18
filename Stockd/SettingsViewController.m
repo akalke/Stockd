@@ -17,8 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *accountCreatedAtLabel;
 @property (weak, nonatomic) IBOutlet UITextField *changePasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
-@property (weak, nonatomic) IBOutlet UIView *optionsView;
 @property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property PFUser *user;
 @property BOOL isChangingPassword;
 
@@ -41,6 +42,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self hideSaveAndCancelButtons];
+    [self hidePasswordFields];
+    
     self.user = [PFUser currentUser];
     self.usernameLabel.text = self.user.username;
     
@@ -48,8 +52,6 @@
     [format setDateFormat:@"MM-dd-yyyy"];
     NSString *date = [format stringForObjectValue:self.user.createdAt];
     self.accountCreatedAtLabel.text = [NSString stringWithFormat:@"Member Since: %@", date];
-    
-    [self hidePasswordFields];
     
     self.navigationItem.title = @"Settings";
     self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
@@ -76,20 +78,36 @@
     self.changePasswordTextField.hidden = NO;
     self.confirmPasswordTextField.text = @"";
     self.confirmPasswordTextField.hidden = NO;
-    self.optionsView.hidden = NO;
 }
 
 - (void)hidePasswordFields {
     self.changePasswordButton.hidden = NO;
     self.changePasswordTextField.hidden = YES;
     self.confirmPasswordTextField.hidden = YES;
-    self.optionsView.hidden = YES;
+}
+
+- (void)hideSaveAndCancelButtons {
+    self.saveButton.tintColor = [UIColor clearColor];
+    self.saveButton.enabled = NO;
+    
+    self.cancelButton.tintColor = [UIColor clearColor];
+    self.cancelButton.enabled = NO;
+}
+
+- (void)showSaveAndCancelButtons {
+    self.saveButton.tintColor = [UIColor blackColor];
+    self.saveButton.enabled = YES;
+    
+    self.cancelButton.tintColor = [UIColor blackColor];
+    self.cancelButton.enabled = YES;
 }
 
 - (void)saveIfPassCondtionals {
     if ([self.changePasswordTextField.text isEqualToString:self.confirmPasswordTextField.text] && ![self.changePasswordTextField.text isEqualToString:@""]) {
         self.user.password = self.changePasswordTextField.text;
         [self.user saveInBackground];
+        
+        [self hideSaveAndCancelButtons];
         [self hidePasswordFields];
         [self resignKeyboard];
     } else {
@@ -109,10 +127,12 @@
 
 - (IBAction)onChangePasswordButtonPressed:(id)sender {
     [self showPasswordFields];
+    [self showSaveAndCancelButtons];
     [self.changePasswordTextField becomeFirstResponder];
 }
 
 - (IBAction)onCancelButtonPressed:(id)sender {
+    [self hideSaveAndCancelButtons];
     [self hidePasswordFields];
     [self resignKeyboard];
 }
