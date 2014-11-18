@@ -16,8 +16,7 @@
 
 @interface StoresNearbyViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIView *viewForTextViewAndButtons;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIView *viewForButtons;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
 @property MKMapItem *mapItem;
@@ -45,7 +44,7 @@
     
     self.storeArray = [NSMutableArray array];
     
-    [self hideTextViewAndButtons];
+    self.viewForButtons.hidden = YES;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
@@ -90,12 +89,12 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (view.annotation == mapView.userLocation) {
-        [self hideTextViewAndButtons];
+        self.viewForButtons.hidden = YES;
         return;
     }
     
     Store *store = view.annotation;
-    [self fillTextViewAndMakeMapItemWith:store];
+    [self makeMapItemWith:store];
 }
 
 #pragma mark - LocationManager Methods
@@ -146,7 +145,7 @@
 #pragma mark - SearchBar Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self hideTextViewAndButtons];
+    self.viewForButtons.hidden = YES;
     if ([self.searchBar.text isEqualToString:@"Current Location"]) {
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
             [self currentLocationOffAlert];
@@ -193,30 +192,13 @@
     [self.searchBar resignFirstResponder];
 }
 
-- (void)hideTextViewAndButtons {
-    self.textView.text = @"";
-    
-    self.viewForTextViewAndButtons.hidden = YES;
-}
-
-- (void)showTextViewAndButtons {
-    self.textView.hidden = NO;
-    
-    self.viewForTextViewAndButtons.hidden = NO;
-}
-
-- (void)fillTextViewAndMakeMapItemWith:(Store *)store {
-    NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
-    NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
-    
-    self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode];
-    
+- (void)makeMapItemWith:(Store *)store {
     self.storePhoneNumber = store.phoneNumber;
     
     MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
     self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
     
-    [self showTextViewAndButtons];
+    self.viewForButtons.hidden = NO;
 }
 
 - (void)setStorePins {
@@ -266,7 +248,7 @@
 #pragma mark - IBActions
 
 - (IBAction)onUseCurrentLocationButtonPressed:(id)sender {
-    [self hideTextViewAndButtons];
+    self.viewForButtons.hidden = YES;
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         [self currentLocationOffAlert];
     } else {

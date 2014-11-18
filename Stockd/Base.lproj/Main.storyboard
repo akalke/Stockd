@@ -878,8 +878,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed1-Wr-0Te">
                                 <rect key="frame" x="555" y="64" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="AXk-cx-hZL"/>
-                                    <constraint firstAttribute="height" constant="45" id="BqU-oj-bvk"/>
+                                    <constraint firstAttribute="width" constant="45" id="9GL-Nx-FRm"/>
+                                    <constraint firstAttribute="height" constant="45" id="q4P-q9-T42"/>
                                 </constraints>
                                 <state key="normal" image="stockd_buttonicon-currentlocation">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -889,69 +889,59 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F67-BM-GWQ">
-                                <rect key="frame" x="0.0" y="425" width="600" height="126"/>
+                                <rect key="frame" x="0.0" y="496" width="600" height="55"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="TextView" translatesAutoresizingMaskIntoConstraints="NO" id="L48-Nu-THh">
-                                        <rect key="frame" x="0.0" y="0.0" width="544" height="126"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="126" id="76B-O5-GMZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9Y-6s-h42">
-                                        <rect key="frame" x="552" y="78" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="9QF-yV-STr"/>
-                                            <constraint firstAttribute="width" constant="40" id="zNU-bp-kij"/>
-                                        </constraints>
-                                        <state key="normal" image="stockd_buttonicon-phone">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onPhoneButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="wyt-C2-sw8"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-M8-WQW">
-                                        <rect key="frame" x="552" y="8" width="40" height="40"/>
+                                        <rect key="frame" x="8" y="8" width="130" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="TaC-Es-Msc"/>
-                                            <constraint firstAttribute="height" constant="40" id="cAs-uV-kol"/>
+                                            <constraint firstAttribute="height" constant="40" id="0rA-un-dPN"/>
+                                            <constraint firstAttribute="width" constant="130" id="ell-qk-jNV"/>
                                         </constraints>
-                                        <state key="normal" image="stockd_buttonicon-car">
+                                        <state key="normal" title="Get Directions">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="onOpenMapsButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="7tv-23-Thk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9Y-6s-h42">
+                                        <rect key="frame" x="502" y="8" width="90" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="GM6-F6-gjz"/>
+                                            <constraint firstAttribute="width" constant="90" id="tSW-Ei-Yfb"/>
+                                        </constraints>
+                                        <state key="normal" title="Call Store">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPhoneButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="wyt-C2-sw8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="F67-BM-GWQ" secondAttribute="leading" id="6fa-T1-tPZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="L48-Nu-THh" secondAttribute="bottom" id="8WL-DT-0KL"/>
-                                    <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" constant="56" id="FYf-XK-YoK"/>
-                                    <constraint firstAttribute="trailing" secondItem="a6K-M8-WQW" secondAttribute="trailing" constant="8" id="Fzn-A7-cU2"/>
-                                    <constraint firstAttribute="height" constant="126" id="OcU-iL-QBC"/>
-                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="top" constant="8" id="S8c-hk-QCn"/>
-                                    <constraint firstAttribute="trailing" secondItem="X9Y-6s-h42" secondAttribute="trailing" constant="8" id="VWs-YC-mKG"/>
-                                    <constraint firstAttribute="bottom" secondItem="X9Y-6s-h42" secondAttribute="bottom" constant="8" id="s7X-t4-jch"/>
+                                    <constraint firstAttribute="trailing" secondItem="X9Y-6s-h42" secondAttribute="trailing" constant="8" id="1XG-SM-dxh"/>
+                                    <constraint firstAttribute="height" constant="55" id="6MX-Ds-cmR"/>
+                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="top" constant="8" id="A8w-6m-WbE"/>
+                                    <constraint firstItem="X9Y-6s-h42" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="top" constant="8" id="M0O-cX-iD4"/>
+                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="leading" secondItem="F67-BM-GWQ" secondAttribute="leading" constant="8" id="sDP-fd-WTJ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="8xF-Ed-VqO"/>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="KiL-3e-NCM"/>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="MQU-MQ-Zdq"/>
-                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="NCD-qj-IkC"/>
-                            <constraint firstAttribute="trailing" secondItem="F67-BM-GWQ" secondAttribute="trailing" id="a0i-iA-dDB"/>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" id="eDo-eG-lf9"/>
-                            <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="ttV-nK-ow6"/>
-                            <constraint firstItem="F67-BM-GWQ" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="wa4-wE-P8g"/>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="bottom" id="zIz-xz-ozh"/>
+                            <constraint firstAttribute="trailing" secondItem="F67-BM-GWQ" secondAttribute="trailing" id="6xZ-m1-3zN"/>
+                            <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="LmY-wH-oCo"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="bottom" id="PWh-y8-Zt2"/>
+                            <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="bo6-Wu-MVK"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="dPv-eB-FBG"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" id="lRi-jF-7SY"/>
+                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="m0V-i0-9Bx"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="w1c-1D-35w"/>
+                            <constraint firstItem="F67-BM-GWQ" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="w5n-3T-D5w"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="DYQ-1X-ked" appends="YES" id="y8o-YW-aPz"/>
@@ -962,8 +952,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="for-Ee-Cli" id="A6N-lZ-xbj"/>
-                        <outlet property="textView" destination="L48-Nu-THh" id="vSS-sT-7i8"/>
-                        <outlet property="viewForTextViewAndButtons" destination="F67-BM-GWQ" id="dqi-ip-tbb"/>
+                        <outlet property="viewForButtons" destination="F67-BM-GWQ" id="Ejc-VC-VQp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRX-fo-SYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1054,9 +1043,7 @@
     </scenes>
     <resources>
         <image name="logo_punchout" width="850" height="850"/>
-        <image name="stockd_buttonicon-car" width="37" height="37"/>
         <image name="stockd_buttonicon-currentlocation" width="37" height="37"/>
-        <image name="stockd_buttonicon-phone" width="37" height="37"/>
         <image name="stockd_tabbaricon-lists" width="37" height="37"/>
         <image name="stockd_tabbaricon-mypantry" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
