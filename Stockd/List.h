@@ -15,8 +15,8 @@
 @property NSString *name;
 @property BOOL isQuickList;
 @property PFUser *user;
-@property NSString *sharedListID;
 @property NSString *sourceListID;
+@property BOOL isShared;
 
 -(void)createNewList: (PFUser *)user :(NSString *)listName withBlock:(void(^)(void))block;
 -(void)createNewQuickList:(PFUser *)user withBlock:(void(^)(void))block;

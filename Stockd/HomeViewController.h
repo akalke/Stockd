@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeViewController : UIViewController
+@property NSMutableArray *deletedListArray;
 
 @end

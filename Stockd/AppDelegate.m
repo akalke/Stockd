@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "HomeViewController.h"
+#import "Item.h"
 
 
 @interface AppDelegate ()
-
+@property NSMutableArray *deletedLists;
 @end
 
 @implementation AppDelegate
@@ -45,6 +47,29 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    HomeViewController *homeVC;
+    homeVC.deletedListArray = self.deletedLists;
+//    for(NSString *listID in self.deletedLists){
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"listID = ", listID];
+//        PFQuery *query = [PFQuery queryWithClassName:[Item parseClassName] predicate:predicate];
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            if(error){
+//                NSLog(@"%@", error);
+//            }
+//            else{
+//                for(Item *item in objects){
+//                    [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                        if(error){
+//                            NSLog(@"%@", error);
+//                        }
+//                        else{
+//                            NSLog(@"%@ item deleted", item.type);
+//                        }
+//                    }];
+//                }
+//            }
+//        }];
+//    }
     [self saveContext];
 }
 

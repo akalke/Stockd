@@ -58,7 +58,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyListsCell" forIndexPath: indexPath];
     cell.textLabel.text = list.name;
     cell.imageView.image = [UIImage imageNamed:@"stockd_annotation"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",list.createdAt];
+
+    if(list.isShared == NO) {
+        cell.detailTextLabel.text = @"Not shared";
+    }
+    else{
+
+        cell.detailTextLabel.text = @"Shared";
+    }
 
     return cell;
 }
@@ -93,6 +100,8 @@
 
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // need completion block from deleteInBackgroundWithBlock method
+        NSString *listIDString = list.objectId;
+        [self.deletedListArray addObject:listIDString];
         [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self getLists:[PFUser currentUser]];
             [self.tableView setEditing:NO];
@@ -102,19 +111,21 @@
     UITableViewRowAction *share = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Share It" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with" preferredStyle:UIAlertControllerStyleAlert];
+
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField = alert.textFields[0];
+            textField.placeholder = @"Enter email address";;
         }];
         UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             NSLog(@"share");
             List *shareList = [[List alloc] init];
-            NSLog(@"%@", alert.textFields[0]);
-            [shareList shareThisList:list withThisUser: @"test@gmail.com"];
+            [shareList shareThisList:list withThisUser: [alert.textFields[0] valueForKey:@"text"]];
+            list.isShared = YES;
         }];
 
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             return;
         }];
+
 
         [alert addAction:share];
         [alert addAction:cancel];
@@ -123,9 +134,34 @@
 
         [self.tableView setEditing:NO];
     }];
+
+    UITableViewRowAction *unshare = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Unshare" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        if(list.objectId != list.sourceListID && list.isShared == YES) {
+            [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(error){
+                    NSLog(@"ERROR: CANNOT UNSHARE %@", error);
+                }
+                else{
+                    NSLog(@"SUCCESS: List Unshared");
+                }
+            }];
+        }
+        else{
+            list.isShared = NO;
+            [tableView reloadData];
+        }
+        [self.tableView setEditing:NO];
+    }];
+
+    unshare.backgroundColor = [UIColor darkGrayColor];
     share.backgroundColor = [UIColor lightGrayColor];
 
-    return @[delete, share];
+    if(list.isShared == NO){
+        return @[delete, share];
+    }
+    else{
+        return @[delete, unshare];
+    }
 }
 
 
