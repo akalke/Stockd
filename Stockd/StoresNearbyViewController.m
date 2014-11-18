@@ -48,6 +48,7 @@
     
     [self hideMapsAndPhoneObjects];
     
+    self.textView.hidden = YES;
     self.textView.text = @"";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
@@ -227,6 +228,7 @@
     NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
     
     self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode];
+    self.textView.hidden = NO;
     
     self.storePhoneNumber = store.phoneNumber;
     

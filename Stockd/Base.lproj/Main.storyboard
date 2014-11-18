@@ -826,14 +826,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="for-Ee-Cli">
-                                <rect key="frame" x="0.0" y="64" width="600" height="387"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <connections>
                                     <outlet property="delegate" destination="vpz-u8-6js" id="jq9-p6-yaC"/>
                                 </connections>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="TextView" translatesAutoresizingMaskIntoConstraints="NO" id="L48-Nu-THh">
                                 <rect key="frame" x="0.0" y="451" width="600" height="100"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="AOb-II-55N"/>
                                 </constraints>
@@ -883,19 +883,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="0a3-0t-knE"/>
                             <constraint firstItem="X9Y-6s-h42" firstAttribute="trailing" secondItem="JS1-XL-7ev" secondAttribute="trailingMargin" id="9EA-ja-Tqa"/>
                             <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="L48-Nu-THh" secondAttribute="bottom" id="AMl-rv-K3C"/>
                             <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="Dl0-x1-Hc2"/>
                             <constraint firstItem="a6K-M8-WQW" firstAttribute="trailing" secondItem="JS1-XL-7ev" secondAttribute="trailingMargin" id="DuB-oJ-IJ5"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" id="LBC-Xj-yAC"/>
                             <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" id="M5f-db-zXf"/>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="PvX-IS-w9s"/>
-                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="R9w-kk-edf"/>
+                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="Mln-wb-7Ps"/>
                             <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="X9Y-6s-h42" secondAttribute="bottom" constant="8" id="WU5-vH-2y9"/>
                             <constraint firstItem="X9Y-6s-h42" firstAttribute="top" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="8" id="WnC-s8-RPE"/>
                             <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="agw-tu-NwA"/>
                             <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="b5K-ho-X3g"/>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="nMs-Fg-D0h"/>
-                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" id="y3g-Ln-sQZ"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="ih2-V8-TOO"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="DYQ-1X-ked" appends="YES" id="y8o-YW-aPz"/>
