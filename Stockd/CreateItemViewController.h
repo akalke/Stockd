@@ -10,9 +10,9 @@
 #import "Item.h"
 
 @interface CreateItemViewController : UIViewController
-@property BOOL fromInventory;
+@property BOOL fromMyPantry;
 @property BOOL fromListDetails;
-@property BOOL editingFromInventory;
+@property BOOL editingFromMyPantry;
 @property BOOL editingFromListDetails;
 @property NSString *listID;
 @property Item *item;

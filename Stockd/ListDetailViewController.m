@@ -10,10 +10,9 @@
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
 #import "ListDetailViewController.h"
-#import <Parse/Parse.h>
-#import "Item.h"
 #import "CreateItemViewController.h"
-#import "InventoryViewController.h"
+#import "MyPantryViewController.h"
+#import "Item.h"
 
 @interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -26,8 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self getItemsForConditional];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,20 +32,39 @@
     
     [self getItemsForConditional];
     
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     
     self.tabBarController.delegate = self;
+    
     self.didSelectItem = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     self.tabBarController.delegate = nil;
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
+        CreateItemViewController *createItemVC = segue.destinationViewController;
+        if (self.didSelectItem == YES) {
+            createItemVC.editingFromListDetails = YES;
+            
+            Item *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+            createItemVC.item = item;
+        } else {
+            createItemVC.fromListDetails = YES;
+            createItemVC.listID = self.listID;
+        }
+    }
+}
+
+#pragma mark - TableView Methods
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex == 0) {
@@ -65,16 +81,8 @@
     Item *item = [self.items objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListDetailCell" forIndexPath: indexPath];
-    
-    [item.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            cell.imageView.image = [UIImage imageWithData:data];
-        }
-    }];
-    
     cell.textLabel.text = item.type;
+    
     return cell;
 }
 
@@ -119,6 +127,8 @@
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 
+#pragma mark - Helper Methods
+
 - (void)getItemsForConditional {
     if (self.list.isQuickList == YES) {
         self.addItemButton.tintColor = [UIColor clearColor];
@@ -136,7 +146,7 @@
     itemQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
-            NSLog(@"%@", error);
+            NSLog(@"Error finding Item: %@", error);
         }
         else{
             self.items = objects;
@@ -169,26 +179,10 @@
     }];
 }
 
+#pragma mark - IBActions
+
 - (IBAction)addItemOnButtonPress:(id)sender {
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"addItemFromInventorySegue"]){
-        InventoryViewController *inventoryVC = segue.destinationViewController;
-        inventoryVC.fromListDetail = YES;
-    } else if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
-        CreateItemViewController *createItemVC = segue.destinationViewController;
-        if (self.didSelectItem == YES) {
-            createItemVC.editingFromListDetails = YES;
-            
-            Item *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-            createItemVC.item = item;
-        } else {
-            createItemVC.fromListDetails = YES;
-            createItemVC.listID = self.listID;
-        }
-    }
 }
 
 @end

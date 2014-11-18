@@ -21,7 +21,7 @@
 @dynamic userID;
 @dynamic isInFavoriteList;
 @dynamic isInQuickList;
-@dynamic isInInventory;
+@dynamic isInPantry;
 @dynamic photo;
 @dynamic listID;
 @dynamic image;
@@ -36,14 +36,14 @@
 }
 
 #pragma mark Modify/Grab Item Data
--(void)createNewItem: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inInventory: (BOOL)isInInventory isInQuickList: (BOOL) isInQuickList withImage: (UIImage *)image withBlock:(void(^)(void))block{
+-(void)createNewItem: (NSString *)itemType forUser:(PFUser *)user inList: (NSString *)list inPantry: (BOOL)isInPantry isInQuickList: (BOOL) isInQuickList withImage: (UIImage *)image withBlock:(void(^)(void))block{
 
     if(image){
         self.type = itemType;
         self.userID = user.objectId;
         self.listID = list;
         self.isInQuickList = isInQuickList;
-        self.isInInventory = isInInventory;
+        self.isInPantry = isInPantry;
 
         NSData *data = UIImagePNGRepresentation(image);
         PFFile *imageFile = [PFFile fileWithData:data];
@@ -64,7 +64,7 @@
         self.userID = user.objectId;
         self.listID = list;
         self.isInQuickList = isInQuickList;
-        self.isInInventory = isInInventory;
+        self.isInPantry = isInPantry;
 
         [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if(error){

@@ -10,7 +10,6 @@
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
 #import "SettingsViewController.h"
-#import <Parse/Parse.h>
 #import "LoginViewController.h"
 
 @interface SettingsViewController () <UIGestureRecognizerDelegate>
@@ -30,10 +29,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.user = [PFUser currentUser];
-    self.usernameLabel.text = self.user.username;
     self.changePasswordTextField.placeholder = @"New Password";
     self.confirmPasswordTextField.placeholder = @"Confirm Password";
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.user = [PFUser currentUser];
+    self.usernameLabel.text = self.user.username;
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MM-dd-yyyy"];
@@ -42,22 +51,24 @@
     
     [self hidePasswordFields];
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
-    [self.view addGestureRecognizer:tapGesture];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
-    self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.title = @"Settings";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:24.0f],NSForegroundColorAttributeName:stockdOrangeColor};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.tintColor = stockdBlueColor;
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
 }
 
 #pragma mark - Helper Methods
+
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self resignKeyboard];
+}
+
+- (void)resignKeyboard {
+    [self.changePasswordTextField resignFirstResponder];
+    [self.confirmPasswordTextField resignFirstResponder];
+}
 
 - (void)showPasswordFields {
     self.changePasswordButton.hidden = YES;
@@ -73,15 +84,6 @@
     self.changePasswordTextField.hidden = YES;
     self.confirmPasswordTextField.hidden = YES;
     self.optionsView.hidden = YES;
-}
-
-- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
-    [self resignKeyboard];
-}
-
-- (void)resignKeyboard {
-    [self.changePasswordTextField resignFirstResponder];
-    [self.confirmPasswordTextField resignFirstResponder];
 }
 
 - (void)saveIfPassCondtionals {

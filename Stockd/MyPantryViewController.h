@@ -1,5 +1,5 @@
 //
-//  InventoryViewController.h
+//  MyPantryViewController.h
 //  Stockd
 //
 //  Created by Adam Duflo on 11/5/14.
@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface InventoryViewController : UIViewController
-@property BOOL fromListDetail;
+@interface MyPantryViewController : UIViewController
 
 @end

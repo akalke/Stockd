@@ -10,7 +10,7 @@
 		69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644271A0A8F97007BA4CA /* LoginViewController.m */; };
 		69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */; };
 		69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */; };
-		69C644311A0A8FA9007BA4CA /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644301A0A8FA9007BA4CA /* InventoryViewController.m */; };
+		69C644311A0A8FA9007BA4CA /* MyPantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */; };
 		69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */; };
 		69C644361A0AB4AE007BA4CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C644351A0AB4AE007BA4CA /* MapKit.framework */; };
 		69C6443B1A0AD099007BA4CA /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6443A1A0AD099007BA4CA /* Store.m */; };
@@ -61,8 +61,8 @@
 		69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		69C6442C1A0A8FA4007BA4CA /* CreateItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateItemViewController.h; sourceTree = "<group>"; };
 		69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateItemViewController.m; sourceTree = "<group>"; };
-		69C6442F1A0A8FA9007BA4CA /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
-		69C644301A0A8FA9007BA4CA /* InventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryViewController.m; sourceTree = "<group>"; };
+		69C6442F1A0A8FA9007BA4CA /* MyPantryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPantryViewController.h; sourceTree = "<group>"; };
+		69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPantryViewController.m; sourceTree = "<group>"; };
 		69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresNearbyViewController.h; sourceTree = "<group>"; };
 		69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresNearbyViewController.m; sourceTree = "<group>"; };
 		69C644351A0AB4AE007BA4CA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -170,8 +170,8 @@
 			children = (
 				69C644291A0A8F9D007BA4CA /* HomeViewController.h */,
 				69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */,
-				69C6442F1A0A8FA9007BA4CA /* InventoryViewController.h */,
-				69C644301A0A8FA9007BA4CA /* InventoryViewController.m */,
+				69C6442F1A0A8FA9007BA4CA /* MyPantryViewController.h */,
+				69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */,
 				6C6808461A119771009340D8 /* ListDetailViewController.h */,
 				6C6808471A119771009340D8 /* ListDetailViewController.m */,
 			);
@@ -375,7 +375,7 @@
 			files = (
 				6C6808451A0D03C5009340D8 /* Item.m in Sources */,
 				6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */,
-				69C644311A0A8FA9007BA4CA /* InventoryViewController.m in Sources */,
+				69C644311A0A8FA9007BA4CA /* MyPantryViewController.m in Sources */,
 				6CDB20011A0A782400F614DD /* main.m in Sources */,
 				69C6443B1A0AD099007BA4CA /* Store.m in Sources */,
 				6CDB200A1A0A782400F614DD /* SettingsViewController.m in Sources */,

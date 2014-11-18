@@ -18,13 +18,14 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *mapsButton;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
 @property MKMapItem *mapItem;
 @property UISearchBar *searchBar;
+@property NSString *storePhoneNumber;
 @property BOOL userLocationUpdated;
 @property BOOL didSearchForNearbyStores;
-
 
 @end
 
@@ -45,8 +46,9 @@
     
     self.storeArray = [NSMutableArray array];
     
-    self.mapsButton.hidden = YES;
+    [self hideMapsAndPhoneButtons];
     
+    self.textView.hidden = YES;
     self.textView.text = @"";
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
@@ -58,11 +60,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
-    
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
 }
 
 #pragma mark - MapView Methods
@@ -75,7 +77,6 @@
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
     pin.image = [UIImage imageNamed:@"stockd_annotation"];
     pin.canShowCallout = YES;
-    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
     
     return pin;
 }
@@ -93,8 +94,10 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (view.annotation == mapView.userLocation) {
-        self.mapsButton.hidden = YES;
+        [self hideMapsAndPhoneButtons];
         self.textView.text = @"";
+        self.textView.hidden = YES;
+        [self hideMapsAndPhoneButtons];
         return;
     }
     
@@ -202,16 +205,40 @@
 
 #pragma mark - Helper Methods
 
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)hideMapsAndPhoneButtons {
+    self.mapsButton.hidden = YES;
+    self.mapsButton.userInteractionEnabled = NO;
+    
+    self.phoneButton.hidden = YES;
+    self.phoneButton.userInteractionEnabled = NO;
+}
+
+- (void)showMapsAndPhoneButtons {
+    self.mapsButton.hidden = NO;
+    self.mapsButton.userInteractionEnabled = YES;
+    
+    self.phoneButton.hidden = NO;
+    self.phoneButton.userInteractionEnabled = YES;
+}
+
 - (void)fillTextViewAndMakeMapItemWith:(Store *)store {
     NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
     NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
     
-    self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode, store.phoneNumber];
+    self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode];
+    self.textView.hidden = NO;
+    
+    self.storePhoneNumber = store.phoneNumber;
     
     MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
     self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
     
-    self.mapsButton.hidden = NO;
+    [self showMapsAndPhoneButtons];
 }
 
 - (void)setStorePins {
@@ -241,11 +268,6 @@
         
         [self zoomMapWith:self.mapView.userLocation.location];
     }
-}
-
-- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    [self.searchBar resignFirstResponder];
 }
 
 - (void)currentLocationOffAlert {
@@ -279,6 +301,11 @@
 
 - (IBAction)onOpenMapsButtonPressed:(id)sender {
     [self.mapItem openInMapsWithLaunchOptions:nil];
+}
+
+- (IBAction)onPhoneButtonPressed:(id)sender {
+    NSString *stringURL = [NSString stringWithFormat:@"tel:%@", self.storePhoneNumber];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringURL]];
 }
 
 @end

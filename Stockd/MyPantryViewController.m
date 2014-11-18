@@ -1,5 +1,5 @@
 //
-//  InventoryViewController.m
+//  MyPantryViewController.m
 //  Stockd
 //
 //  Created by Adam Duflo on 11/5/14.
@@ -9,67 +9,63 @@
 #define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
-#import "InventoryViewController.h"
-#import <Parse/Parse.h>
-#import "Item.h"
+#import "MyPantryViewController.h"
 #import "CreateItemViewController.h"
+#import "Item.h"
 
-@interface InventoryViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MyPantryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property Item *items;
-@property NSArray *inventory;
+@property NSArray *pantryArray;
 @property NSMutableArray *addItemsToList;
 @property BOOL didSelectItem;
 
 @end
 
-@implementation InventoryViewController
+@implementation MyPantryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PFUser *currentUser = [PFUser currentUser];
-    [self getInventory:currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    PFUser *currentUser = [PFUser currentUser];
-    [self getInventory:currentUser];
     
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    [self getPantry:[PFUser currentUser]];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
-    //    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbar-image"]];
-    //    self.navigationItem.titleView = imageView;
-    self.navigationItem.title = @"Stock'd";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:30.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     
     self.didSelectItem = NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"createNewItemFromInventorySegue"]) {
+    if ([[segue identifier] isEqualToString:@"createNewItemFromMyPantrySegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
         if (self.didSelectItem == YES) {
-            createItemVC.editingFromInventory = YES;
+            createItemVC.editingFromMyPantry = YES;
             
-            Item *item = [self.inventory objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+            Item *item = [self.pantryArray objectAtIndex:self.tableView.indexPathForSelectedRow.row];
             createItemVC.item = item;
         } else {
-            createItemVC.fromInventory = YES;
+            createItemVC.fromMyPantry = YES;
         }
     }
 }
 
+#pragma mark - TableView Methods
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.inventory.count;
+    return self.pantryArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    Item *item = [self.inventory objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyInventoryCell" forIndexPath: indexPath];
+    Item *item = [self.pantryArray objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPantryCell" forIndexPath: indexPath];
     PFFile *image = [item objectForKey:@"image"];
     [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
@@ -94,7 +90,7 @@
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Item *item = [self.inventory objectAtIndex:indexPath.row];
+    Item *item = [self.pantryArray objectAtIndex:indexPath.row];
     PFUser *user = [PFUser currentUser];
     UITableViewRowAction *quickList = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Quick List" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         if (item.isInQuickList == YES) {
@@ -103,22 +99,17 @@
             [item setObject:[NSNumber numberWithBool:YES] forKey:@"isInQuickList"];
         }
         [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self getInventory:user];
+            [self getPantry:user];
             [self.tableView setEditing:NO];
         }];
     }];
     quickList.backgroundColor = stockdOrangeColor;
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // need completion block from deleteInBackgroundWithBlock method
         [item deleteItemWithBlock:^{
-            [self getInventory:user];
+            [self getPantry:user];
             [self.tableView setEditing:NO];
         }];
-//        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            [self getInventory:user];
-//            [self.tableView setEditing:NO];
-//        }];
     }];
     
     return @[delete, quickList];
@@ -126,11 +117,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.didSelectItem = YES;
-    [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:self];
+    [self performSegueWithIdentifier:@"createNewItemFromMyPantrySegue" sender:self];
 }
 
--(void) getInventory: (PFUser *)currentUser{
-    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInInventory = true)", currentUser.objectId];
+#pragma mark - Helper Methods
+
+-(void) getPantry: (PFUser *)currentUser{
+    NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInPantry = true)", currentUser.objectId];
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];
     [itemQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
@@ -138,14 +131,17 @@
         }
         else{
             NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES];
-            self.inventory = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            self.pantryArray = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            self.navigationItem.title = [NSString stringWithFormat:@"My Pantry (%lu)", (unsigned long)self.pantryArray.count];
             [self.tableView reloadData];
         }
     }];
 }
 
+#pragma mark - IBActions
+
 - (IBAction)addItemOnButtonPress:(id)sender {
-    [self performSegueWithIdentifier:@"createNewItemFromInventorySegue" sender:nil];
+    [self performSegueWithIdentifier:@"createNewItemFromMyPantrySegue" sender:nil];
 }
 
 @end

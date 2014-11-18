@@ -25,40 +25,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    PFFile *image = [self.item objectForKey:@"image"];
-    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            self.imageView.image = [UIImage imageWithData:data];
-        }
-    }];
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     
-    if (self.fromListDetails == YES || self.fromInventory == YES) {
+    PFFile *image = [self.item objectForKey:@"image"];
+    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error Getting Image: %@", error);
+        } else {
+            self.imageView.image = [UIImage imageWithData:data];
+        }
+    }];
+    
+    if (self.fromListDetails == YES || self.fromMyPantry == YES) {
         self.title = @"Create Item";
         if (self.fromListDetails == YES) {
             [self hideQuickListObjects];
-        } else if (self.fromInventory == YES) {
+        } else if (self.fromMyPantry == YES) {
             [self.quickListSwitch setOn:NO];
             [self showQuickListObjects];
         }
-    } else if (self.editingFromListDetails == YES || self.editingFromInventory == YES) {
+    } else if (self.editingFromListDetails == YES || self.editingFromMyPantry == YES) {
         self.title = @"Edit Item";
-        if (self.editingFromInventory == YES) {
+        if (self.editingFromMyPantry == YES) {
             if (self.item.isInQuickList == YES) {
                 [self.quickListSwitch setOn:YES];
             } else {
@@ -102,9 +103,9 @@
 
 - (void)dismissViewControllerAndResetBOOLs {
     [self.navigationController popViewControllerAnimated:YES];
-    self.fromInventory = NO;
+    self.fromMyPantry = NO;
     self.fromListDetails = NO;
-    self.editingFromInventory = NO;
+    self.editingFromMyPantry = NO;
     self.editingFromListDetails = NO;
 }
 
@@ -112,27 +113,27 @@
 
 - (IBAction)addItemOnButtonPress:(id)sender {
     PFUser *user = [PFUser currentUser];
-    if (self.fromInventory || self.fromListDetails) {
+    if (self.fromMyPantry || self.fromListDetails) {
         Item *item = [[Item alloc] init];
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
             [self noDescriptionAlert];
         } else {
-            if (self.fromInventory == YES) {
-                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
+            if (self.fromMyPantry == YES) {
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inPantry:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
                     [self dismissViewControllerAndResetBOOLs];
                 }];
             } else if (self.fromListDetails == YES) {
-                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image withBlock:^{
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inPantry:NO isInQuickList:NO withImage:self.imageView.image withBlock:^{
                     [self dismissViewControllerAndResetBOOLs];
                 }];
             }
         }
-    } else if (self.editingFromInventory || self.editingFromListDetails) {
+    } else if (self.editingFromMyPantry || self.editingFromListDetails) {
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
             [self noDescriptionAlert];
         } else {
             if (self.imageView.image) {
-                if (self.editingFromInventory) {
+                if (self.editingFromMyPantry) {
                     [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
                 }
                 [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
@@ -149,7 +150,7 @@
                     }
                 }];
             } else {
-                if (self.editingFromInventory) {
+                if (self.editingFromMyPantry) {
                     [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
                 }
                 [self.item setObject:self.itemDescriptionTextField.text forKey:@"type"];
@@ -177,7 +178,6 @@
 }
 
 - (IBAction)setQuickListOnSwitch:(id)sender {
-    
     if ([self.quickListSwitch isOn]) {
         [self.quickListSwitch setOn:YES animated:YES];
     } else {

@@ -10,9 +10,8 @@
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 
 #import "HomeViewController.h"
-#import <Parse/Parse.h>
-#import "List.h"
 #import "ListDetailViewController.h"
+#import "List.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -25,29 +24,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor lightGrayColor];
-    [self getLists: [PFUser currentUser]];
     
-    // Do any additional setup after loading the view.
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    tabBar.barTintColor = [UIColor darkGrayColor];
+    tabBar.tintColor = stockdOrangeColor;
+    tabBar.translucent = NO;
+    
+    self.tableView.backgroundColor = [UIColor lightGrayColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    PFUser *user = [PFUser currentUser];
-    [self getLists: user];
     
-    UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = stockdBlueColor;
-    tabBar.tintColor = stockdOrangeColor;
-    tabBar.translucent = NO;
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:stockdOrangeColor} forState:UIControlStateSelected];
+    [self getLists: [PFUser currentUser]];
     
-    self.navigationController.navigationBar.barTintColor = stockdBlueColor;
-    self.navigationController.navigationBar.tintColor = stockdOrangeColor;
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
-    
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"listDetailsSegue"]){
+        ListDetailViewController *listDetailVC = segue.destinationViewController;
+        listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] sourceListID];
+        List *list = [self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        listDetailVC.list = list;
+    }
+}
+
+#pragma mark - TableView Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.lists.count;
@@ -81,17 +88,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    PFUser *user = [PFUser currentUser];
-    List *list =[self.lists objectAtIndex:indexPath.row];
 
-    if(editingStyle == UITableViewCellEditingStyleDelete){
-        [list deleteListWithBlock:^{
-            [self getLists:user];
-        }];
-//        [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            [self getLists:user];
-//        }];
-    }
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,7 +113,6 @@
             textField.placeholder = @"Enter email address";;
         }];
         UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            NSLog(@"share");
             List *shareList = [[List alloc] init];
             [shareList shareThisList:list withThisUser: [alert.textFields[0] valueForKey:@"text"]];
             list.isShared = YES;
@@ -129,7 +125,6 @@
 
         [alert addAction:share];
         [alert addAction:cancel];
-
         [self presentViewController:alert animated:YES completion:nil];
 
         [self.tableView setEditing:NO];
@@ -164,25 +159,7 @@
     }
 }
 
-
-- (IBAction)createListOnButtonPress:(id)sender {
-    if([self.listName.text isEqualToString:@""]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"YO!" message:@"check yourself before you wreck yourself. Need a title buddy" preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            return;
-        }];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else{
-        List *list = [[List alloc]init];
-        PFUser *user = [PFUser currentUser];
-        [list createNewList:user :self.listName.text withBlock:^{
-            self.listName.text = @"";
-            [self getLists:user];
-        }];
-    }
-}
+#pragma mark - Helper Methods
 
 -(void) getLists: (PFUser *)currentUser{
     NSPredicate *quickListPredicate = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = true)", currentUser.objectId];
@@ -190,7 +167,7 @@
     //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
     [quickListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
-            NSLog(@"%@", error);
+            NSLog(@"Error finding Quick List: %@", error);
         }
         else{
             NSArray *quickList = objects;
@@ -200,7 +177,7 @@
             //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
             [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if(error) {
-                    NSLog(@"%@", error);
+                    NSLog(@"Error finding lists: %@", error);
                 }
                 else{
                     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
@@ -213,12 +190,25 @@
     }];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"listDetailsSegue"]){
-        ListDetailViewController *listDetailVC = segue.destinationViewController;
-        listDetailVC.listID = [[self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row] sourceListID];
-        List *list = [self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        listDetailVC.list = list;
+#pragma mark - IBActions
+
+- (IBAction)createListOnButtonPress:(id)sender {
+    if([self.listName.text isEqualToString:@""]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Title missing!" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.listName becomeFirstResponder];
+        }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else{
+        List *list = [[List alloc]init];
+        PFUser *user = [PFUser currentUser];
+        [list createNewList:user :self.listName.text withBlock:^{
+            self.listName.text = @"";
+            [self.listName resignFirstResponder];
+            [self getLists:user];
+        }];
     }
 }
 

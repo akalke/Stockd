@@ -19,7 +19,10 @@
 }
 
 - (NSString *)subtitle {
-    return [NSString stringWithFormat:@"Tap to Call: %@", self.phoneNumber];
+    NSString *address = [NSString stringWithFormat:@"%@ %@", self.placemark.subThoroughfare, self.placemark.thoroughfare];
+    NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
+    
+    return [NSString stringWithFormat:@"%@", fixedAddress];
 }
 
 @end
