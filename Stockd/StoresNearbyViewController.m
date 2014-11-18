@@ -19,8 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *mapsButton;
 @property (weak, nonatomic) IBOutlet UIButton *phoneButton;
-@property (weak, nonatomic) IBOutlet UILabel *openInMapsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *callStoreLabel;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
 @property MKMapItem *mapItem;
@@ -211,21 +209,17 @@
 - (void)hideMapsAndPhoneObjects {
     self.mapsButton.hidden = YES;
     self.mapsButton.userInteractionEnabled = NO;
-    self.openInMapsLabel.hidden = YES;
     
     self.phoneButton.hidden = YES;
     self.phoneButton.userInteractionEnabled = NO;
-    self.callStoreLabel.hidden = YES;
 }
 
 - (void)showMapsAndPhoneObjects {
     self.mapsButton.hidden = NO;
     self.mapsButton.userInteractionEnabled = YES;
-    self.openInMapsLabel.hidden = NO;
     
     self.phoneButton.hidden = NO;
     self.phoneButton.userInteractionEnabled = YES;
-    self.callStoreLabel.hidden = NO;
 }
 
 - (void)fillTextViewAndMakeMapItemWith:(Store *)store {

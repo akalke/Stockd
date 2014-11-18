@@ -846,7 +846,7 @@
                                     <constraint firstAttribute="width" constant="40" id="Y4m-mP-cBl"/>
                                     <constraint firstAttribute="height" constant="40" id="YJc-qo-ORC"/>
                                 </constraints>
-                                <state key="normal" image="stockd_buttonicon-maps">
+                                <state key="normal" image="stockd_buttonicon-car">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -866,16 +866,6 @@
                                     <action selector="onPhoneButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="wyt-C2-sw8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maps:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKc-Zd-IS0">
-                                <rect key="frame" x="502" y="464" width="40" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="3Rm-fH-ykJ"/>
-                                    <constraint firstAttribute="height" constant="21" id="mQ0-RN-7jy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed1-Wr-0Te">
                                 <rect key="frame" x="555" y="64" width="45" height="45"/>
                                 <constraints>
@@ -889,36 +879,22 @@
                                     <action selector="onUseCurrentLocationButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="1Gv-Ts-C60"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-aD-CkR">
-                                <rect key="frame" x="512" y="512" width="30" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="0MH-AS-L6w"/>
-                                    <constraint firstAttribute="height" constant="21" id="Wtc-6s-gEy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="Af5-aD-CkR" secondAttribute="bottom" constant="18" id="5cR-do-h94"/>
                             <constraint firstItem="X9Y-6s-h42" firstAttribute="trailing" secondItem="JS1-XL-7ev" secondAttribute="trailingMargin" id="9EA-ja-Tqa"/>
                             <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="L48-Nu-THh" secondAttribute="bottom" id="AMl-rv-K3C"/>
                             <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="Dl0-x1-Hc2"/>
                             <constraint firstItem="a6K-M8-WQW" firstAttribute="trailing" secondItem="JS1-XL-7ev" secondAttribute="trailingMargin" id="DuB-oJ-IJ5"/>
                             <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" id="M5f-db-zXf"/>
                             <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="PvX-IS-w9s"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Af5-aD-CkR" secondAttribute="trailing" constant="42" id="QYt-lH-0jT"/>
                             <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="R9w-kk-edf"/>
                             <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="X9Y-6s-h42" secondAttribute="bottom" constant="8" id="WU5-vH-2y9"/>
                             <constraint firstItem="X9Y-6s-h42" firstAttribute="top" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="8" id="WnC-s8-RPE"/>
                             <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="agw-tu-NwA"/>
                             <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="b5K-ho-X3g"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IKc-Zd-IS0" secondAttribute="trailing" constant="42" id="cAD-tF-w5o"/>
                             <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="nMs-Fg-D0h"/>
-                            <constraint firstItem="Af5-aD-CkR" firstAttribute="top" secondItem="IKc-Zd-IS0" secondAttribute="bottom" constant="27" id="vWV-76-M4o"/>
                             <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" id="y3g-Ln-sQZ"/>
                         </constraints>
                         <connections>
@@ -929,10 +905,8 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="callStoreLabel" destination="Af5-aD-CkR" id="BPv-8b-DRl"/>
                         <outlet property="mapView" destination="for-Ee-Cli" id="A6N-lZ-xbj"/>
                         <outlet property="mapsButton" destination="a6K-M8-WQW" id="kjQ-fI-uF8"/>
-                        <outlet property="openInMapsLabel" destination="IKc-Zd-IS0" id="FZm-7u-2XJ"/>
                         <outlet property="phoneButton" destination="X9Y-6s-h42" id="Ssa-j3-Oi2"/>
                         <outlet property="textView" destination="L48-Nu-THh" id="vSS-sT-7i8"/>
                     </connections>
@@ -1025,8 +999,8 @@
     </scenes>
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
+        <image name="stockd_buttonicon-car" width="37" height="37"/>
         <image name="stockd_buttonicon-currentlocation" width="37" height="37"/>
-        <image name="stockd_buttonicon-maps" width="37" height="37"/>
         <image name="stockd_buttonicon-phone" width="37" height="37"/>
         <image name="stockd_tabbaricon-lists" width="37" height="37"/>
         <image name="stockd_tabbaricon-mypantry" width="37" height="37"/>
