@@ -8,6 +8,7 @@
 
 #define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+#define peachBackground [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0]
 
 #import "HomeViewController.h"
 #import "ListDetailViewController.h"
@@ -30,7 +31,8 @@
     tabBar.tintColor = stockdOrangeColor;
     tabBar.translucent = NO;
     
-    self.tableView.backgroundColor = [UIColor lightGrayColor];
+    self.tableView.backgroundColor = peachBackground;
+    self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -41,7 +43,7 @@
     self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
     self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
 }
 
@@ -65,6 +67,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyListsCell" forIndexPath: indexPath];
     cell.textLabel.text = list.name;
     cell.imageView.image = [UIImage imageNamed:@"stockd_annotation"];
+    cell.imageView.backgroundColor = peachBackground;
 
     if(list.isShared == NO) {
         cell.detailTextLabel.text = @"Not shared";

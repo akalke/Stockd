@@ -316,7 +316,7 @@
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-punchout_500p" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-vL-i5h">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_punchout" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-vL-i5h">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-N5-jAD">
@@ -401,7 +401,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XU9-VW-wgv"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XU9-VW-wgv">
+                                <constraints>
+                                    <constraint firstAttribute="height" id="ObB-vX-mwI"/>
+                                    <constraint firstAttribute="width" id="jCv-0f-I0E"/>
+                                </constraints>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Username" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
                                 <rect key="frame" x="0.0" y="313" width="600" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.68024668050000003" blue="0.41238133690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -437,6 +442,9 @@
                                     <segue destination="qV9-KS-hcA" kind="show" identifier="showTabBarSegue" id="VP3-XV-7qB"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_punchout" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-Qb-Kte">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-09-dEu">
                                 <rect key="frame" x="235" y="495" width="130" height="30"/>
                                 <constraints>
@@ -466,27 +474,36 @@
                                     <action selector="forgotPasswordOnButtonPress:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="wBy-Uh-JKh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock'd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xh2-TF-TxT">
+                                <rect key="frame" x="148" y="242" width="304" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="304" id="HDl-sj-2rQ"/>
+                                    <constraint firstAttribute="height" constant="34" id="n6r-kD-I3x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Your One Stop Shop on the Go!&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bP-iR-2JJ">
-                                <rect key="frame" x="148" y="245" width="304" height="34"/>
+                                <rect key="frame" x="148" y="265" width="304" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="7fc-kX-Lny"/>
                                     <constraint firstAttribute="width" constant="304" id="Sem-QG-eMJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-LightOblique" family="Avenir" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="Avenir-LightOblique" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-punchout_500p" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-Qb-Kte">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="uUe-Qb-Kte" firstAttribute="leading" secondItem="XU9-VW-wgv" secondAttribute="leading" id="4SA-gw-stY"/>
-                            <constraint firstItem="3bP-iR-2JJ" firstAttribute="top" secondItem="HBO-yp-JYt" secondAttribute="bottom" constant="225" id="AcM-Mp-By2"/>
+                            <constraint firstItem="Xh2-TF-TxT" firstAttribute="leading" secondItem="3bP-iR-2JJ" secondAttribute="leading" id="7Iw-jX-UUb"/>
+                            <constraint firstItem="3bP-iR-2JJ" firstAttribute="top" secondItem="HBO-yp-JYt" secondAttribute="bottom" constant="245" id="AcM-Mp-By2"/>
                             <constraint firstItem="cDi-Rz-KSf" firstAttribute="top" secondItem="HBO-yp-JYt" secondAttribute="bottom" constant="293" id="Foz-4T-Qc0"/>
                             <constraint firstItem="zJx-09-dEu" firstAttribute="top" secondItem="8y2-ty-k6G" secondAttribute="bottom" constant="8" id="GWH-tA-wRO"/>
+                            <constraint firstItem="cDi-Rz-KSf" firstAttribute="top" secondItem="Xh2-TF-TxT" secondAttribute="bottom" constant="37" id="HQs-yx-AU9"/>
                             <constraint firstItem="uUe-Qb-Kte" firstAttribute="top" secondItem="XU9-VW-wgv" secondAttribute="top" id="ID9-mP-bjG"/>
                             <constraint firstAttribute="centerX" secondItem="3bP-iR-2JJ" secondAttribute="centerX" id="UyJ-d8-2aZ"/>
                             <constraint firstAttribute="centerX" secondItem="OCX-1h-fdP" secondAttribute="centerX" id="XG2-wm-cPn"/>
@@ -1002,10 +1019,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo_punchout" width="150" height="150"/>
         <image name="stockd_buttonicon-car" width="37" height="37"/>
         <image name="stockd_buttonicon-currentlocation" width="37" height="37"/>
         <image name="stockd_buttonicon-phone" width="37" height="37"/>
-        <image name="stockd_icon-punchout_500p" width="150" height="150"/>
         <image name="stockd_tabbaricon-lists" width="37" height="37"/>
         <image name="stockd_tabbaricon-mypantry" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
