@@ -99,16 +99,6 @@
     [self fillTextViewAndMakeMapItemWith:store];
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    if (view.annotation == mapView.userLocation) {
-        return;
-    }
-    
-    Store *store = view.annotation;
-    NSString *stringURL = [NSString stringWithFormat:@"tel:%@", store.phoneNumber];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringURL]];
-}
-
 #pragma mark - LocationManager Methods
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
