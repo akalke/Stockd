@@ -22,11 +22,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setLoginScreen];
     
+
+}
+
+-(void)setLoginScreen{
+    //Setup Login Screen
+    self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
+    //Set Tap Gestures
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
     [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
