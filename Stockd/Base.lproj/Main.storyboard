@@ -316,8 +316,26 @@
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-punchout_500p" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-vL-i5h">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-N5-jAD">
+                                <rect key="frame" x="276" y="550" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="RhK-Mg-xrM"/>
+                                    <constraint firstAttribute="width" constant="48" id="wcY-PR-YI8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.92524314409999997" green="0.46230683007763462" blue="0.37372379041598019" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCancelButtonPressed:" destination="RCI-mT-dWH" eventType="touchUpInside" id="IYl-hR-MXN"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsL-ES-4pj">
-                                <rect key="frame" x="240" y="493" width="120" height="40"/>
+                                <rect key="frame" x="240" y="510" width="120" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="My0-9Y-e76"/>
                                     <constraint firstAttribute="height" constant="40" id="YIx-Ve-xmN"/>
@@ -332,34 +350,23 @@
                                     <action selector="createUserOnRegister:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="k04-1q-hFP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-N5-jAD">
-                                <rect key="frame" x="276" y="533" width="48" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="RhK-Mg-xrM"/>
-                                    <constraint firstAttribute="width" constant="48" id="wcY-PR-YI8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" red="0.92524314409999997" green="0.46230683007763462" blue="0.37372379041598019" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onCancelButtonPressed:" destination="RCI-mT-dWH" eventType="touchUpInside" id="IYl-hR-MXN"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="wsL-ES-4pj" firstAttribute="top" secondItem="sVb-Wn-ENz" secondAttribute="bottom" constant="473" id="0iI-sY-BdP"/>
+                            <constraint firstItem="wsL-ES-4pj" firstAttribute="top" secondItem="sVb-Wn-ENz" secondAttribute="bottom" constant="490" id="0iI-sY-BdP"/>
+                            <constraint firstItem="Hag-vL-i5h" firstAttribute="leading" secondItem="dYG-mj-rpS" secondAttribute="leading" id="8dZ-9b-t2J"/>
                             <constraint firstAttribute="centerX" secondItem="dYG-mj-rpS" secondAttribute="centerX" id="CSp-p6-W1Z"/>
                             <constraint firstAttribute="centerX" secondItem="Bd4-AH-bOW" secondAttribute="centerX" id="Eu9-Uc-ZXf"/>
                             <constraint firstItem="vQH-ry-NGn" firstAttribute="top" secondItem="sVb-Wn-ENz" secondAttribute="bottom" constant="413" id="e77-0N-9kl"/>
                             <constraint firstItem="dYG-mj-rpS" firstAttribute="top" secondItem="sVb-Wn-ENz" secondAttribute="bottom" constant="293" id="eoO-YE-AEH"/>
+                            <constraint firstItem="Hag-vL-i5h" firstAttribute="top" secondItem="UGf-15-kpG" secondAttribute="top" id="f0W-hA-gTU"/>
                             <constraint firstAttribute="centerX" secondItem="4AF-N5-jAD" secondAttribute="centerX" id="gJM-em-7Um"/>
                             <constraint firstItem="4AF-N5-jAD" firstAttribute="top" secondItem="wsL-ES-4pj" secondAttribute="bottom" id="ghh-X8-LuA"/>
+                            <constraint firstItem="Hag-vL-i5h" firstAttribute="trailing" secondItem="dYG-mj-rpS" secondAttribute="trailing" id="ll6-be-tjQ"/>
                             <constraint firstItem="Bd4-AH-bOW" firstAttribute="top" secondItem="sVb-Wn-ENz" secondAttribute="bottom" constant="353" id="vBy-xK-jzA"/>
                             <constraint firstAttribute="centerX" secondItem="wsL-ES-4pj" secondAttribute="centerX" id="wlf-bf-TUP"/>
+                            <constraint firstItem="dYG-mj-rpS" firstAttribute="top" secondItem="Hag-vL-i5h" secondAttribute="bottom" constant="14" id="wwc-zS-v96"/>
                             <constraint firstAttribute="centerX" secondItem="vQH-ry-NGn" secondAttribute="centerX" id="yYm-xh-pCF"/>
                         </constraints>
                         <connections>
@@ -394,7 +401,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XU9-VW-wgv"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XU9-VW-wgv"/>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Username" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-Rz-KSf">
                                 <rect key="frame" x="0.0" y="313" width="600" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.68024668050000003" blue="0.41238133690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -430,6 +437,21 @@
                                     <segue destination="qV9-KS-hcA" kind="show" identifier="showTabBarSegue" id="VP3-XV-7qB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-09-dEu">
+                                <rect key="frame" x="235" y="495" width="130" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5Q7-OT-a2W"/>
+                                    <constraint firstAttribute="width" constant="130" id="t22-lj-D91"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="Register New User">
+                                    <color key="titleColor" red="0.92524314409999997" green="0.46230683010000001" blue="0.37372379039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerNewUser:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="Y0z-g4-MWs"/>
+                                    <segue destination="RCI-mT-dWH" kind="presentation" identifier="registerNewUserSegue" id="vJO-kn-Qne"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4o-M7-YCO">
                                 <rect key="frame" x="237" y="533" width="126" height="30"/>
                                 <constraints>
@@ -454,37 +476,31 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-09-dEu">
-                                <rect key="frame" x="235" y="495" width="130" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="5Q7-OT-a2W"/>
-                                    <constraint firstAttribute="width" constant="130" id="t22-lj-D91"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
-                                <state key="normal" title="Register New User">
-                                    <color key="titleColor" red="0.92524314409999997" green="0.46230683010000001" blue="0.37372379039999998" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="registerNewUser:" destination="ELq-GA-Hdm" eventType="touchUpInside" id="Y0z-g4-MWs"/>
-                                    <segue destination="RCI-mT-dWH" kind="presentation" identifier="registerNewUserSegue" id="vJO-kn-Qne"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-punchout_500p" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-Qb-Kte">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="uUe-Qb-Kte" firstAttribute="leading" secondItem="XU9-VW-wgv" secondAttribute="leading" id="4SA-gw-stY"/>
                             <constraint firstItem="3bP-iR-2JJ" firstAttribute="top" secondItem="HBO-yp-JYt" secondAttribute="bottom" constant="225" id="AcM-Mp-By2"/>
                             <constraint firstItem="cDi-Rz-KSf" firstAttribute="top" secondItem="HBO-yp-JYt" secondAttribute="bottom" constant="293" id="Foz-4T-Qc0"/>
                             <constraint firstItem="zJx-09-dEu" firstAttribute="top" secondItem="8y2-ty-k6G" secondAttribute="bottom" constant="8" id="GWH-tA-wRO"/>
+                            <constraint firstItem="uUe-Qb-Kte" firstAttribute="top" secondItem="XU9-VW-wgv" secondAttribute="top" id="ID9-mP-bjG"/>
                             <constraint firstAttribute="centerX" secondItem="3bP-iR-2JJ" secondAttribute="centerX" id="UyJ-d8-2aZ"/>
                             <constraint firstAttribute="centerX" secondItem="OCX-1h-fdP" secondAttribute="centerX" id="XG2-wm-cPn"/>
+                            <constraint firstItem="uUe-Qb-Kte" firstAttribute="top" secondItem="QXS-Vf-g31" secondAttribute="top" id="Xhz-A6-opc"/>
+                            <constraint firstItem="uUe-Qb-Kte" firstAttribute="leading" secondItem="cDi-Rz-KSf" secondAttribute="leading" id="bym-om-ov0"/>
                             <constraint firstItem="OCX-1h-fdP" firstAttribute="top" secondItem="cDi-Rz-KSf" secondAttribute="bottom" constant="13" id="dgg-Zo-juv"/>
+                            <constraint firstItem="uUe-Qb-Kte" firstAttribute="trailing" secondItem="cDi-Rz-KSf" secondAttribute="trailing" id="dmh-iK-LCj"/>
                             <constraint firstAttribute="centerX" secondItem="D4o-M7-YCO" secondAttribute="centerX" id="g68-bE-k8j"/>
                             <constraint firstItem="8y2-ty-k6G" firstAttribute="top" secondItem="OCX-1h-fdP" secondAttribute="bottom" constant="31" id="k4e-CL-Kd1"/>
                             <constraint firstItem="D4o-M7-YCO" firstAttribute="top" secondItem="zJx-09-dEu" secondAttribute="bottom" constant="8" id="rAt-IF-aEW"/>
                             <constraint firstAttribute="centerX" secondItem="8y2-ty-k6G" secondAttribute="centerX" id="vL7-KP-Asw"/>
                             <constraint firstAttribute="centerX" secondItem="cDi-Rz-KSf" secondAttribute="centerX" id="wdx-sh-gI0"/>
                             <constraint firstAttribute="centerX" secondItem="zJx-09-dEu" secondAttribute="centerX" constant="-0.5" id="xYk-S6-vT4"/>
+                            <constraint firstItem="cDi-Rz-KSf" firstAttribute="top" secondItem="uUe-Qb-Kte" secondAttribute="bottom" constant="14" id="xhN-Q1-5ZE"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="FLd-xJ-ECS" appends="YES" id="BeG-P3-HTZ"/>
@@ -989,13 +1005,14 @@
         <image name="stockd_buttonicon-car" width="37" height="37"/>
         <image name="stockd_buttonicon-currentlocation" width="37" height="37"/>
         <image name="stockd_buttonicon-phone" width="37" height="37"/>
+        <image name="stockd_icon-punchout_500p" width="150" height="150"/>
         <image name="stockd_tabbaricon-lists" width="37" height="37"/>
         <image name="stockd_tabbaricon-mypantry" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b3f-dZ-mbZ"/>
+        <segue reference="VP3-XV-7qB"/>
         <segue reference="3fI-09-ph0"/>
     </inferredMetricsTieBreakers>
 </document>
