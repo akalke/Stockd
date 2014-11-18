@@ -55,7 +55,7 @@
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.title = @"Settings";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:24.0f],NSForegroundColorAttributeName:stockdOrangeColor};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 

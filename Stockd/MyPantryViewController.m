@@ -36,7 +36,7 @@
     self.navigationController.navigationBar.barTintColor = stockdBlueColor;
     self.navigationController.navigationBar.tintColor = stockdOrangeColor;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:30.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     
     self.didSelectItem = NO;
