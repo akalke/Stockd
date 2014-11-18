@@ -69,10 +69,14 @@
     cell.imageView.image = [UIImage imageNamed:@"stockd_annotation"];
     cell.imageView.backgroundColor = peachBackground;
 
-    if(list.isShared == NO) {
+    if (list.isQuickList == YES) {
+        cell.detailTextLabel.text = @"";
+    }
+    
+    if(list.isShared == NO && list.isQuickList == NO) {
         cell.detailTextLabel.text = @"Not shared";
     }
-    else{
+    else if (list.isShared == YES && list.isQuickList == NO){
 
         cell.detailTextLabel.text = @"Shared";
     }
@@ -113,7 +117,8 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with" preferredStyle:UIAlertControllerStyleAlert];
 
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"Enter email address";;
+            textField.placeholder = @"Enter email address";
+            textField.keyboardType = UIKeyboardTypeEmailAddress;
         }];
         UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             List *shareList = [[List alloc] init];
