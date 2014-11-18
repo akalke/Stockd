@@ -16,9 +16,8 @@
 
 @interface StoresNearbyViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIView *viewForTextViewAndButtons;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UIButton *mapsButton;
-@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
 @property MKMapItem *mapItem;
@@ -196,23 +195,14 @@
 
 - (void)hideTextViewAndButtons {
     self.textView.text = @"";
-    self.textView.hidden = YES;
     
-    self.mapsButton.hidden = YES;
-    self.mapsButton.userInteractionEnabled = NO;
-    
-    self.phoneButton.hidden = YES;
-    self.phoneButton.userInteractionEnabled = NO;
+    self.viewForTextViewAndButtons.hidden = YES;
 }
 
 - (void)showTextViewAndButtons {
     self.textView.hidden = NO;
     
-    self.mapsButton.hidden = NO;
-    self.mapsButton.userInteractionEnabled = YES;
-    
-    self.phoneButton.hidden = NO;
-    self.phoneButton.userInteractionEnabled = YES;
+    self.viewForTextViewAndButtons.hidden = NO;
 }
 
 - (void)fillTextViewAndMakeMapItemWith:(Store *)store {
