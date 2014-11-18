@@ -30,33 +30,6 @@
     self.passwordTextField.delegate = self;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.viewTopConstraint.constant = -50;
-        self.viewBottomConstraint.constant = 50;
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.viewTopConstraint.constant = 0;
-        self.viewBottomConstraint.constant = 0;
-        [self.view layoutIfNeeded];
-    }];
-}
-
--(void)setLoginScreen{
-    //Setup Login Screen
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
-    //Set Tap Gestures
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
-    [tapGesture setNumberOfTapsRequired:1];
-    [tapGesture setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:tapGesture];
-
-}
-
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -78,7 +51,36 @@
     return NO;
 }
 
+#pragma mark - TextField Methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = -110;
+        self.viewBottomConstraint.constant = 110;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = 0;
+        self.viewBottomConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+    }];
+}
+
 #pragma mark - Helper Methods
+
+-(void)setLoginScreen{
+    //Setup Login Screen
+    self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
+    //Set Tap Gestures
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:tapGesture];
+    
+}
 
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self resignKeyboard];

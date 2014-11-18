@@ -12,7 +12,9 @@
 #import "RegisterNewUserViewController.h"
 #import "List.h"
 
-@interface RegisterNewUserViewController () <UIGestureRecognizerDelegate>
+@interface RegisterNewUserViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewBottomConstraint;
 @property (strong, nonatomic) IBOutlet UITextField *registerUsernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *registerPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *registerConfirmPasswordTextField;
@@ -23,6 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.registerUsernameTextField.delegate = self;
+    self.registerPasswordTextField.delegate = self;
+    self.registerConfirmPasswordTextField.delegate = self;
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
     [tapGesture setNumberOfTouchesRequired:1];
@@ -30,10 +36,34 @@
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
 }
 
+#pragma mark - TextField Methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = -170;
+        self.viewBottomConstraint.constant = 170;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = 0;
+        self.viewBottomConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+    }];
+}
+
 #pragma mark - Helper Methods
 
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self resignKeyboard];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = 0;
+        self.viewBottomConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)resignKeyboard {
