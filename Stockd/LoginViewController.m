@@ -11,9 +11,11 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController () <UIGestureRecognizerDelegate>
+@interface LoginViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewBottomConstraint;
 @property BOOL loginSuccess;
 
 @end
@@ -24,7 +26,31 @@
     [super viewDidLoad];
     [self setLoginScreen];
     
+//    self.usernameTextField.delegate = self;
+    
+    if (self.usernameTextField.isEditing) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.viewTopConstraint.constant = -50;
+            self.viewBottomConstraint.constant = 50;
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.viewTopConstraint.constant = -50;
+        self.viewBottomConstraint.constant = 50;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.viewTopConstraint.constant = 50;
+        self.viewBottomConstraint.constant = -50;
+        [self.view layoutIfNeeded];
+    }];
 }
 
 -(void)setLoginScreen{
