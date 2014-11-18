@@ -826,63 +826,100 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="for-Ee-Cli">
-                                <rect key="frame" x="0.0" y="64" width="600" height="359"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="387"/>
                                 <connections>
                                     <outlet property="delegate" destination="vpz-u8-6js" id="jq9-p6-yaC"/>
                                 </connections>
                             </mapView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L48-Nu-THh">
-                                <rect key="frame" x="0.0" y="431" width="600" height="120"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="TextView" translatesAutoresizingMaskIntoConstraints="NO" id="L48-Nu-THh">
+                                <rect key="frame" x="0.0" y="451" width="600" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="Dxo-9B-9Sp"/>
+                                    <constraint firstAttribute="height" constant="100" id="AOb-II-55N"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed1-Wr-0Te">
-                                <rect key="frame" x="470" y="71" width="130" height="15"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-M8-WQW">
+                                <rect key="frame" x="544" y="455" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="Szy-ce-Ns1"/>
-                                    <constraint firstAttribute="height" constant="15" id="ZQb-5H-Qqw"/>
+                                    <constraint firstAttribute="width" constant="40" id="Y4m-mP-cBl"/>
+                                    <constraint firstAttribute="height" constant="40" id="YJc-qo-ORC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Use Current Location">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onUseCurrentLocationButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="1Gv-Ts-C60"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-M8-WQW">
-                                <rect key="frame" x="252" y="431" width="97" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="c3f-U1-Zs4"/>
-                                    <constraint firstAttribute="height" constant="25" id="qnh-z7-gqr"/>
-                                </constraints>
-                                <state key="normal" title="Open In Maps">
+                                <state key="normal" image="stockd_buttonicon-maps">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onOpenMapsButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="7tv-23-Thk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9Y-6s-h42">
+                                <rect key="frame" x="544" y="503" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="CCp-SR-tFf"/>
+                                    <constraint firstAttribute="height" constant="40" id="bBu-eP-TeT"/>
+                                </constraints>
+                                <state key="normal" image="stockd_buttonicon-phone">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPhoneButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="wyt-C2-sw8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open In Maps:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKc-Zd-IS0">
+                                <rect key="frame" x="440" y="464" width="105" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="105" id="3Rm-fH-ykJ"/>
+                                    <constraint firstAttribute="height" constant="21" id="mQ0-RN-7jy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call Store:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-aD-CkR">
+                                <rect key="frame" x="470" y="512" width="75" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="0MH-AS-L6w"/>
+                                    <constraint firstAttribute="height" constant="21" id="Wtc-6s-gEy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed1-Wr-0Te">
+                                <rect key="frame" x="555" y="64" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="MD6-jl-byR"/>
+                                    <constraint firstAttribute="width" constant="45" id="ed3-Mb-cgh"/>
+                                </constraints>
+                                <state key="normal" image="stockd_buttonicon-currentlocation">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onUseCurrentLocationButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="1Gv-Ts-C60"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="95" id="25J-aZ-kiI"/>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="Abo-Lw-8fg"/>
-                            <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="E4K-T2-mZ1"/>
-                            <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="EU5-F2-vaS"/>
-                            <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" constant="7" id="HTL-S6-0dC"/>
-                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="Hcw-h2-Mis"/>
-                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" constant="8" id="K5D-nD-V6p"/>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="L48-Nu-THh" secondAttribute="bottom" id="WQt-YF-6EI"/>
-                            <constraint firstAttribute="centerX" secondItem="a6K-M8-WQW" secondAttribute="centerX" id="fR7-Bo-UeW"/>
-                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="fad-Pb-azT"/>
-                            <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" id="mgI-z6-CHb"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="Af5-aD-CkR" secondAttribute="bottom" constant="18" id="5cR-do-h94"/>
+                            <constraint firstItem="X9Y-6s-h42" firstAttribute="trailing" secondItem="JS1-XL-7ev" secondAttribute="trailingMargin" id="9EA-ja-Tqa"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="L48-Nu-THh" secondAttribute="bottom" id="AMl-rv-K3C"/>
+                            <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="Dl0-x1-Hc2"/>
+                            <constraint firstItem="a6K-M8-WQW" firstAttribute="trailing" secondItem="JS1-XL-7ev" secondAttribute="trailingMargin" id="DuB-oJ-IJ5"/>
+                            <constraint firstAttribute="trailing" secondItem="L48-Nu-THh" secondAttribute="trailing" id="M5f-db-zXf"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="PvX-IS-w9s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Af5-aD-CkR" secondAttribute="trailing" constant="39" id="QYt-lH-0jT"/>
+                            <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="R9w-kk-edf"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="X9Y-6s-h42" secondAttribute="bottom" constant="8" id="WU5-vH-2y9"/>
+                            <constraint firstItem="X9Y-6s-h42" firstAttribute="top" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="8" id="WnC-s8-RPE"/>
+                            <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="agw-tu-NwA"/>
+                            <constraint firstItem="L48-Nu-THh" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="b5K-ho-X3g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IKc-Zd-IS0" secondAttribute="trailing" constant="39" id="cAD-tF-w5o"/>
+                            <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="nMs-Fg-D0h"/>
+                            <constraint firstItem="Af5-aD-CkR" firstAttribute="top" secondItem="IKc-Zd-IS0" secondAttribute="bottom" constant="27" id="vWV-76-M4o"/>
+                            <constraint firstItem="L48-Nu-THh" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" id="y3g-Ln-sQZ"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="DYQ-1X-ked" appends="YES" id="y8o-YW-aPz"/>
@@ -892,8 +929,11 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="callStoreLabel" destination="Af5-aD-CkR" id="BPv-8b-DRl"/>
                         <outlet property="mapView" destination="for-Ee-Cli" id="A6N-lZ-xbj"/>
                         <outlet property="mapsButton" destination="a6K-M8-WQW" id="kjQ-fI-uF8"/>
+                        <outlet property="openInMapsLabel" destination="IKc-Zd-IS0" id="FZm-7u-2XJ"/>
+                        <outlet property="phoneButton" destination="X9Y-6s-h42" id="Ssa-j3-Oi2"/>
                         <outlet property="textView" destination="L48-Nu-THh" id="vSS-sT-7i8"/>
                     </connections>
                 </viewController>
@@ -906,11 +946,11 @@
             </objects>
             <point key="canvasLocation" x="1625" y="144"/>
         </scene>
-        <!--Home-->
+        <!--Lists-->
         <scene sceneID="6f3-t9-Zar">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sFF-9w-XYw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="stockd_tabbaricon-home" id="wjL-Jm-KEf"/>
+                    <tabBarItem key="tabBarItem" title="Lists" image="stockd_tabbaricon-lists" id="wjL-Jm-KEf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nt7-m2-CPC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -929,7 +969,7 @@
         <scene sceneID="bsx-J0-CEt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uuO-1R-fZo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Pantry" image="stockd_tabbaricon-pantry" id="6pi-u7-9uv"/>
+                    <tabBarItem key="tabBarItem" title="My Pantry" image="stockd_tabbaricon-mypantry" id="6pi-u7-9uv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d2m-xp-L3f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -985,8 +1025,11 @@
     </scenes>
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
-        <image name="stockd_tabbaricon-home" width="37" height="37"/>
-        <image name="stockd_tabbaricon-pantry" width="37" height="37"/>
+        <image name="stockd_buttonicon-currentlocation" width="37" height="37"/>
+        <image name="stockd_buttonicon-maps" width="37" height="37"/>
+        <image name="stockd_buttonicon-phone" width="37" height="37"/>
+        <image name="stockd_tabbaricon-lists" width="37" height="37"/>
+        <image name="stockd_tabbaricon-mypantry" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>

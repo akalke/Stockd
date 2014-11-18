@@ -18,13 +18,16 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *mapsButton;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+@property (weak, nonatomic) IBOutlet UILabel *openInMapsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *callStoreLabel;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *storeArray;
 @property MKMapItem *mapItem;
 @property UISearchBar *searchBar;
+@property NSString *storePhoneNumber;
 @property BOOL userLocationUpdated;
 @property BOOL didSearchForNearbyStores;
-
 
 @end
 
@@ -45,7 +48,7 @@
     
     self.storeArray = [NSMutableArray array];
     
-    self.mapsButton.hidden = YES;
+    [self hideMapsAndPhoneObjects];
     
     self.textView.text = @"";
     
@@ -74,7 +77,6 @@
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
     pin.image = [UIImage imageNamed:@"stockd_annotation"];
     pin.canShowCallout = YES;
-    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
     
     return pin;
 }
@@ -92,7 +94,7 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (view.annotation == mapView.userLocation) {
-        self.mapsButton.hidden = YES;
+        [self hideMapsAndPhoneObjects];
         self.textView.text = @"";
         return;
     }
@@ -206,16 +208,38 @@
     [self.searchBar resignFirstResponder];
 }
 
+- (void)hideMapsAndPhoneObjects {
+    self.mapsButton.hidden = YES;
+    self.mapsButton.userInteractionEnabled = NO;
+    self.openInMapsLabel.hidden = YES;
+    
+    self.phoneButton.hidden = YES;
+    self.phoneButton.userInteractionEnabled = NO;
+    self.callStoreLabel.hidden = YES;
+}
+
+- (void)showMapsAndPhoneObjects {
+    self.mapsButton.hidden = NO;
+    self.mapsButton.userInteractionEnabled = YES;
+    self.openInMapsLabel.hidden = NO;
+    
+    self.phoneButton.hidden = NO;
+    self.phoneButton.userInteractionEnabled = YES;
+    self.callStoreLabel.hidden = NO;
+}
+
 - (void)fillTextViewAndMakeMapItemWith:(Store *)store {
     NSString *address = [NSString stringWithFormat:@"%@ %@ \n%@, %@", store.placemark.subThoroughfare, store.placemark.thoroughfare, store.placemark.locality, store.placemark.administrativeArea];
     NSString *fixedAddress = [address stringByReplacingOccurrencesOfString:@"(null) " withString:@""];
     
-    self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode, store.phoneNumber];
+    self.textView.text = [NSString stringWithFormat:@"Store Details: \n%@ \n%@ \n%@", store.name, fixedAddress, store.placemark.postalCode];
+    
+    self.storePhoneNumber = store.phoneNumber;
     
     MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
     self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
     
-    self.mapsButton.hidden = NO;
+    [self showMapsAndPhoneObjects];
 }
 
 - (void)setStorePins {
@@ -278,6 +302,11 @@
 
 - (IBAction)onOpenMapsButtonPressed:(id)sender {
     [self.mapItem openInMapsWithLaunchOptions:nil];
+}
+
+- (IBAction)onPhoneButtonPressed:(id)sender {
+    NSString *stringURL = [NSString stringWithFormat:@"tel:%@", self.storePhoneNumber];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringURL]];
 }
 
 @end
