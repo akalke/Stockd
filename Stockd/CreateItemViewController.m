@@ -119,11 +119,11 @@
             [self noDescriptionAlert];
         } else {
             if (self.fromMyPantry == YES) {
-                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inInventory:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inPantry:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
                     [self dismissViewControllerAndResetBOOLs];
                 }];
             } else if (self.fromListDetails == YES) {
-                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inInventory:NO isInQuickList:NO withImage:self.imageView.image withBlock:^{
+                [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inPantry:NO isInQuickList:NO withImage:self.imageView.image withBlock:^{
                     [self dismissViewControllerAndResetBOOLs];
                 }];
             }

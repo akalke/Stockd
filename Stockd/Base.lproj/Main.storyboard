@@ -8,7 +8,7 @@
         <!--My Pantry View Controller-->
         <scene sceneID="woq-vE-1o3">
             <objects>
-                <viewController storyboardIdentifier="InventoryViewController" id="qrq-r8-Dt3" customClass="MyPantryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPantryViewController" id="qrq-r8-Dt3" customClass="MyPantryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1kp-VZ-vd6"/>
                         <viewControllerLayoutGuide type="bottom" id="XFj-Cr-X4e"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyInventoryCell" id="9Is-hW-gCc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPantryCell" id="9Is-hW-gCc">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Is-hW-gCc" id="Dkf-k7-f0Q">
@@ -52,7 +52,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Slw-ZP-I7L" id="EES-ED-3Ib"/>
-                        <segue destination="MeP-8f-b7H" kind="show" identifier="createNewItemFromInventorySegue" id="bp2-ue-hzf"/>
+                        <segue destination="MeP-8f-b7H" kind="show" identifier="createNewItemFromMyPantrySegue" id="bp2-ue-hzf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYI-UN-aAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -611,7 +611,6 @@
                         <outlet property="addItemButton" destination="1Dh-lf-XMt" id="zJ1-uu-Kd6"/>
                         <outlet property="tableView" destination="H4u-YI-pB3" id="vJA-A6-cKB"/>
                         <segue destination="MeP-8f-b7H" kind="show" identifier="createNewItemFromListSegue" id="3fI-09-ph0"/>
-                        <segue destination="qrq-r8-Dt3" kind="show" identifier="addItemFromInventorySegue" id="rYD-BQ-DL4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oda-2V-sNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -930,7 +929,7 @@
         <scene sceneID="bsx-J0-CEt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uuO-1R-fZo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Pantry" image="stockd_tabbaricon-inventory" id="6pi-u7-9uv"/>
+                    <tabBarItem key="tabBarItem" title="My Pantry" image="stockd_tabbaricon-pantry" id="6pi-u7-9uv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d2m-xp-L3f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -987,13 +986,12 @@
     <resources>
         <image name="fiber_adventure_weekend_7_11" width="1024" height="768"/>
         <image name="stockd_tabbaricon-home" width="37" height="37"/>
-        <image name="stockd_tabbaricon-inventory" width="37" height="37"/>
+        <image name="stockd_tabbaricon-pantry" width="37" height="37"/>
         <image name="stockd_tabbaricon-settings" width="37" height="37"/>
         <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VP3-XV-7qB"/>
-        <segue reference="AW5-X6-3e5"/>
         <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,5 +1,5 @@
 //
-//  InventoryViewController.h
+//  MyPantryViewController.h
 //  Stockd
 //
 //  Created by Adam Duflo on 11/5/14.
