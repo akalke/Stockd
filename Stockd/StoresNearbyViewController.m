@@ -46,7 +46,7 @@
     
     self.storeArray = [NSMutableArray array];
     
-    [self hideMapsAndPhoneObjects];
+    [self hideMapsAndPhoneButtons];
     
     self.textView.hidden = YES;
     self.textView.text = @"";
@@ -93,8 +93,9 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (view.annotation == mapView.userLocation) {
-        [self hideMapsAndPhoneObjects];
+        [self hideMapsAndPhoneButtons];
         self.textView.text = @"";
+        [self hideMapsAndPhoneButtons];
         return;
     }
     
@@ -207,7 +208,7 @@
     [self.searchBar resignFirstResponder];
 }
 
-- (void)hideMapsAndPhoneObjects {
+- (void)hideMapsAndPhoneButtons {
     self.mapsButton.hidden = YES;
     self.mapsButton.userInteractionEnabled = NO;
     
@@ -215,7 +216,7 @@
     self.phoneButton.userInteractionEnabled = NO;
 }
 
-- (void)showMapsAndPhoneObjects {
+- (void)showMapsAndPhoneButtons {
     self.mapsButton.hidden = NO;
     self.mapsButton.userInteractionEnabled = YES;
     
@@ -235,7 +236,7 @@
     MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
     self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
     
-    [self showMapsAndPhoneObjects];
+    [self showMapsAndPhoneButtons];
 }
 
 - (void)setStorePins {
