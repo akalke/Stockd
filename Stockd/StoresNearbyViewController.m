@@ -95,6 +95,7 @@
     if (view.annotation == mapView.userLocation) {
         [self hideMapsAndPhoneButtons];
         self.textView.text = @"";
+        self.textView.hidden = YES;
         [self hideMapsAndPhoneButtons];
         return;
     }
