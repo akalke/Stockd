@@ -22,9 +22,14 @@
     [super viewDidLoad];
 
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device doesn't have a camera." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [myAlertView show];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Device doesn't have a camera." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            return;
+        }];
+        
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
