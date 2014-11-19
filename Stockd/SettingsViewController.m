@@ -15,7 +15,9 @@
 #import "SettingsViewController.h"
 #import "LoginViewController.h"
 
-@interface SettingsViewController () <UIGestureRecognizerDelegate>
+@interface SettingsViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewBottomConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountCreatedAtLabel;
 @property (weak, nonatomic) IBOutlet UITextField *changePasswordTextField;
@@ -35,7 +37,9 @@
     self.view.backgroundColor = peachBackground;
     
     self.changePasswordTextField.placeholder = @"New Password";
+    self.changePasswordTextField.delegate = self;
     self.confirmPasswordTextField.placeholder = @"Confirm Password";
+    self.confirmPasswordTextField.delegate = self;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
@@ -66,10 +70,34 @@
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
 }
 
+#pragma mark - TextField Methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = -90;
+        self.viewBottomConstraint.constant = 90;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = 0;
+        self.viewBottomConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+    }];
+}
+
 #pragma mark - Helper Methods
 
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self resignKeyboard];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewTopConstraint.constant = 0;
+        self.viewBottomConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)resignKeyboard {
