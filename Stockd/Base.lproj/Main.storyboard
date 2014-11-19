@@ -143,7 +143,6 @@
                                     <color key="titleColor" red="0.95244738520000005" green="0.95244738520000005" blue="0.95244738520000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="uploadPhotoOnButtonPress:" destination="MeP-8f-b7H" eventType="touchUpInside" id="8Xi-Bi-l09"/>
                                     <segue destination="q8A-HR-S7J" kind="show" identifier="cameraSegue" id="lcp-9D-yUr"/>
                                 </connections>
                             </button>

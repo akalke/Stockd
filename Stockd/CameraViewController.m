@@ -21,9 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // Conditional to check if device has a camera
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Device doesn't have a camera." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Camera Detected" message:@"Proceed to Step 2" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             return;
         }];
@@ -36,6 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    // Making sure navbar properties are set when screen is selected
     self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.translucent = NO;

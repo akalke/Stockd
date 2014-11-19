@@ -33,8 +33,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // Calls method to get pantry items
     [self getPantry:[PFUser currentUser]];
     
+    // Making sure navbar properties are set when screen is selected
     self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
@@ -77,20 +79,24 @@
 //        }
 //    }];
     cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:26.0];
+    cell.textLabel.text = item.type;
+    
+    // Method that sets properties if item is set as QuickList item
     if (item.isInQuickList == YES) {
         cell.textLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
     } else {
         cell.textLabel.textColor = [UIColor blackColor];
     }
-    cell.textLabel.text = item.type;
+    
     return cell;
 }
 
-// needed for editActionsForRowAtIndexPath to work (it doesn't need anything inside)
+// Need method for editActionsForRowAtIndexPath to work (it doesn't need anything declared inside)
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 
+// Creates custom cell actions
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     Item *item = [self.pantryArray objectAtIndex:indexPath.row];
     PFUser *user = [PFUser currentUser];
@@ -124,6 +130,7 @@
 
 #pragma mark - Helper Methods
 
+// Method that gets pantry items based on currentUser
 -(void) getPantry: (PFUser *)currentUser{
     NSPredicate *findItemsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isInPantry = true)", currentUser.objectId];
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForUser];

@@ -11,6 +11,5 @@
 
 @interface SettingsViewController : UIViewController
 
-
 @end
 

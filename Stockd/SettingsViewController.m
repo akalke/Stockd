@@ -66,7 +66,7 @@
     NSString *date = [format stringForObjectValue:self.user.createdAt];
     self.accountCreatedAtLabel.text = [NSString stringWithFormat:@"Member Since: %@", date];
     
-    // Setting up nav bar appearance
+    // Making sure navbar properties are set when screen is selected
     self.navigationItem.title = @"Settings";
     self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];

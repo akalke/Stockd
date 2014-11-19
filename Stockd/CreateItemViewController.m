@@ -28,22 +28,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
+    
+    // Setting up tap gesture to hide keyboard
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
     [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
-        self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // Making sure navbar properties are set when screen is selected
     self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     
+    // Getting image for item if item already has image
     PFFile *image = [self.item objectForKey:@"image"];
     [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
@@ -53,6 +57,8 @@
         }
     }];
     
+    // Conditionals to show certain elements if previous VC
+    // was from MyPantry or ListDetail and if the user is editing or creating
     if (self.fromListDetails == YES || self.fromMyPantry == YES) {
         self.title = @"Create Item";
         if (self.fromListDetails == YES) {
@@ -88,6 +94,7 @@
 
 #pragma mark - Helper Methods
 
+// Method used to hide QuickList view
 - (void)hideQuickListObjects {
     self.quickListLabel.hidden = YES;
     self.quickListSwitch.hidden = YES;
@@ -95,16 +102,21 @@
     self.quickListSwitch.userInteractionEnabled = NO;
 }
 
+
+// Method use to show QuickList view
 - (void)showQuickListObjects {
     self.quickListLabel.hidden = NO;
     self.quickListSwitch.hidden = NO;
     self.quickListSwitch.userInteractionEnabled = YES;
 }
 
+// Method used by tapGesture to hide keyboard
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self.itemDescriptionTextField resignFirstResponder];
 }
 
+// Method that presents alert if item description is empty when
+// user tries to create item
 - (void)noDescriptionAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Missing Information" message:@"Please fill item description" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -114,7 +126,9 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)dismissViewControllerAndResetBOOLs {
+// Method that popsVC and resets bools used to know
+// what previous VC was
+- (void)popViewControllerAndResetBOOLs {
     [self.navigationController popViewControllerAnimated:YES];
     self.fromMyPantry = NO;
     self.fromListDetails = NO;
@@ -126,6 +140,7 @@
 
 - (IBAction)addItemOnButtonPress:(id)sender {
     PFUser *user = [PFUser currentUser];
+    // Conditional for if previous VC was from MyPantry or ListDetails & creating item
     if (self.fromMyPantry || self.fromListDetails) {
         Item *item = [[Item alloc] init];
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
@@ -133,18 +148,21 @@
         } else {
             if (self.fromMyPantry == YES) {
                 [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:nil inPantry:YES isInQuickList:self.quickListSwitch.isOn withImage:self.imageView.image withBlock:^{
-                    [self dismissViewControllerAndResetBOOLs];
+                    [self popViewControllerAndResetBOOLs];
                 }];
             } else if (self.fromListDetails == YES) {
                 [item createNewItem:self.itemDescriptionTextField.text forUser:user inList:self.listID inPantry:NO isInQuickList:NO withImage:self.imageView.image withBlock:^{
-                    [self dismissViewControllerAndResetBOOLs];
+                    [self popViewControllerAndResetBOOLs];
                 }];
             }
         }
+        
+    // Conditional for if previous VC was from MyPantry or ListDetails & editing item
     } else if (self.editingFromMyPantry || self.editingFromListDetails) {
         if ([self.itemDescriptionTextField.text isEqualToString:@""]) {
             [self noDescriptionAlert];
         } else {
+            // Conditional for if the user is adding an image
             if (self.imageView.image) {
                 if (self.editingFromMyPantry) {
                     [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
@@ -159,9 +177,11 @@
                     if (error) {
                         NSLog(@"%@", error);
                     } else if (succeeded) {
-                        [self dismissViewControllerAndResetBOOLs];
+                        [self popViewControllerAndResetBOOLs];
                     }
                 }];
+                
+            // Conditional for if the user didn't add an image
             } else {
                 if (self.editingFromMyPantry) {
                     [self.item setObject:[NSNumber numberWithBool:self.quickListSwitch.isOn] forKey:@"isInQuickList"];
@@ -172,7 +192,7 @@
                     if (error) {
                         NSLog(@"%@", error);
                     } else if (succeeded) {
-                        [self dismissViewControllerAndResetBOOLs];
+                        [self popViewControllerAndResetBOOLs];
                     }
                 }];
             }
@@ -181,15 +201,14 @@
 }
 
 - (IBAction)cancelItemCreationOnButtonPress:(id)sender {
+    // Resigning keyboard
     [self.itemDescriptionTextField resignFirstResponder];
     
-    [self dismissViewControllerAndResetBOOLs];
+    // Calling popVC&ResetBOOLS method
+    [self popViewControllerAndResetBOOLs];
 }
 
-- (IBAction)uploadPhotoOnButtonPress:(id)sender {
-    
-}
-
+// Method to reflect if item is already in QuickList or not
 - (IBAction)setQuickListOnSwitch:(id)sender {
     if ([self.quickListSwitch isOn]) {
         [self.quickListSwitch setOn:YES animated:YES];
