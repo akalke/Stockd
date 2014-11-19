@@ -80,6 +80,12 @@
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.itemDescriptionTextField resignFirstResponder];
+}
+
 #pragma mark - Helper Methods
 
 - (void)hideQuickListObjects {
