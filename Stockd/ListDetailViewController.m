@@ -15,7 +15,7 @@
 #import "MyPantryViewController.h"
 #import "Item.h"
 
-@interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate>
+@interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addItemButton;
 @property NSArray *items;
@@ -41,10 +41,6 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0],NSForegroundColorAttributeName:[UIColor blackColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     
-    // Makes tabBarController delegate self so it can popToRootVC when tab[0] is seleceted
-    // from other VCs/tabs
-    self.tabBarController.delegate = self;
-    
     // Sets bool for didSelectItem
     self.didSelectItem = NO;
 }
@@ -68,15 +64,6 @@
             createItemVC.fromListDetails = YES;
             createItemVC.listID = self.listID;
         }
-    }
-}
-
-#pragma mark - TabBarController Methods
-
-// Method that pops to the rootVC of the navcontroller when tab[0] is selected
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (tabBarController.selectedIndex == 0) {
-        [(UINavigationController *)viewController popToRootViewControllerAnimated:NO];
     }
 }
 
