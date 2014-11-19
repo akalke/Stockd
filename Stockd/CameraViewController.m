@@ -79,10 +79,4 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-// Are we using this?
-- (IBAction)addThisPhoto:(id)sender{
-}
-
-
-
 @end
