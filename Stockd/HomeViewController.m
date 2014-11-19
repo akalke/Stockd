@@ -109,6 +109,32 @@
             [self.tableView setEditing:NO];
         }];
     }];
+    
+    UITableViewRowAction *edit = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Edit" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Edit List" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"List name";
+            textField.text = list.name;
+        }];
+        
+        UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [list setObject:[alert.textFields[0] valueForKey:@"text"] forKey:@"name"];
+            [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [self getLists:[PFUser currentUser]];
+            }];
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            return;
+        }];
+        
+        [alert addAction:save];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        [self.tableView setEditing:NO];
+    }];
 
     UITableViewRowAction *share = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Share It" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
 
@@ -153,15 +179,16 @@
         }
         [self.tableView setEditing:NO];
     }];
-
+    
+    edit.backgroundColor = stockdBlueColor;
     unshare.backgroundColor = [UIColor darkGrayColor];
     share.backgroundColor = [UIColor lightGrayColor];
 
     if(list.isShared == NO){
-        return @[delete, share];
+        return @[delete, edit, share];
     }
     else{
-        return @[delete, unshare];
+        return @[delete, edit, unshare];
     }
 }
 
