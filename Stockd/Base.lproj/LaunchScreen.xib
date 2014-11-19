@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-400p" translatesAutoresizingMaskIntoConstraints="NO" id="hff-kt-I04">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_punchout" translatesAutoresizingMaskIntoConstraints="NO" id="hff-kt-I04">
                     <rect key="frame" x="140" y="140" width="200" height="200"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="8dw-kn-pUN"/>
@@ -18,7 +18,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.85098039215686272" green="0.49411764705882355" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="0.87450980392156863" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="hff-kt-I04" secondAttribute="centerX" id="dHc-fg-9TZ"/>
                 <constraint firstItem="hff-kt-I04" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="140" id="yqI-5g-Rwv"/>
@@ -29,6 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="stockd_icon-400p" width="200" height="200"/>
+        <image name="logo_punchout" width="850" height="850"/>
     </resources>
 </document>

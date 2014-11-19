@@ -1010,7 +1010,7 @@
         <scene sceneID="6f3-t9-Zar">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sFF-9w-XYw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Lists" image="stockd_tabbaricon-lists" id="wjL-Jm-KEf"/>
+                    <tabBarItem key="tabBarItem" title="Lists" image="stockd_tabbaricon-lists_black" id="wjL-Jm-KEf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nt7-m2-CPC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1029,7 +1029,7 @@
         <scene sceneID="bsx-J0-CEt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uuO-1R-fZo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Pantry" image="stockd_tabbaricon-mypantry" id="6pi-u7-9uv"/>
+                    <tabBarItem key="tabBarItem" title="My Pantry" image="stockd_tabbaricon-mypantry_black" id="6pi-u7-9uv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d2m-xp-L3f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1048,7 +1048,7 @@
         <scene sceneID="oqC-SV-6Wv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ba6-6j-ayV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="stockd_tabbaricon-settings" id="pHp-af-bxn"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="stockd_tabbaricon-settings_black" id="pHp-af-bxn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Jy-hR-WMS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1067,7 +1067,7 @@
         <scene sceneID="cC5-wq-NGh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fzq-uf-8Eo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stores Nearby" image="stockd_tabbaricon-storesnearby" id="iiU-Ka-7g4"/>
+                    <tabBarItem key="tabBarItem" title="Stores Nearby" image="stockd_tabbaricon-storesnearby_black" id="iiU-Ka-7g4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="33p-Uj-2E1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1086,10 +1086,10 @@
     <resources>
         <image name="logo_punchout" width="850" height="850"/>
         <image name="stockd_buttonicon-currentlocation" width="37" height="37"/>
-        <image name="stockd_tabbaricon-lists" width="37" height="37"/>
-        <image name="stockd_tabbaricon-mypantry" width="37" height="37"/>
-        <image name="stockd_tabbaricon-settings" width="37" height="37"/>
-        <image name="stockd_tabbaricon-storesnearby" width="37" height="37"/>
+        <image name="stockd_tabbaricon-lists_black" width="37" height="37"/>
+        <image name="stockd_tabbaricon-mypantry_black" width="37" height="37"/>
+        <image name="stockd_tabbaricon-settings_black" width="37" height="37"/>
+        <image name="stockd_tabbaricon-storesnearby_black" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VP3-XV-7qB"/>

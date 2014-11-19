@@ -36,11 +36,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = peachBackground;
     
+    // Setting up password text fields
     self.changePasswordTextField.placeholder = @"New Password";
     self.changePasswordTextField.delegate = self;
     self.confirmPasswordTextField.placeholder = @"Confirm Password";
     self.confirmPasswordTextField.delegate = self;
     
+    // Setting up tap gesture to resign keyboard
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
     [tapGesture setNumberOfTouchesRequired:1];
@@ -50,17 +52,21 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // Hiding password elements
     [self hideSaveAndCancelButtons];
     [self hidePasswordFields];
     
+    // Assigning user property to current user & setting text for usernameLabel
     self.user = [PFUser currentUser];
     self.usernameLabel.text = self.user.username;
     
+    // Formatting date for accountCreatedAtLabel
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MM-dd-yyyy"];
     NSString *date = [format stringForObjectValue:self.user.createdAt];
     self.accountCreatedAtLabel.text = [NSString stringWithFormat:@"Member Since: %@", date];
     
+    // Setting up nav bar appearance
     self.navigationItem.title = @"Settings";
     self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
@@ -71,7 +77,9 @@
 
 #pragma mark - TextField Methods
 
+// Moves view up for keyboard when any textfield begins editing
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    // Moves view up for keyboard
     [UIView animateWithDuration:0.3 animations:^{
         self.viewTopConstraint.constant = -90;
         self.viewBottomConstraint.constant = 90;
@@ -79,7 +87,9 @@
     }];
 }
 
+// Moves view back to origin when any textfield ends editing
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    // Moves view back to origin
     [UIView animateWithDuration:0.3 animations:^{
         self.viewTopConstraint.constant = 0;
         self.viewBottomConstraint.constant = 0;
@@ -89,9 +99,11 @@
 
 #pragma mark - Helper Methods
 
+// Method used by tapGesture to resign keyboard and move view back to origin
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self resignKeyboard];
     
+    // Moves view back to origin
     [UIView animateWithDuration:0.3 animations:^{
         self.viewTopConstraint.constant = 0;
         self.viewBottomConstraint.constant = 0;
@@ -105,6 +117,7 @@
 }
 
 - (void)showPasswordFields {
+    // Making change password field visible and hiding the password fields
     self.changePasswordButton.hidden = YES;
     self.changePasswordTextField.text = @"";
     self.changePasswordTextField.hidden = NO;
@@ -113,12 +126,14 @@
 }
 
 - (void)hidePasswordFields {
+    // Making change password field hidden and showing password fields
     self.changePasswordButton.hidden = NO;
     self.changePasswordTextField.hidden = YES;
     self.confirmPasswordTextField.hidden = YES;
 }
 
 - (void)hideSaveAndCancelButtons {
+    // Making navbarbuttons hidden
     self.saveButton.tintColor = [UIColor clearColor];
     self.saveButton.enabled = NO;
     
@@ -127,6 +142,7 @@
 }
 
 - (void)showSaveAndCancelButtons {
+    // Unhiding navbarbuttons
     self.saveButton.tintColor = [UIColor blackColor];
     self.saveButton.enabled = YES;
     
@@ -134,6 +150,7 @@
     self.cancelButton.enabled = YES;
 }
 
+// Method saves password if conditionals are met, else an alert is presented
 - (void)saveIfPassCondtionals {
     if ([self.changePasswordTextField.text isEqualToString:self.confirmPasswordTextField.text] && ![self.changePasswordTextField.text isEqualToString:@""]) {
         self.user.password = self.changePasswordTextField.text;
@@ -158,12 +175,14 @@
 #pragma mark - IBActions
 
 - (IBAction)onChangePasswordButtonPressed:(id)sender {
+    // Shows all necessary fields to change password, and makes changePasswordTextField first responder
     [self showPasswordFields];
     [self showSaveAndCancelButtons];
     [self.changePasswordTextField becomeFirstResponder];
 }
 
 - (IBAction)onCancelButtonPressed:(id)sender {
+    // Hides all fields relating to changing passwords and calls resignKeyboard helper method
     [self hideSaveAndCancelButtons];
     [self hidePasswordFields];
     [self resignKeyboard];
@@ -174,6 +193,7 @@
 }
 
 - (IBAction)logUserOutOnButtonPress:(id)sender {
+    // Logs user out and presents loginViewController
     [PFUser logOut];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginViewController = [storyboard instantiateInitialViewController];
