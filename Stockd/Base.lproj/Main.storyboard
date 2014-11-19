@@ -926,26 +926,13 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F67-BM-GWQ">
-                                <rect key="frame" x="0.0" y="432" width="600" height="120"/>
+                                <rect key="frame" x="0.0" y="431" width="600" height="120"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9Y-6s-h42">
-                                        <rect key="frame" x="0.0" y="11" width="600" height="50"/>
-                                        <color key="backgroundColor" red="0.072357545999999995" green="0.71384326929999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                        <state key="normal" title="Call Store">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onPhoneButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="wyt-C2-sw8"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-M8-WQW">
-                                        <rect key="frame" x="0.0" y="70" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="63" width="600" height="50"/>
                                         <color key="backgroundColor" red="0.92524314409999997" green="0.46230683010000001" blue="0.37372379039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="0rA-un-dPN"/>
-                                            <constraint firstAttribute="width" constant="600" id="ell-qk-jNV"/>
+                                            <constraint firstAttribute="height" constant="50" id="3lz-o9-MYY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                         <state key="normal" title="Get Directions">
@@ -956,34 +943,46 @@
                                             <action selector="onOpenMapsButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="7tv-23-Thk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9Y-6s-h42">
+                                        <rect key="frame" x="0.0" y="7" width="600" height="50"/>
+                                        <color key="backgroundColor" red="0.072357545999999995" green="0.71384326929999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="MzH-4i-aHq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                        <state key="normal" title="Call Store">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPhoneButtonPressed:" destination="vpz-u8-6js" eventType="touchUpInside" id="wyt-C2-sw8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="X9Y-6s-h42" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="top" constant="11" id="3Lb-Jo-qLj"/>
-                                    <constraint firstAttribute="height" constant="120" id="6MX-Ds-cmR"/>
-                                    <constraint firstItem="X9Y-6s-h42" firstAttribute="leading" secondItem="F67-BM-GWQ" secondAttribute="leading" id="7uI-bM-Oq5"/>
-                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="top" constant="70" id="A8w-6m-WbE"/>
-                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="top" secondItem="X9Y-6s-h42" secondAttribute="bottom" constant="9" id="Ar6-5s-xne"/>
-                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="leading" secondItem="F67-BM-GWQ" secondAttribute="leading" id="ao9-xJ-MUC"/>
-                                    <constraint firstAttribute="trailing" secondItem="a6K-M8-WQW" secondAttribute="trailing" id="dua-IU-jZD"/>
-                                    <constraint firstAttribute="bottom" secondItem="a6K-M8-WQW" secondAttribute="bottom" id="f2M-QE-PN1"/>
-                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="leading" secondItem="F67-BM-GWQ" secondAttribute="leading" id="sDP-fd-WTJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="X9Y-6s-h42" secondAttribute="trailing" id="sJy-eq-M9y"/>
+                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="leading" secondItem="F67-BM-GWQ" secondAttribute="leading" id="GAi-nT-ZMN"/>
+                                    <constraint firstItem="a6K-M8-WQW" firstAttribute="top" secondItem="X9Y-6s-h42" secondAttribute="bottom" constant="6" id="Mbr-QJ-KQ2"/>
+                                    <constraint firstAttribute="trailing" secondItem="X9Y-6s-h42" secondAttribute="trailing" id="U92-F8-ezR"/>
+                                    <constraint firstItem="X9Y-6s-h42" firstAttribute="leading" secondItem="F67-BM-GWQ" secondAttribute="leading" id="Ufo-v8-bKN"/>
+                                    <constraint firstAttribute="trailing" secondItem="a6K-M8-WQW" secondAttribute="trailing" id="Wj0-Og-uA3"/>
+                                    <constraint firstAttribute="height" constant="120" id="eeI-T3-wqJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="a6K-M8-WQW" secondAttribute="bottom" constant="7" id="olF-Z3-VUU"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="F67-BM-GWQ" secondAttribute="trailing" id="6xZ-m1-3zN"/>
+                            <constraint firstAttribute="trailing" secondItem="F67-BM-GWQ" secondAttribute="trailing" id="AZI-ap-uQf"/>
                             <constraint firstAttribute="trailing" secondItem="ed1-Wr-0Te" secondAttribute="trailing" id="LmY-wH-oCo"/>
-                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="bottom" constant="-1" id="PWh-y8-Zt2"/>
+                            <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="F67-BM-GWQ" secondAttribute="bottom" id="Vl2-yJ-Qc4"/>
                             <constraint firstItem="ed1-Wr-0Te" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="bo6-Wu-MVK"/>
                             <constraint firstItem="for-Ee-Cli" firstAttribute="top" secondItem="Vin-eb-uBz" secondAttribute="bottom" id="dPv-eB-FBG"/>
                             <constraint firstItem="NSh-I2-f3C" firstAttribute="top" secondItem="for-Ee-Cli" secondAttribute="bottom" id="lRi-jF-7SY"/>
                             <constraint firstAttribute="trailing" secondItem="for-Ee-Cli" secondAttribute="trailing" id="m0V-i0-9Bx"/>
+                            <constraint firstItem="F67-BM-GWQ" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="uA3-Nc-XR6"/>
                             <constraint firstItem="for-Ee-Cli" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="w1c-1D-35w"/>
-                            <constraint firstItem="F67-BM-GWQ" firstAttribute="leading" secondItem="JS1-XL-7ev" secondAttribute="leading" id="w5n-3T-D5w"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="DYQ-1X-ked" appends="YES" id="y8o-YW-aPz"/>
