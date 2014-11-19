@@ -179,13 +179,16 @@
 
 #pragma mark - SearchBar Methods
 
-// Method that for when "Search" button is used
+// Method that for when "Search" button is tapped in keyboard
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.viewForButtons.hidden = YES;
+    // Searches current location if text is "Current Location"
     if ([self.searchBar.text isEqualToString:@"Current Location"]) {
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+            // If location isn't set in settings, alert is presented
             [self currentLocationOffAlert];
         } else {
+            // Removes annotations, calls useCurrentLocation, sets bool for didSearchForNearbyStores
             [self.mapView removeAnnotations:self.mapView.annotations];
             
             [self useCurrentLocation];
@@ -193,28 +196,36 @@
             self.didSearchForNearbyStores = YES;
         }
     } else {
+        // Removes annotations
         [self.mapView removeAnnotations:self.mapView.annotations];
         
+        // Initializes *geocoder and searches for location based on text in searchBar
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
         NSString *searchQuery = [NSString stringWithFormat:@"%@", self.searchBar.text];
         [geocoder geocodeAddressString:searchQuery completionHandler:^(NSArray *placemarks, NSError *error) {
             for (CLPlacemark *placemark in placemarks) {
+                // Uses coordinate for searched location and calls findStoresNearby
                 [self findStoresNearby:placemark.location.coordinate];
                 
+                // Zoomes onto searched area
                 [self zoomMapWith:placemark.location];
                 
+                // Sets bool for didSearchForNearbyStores
                 self.didSearchForNearbyStores = YES;
             }
         }];
     }
+    // Hiding cancel button and resigning keyboard when search is pressed
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
 }
 
+// Method shows cancel button when text in searchBar begins editing
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [self.searchBar setShowsCancelButton:YES animated:YES];
 }
 
+// Method that sets searchBar text to nothing, hides cancel button, and resigns keyboard when cancel is pressed
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     self.searchBar.text = @"";
     [self.searchBar setShowsCancelButton:NO animated:YES];
@@ -223,26 +234,32 @@
 
 #pragma mark - Helper Methods
 
+// Method used by tapGesture to hide cancel button in searchBar and resign keyboard
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
 }
 
 - (void)makeMapItemWith:(Store *)store {
+    // Sets storePhoneNumber to selected stores phoneNumber property
     self.storePhoneNumber = store.phoneNumber;
     
+    // Initializes MKPlacemark for Maps app to use
     MKPlacemark *mkPlacemark = [[MKPlacemark alloc] initWithPlacemark:store.placemark];
     self.mapItem = [[MKMapItem alloc] initWithPlacemark:mkPlacemark];
     
+    // Shows call and directions buttons
     self.viewForButtons.hidden = NO;
 }
 
+// Sets annotations for each store within storeArray
 - (void)setStorePins {
     for (Store *store in self.storeArray) {
         [self.mapView addAnnotation:store];
     }
 }
 
+// Method used to zoom on searched area
 - (void)zoomMapWith:(CLLocation *)location {
     CLLocationCoordinate2D center = location.coordinate;
     MKCoordinateSpan span;
@@ -256,6 +273,7 @@
     [self.mapView setRegion:region animated:NO];
 }
 
+// Searches for current location (either searched from searchBar or when button is tapped)
 - (void)useCurrentLocation {
     if (self.userLocationUpdated == YES) {
         self.searchBar.text = @"Current Location";
@@ -266,6 +284,7 @@
     }
 }
 
+// Shows alert if Location is set to off, and gives options to go to settings, or keep it off
 - (void)currentLocationOffAlert {
     NSString *title = @"Allow Stock'd to Access Location to Determine Your Current Location";
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
