@@ -28,7 +28,7 @@
     [super viewDidLoad];
     
     UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = navBarColor;
+    tabBar.barTintColor = peachBackground;
     tabBar.tintColor = stockdOrangeColor;
     tabBar.translucent = NO;
     
@@ -39,8 +39,7 @@
     [super viewWillAppear:animated];
     
     [self getLists: [PFUser currentUser]];
-    
-    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.barTintColor = peachBackground;
     self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
