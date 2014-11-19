@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ELq-GA-Hdm">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -79,32 +79,50 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lw-tw-8Yw">
                                 <rect key="frame" x="0.0" y="122" width="600" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick List?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aby-8W-aQy">
-                                        <rect key="frame" x="182" y="14" width="130" height="21"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-pQ-2jI">
-                                        <rect key="frame" x="356" y="9" width="51" height="31"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9p4-Na-gFt">
+                                        <rect key="frame" x="187" y="0.0" width="227" height="50"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-pQ-2jI">
+                                                <rect key="frame" x="170" y="9" width="51" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="27k-ln-7Pw"/>
+                                                    <constraint firstAttribute="width" constant="49" id="OHG-x1-Yon"/>
+                                                </constraints>
+                                                <color key="onTintColor" red="0.92524314409999997" green="0.46230683010000001" blue="0.37372379039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="setQuickListOnSwitch:" destination="MeP-8f-b7H" eventType="valueChanged" id="o76-hV-vYW"/>
+                                                </connections>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick List?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aby-8W-aQy">
+                                                <rect key="frame" x="0.0" y="14" width="110" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="KLA-1m-Y1Q"/>
+                                                    <constraint firstAttribute="width" constant="110" id="v8b-Sj-LtU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="49" id="dKa-0K-MBU"/>
+                                            <constraint firstAttribute="bottom" secondItem="nPA-pQ-2jI" secondAttribute="bottom" constant="10" id="0wP-h8-uo9"/>
+                                            <constraint firstAttribute="bottom" secondItem="aby-8W-aQy" secondAttribute="bottom" constant="15" id="Eb5-8E-UcS"/>
+                                            <constraint firstItem="aby-8W-aQy" firstAttribute="leading" secondItem="9p4-Na-gFt" secondAttribute="leading" id="ILc-Oo-OZM"/>
+                                            <constraint firstAttribute="trailing" secondItem="nPA-pQ-2jI" secondAttribute="trailing" constant="8" id="Oj6-Z5-82m"/>
+                                            <constraint firstItem="nPA-pQ-2jI" firstAttribute="top" secondItem="9p4-Na-gFt" secondAttribute="top" constant="9" id="Rcy-LK-ely"/>
+                                            <constraint firstAttribute="height" constant="50" id="cPy-Vj-3PN"/>
+                                            <constraint firstAttribute="width" constant="227" id="mYC-Qp-gGY"/>
+                                            <constraint firstItem="aby-8W-aQy" firstAttribute="top" secondItem="9p4-Na-gFt" secondAttribute="top" constant="14" id="owC-0s-rbH"/>
                                         </constraints>
-                                        <color key="onTintColor" red="0.92524314409999997" green="0.46230683010000001" blue="0.37372379039999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="setQuickListOnSwitch:" destination="MeP-8f-b7H" eventType="valueChanged" id="o76-hV-vYW"/>
-                                        </connections>
-                                    </switch>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.072357545999999995" green="0.71384326929999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="aby-8W-aQy" secondAttribute="bottom" constant="15" id="3x6-P6-kZg"/>
-                                    <constraint firstAttribute="centerX" secondItem="aby-8W-aQy" secondAttribute="centerX" constant="53" id="Gfu-Qw-LSn"/>
-                                    <constraint firstAttribute="trailing" secondItem="nPA-pQ-2jI" secondAttribute="trailing" constant="195" id="IdB-ZV-cpr"/>
-                                    <constraint firstItem="nPA-pQ-2jI" firstAttribute="centerY" secondItem="aby-8W-aQy" secondAttribute="centerY" id="O8H-0A-dsZ"/>
+                                    <constraint firstItem="9p4-Na-gFt" firstAttribute="top" secondItem="2Lw-tw-8Yw" secondAttribute="top" id="0m2-x9-I8h"/>
                                     <constraint firstAttribute="height" constant="50" id="fJt-oh-jhB"/>
-                                    <constraint firstItem="aby-8W-aQy" firstAttribute="top" secondItem="2Lw-tw-8Yw" secondAttribute="top" constant="14" id="rIB-hg-6Sb"/>
-                                    <constraint firstItem="nPA-pQ-2jI" firstAttribute="leading" secondItem="aby-8W-aQy" secondAttribute="trailing" constant="44" id="z9Q-gg-tYb"/>
+                                    <constraint firstAttribute="bottom" secondItem="9p4-Na-gFt" secondAttribute="bottom" id="kSU-Zt-bIe"/>
+                                    <constraint firstAttribute="centerX" secondItem="9p4-Na-gFt" secondAttribute="centerX" id="lfu-q8-cGy"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Item Description" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OY7-Jg-SkZ">

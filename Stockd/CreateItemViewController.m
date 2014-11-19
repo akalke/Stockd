@@ -71,7 +71,9 @@
             [self showQuickListObjects];
             self.itemDescriptionTextField.text = self.item.type;
         } else if (self.editingFromListDetails == YES) {
-            [self hideQuickListObjects];
+            if (self.item.isInQuickList == NO) {
+                [self hideQuickListObjects];
+            }
             self.itemDescriptionTextField.text = self.item.type;
         }
     }
