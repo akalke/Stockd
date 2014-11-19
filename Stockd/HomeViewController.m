@@ -28,8 +28,8 @@
     [super viewDidLoad];
     
     UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = navBarColor;
-    tabBar.tintColor = peachBackground;
+    tabBar.barTintColor = [UIColor blackColor];
+    tabBar.tintColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
     tabBar.translucent = NO;
     
     self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
