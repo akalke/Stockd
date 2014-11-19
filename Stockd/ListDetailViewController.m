@@ -8,6 +8,7 @@
 
 #define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+#define peachBackground [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0]
 #define navBarColor [UIColor colorWithRed:231.0/255.0 green:95.0/255.0 blue:73.0/255.0 alpha:1.0]
 
 #import "ListDetailViewController.h"
@@ -105,15 +106,10 @@
     removeQuickList.backgroundColor = stockdOrangeColor;
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // need completion block from deleteInBackgroundWithBlock method
         [item deleteItemWithBlock:^{
             [self getItems:self.listID];
             [self.tableView setEditing:NO];
         }];
-//        [item deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            [self getItems:self.listID];
-//            [self.tableView setEditing:NO];
-//        }];
     }];
     
     if (self.list.isQuickList == YES) {

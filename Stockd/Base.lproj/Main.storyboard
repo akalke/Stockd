@@ -36,10 +36,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Slw-ZP-I7L" secondAttribute="trailing" id="DbC-tV-mZJ"/>
-                            <constraint firstAttribute="bottom" secondItem="Slw-ZP-I7L" secondAttribute="bottom" constant="49" id="EEK-Nt-HCG"/>
-                            <constraint firstItem="Slw-ZP-I7L" firstAttribute="leading" secondItem="DVo-JD-1iW" secondAttribute="leading" id="e2D-N0-4nv"/>
-                            <constraint firstItem="Slw-ZP-I7L" firstAttribute="top" secondItem="DVo-JD-1iW" secondAttribute="top" id="nsQ-qr-22b"/>
+                            <constraint firstItem="Slw-ZP-I7L" firstAttribute="leading" secondItem="DVo-JD-1iW" secondAttribute="leading" id="d2b-QW-1nc"/>
+                            <constraint firstItem="Slw-ZP-I7L" firstAttribute="top" secondItem="DVo-JD-1iW" secondAttribute="top" id="f7A-A4-DuP"/>
+                            <constraint firstItem="XFj-Cr-X4e" firstAttribute="top" secondItem="Slw-ZP-I7L" secondAttribute="bottom" id="ijb-0g-Rjm"/>
+                            <constraint firstAttribute="trailing" secondItem="Slw-ZP-I7L" secondAttribute="trailing" id="wLu-rQ-Dsb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c5P-yR-Gqr">
