@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *logOutButton;
 @property PFUser *user;
 @property BOOL isChangingPassword;
 
@@ -81,8 +82,8 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     // Moves view up for keyboard
     [UIView animateWithDuration:0.3 animations:^{
-        self.viewTopConstraint.constant = -90;
-        self.viewBottomConstraint.constant = 90;
+        self.viewTopConstraint.constant = -185;
+        self.viewBottomConstraint.constant = 185;
         [self.view layoutIfNeeded];
     }];
 }
@@ -117,8 +118,9 @@
 }
 
 - (void)showPasswordFields {
-    // Making change password field visible and hiding the password fields
+    // Making change password field & logout button visible and hiding the password fields
     self.changePasswordButton.hidden = YES;
+    self.logOutButton.hidden = YES;
     self.changePasswordTextField.text = @"";
     self.changePasswordTextField.hidden = NO;
     self.confirmPasswordTextField.text = @"";
@@ -126,8 +128,9 @@
 }
 
 - (void)hidePasswordFields {
-    // Making change password field hidden and showing password fields
+    // Making change password field & logout hidden and showing password fields
     self.changePasswordButton.hidden = NO;
+    self.logOutButton.hidden = NO;
     self.changePasswordTextField.hidden = YES;
     self.confirmPasswordTextField.hidden = YES;
 }

@@ -61,8 +61,8 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     // Moves view up for keyboard
     [UIView animateWithDuration:0.3 animations:^{
-        self.viewTopConstraint.constant = -110;
-        self.viewBottomConstraint.constant = 110;
+        self.viewTopConstraint.constant = -83;
+        self.viewBottomConstraint.constant = 83;
         [self.view layoutIfNeeded];
     }];
 }
