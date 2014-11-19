@@ -113,7 +113,7 @@
         
         // Conditional that checks if fields are empty
         if([self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Email address or password missing!" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Missing Information!" message:@"Email address or password missing." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 if ([self.usernameTextField.text isEqualToString:@""]) {
                     self.passwordTextField.text = @"";
@@ -128,7 +128,7 @@
         }
         // If error, alert is presented
         else if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Invalid login credentials!" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Invalid login credentials." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.usernameTextField.text = @"";
                 self.passwordTextField.text = @"";
@@ -156,7 +156,7 @@
         
         // Conditional if error
         if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sorry!" message:@"There was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
@@ -165,7 +165,7 @@
         }
         // Conditional if succeeded, alert shows with confirmation
         else if (succeeded){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email sent!" message:@"An email has been sent to you to reset your password" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email sent!" message:@"An email has been sent to you to reset your password." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
@@ -174,7 +174,7 @@
         }
         // Conditional if no success, alert shows with bad news :(
         else if(!succeeded){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"We are unable to reset your password." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sorry!" message:@"We are unable to reset your password." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];

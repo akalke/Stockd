@@ -86,7 +86,7 @@
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         // Conditional that shows alert if error
         if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Username might exist or there was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sorry!" message:@"Username might exist or there was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.registerUsernameTextField.text = @"";
                 self.registerPasswordTextField.text = @"";
@@ -119,7 +119,7 @@
     // Conditional that checks if any fields are left empty & makes field firstResponder if its empty
     if([self.registerUsernameTextField.text isEqualToString:@""] || [self.registerPasswordTextField.text isEqualToString:@""] || [self.registerConfirmPasswordTextField.text isEqualToString:@""]){
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"A field has been left empty!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Missing Information!" message:@"Please fill everything out." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([self.registerUsernameTextField.text isEqualToString:@""]) {
                 [self.registerUsernameTextField becomeFirstResponder];

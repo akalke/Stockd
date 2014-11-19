@@ -23,7 +23,7 @@
     // Conditional to check if device has a camera
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Camera Detected" message:@"Proceed to Step 2" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Camera Detected!" message:@"Skip step 1." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             return;
         }];

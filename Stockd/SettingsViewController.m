@@ -161,7 +161,7 @@
         [self hidePasswordFields];
         [self resignKeyboard];
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Passwords don't match." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Passwords don't match." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             self.changePasswordTextField.text = @"";
             self.confirmPasswordTextField.text = @"";
