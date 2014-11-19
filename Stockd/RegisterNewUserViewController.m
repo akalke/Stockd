@@ -79,7 +79,7 @@
     newUser.email = self.registerUsernameTextField.text;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Username might exist or there was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Username might exist or there was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.registerUsernameTextField.text = @"";
                 self.registerPasswordTextField.text = @"";
@@ -112,7 +112,7 @@
     
     if([self.registerUsernameTextField.text isEqualToString:@""] || [self.registerPasswordTextField.text isEqualToString:@""] || [self.registerConfirmPasswordTextField.text isEqualToString:@""]){
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Information is missing!" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Information is missing!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([self.registerUsernameTextField.text isEqualToString:@""]) {
                 [self.registerUsernameTextField becomeFirstResponder];
@@ -129,7 +129,7 @@
     {
         if(![self.registerPasswordTextField.text isEqualToString:self.registerConfirmPasswordTextField.text]){
             
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Passwords do not match! Please re-enter your passwords." preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Passwords do not match! Please re-enter your passwords." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.registerConfirmPasswordTextField.text = @"";
                 self.registerPasswordTextField.text = @"";
@@ -139,7 +139,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if(self.registerUsernameTextField.text && [self.registerUsernameTextField.text rangeOfString:@"@"].location == NSNotFound){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Please enter a valid email address." preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Please enter a valid email address." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.registerConfirmPasswordTextField.text = @"";
                 self.registerPasswordTextField.text = @"";

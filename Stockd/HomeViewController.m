@@ -248,9 +248,9 @@
 - (IBAction)createListOnButtonPress:(id)sender {
     
     if([self.listName.text isEqualToString:@""]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Title missing!" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Lists need titles!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self.listName becomeFirstResponder];
+            return;
         }];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];

@@ -103,7 +103,7 @@
     [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error) {
 
         if([self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Email address or password missing!" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Email address or password missing!" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 if ([self.usernameTextField.text isEqualToString:@""]) {
                     self.passwordTextField.text = @"";
@@ -117,7 +117,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Invalid login credentials!" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Invalid login credentials!" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 self.usernameTextField.text = @"";
                 self.passwordTextField.text = @"";
@@ -142,7 +142,7 @@
 - (IBAction)forgotPasswordOnButtonPress:(id)sender {
     [PFUser requestPasswordResetForEmailInBackground:self.usernameTextField.text block:^(BOOL succeeded, NSError *error) {
         if(error){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"There was an error with your request, please try again later." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
@@ -150,7 +150,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if (succeeded){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email sent!" message:@"An email has been sent to you to reset your password" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email sent!" message:@"An email has been sent to you to reset your password" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
@@ -158,7 +158,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if(!succeeded){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"We are unable to reset your password." preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"We are unable to reset your password." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 return;
             }];
