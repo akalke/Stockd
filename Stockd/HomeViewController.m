@@ -28,8 +28,8 @@
     [super viewDidLoad];
     
     UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = peachBackground;
-    tabBar.tintColor = stockdOrangeColor;
+    tabBar.barTintColor = navBarColor;
+    tabBar.tintColor = peachBackground;
     tabBar.translucent = NO;
     
     self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
@@ -39,7 +39,7 @@
     [super viewWillAppear:animated];
     
     [self getLists: [PFUser currentUser]];
-    self.navigationController.navigationBar.barTintColor = peachBackground;
+    self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
@@ -65,8 +65,7 @@
     List *list = [self.lists objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyListsCell" forIndexPath: indexPath];
     cell.textLabel.text = list.name;
-    cell.imageView.image = [UIImage imageNamed:@"stockd_annotation"];
-    cell.imageView.backgroundColor = peachBackground;
+    //cell.imageView.image = [UIImage imageNamed:@"stockd_icon-400p"];
 
     if (list.isQuickList == YES) {
         cell.detailTextLabel.text = @"";
