@@ -103,7 +103,7 @@
             [self.tableView setEditing:NO];
         }];
     }];
-    removeQuickList.backgroundColor = stockdOrangeColor;
+    removeQuickList.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [item deleteItemWithBlock:^{

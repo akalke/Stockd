@@ -78,7 +78,7 @@
     }];
     cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:26.0];
     if (item.isInQuickList == YES) {
-        cell.textLabel.textColor = stockdOrangeColor;
+        cell.textLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
     } else {
         cell.textLabel.textColor = [UIColor blackColor];
     }
@@ -105,7 +105,7 @@
             [self.tableView setEditing:NO];
         }];
     }];
-    quickList.backgroundColor = stockdOrangeColor;
+    quickList.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [item deleteItemWithBlock:^{
