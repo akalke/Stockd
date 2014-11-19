@@ -8,6 +8,7 @@
 
 #define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
+#define navBarColor [UIColor colorWithRed:231.0/255.0 green:95.0/255.0 blue:73.0/255.0 alpha:1.0]
 
 #import "CreateItemViewController.h"
 #import "CameraViewController.h"
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *quickListLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *quickListSwitch;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIView *quickListView;
 
 @end
 
@@ -29,15 +31,16 @@
     [tapGesture setNumberOfTapsRequired:1];
     [tapGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:tapGesture];
+        self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial-BoldMT" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     
     PFFile *image = [self.item objectForKey:@"image"];
@@ -79,6 +82,7 @@
 - (void)hideQuickListObjects {
     self.quickListLabel.hidden = YES;
     self.quickListSwitch.hidden = YES;
+    self.quickListView.hidden = YES;
     self.quickListSwitch.userInteractionEnabled = NO;
 }
 

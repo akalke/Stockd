@@ -9,6 +9,7 @@
 #define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
 #define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 #define peachBackground [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0]
+#define navBarColor [UIColor colorWithRed:231.0/255.0 green:95.0/255.0 blue:73.0/255.0 alpha:1.0]
 
 #import "HomeViewController.h"
 #import "ListDetailViewController.h"
@@ -27,11 +28,10 @@
     [super viewDidLoad];
     
     UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = [UIColor darkGrayColor];
+    tabBar.barTintColor = navBarColor;
     tabBar.tintColor = stockdOrangeColor;
     tabBar.translucent = NO;
     
-    self.tableView.backgroundColor = peachBackground;
     self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
 }
 
@@ -40,7 +40,7 @@
     
     [self getLists: [PFUser currentUser]];
     
-    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = stockdBlueColor;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
@@ -201,6 +201,7 @@
 #pragma mark - IBActions
 
 - (IBAction)createListOnButtonPress:(id)sender {
+    
     if([self.listName.text isEqualToString:@""]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Title missing!" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
