@@ -168,6 +168,7 @@
             List *shareList = [[List alloc] init];
             [shareList shareThisList:list withThisUser: [alert.textFields[0] valueForKey:@"text"]];
             list.isShared = YES;
+            [self getLists:[PFUser currentUser]];
         }];
 
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -195,7 +196,7 @@
         }
         else{
             list.isShared = NO;
-            [tableView reloadData];
+            [self getLists:[PFUser currentUser]];
         }
         [self.tableView setEditing:NO];
     }];
