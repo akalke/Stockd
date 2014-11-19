@@ -44,7 +44,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="c5P-yR-Gqr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ld-uY-Png">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="addItemOnButtonPress:" destination="qrq-r8-Dt3" id="qCM-Kd-qKw"/>
                             </connections>
@@ -73,9 +73,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BE8-N9-lVM">
                                 <rect key="frame" x="0.0" y="228" width="600" height="323"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="323" id="Qjn-lf-Ntc"/>
-                                </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lw-tw-8Yw">
                                 <rect key="frame" x="0.0" y="122" width="600" height="50"/>
@@ -154,24 +151,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="BE8-N9-lVM" firstAttribute="bottom" secondItem="hFq-xz-GZ1" secondAttribute="top" id="0Hv-Bt-qhZ"/>
+                            <constraint firstItem="BE8-N9-lVM" firstAttribute="top" secondItem="9WO-ap-kp5" secondAttribute="bottom" constant="164" id="1fH-VW-h0W"/>
                             <constraint firstItem="OY7-Jg-SkZ" firstAttribute="leading" secondItem="A9t-aN-FRi" secondAttribute="leading" id="1pN-yh-LVX"/>
                             <constraint firstAttribute="trailing" secondItem="OY7-Jg-SkZ" secondAttribute="trailing" id="6oy-A3-q9E"/>
                             <constraint firstItem="2Lw-tw-8Yw" firstAttribute="leading" secondItem="A9t-aN-FRi" secondAttribute="leading" id="7bg-u6-DgP"/>
-                            <constraint firstAttribute="trailing" secondItem="BE8-N9-lVM" secondAttribute="trailing" id="8b9-cs-eck"/>
-                            <constraint firstItem="BE8-N9-lVM" firstAttribute="top" secondItem="2Lw-tw-8Yw" secondAttribute="bottom" constant="56" id="C86-3J-sbF"/>
-                            <constraint firstItem="BE8-N9-lVM" firstAttribute="leading" secondItem="A9t-aN-FRi" secondAttribute="leading" id="Cab-y4-UuN"/>
                             <constraint firstItem="2Lw-tw-8Yw" firstAttribute="top" secondItem="OY7-Jg-SkZ" secondAttribute="bottom" constant="8" id="Cwr-1m-JrV"/>
                             <constraint firstAttribute="trailing" secondItem="cGb-o9-1bE" secondAttribute="trailing" id="Ie4-Qh-QQv"/>
                             <constraint firstItem="cGb-o9-1bE" firstAttribute="top" secondItem="2Lw-tw-8Yw" secondAttribute="bottom" constant="8" id="PzT-S8-Lhn"/>
+                            <constraint firstAttribute="trailing" secondItem="BE8-N9-lVM" secondAttribute="trailing" id="bMF-IP-uhq"/>
                             <constraint firstAttribute="trailing" secondItem="2Lw-tw-8Yw" secondAttribute="trailing" id="nXu-6t-w24"/>
-                            <constraint firstAttribute="trailing" secondItem="BE8-N9-lVM" secondAttribute="trailing" id="oxD-yH-0IO"/>
                             <constraint firstItem="OY7-Jg-SkZ" firstAttribute="top" secondItem="9WO-ap-kp5" secondAttribute="bottom" id="pw2-Up-geG"/>
-                            <constraint firstItem="BE8-N9-lVM" firstAttribute="leading" secondItem="A9t-aN-FRi" secondAttribute="leading" id="qYr-tE-pOO"/>
                             <constraint firstItem="cGb-o9-1bE" firstAttribute="leading" secondItem="A9t-aN-FRi" secondAttribute="leading" id="snx-O4-ND2"/>
-                            <constraint firstAttribute="centerX" secondItem="BE8-N9-lVM" secondAttribute="centerX" id="u5F-yS-uRW"/>
                             <constraint firstAttribute="centerX" secondItem="cGb-o9-1bE" secondAttribute="centerX" id="uZd-15-sa2"/>
                             <constraint firstAttribute="centerX" secondItem="2Lw-tw-8Yw" secondAttribute="centerX" id="vSM-Dh-BBU"/>
+                            <constraint firstItem="hFq-xz-GZ1" firstAttribute="top" secondItem="BE8-N9-lVM" secondAttribute="bottom" id="wmI-qH-ziF"/>
+                            <constraint firstItem="BE8-N9-lVM" firstAttribute="leading" secondItem="A9t-aN-FRi" secondAttribute="leading" id="xiN-12-Lcx"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="oD3-PS-Gsz" appends="YES" id="ESA-ZW-S24"/>
@@ -221,81 +215,72 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qmK-BF-IQP">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="482"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXn-o8-KIf">
-                                <rect key="frame" x="0.0" y="400" width="600" height="150"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUQ-Y1-SUV">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                        <color key="backgroundColor" red="1" green="0.65574566459999994" blue="0.41383380240000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="jEZ-hI-BmW"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                        <state key="normal" title="Step 1: Take A Photo">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="takePhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="ux1-D3-Yi7"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEK-IL-HXm">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="50"/>
-                                        <color key="backgroundColor" red="0.92524314409999997" green="0.46230683010000001" blue="0.37372379039999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="5UY-1f-Ecd"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                        <state key="normal" title="Step 2: Select The Photo">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="selectPhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="T7l-II-sPH"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hb4-VO-tmA">
-                                        <rect key="frame" x="0.0" y="100" width="600" height="50"/>
-                                        <color key="backgroundColor" red="0.072357545999999995" green="0.71384326929999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="T8b-ZA-iGm"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                        <state key="normal" title="Step 3: Add The Photo!">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="5bT-bN-fHW" kind="unwind" unwindAction="unwindFromCameraSegue:" id="jEn-Yh-l62"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXn-o8-KIf">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="hb4-VO-tmA" firstAttribute="leading" secondItem="FXn-o8-KIf" secondAttribute="leading" id="2Bj-Ko-86Q"/>
-                                    <constraint firstItem="MUQ-Y1-SUV" firstAttribute="leading" secondItem="FXn-o8-KIf" secondAttribute="leading" id="5Va-2F-2rP"/>
-                                    <constraint firstItem="xEK-IL-HXm" firstAttribute="top" secondItem="MUQ-Y1-SUV" secondAttribute="bottom" id="F0F-7H-cSX"/>
-                                    <constraint firstAttribute="trailing" secondItem="xEK-IL-HXm" secondAttribute="trailing" id="HsQ-Pd-oEp"/>
-                                    <constraint firstAttribute="trailing" secondItem="MUQ-Y1-SUV" secondAttribute="trailing" id="KpI-Rx-OaO"/>
-                                    <constraint firstAttribute="trailing" secondItem="hb4-VO-tmA" secondAttribute="trailing" id="cbD-s8-aOi"/>
-                                    <constraint firstItem="xEK-IL-HXm" firstAttribute="leading" secondItem="FXn-o8-KIf" secondAttribute="leading" id="gS8-Kr-x5U"/>
-                                    <constraint firstItem="hb4-VO-tmA" firstAttribute="top" secondItem="xEK-IL-HXm" secondAttribute="bottom" id="o3O-lK-BfD"/>
-                                    <constraint firstAttribute="bottom" secondItem="hb4-VO-tmA" secondAttribute="bottom" id="r2M-LR-XHj"/>
-                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUQ-Y1-SUV">
+                                <rect key="frame" x="0.0" y="401" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.65574566459999994" blue="0.41383380240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5Ms-Wt-1Kr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                <state key="normal" title="Step 1: Take A Photo">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="ux1-D3-Yi7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEK-IL-HXm">
+                                <rect key="frame" x="0.0" y="451" width="600" height="50"/>
+                                <color key="backgroundColor" red="0.92524314409999997" green="0.46230683010000001" blue="0.37372379039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Tcn-Si-IjP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                <state key="normal" title="Step 2: Select The Photo">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="q8A-HR-S7J" eventType="touchUpInside" id="T7l-II-sPH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hb4-VO-tmA">
+                                <rect key="frame" x="0.0" y="501" width="600" height="50"/>
+                                <color key="backgroundColor" red="0.072357545999999995" green="0.71384326929999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Nty-ST-mBv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                <state key="normal" title="Step 3: Add The Photo!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="5bT-bN-fHW" kind="unwind" unwindAction="unwindFromCameraSegue:" id="jEn-Yh-l62"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FXn-o8-KIf" firstAttribute="leading" secondItem="qmK-BF-IQP" secondAttribute="leading" id="HGf-sl-kLY"/>
-                            <constraint firstAttribute="trailing" secondItem="FXn-o8-KIf" secondAttribute="trailing" id="NwU-Ue-PzZ"/>
-                            <constraint firstItem="FXn-o8-KIf" firstAttribute="leading" secondItem="VyC-HT-9Q5" secondAttribute="leading" id="Qkg-Tq-CtC"/>
-                            <constraint firstItem="qmK-BF-IQP" firstAttribute="top" secondItem="VyC-HT-9Q5" secondAttribute="top" id="Qnm-7h-gT0"/>
-                            <constraint firstItem="FXn-o8-KIf" firstAttribute="top" secondItem="Ww0-AT-Rya" secondAttribute="bottom" constant="336" id="hO5-sa-hRL"/>
-                            <constraint firstItem="qmK-BF-IQP" firstAttribute="bottom" secondItem="3RJ-Pn-pke" secondAttribute="top" id="mMd-p6-tr9"/>
-                            <constraint firstItem="3RJ-Pn-pke" firstAttribute="top" secondItem="FXn-o8-KIf" secondAttribute="bottom" constant="1" id="oNc-wV-rV7"/>
-                            <constraint firstItem="qmK-BF-IQP" firstAttribute="trailing" secondItem="FXn-o8-KIf" secondAttribute="trailing" id="pDU-bb-5py"/>
+                            <constraint firstItem="qmK-BF-IQP" firstAttribute="top" secondItem="Ww0-AT-Rya" secondAttribute="bottom" id="7HU-Bd-sfq"/>
+                            <constraint firstAttribute="trailing" secondItem="hb4-VO-tmA" secondAttribute="trailing" id="FiW-cj-Lfl"/>
+                            <constraint firstItem="MUQ-Y1-SUV" firstAttribute="leading" secondItem="VyC-HT-9Q5" secondAttribute="leading" id="Kig-Wp-DOo"/>
+                            <constraint firstItem="3RJ-Pn-pke" firstAttribute="top" secondItem="qmK-BF-IQP" secondAttribute="bottom" constant="5" id="KwX-9h-tcx"/>
+                            <constraint firstItem="hb4-VO-tmA" firstAttribute="top" secondItem="xEK-IL-HXm" secondAttribute="bottom" id="PEF-I1-9qs"/>
+                            <constraint firstItem="hb4-VO-tmA" firstAttribute="leading" secondItem="VyC-HT-9Q5" secondAttribute="leading" id="PJa-9T-6ZY"/>
+                            <constraint firstItem="qmK-BF-IQP" firstAttribute="leading" secondItem="VyC-HT-9Q5" secondAttribute="leading" id="RGP-nV-VSA"/>
+                            <constraint firstAttribute="trailing" secondItem="qmK-BF-IQP" secondAttribute="trailing" id="WmN-ui-XpU"/>
+                            <constraint firstAttribute="trailing" secondItem="MUQ-Y1-SUV" secondAttribute="trailing" id="anu-mt-7h6"/>
+                            <constraint firstItem="xEK-IL-HXm" firstAttribute="leading" secondItem="VyC-HT-9Q5" secondAttribute="leading" id="cBp-9v-leh"/>
+                            <constraint firstItem="3RJ-Pn-pke" firstAttribute="top" secondItem="hb4-VO-tmA" secondAttribute="bottom" id="gha-Rn-zeY"/>
+                            <constraint firstAttribute="trailing" secondItem="xEK-IL-HXm" secondAttribute="trailing" id="ttb-IS-JtF"/>
+                            <constraint firstItem="xEK-IL-HXm" firstAttribute="top" secondItem="MUQ-Y1-SUV" secondAttribute="bottom" id="zHP-iO-PTN"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1108,6 +1093,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VP3-XV-7qB"/>
-        <segue reference="3fI-09-ph0"/>
+        <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
 </document>

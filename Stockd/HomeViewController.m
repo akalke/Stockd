@@ -41,7 +41,7 @@
     item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
     
     UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
-    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
     
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
