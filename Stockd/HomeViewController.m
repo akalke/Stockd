@@ -29,8 +29,8 @@
     
     UITabBar *tabBar = self.tabBarController.tabBar;
     tabBar.barTintColor = navBarColor;
-//    tabBar.tintColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
-    tabBar.tintColor = peachBackground;
+    tabBar.tintColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
+//    tabBar.tintColor = peachBackground;
     tabBar.translucent = NO;
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];

@@ -68,14 +68,14 @@
     
     Item *item = [self.pantryArray objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPantryCell" forIndexPath: indexPath];
-    PFFile *image = [item objectForKey:@"image"];
-    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            cell.imageView.image = [UIImage imageWithData:data];
-        }
-    }];
+//    PFFile *image = [item objectForKey:@"image"];
+//    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        if (error) {
+//            NSLog(@"Error: %@", error);
+//        } else {
+//            cell.imageView.image = [UIImage imageWithData:data];
+//        }
+//    }];
     cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:26.0];
     if (item.isInQuickList == YES) {
         cell.textLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
