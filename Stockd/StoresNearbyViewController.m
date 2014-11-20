@@ -217,7 +217,8 @@
     // Initializing storeArray
     self.storeArray = [NSMutableArray array];
     
-    // Hiding directions & call store buttons & setting background of
+    // Hiding directions & call store buttons & setting background for buttons
+    self.viewForButtons.backgroundColor = peachBackground;
     self.viewForButtons.hidden = YES;
 }
 
