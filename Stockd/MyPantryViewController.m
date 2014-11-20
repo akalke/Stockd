@@ -114,11 +114,11 @@
     // Setting tab bar properties
     UITabBar *tabBar = self.tabBarController.tabBar;
     tabBar.barTintColor = navBarColor;
-    tabBar.tintColor = peachBackground;
+    tabBar.tintColor = [UIColor whiteColor];
     tabBar.translucent = NO;
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:peachBackground} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     
     UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
     item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
