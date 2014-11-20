@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_punchout" translatesAutoresizingMaskIntoConstraints="NO" id="hff-kt-I04">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-punchout" translatesAutoresizingMaskIntoConstraints="NO" id="hff-kt-I04">
                     <rect key="frame" x="140" y="140" width="200" height="200"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="8dw-kn-pUN"/>
@@ -29,6 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo_punchout" width="850" height="850"/>
+        <image name="stockd_icon-punchout" width="283" height="283"/>
     </resources>
 </document>
