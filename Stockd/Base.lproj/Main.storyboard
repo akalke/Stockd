@@ -333,7 +333,7 @@
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-punchout" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-vL-i5h">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_punchout" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-vL-i5h">
                                         <rect key="frame" x="220" y="72" width="160" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="160" id="Blc-Wr-Vag"/>
@@ -519,7 +519,7 @@
                                             <segue destination="qV9-KS-hcA" kind="show" identifier="showTabBarSegue" id="VP3-XV-7qB"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockd_icon-punchout" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-Qb-Kte">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_punchout" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-Qb-Kte">
                                         <rect key="frame" x="220" y="72" width="160" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="b2I-1R-PdC"/>
@@ -1083,6 +1083,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo_punchout" width="283" height="283"/>
         <image name="stockd_buttonicon-currentlocation" width="37" height="37"/>
         <image name="stockd_icon-punchout" width="425" height="425"/>
         <image name="stockd_tabbaricon-lists_black" width="37" height="37"/>
@@ -1091,7 +1092,7 @@
         <image name="stockd_tabbaricon-storesnearby_black" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VP3-XV-7qB"/>
+        <segue reference="b3f-dZ-mbZ"/>
         <segue reference="bp2-ue-hzf"/>
     </inferredMetricsTieBreakers>
 </document>
