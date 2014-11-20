@@ -142,7 +142,9 @@
             NSLog(@"Error finding Item: %@", error);
         }
         else{
-            self.items = objects;
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES];
+            NSArray *sortedListsArray = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            self.items = sortedListsArray;
             [self.tableView reloadData];
             self.title = [NSString stringWithFormat:@"%@ (%lu)", self.list.name, (unsigned long)self.items.count];
         }
@@ -164,7 +166,9 @@
             NSLog(@"%@", error);
         }
         else{
-            self.items = objects;
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES];
+            NSArray *sortedListsArray = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            self.items = sortedListsArray;
             [self.tableView reloadData];
             
             self.title = [NSString stringWithFormat:@"%@ (%lu)", self.list.name, (unsigned long)self.items.count];
