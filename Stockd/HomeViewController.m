@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
-#define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
 #define peachBackground [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0]
 #define navBarColor [UIColor colorWithRed:231.0/255.0 green:95.0/255.0 blue:73.0/255.0 alpha:1.0]
 #define turqouise [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80]
@@ -27,13 +26,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setTabBarDisplay];
+    [self setNavBarDisplay];
+    [self setTapGesture];
+    
+    self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self getLists: [PFUser currentUser]];
-    [self setTabBarDisplayWillAppear];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -47,6 +51,8 @@
 
 #pragma mark - GestureRecognizer Methods
 
+// Method that determines tapGesture should receive a touch
+// if touch is anywhere but a tableviewcell to dismiss keyboard
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if ([touch.view class] == self.tableView.class) {
         return NO;
@@ -92,6 +98,7 @@
     return cell;
 }
 
+// Removes editing for QuickList
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     List *list = [self.lists objectAtIndex:indexPath.row];
     if([list.name isEqualToString:@"Quick List"]){
@@ -102,10 +109,12 @@
     }
 }
 
+// Need method for editActionsForRowAtIndexPath to work (it doesn't need anything declared inside)
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    return;
+    
 }
 
+// Creates custom cell actions
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     List *list =[self.lists objectAtIndex:indexPath.row];
 
@@ -119,7 +128,7 @@
         [self editActionForList:list];
     }];
 
-    UITableViewRowAction *share = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Share It" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+    UITableViewRowAction *share = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Share" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [self shareActionForList:list];
     }];
 
@@ -127,7 +136,7 @@
         [self unshareActionForList:list];
     }];
 
-    edit.backgroundColor = stockdBlueColor;
+    edit.backgroundColor = [UIColor orangeColor];
     unshare.backgroundColor = [UIColor darkGrayColor];
     share.backgroundColor = [UIColor lightGrayColor];
 
@@ -142,8 +151,52 @@
     }
 }
 
-
 #pragma mark - Helper Methods
+
+-(void)setTabBarDisplay{
+    // Setting tab bar properties
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    tabBar.barTintColor = navBarColor;
+    tabBar.tintColor = turqouise;
+    tabBar.translucent = NO;
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    
+    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
+    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
+    
+    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
+    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
+    
+    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
+    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-storesnearby"];
+    
+    UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
+    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
+}
+
+-(void)setNavBarDisplay{
+    // Setting navigation bar properties
+    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+}
+
+- (void)setTapGesture {
+    // Setting up tap gesture to resign keyboard
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [tapGesture setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:tapGesture];
+}
 
 // Method used by tapGesture to resign keyboard
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
@@ -179,50 +232,6 @@
     }];
 }
 
-
--(void)setTabBarDisplay{
-    UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = navBarColor;
-    tabBar.tintColor = turqouise;
-    tabBar.translucent = NO;
-
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
-
-    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
-    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
-
-    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
-    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
-
-    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
-    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item2.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-storesnearby"];
-
-    UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
-    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
-
-    self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
-    
-    // Setting up tap gesture to resign keyboard
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
-    [tapGesture setNumberOfTapsRequired:1];
-    [tapGesture setNumberOfTouchesRequired:1];
-    [tapGesture setCancelsTouchesInView:NO];
-    [self.view addGestureRecognizer:tapGesture];
-}
-
--(void)setTabBarDisplayWillAppear{
-    self.navigationController.navigationBar.barTintColor = navBarColor;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-}
-
 -(void)deleteActionForList: (List *)list{
     if(list.isShared == YES){
         //Delete shared lists if deleting source list
@@ -252,7 +261,7 @@
 }
 
 -(void)shareActionForList: (List *)list{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with." preferredStyle:UIAlertControllerStyleAlert];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Enter email address";
@@ -336,12 +345,7 @@
 - (IBAction)createListOnButtonPress:(id)sender {
     
     if([self.listName.text isEqualToString:@""]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Lists need titles!" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            return;
-        }];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
+        return;
     }
     else{
         List *list = [[List alloc]init];

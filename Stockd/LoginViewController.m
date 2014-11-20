@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
+#define peachBackground [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0]
+
 #import "LoginViewController.h"
 
 @interface LoginViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate>
@@ -21,11 +23,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setLoginScreen];
+    
+    [self setTapGesture];
     
     // Setting delegates so view can move
     self.usernameTextField.delegate = self;
     self.passwordTextField.delegate = self;
+    
+    self.view.backgroundColor = peachBackground;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -76,11 +81,8 @@
 
 #pragma mark - Helper Methods
 
-// Method that sets up tapGesture & background
--(void)setLoginScreen{
-    //Setup Login Screen
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
-    
+// Method that sets up tapGesture
+-(void)setTapGesture{
     // Setting up tap gesture to resign keyboard
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];

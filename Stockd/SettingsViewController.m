@@ -33,45 +33,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = peachBackground;
     
-    // Setting up password text fields
-    self.changePasswordTextField.placeholder = @"New Password";
-    self.changePasswordTextField.delegate = self;
-    self.confirmPasswordTextField.placeholder = @"Confirm Password";
-    self.confirmPasswordTextField.delegate = self;
-    
-    // Setting up tap gesture to resign keyboard
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
-    [tapGesture setNumberOfTapsRequired:1];
-    [tapGesture setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:tapGesture];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    [self setNavBarDisplay];
+    [self setTapGesture];
+    [self setPasswordFields];
     
     // Hiding password elements
     [self hideSaveAndCancelButtons];
     [self hidePasswordFields];
     
-    // Assigning user property to current user & setting text for usernameLabel
-    self.user = [PFUser currentUser];
-    self.usernameLabel.text = self.user.username;
+    self.view.backgroundColor = peachBackground;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    // Formatting date for accountCreatedAtLabel
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"MM-dd-yyyy"];
-    NSString *date = [format stringForObjectValue:self.user.createdAt];
-    self.accountCreatedAtLabel.text = [NSString stringWithFormat:@"Member Since: %@", date];
-    
-    // Making sure navbar properties are set when screen is selected
-    self.navigationItem.title = @"Settings";
-    self.navigationController.navigationBar.barTintColor = navBarColor;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0],NSForegroundColorAttributeName:[UIColor blackColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    [self setViewContent];
 }
 
 #pragma mark - TextField Methods
@@ -98,6 +75,36 @@
 
 #pragma mark - Helper Methods
 
+- (void)setNavBarDisplay {
+    // Setting navigation bar properties
+    self.navigationItem.title = @"Settings";
+    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+}
+
+- (void)setViewContent {
+    // Assigning user property to current user & setting text for usernameLabel
+    self.user = [PFUser currentUser];
+    self.usernameLabel.text = self.user.username;
+    
+    // Formatting date for accountCreatedAtLabel
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"MM-dd-yyyy"];
+    NSString *date = [format stringForObjectValue:self.user.createdAt];
+    self.accountCreatedAtLabel.text = [NSString stringWithFormat:@"Member Since: %@", date];
+}
+
+- (void)setTapGesture {
+    // Setting up tap gesture to resign keyboard
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
 // Method used by tapGesture to resign keyboard and move view back to origin
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
     [self resignKeyboard];
@@ -113,6 +120,14 @@
 - (void)resignKeyboard {
     [self.changePasswordTextField resignFirstResponder];
     [self.confirmPasswordTextField resignFirstResponder];
+}
+
+- (void)setPasswordFields {
+    // Setting up password text fields
+    self.changePasswordTextField.placeholder = @"New Password";
+    self.changePasswordTextField.delegate = self;
+    self.confirmPasswordTextField.placeholder = @"Confirm Password";
+    self.confirmPasswordTextField.delegate = self;
 }
 
 - (void)showPasswordFields {
@@ -161,7 +176,7 @@
         [self hidePasswordFields];
         [self resignKeyboard];
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Passwords don't match." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Passwords do not match." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             self.changePasswordTextField.text = @"";
             self.confirmPasswordTextField.text = @"";

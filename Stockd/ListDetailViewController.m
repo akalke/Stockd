@@ -19,43 +19,30 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addItemButton;
 @property NSArray *items;
-@property BOOL didSelectItem;
+@property BOOL didSelectItemToEdit;
 @end
 
 @implementation ListDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setNavBarDisplay];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // Calls method to get items for list
-    [self getItemsForConditional];
+    // Calls methods to get items for list
+    [self getItemsToDisplay];
     
-    // Making sure navbar properties are set when screen is selected
-    self.navigationController.navigationBar.barTintColor = navBarColor;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0],NSForegroundColorAttributeName:[UIColor blackColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    
-    // Sets bool for didSelectItem
-    self.didSelectItem = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    // Removes self as delegate
-    self.tabBarController.delegate = nil;
+    self.didSelectItemToEdit = NO;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"createNewItemFromListSegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
-        if (self.didSelectItem == YES) {
+        if (self.didSelectItemToEdit == YES) {
             createItemVC.editingFromListDetails = YES;
             
             Item *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
@@ -118,14 +105,23 @@
 
 // Method used when cell is selected
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.didSelectItem = YES;
+    self.didSelectItemToEdit = YES;
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 
 #pragma mark - Helper Methods
 
+- (void)setNavBarDisplay {
+    // Setting navigation bar properties
+    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+}
+
 // Method that gets items based on conditional
-- (void)getItemsForConditional {
+- (void)getItemsToDisplay {
     if (self.list.isQuickList == YES) {
         self.addItemButton.tintColor = [UIColor clearColor];
         self.addItemButton.enabled = NO;

@@ -19,7 +19,7 @@
 @property Item *items;
 @property NSArray *pantryArray;
 @property NSMutableArray *addItemsToList;
-@property BOOL didSelectItem;
+@property BOOL didSelectItemToEdit;
 
 @end
 
@@ -27,6 +27,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setNavBarDisplay];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,20 +37,13 @@
     // Calls method to get pantry items
     [self getPantry:[PFUser currentUser]];
     
-    // Making sure navbar properties are set when screen is selected
-    self.navigationController.navigationBar.barTintColor = navBarColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0],NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-    
-    self.didSelectItem = NO;
+    self.didSelectItemToEdit = NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"createNewItemFromMyPantrySegue"]) {
         CreateItemViewController *createItemVC = segue.destinationViewController;
-        if (self.didSelectItem == YES) {
+        if (self.didSelectItemToEdit == YES) {
             createItemVC.editingFromMyPantry = YES;
             
             Item *item = [self.pantryArray objectAtIndex:self.tableView.indexPathForSelectedRow.row];
@@ -69,14 +64,7 @@
     
     Item *item = [self.pantryArray objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPantryCell" forIndexPath: indexPath];
-//    PFFile *image = [item objectForKey:@"image"];
-//    [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        } else {
-//            cell.imageView.image = [UIImage imageWithData:data];
-//        }
-//    }];
+
     cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:26.0];
     cell.textLabel.text = item.type;
     
@@ -98,36 +86,37 @@
 // Creates custom cell actions
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     Item *item = [self.pantryArray objectAtIndex:indexPath.row];
-    PFUser *user = [PFUser currentUser];
     UITableViewRowAction *quickList = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Quick List" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        if (item.isInQuickList == YES) {
-            [item setObject:[NSNumber numberWithBool:NO] forKey:@"isInQuickList"];
-        } else if (item.isInQuickList == NO) {
-            [item setObject:[NSNumber numberWithBool:YES] forKey:@"isInQuickList"];
-        }
-        [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self getPantry:user];
-            [self.tableView setEditing:NO];
-        }];
+        [self setQuickListActionFor:item];
     }];
-    quickList.backgroundColor = turqouise;
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [item deleteItemWithBlock:^{
-            [self getPantry:user];
+            [self getPantry:[PFUser currentUser]];
             [self.tableView setEditing:NO];
         }];
     }];
+    
+    quickList.backgroundColor = turqouise;
     
     return @[delete, quickList];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.didSelectItem = YES;
+    self.didSelectItemToEdit = YES;
     [self performSegueWithIdentifier:@"createNewItemFromMyPantrySegue" sender:self];
 }
 
 #pragma mark - Helper Methods
+
+- (void)setNavBarDisplay {
+    // Setting navigation bar properties
+    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0],NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+}
 
 // Method that gets pantry items based on currentUser
 -(void) getPantry: (PFUser *)currentUser{
@@ -143,6 +132,18 @@
             self.navigationItem.title = [NSString stringWithFormat:@"My Pantry (%lu)", (unsigned long)self.pantryArray.count];
             [self.tableView reloadData];
         }
+    }];
+}
+
+- (void)setQuickListActionFor:(Item *)item {
+    if (item.isInQuickList == YES) {
+        [item setObject:[NSNumber numberWithBool:NO] forKey:@"isInQuickList"];
+    } else if (item.isInQuickList == NO) {
+        [item setObject:[NSNumber numberWithBool:YES] forKey:@"isInQuickList"];
+    }
+    [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self getPantry:[PFUser currentUser]];
+        [self.tableView setEditing:NO];
     }];
 }
 

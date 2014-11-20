@@ -19,11 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setNavBarDisplay];
 
     // Conditional to check if device has a camera
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Camera Detected!" message:@"Skip step 1." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Camera Detected!" message:@"Proceed to Step 2." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             return;
         }];
@@ -31,17 +33,6 @@
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    // Making sure navbar properties are set when screen is selected
-    self.navigationController.navigationBar.barTintColor = navBarColor;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
 }
 
 #pragma mark - ImagePicker Methods
@@ -58,6 +49,17 @@
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
+}
+
+#pragma mark - Helper Methods
+
+- (void)setNavBarDisplay {
+    // Setting navigation bar properties
+    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
 }
 
 #pragma mark - IBActions

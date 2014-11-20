@@ -33,42 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Seting up locationManager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    [self.locationManager requestWhenInUseAuthorization];
-    
-    // Setting up searchBar
-    self.searchBar = [[UISearchBar alloc] init];
-    self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"Search by City, Zip, or Current Location";
-    
-    // Assigning searchBar as titleView
-    self.navigationItem.titleView = self.searchBar;
-    
-    // Initializing storeArray
-    self.storeArray = [NSMutableArray array];
-    
-    // Hiding directions & call store buttons & setting background of
-    self.viewForButtons.hidden = YES;
-    self.viewForButtons.backgroundColor = peachBackground;
-    
-    // Setting up tap gesture to resign keyboard
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
-    [tapGesture setNumberOfTapsRequired:1];
-    [tapGesture setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:tapGesture];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    // Making sure navbar properties are set when screen is selected
-    self.navigationController.navigationBar.barTintColor = navBarColor;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    [self setNavBarDisplay];
+    [self setTapGesture];
+    [self setViewElements];
 }
 
 #pragma mark - MapView Methods
@@ -232,6 +199,45 @@
 }
 
 #pragma mark - Helper Methods
+
+- (void) setViewElements {
+    // Seting up locationManager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    
+    // Setting up searchBar
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search by City, Zip, or Current Location";
+    
+    // Assigning searchBar as titleView
+    self.navigationItem.titleView = self.searchBar;
+    
+    // Initializing storeArray
+    self.storeArray = [NSMutableArray array];
+    
+    // Hiding directions & call store buttons & setting background of
+    self.viewForButtons.hidden = YES;
+    self.viewForButtons.backgroundColor = peachBackground;
+}
+
+- (void) setNavBarDisplay {
+    // Setting navigation bar properties
+    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+}
+
+- (void) setTapGesture {
+    // Setting up tap gesture to resign keyboard
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:tapGesture];
+}
 
 // Method used by tapGesture to hide cancel button in searchBar and resign keyboard
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {

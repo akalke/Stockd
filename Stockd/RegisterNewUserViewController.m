@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Amaeya Kalke. All rights reserved.
 //
 
+#define peachBackground [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0]
+
 #import "RegisterNewUserViewController.h"
 #import "List.h"
 
@@ -22,17 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setTapGesture];
+    
     // Setting delegates so view can move
     self.registerUsernameTextField.delegate = self;
     self.registerPasswordTextField.delegate = self;
     self.registerConfirmPasswordTextField.delegate = self;
     
-    // Setting up tap gesture to resign keyboard
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
-    [tapGesture setNumberOfTapsRequired:1];
-    [tapGesture setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:tapGesture];
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0];
+    self.view.backgroundColor = peachBackground;
 }
 
 #pragma mark - TextField Methods
@@ -58,6 +57,14 @@
 }
 
 #pragma mark - Helper Methods
+
+- (void)setTapGesture {
+    // Setting up tap gesture to resign keyboard
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:tapGesture];
+}
 
 // Method used by tapGesture to resign keyboard and move view back to origin
 - (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {

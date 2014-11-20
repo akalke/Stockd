@@ -27,8 +27,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = peachBackground;
+    [self setNavBarDisplay];
+    [self setTapGesture];
     
+    self.view.backgroundColor = peachBackground;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self setViewContent];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.itemDescriptionTextField resignFirstResponder];
+}
+
+#pragma mark - Helper Methods
+
+- (void)setTapGesture {
     // Setting up tap gesture to hide keyboard
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
     [tapGesture setNumberOfTapsRequired:1];
@@ -36,16 +55,16 @@
     [self.view addGestureRecognizer:tapGesture];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    // Making sure navbar properties are set when screen is selected
+- (void)setNavBarDisplay {
+    // Setting navigation bar properties
     self.navigationController.navigationBar.barTintColor = navBarColor;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    
+}
+
+- (void) setViewContent {
     // Getting image for item if item already has image
     PFFile *image = [self.item objectForKey:@"image"];
     [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -85,14 +104,6 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [self.itemDescriptionTextField resignFirstResponder];
-}
-
-#pragma mark - Helper Methods
-
 // Method used to hide QuickList view
 - (void)hideQuickListObjects {
     self.quickListLabel.hidden = YES;
@@ -117,7 +128,7 @@
 // Method that presents alert if item description is empty when
 // user tries to create item
 - (void)noDescriptionAlert {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Missing Information!" message:@"Please enter item description." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Save!" message:@"Please enter an item description." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
     }];
     
