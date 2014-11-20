@@ -16,7 +16,7 @@
 #import "List.h"
 #import "Sharing.h"
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITextField *listName;
 @property List *list;
@@ -29,7 +29,6 @@
     [super viewDidLoad];
     [self setTabBarDisplay];
 }
-
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -44,6 +43,16 @@
         List *list = [self.lists objectAtIndex:self.tableView.indexPathForSelectedRow.row];
         listDetailVC.list = list;
     }
+}
+
+#pragma mark - GestureRecognizer Methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view class] == self.tableView.class) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - TableView Methods
