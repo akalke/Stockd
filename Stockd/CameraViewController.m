@@ -21,6 +21,8 @@
     [super viewDidLoad];
     
     [self setNavBarDisplay];
+    
+    self.view.backgroundColor = peachBackground;
 
     // Conditional to check if device has a camera
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

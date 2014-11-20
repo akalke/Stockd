@@ -69,6 +69,16 @@
     cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:26.0];
     cell.textLabel.text = item.type;
     
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir" size:15.0];
+    
+    if (item.image != nil) {
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        cell.detailTextLabel.text = @"Tap to view image";
+    } else {
+        cell.detailTextLabel.textColor = [UIColor darkGrayColor];
+        cell.detailTextLabel.text = @"Tap to add image";
+    }
+    
     // Method that sets properties if item is set as QuickList item
     if (item.isInQuickList == YES) {
         cell.textLabel.textColor = turqouise;
