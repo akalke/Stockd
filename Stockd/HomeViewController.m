@@ -7,9 +7,9 @@
 //
 
 #define stockdBlueColor [UIColor colorWithRed:32.0/255.0 green:59.0/255.0 blue:115.0/255.0 alpha:1.0]
-#define stockdOrangeColor [UIColor colorWithRed:217.0/255.0 green:126.0/255.0 blue:0.0/255.0 alpha:1.0]
 #define peachBackground [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:181.0/255.0 alpha:1.0]
 #define navBarColor [UIColor colorWithRed:231.0/255.0 green:95.0/255.0 blue:73.0/255.0 alpha:1.0]
+#define turqouise [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80]
 
 #import "HomeViewController.h"
 #import "ListDetailViewController.h"
@@ -169,14 +169,14 @@
 -(void)setTabBarDisplay{
     UITabBar *tabBar = self.tabBarController.tabBar;
     tabBar.barTintColor = navBarColor;
-    tabBar.tintColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
+    tabBar.tintColor = turqouise;
     tabBar.translucent = NO;
 
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
 
     UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
-    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
 
     UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
@@ -184,11 +184,11 @@
     item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
 
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
-    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item2.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-storesnearby"];
 
     UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
-    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
 
     self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];

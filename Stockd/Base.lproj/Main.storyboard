@@ -626,12 +626,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="12C-j2-YwH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="7Mj-qy-Dv4"/>
                             <constraint firstAttribute="trailing" secondItem="12C-j2-YwH" secondAttribute="trailing" id="B7I-Y5-Slh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="12C-j2-YwH" secondAttribute="bottom" id="adr-OY-u3b"/>
                             <constraint firstItem="12C-j2-YwH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="x6b-Cc-qKt"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="b8M-GR-ab6" appends="YES" id="2bi-dM-tLD"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="oY3-5J-jpv">
                         <nil key="title"/>
@@ -654,6 +658,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="b8M-GR-ab6">
+                    <connections>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="1xu-cV-lqf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1639" y="-1256"/>
         </scene>
