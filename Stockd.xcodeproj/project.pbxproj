@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644271A0A8F97007BA4CA /* LoginViewController.m */; };
-		69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */; };
+		69C6442B1A0A8F9D007BA4CA /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */; };
 		69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */; };
 		69C644311A0A8FA9007BA4CA /* MyPantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */; };
 		69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */; };
@@ -58,8 +58,8 @@
 /* Begin PBXFileReference section */
 		69C644261A0A8F97007BA4CA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		69C644271A0A8F97007BA4CA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		69C644291A0A8F9D007BA4CA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		69C644291A0A8F9D007BA4CA /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsViewController.h; sourceTree = "<group>"; };
+		69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsViewController.m; sourceTree = "<group>"; };
 		69C6442C1A0A8FA4007BA4CA /* CreateItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateItemViewController.h; sourceTree = "<group>"; };
 		69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateItemViewController.m; sourceTree = "<group>"; };
 		69C6442F1A0A8FA9007BA4CA /* MyPantryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPantryViewController.h; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 		6CC5932D1A14100200CB619C /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				69C644291A0A8F9D007BA4CA /* HomeViewController.h */,
-				69C6442A1A0A8F9D007BA4CA /* HomeViewController.m */,
+				69C644291A0A8F9D007BA4CA /* ListsViewController.h */,
+				69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */,
 				69C6442F1A0A8FA9007BA4CA /* MyPantryViewController.h */,
 				69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */,
 				6C6808461A119771009340D8 /* ListDetailViewController.h */,
@@ -390,7 +390,7 @@
 				6CC593311A15127700CB619C /* CameraViewController.m in Sources */,
 				69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */,
 				6C6808481A119771009340D8 /* ListDetailViewController.m in Sources */,
-				69C6442B1A0A8F9D007BA4CA /* HomeViewController.m in Sources */,
+				69C6442B1A0A8F9D007BA4CA /* ListsViewController.m in Sources */,
 				6C6808421A0D03B6009340D8 /* List.m in Sources */,
 				69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */,
 				69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */,

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface HomeViewController : UIViewController
+@interface ListsViewController : UIViewController
 @property NSMutableArray *deletedListArray;
 
 @end

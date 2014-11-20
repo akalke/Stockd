@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setTabBarDisplay];
     [self setNavBarDisplay];
 }
 
@@ -108,6 +109,33 @@
 }
 
 #pragma mark - Helper Methods
+
+-(void)setTabBarDisplay{
+    // Setting tab bar properties
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    tabBar.barTintColor = navBarColor;
+    tabBar.tintColor = turqouise;
+    tabBar.translucent = NO;
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    
+    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
+    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
+    
+    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
+    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
+    
+    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
+    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-storesnearby"];
+    
+    UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
+    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
+}
 
 - (void)setNavBarDisplay {
     // Setting navigation bar properties

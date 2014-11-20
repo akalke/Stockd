@@ -10,24 +10,23 @@
 #define navBarColor [UIColor colorWithRed:231.0/255.0 green:95.0/255.0 blue:73.0/255.0 alpha:1.0]
 #define turqouise [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80]
 
-#import "HomeViewController.h"
+#import "ListsViewController.h"
 #import "ListDetailViewController.h"
 #import "List.h"
 #import "Sharing.h"
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface ListsViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITextField *listName;
 @property List *list;
 @property NSArray *lists;
 @end
 
-@implementation HomeViewController
+@implementation ListsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTabBarDisplay];
     [self setNavBarDisplay];
     [self setTapGesture];
     
@@ -152,33 +151,6 @@
 }
 
 #pragma mark - Helper Methods
-
--(void)setTabBarDisplay{
-    // Setting tab bar properties
-    UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = navBarColor;
-    tabBar.tintColor = turqouise;
-    tabBar.translucent = NO;
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
-    
-    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
-    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
-    
-    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
-    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
-    
-    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
-    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item2.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-storesnearby"];
-    
-    UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
-    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
-}
 
 -(void)setNavBarDisplay{
     // Setting navigation bar properties
