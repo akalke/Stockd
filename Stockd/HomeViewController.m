@@ -145,6 +145,11 @@
 
 #pragma mark - Helper Methods
 
+// Method used by tapGesture to resign keyboard
+- (void)resignKeyboardOnTap:(UITapGestureRecognizer *)sender {
+    [self.listName resignFirstResponder];
+}
+
 -(void) getLists: (PFUser *)currentUser{
     NSPredicate *quickListPredicate = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = true)", currentUser.objectId];
     PFQuery *quickListQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: quickListPredicate];
