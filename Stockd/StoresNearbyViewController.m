@@ -219,7 +219,6 @@
     
     // Hiding directions & call store buttons & setting background of
     self.viewForButtons.hidden = YES;
-    self.viewForButtons.backgroundColor = peachBackground;
 }
 
 - (void) setNavBarDisplay {
