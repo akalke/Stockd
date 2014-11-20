@@ -19,6 +19,7 @@
 @dynamic isQuickList;
 @dynamic isShared;
 @dynamic sourceListID;
+@dynamic isActive;
 
 #pragma mark Register Parse Subclass
 +(NSString *)parseClassName{
@@ -35,6 +36,7 @@
     self.userID = user.objectId;
     self.isQuickList = NO;
     self.isShared = NO;
+    self.isActive = YES;
     //self.sourceListID =  self.objectId;
     
     if(![listName isEqualToString:@"Quick List"] || ![listName isEqualToString:@""]){
@@ -66,6 +68,7 @@
     self.name = @"Quick List";
     self.isQuickList = YES;
     self.isShared = NO;
+    self.isActive = YES;
     
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(error){
@@ -101,8 +104,9 @@
             self.userID = [objects[0] objectId];
             self.isQuickList = NO;
             self.isShared = YES;
-            //self.name = [NSString stringWithFormat:@"%@ (Shared)", list.name];
+            self.name = list.name;
             self.sourceListID = list.objectId;
+            self.isActive = YES;
             
             [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(error){

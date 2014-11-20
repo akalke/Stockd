@@ -32,6 +32,7 @@
 		6C6808421A0D03B6009340D8 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808411A0D03B6009340D8 /* List.m */; };
 		6C6808451A0D03C5009340D8 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808441A0D03C5009340D8 /* Item.m */; };
 		6C6808481A119771009340D8 /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808471A119771009340D8 /* ListDetailViewController.m */; };
+		6CBD78E31A1DA98400D5B466 /* Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBD78E21A1DA98400D5B466 /* Sharing.m */; };
 		6CC5932A1A140EC500CB619C /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC593291A140EC500CB619C /* RegisterNewUserViewController.m */; };
 		6CC593311A15127700CB619C /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC593301A15127700CB619C /* CameraViewController.m */; };
 		6CDB20011A0A782400F614DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20001A0A782400F614DD /* main.m */; };
@@ -89,6 +90,8 @@
 		6C6808441A0D03C5009340D8 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		6C6808461A119771009340D8 /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDetailViewController.h; sourceTree = "<group>"; };
 		6C6808471A119771009340D8 /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDetailViewController.m; sourceTree = "<group>"; };
+		6CBD78E11A1DA98400D5B466 /* Sharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sharing.h; sourceTree = "<group>"; };
+		6CBD78E21A1DA98400D5B466 /* Sharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sharing.m; sourceTree = "<group>"; };
 		6CC593281A140EC500CB619C /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
 		6CC593291A140EC500CB619C /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
 		6CC5932F1A15127700CB619C /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				6C6808411A0D03B6009340D8 /* List.m */,
 				6C6808431A0D03C5009340D8 /* Item.h */,
 				6C6808441A0D03C5009340D8 /* Item.m */,
+				6CBD78E11A1DA98400D5B466 /* Sharing.h */,
+				6CBD78E21A1DA98400D5B466 /* Sharing.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CBD78E31A1DA98400D5B466 /* Sharing.m in Sources */,
 				6C6808451A0D03C5009340D8 /* Item.m in Sources */,
 				6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */,
 				69C644311A0A8FA9007BA4CA /* MyPantryViewController.m in Sources */,

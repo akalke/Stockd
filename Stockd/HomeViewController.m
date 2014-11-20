@@ -14,6 +14,7 @@
 #import "HomeViewController.h"
 #import "ListDetailViewController.h"
 #import "List.h"
+#import "Sharing.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -26,44 +27,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UITabBar *tabBar = self.tabBarController.tabBar;
-    tabBar.barTintColor = navBarColor;
-    tabBar.tintColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
-//    tabBar.tintColor = peachBackground;
-    tabBar.translucent = NO;
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
-    
-    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
-    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
-    
-    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
-    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
-    
-    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
-    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item2.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-storesnearby"];
-    
-    UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
-    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
-    
-    self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
+    [self setTabBarDisplay];
 }
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     [self getLists: [PFUser currentUser]];
-    self.navigationController.navigationBar.barTintColor = navBarColor;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    [self setTabBarDisplayWillAppear];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -85,7 +56,6 @@
     List *list = [self.lists objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyListsCell" forIndexPath: indexPath];
     cell.textLabel.text = list.name;
-    //cell.imageView.image = [UIImage imageNamed:@"stockd_icon-400p"];
 
     if (list.isQuickList == YES) {
         cell.detailTextLabel.text = @"";
@@ -95,8 +65,19 @@
         cell.detailTextLabel.text = @"Not shared";
     }
     else if (list.isShared == YES && list.isQuickList == NO){
-
-        cell.detailTextLabel.text = @"Shared";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"listID = %@", list.sourceListID];
+        PFQuery *query = [PFQuery queryWithClassName:[Sharing parseClassName] predicate:predicate];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for(Sharing *share in objects){
+                NSLog(@"%@, %@, %@", share.ownerUsername, [[PFUser currentUser] username], share.sharedUsername);
+                if([share.ownerUsername isEqualToString:[[PFUser currentUser] username]]){
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Sharing with %@", share.sharedUsername];
+                }
+                else{
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Sharing with %@", share.ownerUsername];
+                }
+            }
+        }];
     }
 
     return cell;
@@ -113,7 +94,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    return;
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -121,86 +102,22 @@
 
 
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // need completion block from deleteInBackgroundWithBlock method
-        NSString *listIDString = list.objectId;
-        [self.deletedListArray addObject:listIDString];
-        [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self getLists:[PFUser currentUser]];
-            [self.tableView setEditing:NO];
-        }];
+        [self deleteActionForList:list];
+
     }];
     
     UITableViewRowAction *edit = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Edit" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Edit List" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"List name";
-            textField.text = list.name;
-        }];
-        
-        UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [list setObject:[alert.textFields[0] valueForKey:@"text"] forKey:@"name"];
-            [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [self getLists:[PFUser currentUser]];
-            }];
-        }];
-        
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            return;
-        }];
-        
-        [alert addAction:save];
-        [alert addAction:cancel];
-        [self presentViewController:alert animated:YES completion:nil];
-        
-        [self.tableView setEditing:NO];
+        [self editActionForList:list];
     }];
 
     UITableViewRowAction *share = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Share It" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with" preferredStyle:UIAlertControllerStyleAlert];
-
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"Enter email address";
-            textField.keyboardType = UIKeyboardTypeEmailAddress;
-        }];
-        UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            List *shareList = [[List alloc] init];
-            [shareList shareThisList:list withThisUser: [alert.textFields[0] valueForKey:@"text"]];
-            list.isShared = YES;
-            [self getLists:[PFUser currentUser]];
-        }];
-
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            return;
-        }];
-
-
-        [alert addAction:share];
-        [alert addAction:cancel];
-        [self presentViewController:alert animated:YES completion:nil];
-
-        [self.tableView setEditing:NO];
+        [self shareActionForList:list];
     }];
 
     UITableViewRowAction *unshare = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Unshare" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        if(list.objectId != list.sourceListID && list.isShared == YES) {
-            [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if(error){
-                    NSLog(@"ERROR: CANNOT UNSHARE %@", error);
-                }
-                else{
-                    NSLog(@"SUCCESS: List Unshared");
-                }
-            }];
-        }
-        else{
-            list.isShared = NO;
-            [self getLists:[PFUser currentUser]];
-        }
-        [self.tableView setEditing:NO];
+        [self unshareActionForList:list];
     }];
-    
+
     edit.backgroundColor = stockdBlueColor;
     unshare.backgroundColor = [UIColor darkGrayColor];
     share.backgroundColor = [UIColor lightGrayColor];
@@ -208,10 +125,14 @@
     if(list.isShared == NO){
         return @[delete, edit, share];
     }
+    else if(list.isShared == YES && list.objectId != list.sourceListID){
+        return @[edit, unshare];
+    }
     else{
         return @[delete, edit, unshare];
     }
 }
+
 
 #pragma mark - Helper Methods
 
@@ -226,7 +147,7 @@
         else{
             NSArray *quickList = objects;
             
-            NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = false)", currentUser.objectId];
+            NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = false) AND (isActive = true)", currentUser.objectId];
             PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
             //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
             [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -242,6 +163,151 @@
             }];
         }
     }];
+}
+
+
+-(void)setTabBarDisplay{
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    tabBar.barTintColor = navBarColor;
+    tabBar.tintColor = [UIColor colorWithRed:0.0/255.0 green:191.0/255.0 blue:255.0/255.0 alpha:0.80];
+    tabBar.translucent = NO;
+
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+
+    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
+    item0.image = [[UIImage imageNamed:@"stockd_tabbaricon-lists"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-lists"];
+
+    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
+    item1.image = [[UIImage imageNamed:@"stockd_tabbaricon-mypantry_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-mypantry"];
+
+    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
+    item2.image = [[UIImage imageNamed:@"stockd_tabbaricon-storesnearby"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-storesnearby"];
+
+    UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
+    item3.image = [[UIImage imageNamed:@"stockd_tabbaricon-settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
+
+    self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
+}
+
+-(void)setTabBarDisplayWillAppear{
+    self.navigationController.navigationBar.barTintColor = navBarColor;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:18.0f],NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+}
+
+-(void)deleteActionForList: (List *)list{
+    if(list.isShared == YES){
+        //Delete shared lists if deleting source list
+        NSPredicate *sharedLists = [NSPredicate predicateWithFormat:@"sourceListID = %@", list.sourceListID];
+        PFQuery *sharedQuery = [PFQuery queryWithClassName:[List parseClassName] predicate:sharedLists];
+        [sharedQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if(error){
+                NSLog(@"%@", error);
+            }
+            else{
+                for(List *listObj in objects){
+                    if(list.objectId != listObj.objectId){
+                        [listObj setObject:[NSNumber numberWithBool:NO] forKey:@"isActive"];
+                        [listObj saveInBackground];
+                    }
+                }
+            }
+        }];
+    }
+
+    //Delete selected list
+    [list setObject:[NSNumber numberWithBool:NO] forKey:@"isActive"];
+    [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self getLists:[PFUser currentUser]];
+        [self.tableView setEditing:NO];
+    }];
+}
+
+-(void)shareActionForList: (List *)list{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share this list?" message:@"Enter the email address of the person you would like to share this list with" preferredStyle:UIAlertControllerStyleAlert];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Enter email address";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+    }];
+    UIAlertAction *share = [UIAlertAction actionWithTitle:@"Share!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        List *shareList = [[List alloc] init];
+        [shareList shareThisList:list withThisUser: [alert.textFields[0] valueForKey:@"text"]];
+        [list setObject:[NSNumber numberWithBool:YES] forKey:@"isShared"];
+        [list saveInBackground];
+        Sharing *sharing = [[Sharing alloc] init];
+        [sharing shareThisListWithID:list createdByUser:[PFUser currentUser] andSharedToUser:[alert.textFields[0] valueForKey:@"text"]];
+        [self getLists:[PFUser currentUser]];
+    }];
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        return;
+    }];
+
+
+    [alert addAction:share];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+
+    [self.tableView setEditing:NO];
+}
+
+-(void)editActionForList:(List *)list{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Edit List" message:nil preferredStyle:UIAlertControllerStyleAlert];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"List name";
+        textField.text = list.name;
+    }];
+
+    UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [list setObject:[alert.textFields[0] valueForKey:@"text"] forKey:@"name"];
+        [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self getLists:[PFUser currentUser]];
+        }];
+    }];
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        return;
+    }];
+
+    [alert addAction:save];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+
+    [self.tableView setEditing:NO];
+}
+
+-(void)unshareActionForList: (List *)list{
+    if(list.isShared == YES) {
+        //Unshare from person that shared list
+        NSPredicate *sharedLists = [NSPredicate predicateWithFormat:@"sourceListID = %@", list.sourceListID];
+        PFQuery *query = [PFQuery queryWithClassName:[List parseClassName] predicate:sharedLists];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for(List *listObject in objects){
+                NSLog(@"%@", list);
+                if(listObject.objectId == listObject.sourceListID){
+                    [listObject setObject:[NSNumber numberWithBool:NO] forKey:@"isShared"];
+                    [listObject saveInBackground];
+                    [self getLists:[PFUser currentUser]];
+                }
+                else{
+                    [listObject deleteInBackground];
+                    [self getLists:[PFUser currentUser]];
+                }
+            }
+        }];
+    }
+    else{
+        return;
+    }
 }
 
 #pragma mark - IBActions
