@@ -494,7 +494,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Your One Stop Shop on the Go!&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bP-iR-2JJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Know what you need, when you need it.&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bP-iR-2JJ">
                                         <rect key="frame" x="148" y="241" width="304" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="304" id="dk2-G9-lYi"/>
@@ -1102,7 +1102,7 @@
         <image name="stockd_tabbaricon-storesnearby_black" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b3f-dZ-mbZ"/>
+        <segue reference="VP3-XV-7qB"/>
         <segue reference="3fI-09-ph0"/>
     </inferredMetricsTieBreakers>
 </document>
