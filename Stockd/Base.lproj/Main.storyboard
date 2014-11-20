@@ -44,7 +44,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="c5P-yR-Gqr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ld-uY-Png">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="addItemOnButtonPress:" destination="qrq-r8-Dt3" id="qCM-Kd-qKw"/>
                             </connections>
@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYI-UN-aAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1625" y="-558"/>
+            <point key="canvasLocation" x="1625" y="-1286"/>
         </scene>
         <!--CreateItemViewController-->
         <scene sceneID="tSp-RP-UI2">
@@ -199,7 +199,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2369" y="-558"/>
+            <point key="canvasLocation" x="2341" y="-1286"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="GS1-4Y-tAz">
@@ -289,7 +289,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXM-YX-eAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5bT-bN-fHW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="144"/>
+            <point key="canvasLocation" x="3059" y="-1286"/>
         </scene>
         <!--Register New User View Controller-->
         <scene sceneID="TPT-gX-4hh">
@@ -664,7 +664,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1639" y="-1256"/>
+            <point key="canvasLocation" x="1625" y="-572"/>
         </scene>
         <!--List Detail View Controller-->
         <scene sceneID="2ra-J8-m98">
@@ -720,7 +720,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oda-2V-sNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2369" y="-1256"/>
+            <point key="canvasLocation" x="2341" y="-572"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j3z-vX-7g9">
@@ -871,11 +871,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZdX-2P-K87">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vGh-zn-4Xr">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCancelButtonPressed:" destination="WJf-lj-nZo" id="u7U-eo-LQe"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3ks-Gl-iIO">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onSaveButtonPressed:" destination="WJf-lj-nZo" id="J1p-yL-HN3"/>
                             </connections>
@@ -901,7 +903,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1631" y="840"/>
+            <point key="canvasLocation" x="1625" y="840"/>
         </scene>
         <!--Stores Nearby View Controller-->
         <scene sceneID="jz7-3Y-W8b">
@@ -1031,7 +1033,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDc-1g-qIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="-1256"/>
+            <point key="canvasLocation" x="905" y="-572"/>
         </scene>
         <!--My Pantry-->
         <scene sceneID="bsx-J0-CEt">
@@ -1050,7 +1052,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdl-cV-dzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="-558"/>
+            <point key="canvasLocation" x="911" y="-1286"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oqC-SV-6Wv">
@@ -1101,6 +1103,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="b3f-dZ-mbZ"/>
-        <segue reference="bp2-ue-hzf"/>
+        <segue reference="3fI-09-ph0"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -173,10 +173,10 @@
 		6CC5932D1A14100200CB619C /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				69C644291A0A8F9D007BA4CA /* ListsViewController.h */,
-				69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */,
 				69C6442F1A0A8FA9007BA4CA /* MyPantryViewController.h */,
 				69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */,
+				69C644291A0A8F9D007BA4CA /* ListsViewController.h */,
+				69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */,
 				6C6808461A119771009340D8 /* ListDetailViewController.h */,
 				6C6808471A119771009340D8 /* ListDetailViewController.m */,
 			);
