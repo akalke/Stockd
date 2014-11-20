@@ -153,7 +153,6 @@
 -(void)getItems: (NSString *)listID{
     NSPredicate *findItemsForList = [NSPredicate predicateWithFormat:@"listID = %@", listID];
     PFQuery *itemQuery = [PFQuery queryWithClassName:[Item parseClassName] predicate: findItemsForList];
-
     if([itemQuery hasCachedResult]){
         itemQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }

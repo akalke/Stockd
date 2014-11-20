@@ -155,6 +155,12 @@
             NSLog(@"%@", error);
         }
         else{
+            if([itemQuery hasCachedResult]){
+                itemQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+            }
+            else{
+                itemQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
+            }
             NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES];
             self.pantryArray = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
             self.navigationItem.title = [NSString stringWithFormat:@"My Pantry (%lu)", (unsigned long)self.pantryArray.count];

@@ -83,7 +83,6 @@
         PFQuery *query = [PFQuery queryWithClassName:[Sharing parseClassName] predicate:predicate];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             for(Sharing *share in objects){
-                NSLog(@"%@, %@, %@", share.ownerUsername, [[PFUser currentUser] username], share.sharedUsername);
                 if([share.ownerUsername isEqualToString:[[PFUser currentUser] username]]){
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Sharing with %@", share.sharedUsername];
                 }
@@ -117,10 +116,8 @@
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     List *list =[self.lists objectAtIndex:indexPath.row];
 
-
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [self deleteActionForList:list];
-
     }];
     
     UITableViewRowAction *edit = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Edit" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
@@ -178,7 +175,6 @@
 -(void) getLists: (PFUser *)currentUser{
     NSPredicate *quickListPredicate = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = true)", currentUser.objectId];
     PFQuery *quickListQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: quickListPredicate];
-    //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
     [quickListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error) {
             NSLog(@"Error finding Quick List: %@", error);
@@ -188,7 +184,12 @@
             
             NSPredicate *findListsForUser = [NSPredicate predicateWithFormat:@"(userID = %@) AND (isQuickList = false) AND (isActive = true)", currentUser.objectId];
             PFQuery *listQuery = [PFQuery queryWithClassName:[List parseClassName] predicate: findListsForUser];
-            //listQuery.cachePolicy = kPFCachePolicyCacheElseNetwork;
+            if([listQuery hasCachedResult]){
+                listQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+            }
+            else{
+                listQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
+            }
             [listQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if(error) {
                     NSLog(@"Error finding lists: %@", error);
@@ -206,7 +207,7 @@
 
 -(void)deleteActionForList: (List *)list{
     if(list.isShared == YES){
-        //Delete shared lists if deleting source list
+        //Inactivate shared lists if deleting source list
         NSPredicate *sharedLists = [NSPredicate predicateWithFormat:@"sourceListID = %@", list.sourceListID];
         PFQuery *sharedQuery = [PFQuery queryWithClassName:[List parseClassName] predicate:sharedLists];
         [sharedQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -224,7 +225,7 @@
         }];
     }
 
-    //Delete selected list
+    //Inactivate selected list
     [list setObject:[NSNumber numberWithBool:NO] forKey:@"isActive"];
     [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self getLists:[PFUser currentUser]];
@@ -244,9 +245,19 @@
         [shareList shareThisList:list withThisUser: [alert.textFields[0] valueForKey:@"text"]];
         [list setObject:[NSNumber numberWithBool:YES] forKey:@"isShared"];
         [list saveInBackground];
+
+        //Store sharing relationship of list
         Sharing *sharing = [[Sharing alloc] init];
         [sharing shareThisListWithID:list createdByUser:[PFUser currentUser] andSharedToUser:[alert.textFields[0] valueForKey:@"text"]];
         [self getLists:[PFUser currentUser]];
+
+        //Send push notification
+        PFQuery *queryPush = [PFInstallation query];
+        [queryPush whereKey:@"owner" equalTo:[alert.textFields[0] valueForKey:@"text"]];
+        PFPush *push = [PFPush new];
+        [push setQuery:queryPush];
+        [push setData:@{@"alert": @"A list has been shared with you!"}];
+        [push sendPushInBackground];
     }];
 
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -312,12 +323,24 @@
     }
 }
 
+-(void)registerPushNotifications{
+    PFUser *user = [PFUser currentUser];
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setObject: user forKey: @"owner"];
+    [currentInstallation saveInBackground];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)createListOnButtonPress:(id)sender {
     
     if([self.listName.text isEqualToString:@""]){
-        return;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Your list needs a title!" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *OK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            return;
+        }];
+        [alert addAction:OK];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else{
         List *list = [[List alloc]init];
