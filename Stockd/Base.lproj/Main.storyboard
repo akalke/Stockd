@@ -903,7 +903,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1625" y="840"/>
+            <point key="canvasLocation" x="1625" y="852"/>
         </scene>
         <!--Stores Nearby View Controller-->
         <scene sceneID="jz7-3Y-W8b">
@@ -1052,7 +1052,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdl-cV-dzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="-1286"/>
+            <point key="canvasLocation" x="905" y="-1286"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oqC-SV-6Wv">
@@ -1071,7 +1071,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5eR-28-hIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="840"/>
+            <point key="canvasLocation" x="905" y="852"/>
         </scene>
         <!--Stores Nearby-->
         <scene sceneID="cC5-wq-NGh">
