@@ -335,7 +335,7 @@
 - (IBAction)createListOnButtonPress:(id)sender {
     
     if([self.listName.text isEqualToString:@""]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Your list needs a title!" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Your list needs a title!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *OK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             return;
         }];
