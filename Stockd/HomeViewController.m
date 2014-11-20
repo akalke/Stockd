@@ -192,6 +192,13 @@
     item3.selectedImage = [UIImage imageNamed:@"stockd_tabbaricon-settings"];
 
     self.listName.font = [UIFont fontWithName:@"Avenir" size:15.0];
+    
+    // Setting up tap gesture to resign keyboard
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboardOnTap:)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [tapGesture setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 -(void)setTabBarDisplayWillAppear{
