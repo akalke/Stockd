@@ -81,18 +81,6 @@
     }];
 }
 
--(void)deleteListWithBlock:(void(^)(void))block{
-    [self deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(error){
-            NSLog(@"%@", error);
-        }
-        else{
-            NSLog(@"List Deleted");
-            block();
-        }
-    }];
-}
-
 -(void)shareThisList:(List *)list withThisUser:(NSString *)username{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username = %@", username];
     PFQuery *userQuery = [PFQuery queryWithClassName:[PFUser parseClassName] predicate:predicate];
