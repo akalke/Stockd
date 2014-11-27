@@ -118,6 +118,11 @@
     [self performSegueWithIdentifier:@"createNewItemFromMyPantrySegue" sender:self];
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    self.didSelectItemToEdit = YES;
+    [self performSegueWithIdentifier:@"createNewItemFromMyPantrySegue" sender:self];
+}
+
 #pragma mark - Helper Methods
 
 -(void)setTabBarDisplay{

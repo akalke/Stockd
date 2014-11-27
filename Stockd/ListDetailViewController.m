@@ -119,6 +119,11 @@
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    self.didSelectItemToEdit = YES;
+    [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
+}
+
 #pragma mark - Helper Methods
 
 - (void)setNavBarDisplay {
