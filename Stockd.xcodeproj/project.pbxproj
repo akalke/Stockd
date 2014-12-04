@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644271A0A8F97007BA4CA /* LoginViewController.m */; };
-		69C6442B1A0A8F9D007BA4CA /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */; };
-		69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */; };
-		69C644311A0A8FA9007BA4CA /* MyPantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */; };
-		69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */; };
 		69C644361A0AB4AE007BA4CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C644351A0AB4AE007BA4CA /* MapKit.framework */; };
-		69C6443B1A0AD099007BA4CA /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6443A1A0AD099007BA4CA /* Store.m */; };
+		69D842E41A30E77F00AE316B /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842DC1A30E77F00AE316B /* Item.m */; };
+		69D842E51A30E77F00AE316B /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842DE1A30E77F00AE316B /* List.m */; };
+		69D842E61A30E77F00AE316B /* Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842E01A30E77F00AE316B /* Sharing.m */; };
+		69D842E71A30E77F00AE316B /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842E21A30E77F00AE316B /* Store.m */; };
+		69D842EC1A30E79A00AE316B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842E91A30E79A00AE316B /* LoginViewController.m */; };
+		69D842ED1A30E79A00AE316B /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842EB1A30E79A00AE316B /* RegisterNewUserViewController.m */; };
+		69D842F41A30E7AC00AE316B /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842EF1A30E7AC00AE316B /* ListDetailViewController.m */; };
+		69D842F51A30E7AC00AE316B /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842F11A30E7AC00AE316B /* ListsViewController.m */; };
+		69D842F61A30E7AC00AE316B /* MyPantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842F31A30E7AC00AE316B /* MyPantryViewController.m */; };
+		69D842FB1A30E7C200AE316B /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842F81A30E7C200AE316B /* CameraViewController.m */; };
+		69D842FC1A30E7C200AE316B /* CreateItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842FA1A30E7C200AE316B /* CreateItemViewController.m */; };
+		69D843011A30E7CE00AE316B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842FE1A30E7CE00AE316B /* SettingsViewController.m */; };
+		69D843021A30E7CE00AE316B /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D843001A30E7CE00AE316B /* StoresNearbyViewController.m */; };
 		6C33648D1A0BBBDB00DC1166 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C33648A1A0BBBDB00DC1166 /* Bolts.framework */; };
 		6C33648E1A0BBBDB00DC1166 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C33648B1A0BBBDB00DC1166 /* Parse.framework */; };
 		6C33648F1A0BBBDB00DC1166 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C33648C1A0BBBDB00DC1166 /* ParseFacebookUtils.framework */; };
@@ -29,16 +36,9 @@
 		6C3364A41A0BBDA800DC1166 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3364A31A0BBDA800DC1166 /* SystemConfiguration.framework */; };
 		6C68083A1A0D01C1009340D8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6808391A0D01C1009340D8 /* Social.framework */; };
 		6C68083C1A0D01CD009340D8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C68083B1A0D01CD009340D8 /* Accounts.framework */; };
-		6C6808421A0D03B6009340D8 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808411A0D03B6009340D8 /* List.m */; };
-		6C6808451A0D03C5009340D8 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808441A0D03C5009340D8 /* Item.m */; };
-		6C6808481A119771009340D8 /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6808471A119771009340D8 /* ListDetailViewController.m */; };
-		6CBD78E31A1DA98400D5B466 /* Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBD78E21A1DA98400D5B466 /* Sharing.m */; };
-		6CC5932A1A140EC500CB619C /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC593291A140EC500CB619C /* RegisterNewUserViewController.m */; };
-		6CC593311A15127700CB619C /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC593301A15127700CB619C /* CameraViewController.m */; };
 		6CDB20011A0A782400F614DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20001A0A782400F614DD /* main.m */; };
 		6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20031A0A782400F614DD /* AppDelegate.m */; };
 		6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20051A0A782400F614DD /* Stockd.xcdatamodeld */; };
-		6CDB200A1A0A782400F614DD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDB20091A0A782400F614DD /* SettingsViewController.m */; };
 		6CDB200D1A0A782400F614DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB200B1A0A782400F614DD /* Main.storyboard */; };
 		6CDB200F1A0A782400F614DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB200E1A0A782400F614DD /* Images.xcassets */; };
 		6CDB20121A0A782400F614DD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CDB20101A0A782400F614DD /* LaunchScreen.xib */; };
@@ -56,20 +56,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		69C644261A0A8F97007BA4CA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		69C644271A0A8F97007BA4CA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		69C644291A0A8F9D007BA4CA /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsViewController.h; sourceTree = "<group>"; };
-		69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsViewController.m; sourceTree = "<group>"; };
-		69C6442C1A0A8FA4007BA4CA /* CreateItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateItemViewController.h; sourceTree = "<group>"; };
-		69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateItemViewController.m; sourceTree = "<group>"; };
-		69C6442F1A0A8FA9007BA4CA /* MyPantryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPantryViewController.h; sourceTree = "<group>"; };
-		69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPantryViewController.m; sourceTree = "<group>"; };
-		69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresNearbyViewController.h; sourceTree = "<group>"; };
-		69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresNearbyViewController.m; sourceTree = "<group>"; };
 		69C644351A0AB4AE007BA4CA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		69C644371A0AB4B4007BA4CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		69C644391A0AD099007BA4CA /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
-		69C6443A1A0AD099007BA4CA /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		69D842DA1A30E77F00AE316B /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = "Data Objects/Item.h"; sourceTree = "<group>"; };
+		69D842DC1A30E77F00AE316B /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = "Data Objects/Item.m"; sourceTree = "<group>"; };
+		69D842DD1A30E77F00AE316B /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = List.h; path = "Data Objects/List.h"; sourceTree = "<group>"; };
+		69D842DE1A30E77F00AE316B /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = List.m; path = "Data Objects/List.m"; sourceTree = "<group>"; };
+		69D842DF1A30E77F00AE316B /* Sharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sharing.h; path = "Data Objects/Sharing.h"; sourceTree = "<group>"; };
+		69D842E01A30E77F00AE316B /* Sharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sharing.m; path = "Data Objects/Sharing.m"; sourceTree = "<group>"; };
+		69D842E11A30E77F00AE316B /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Store.h; path = "Data Objects/Store.h"; sourceTree = "<group>"; };
+		69D842E21A30E77F00AE316B /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Store.m; path = "Data Objects/Store.m"; sourceTree = "<group>"; };
+		69D842E81A30E79A00AE316B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = "View Controllers/LoginViewController.h"; sourceTree = "<group>"; };
+		69D842E91A30E79A00AE316B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = "View Controllers/LoginViewController.m"; sourceTree = "<group>"; };
+		69D842EA1A30E79A00AE316B /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterNewUserViewController.h; path = "View Controllers/RegisterNewUserViewController.h"; sourceTree = "<group>"; };
+		69D842EB1A30E79A00AE316B /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterNewUserViewController.m; path = "View Controllers/RegisterNewUserViewController.m"; sourceTree = "<group>"; };
+		69D842EE1A30E7AC00AE316B /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDetailViewController.h; path = "View Controllers/ListDetailViewController.h"; sourceTree = "<group>"; };
+		69D842EF1A30E7AC00AE316B /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDetailViewController.m; path = "View Controllers/ListDetailViewController.m"; sourceTree = "<group>"; };
+		69D842F01A30E7AC00AE316B /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsViewController.h; path = "View Controllers/ListsViewController.h"; sourceTree = "<group>"; };
+		69D842F11A30E7AC00AE316B /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsViewController.m; path = "View Controllers/ListsViewController.m"; sourceTree = "<group>"; };
+		69D842F21A30E7AC00AE316B /* MyPantryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyPantryViewController.h; path = "View Controllers/MyPantryViewController.h"; sourceTree = "<group>"; };
+		69D842F31A30E7AC00AE316B /* MyPantryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyPantryViewController.m; path = "View Controllers/MyPantryViewController.m"; sourceTree = "<group>"; };
+		69D842F71A30E7C200AE316B /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = "View Controllers/CameraViewController.h"; sourceTree = "<group>"; };
+		69D842F81A30E7C200AE316B /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = "View Controllers/CameraViewController.m"; sourceTree = "<group>"; };
+		69D842F91A30E7C200AE316B /* CreateItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateItemViewController.h; path = "View Controllers/CreateItemViewController.h"; sourceTree = "<group>"; };
+		69D842FA1A30E7C200AE316B /* CreateItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateItemViewController.m; path = "View Controllers/CreateItemViewController.m"; sourceTree = "<group>"; };
+		69D842FD1A30E7CE00AE316B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = "View Controllers/SettingsViewController.h"; sourceTree = "<group>"; };
+		69D842FE1A30E7CE00AE316B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = "View Controllers/SettingsViewController.m"; sourceTree = "<group>"; };
+		69D842FF1A30E7CE00AE316B /* StoresNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoresNearbyViewController.h; path = "View Controllers/StoresNearbyViewController.h"; sourceTree = "<group>"; };
+		69D843001A30E7CE00AE316B /* StoresNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoresNearbyViewController.m; path = "View Controllers/StoresNearbyViewController.m"; sourceTree = "<group>"; };
 		6C33648A1A0BBBDB00DC1166 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Bolts.framework; sourceTree = "<group>"; };
 		6C33648B1A0BBBDB00DC1166 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		6C33648C1A0BBBDB00DC1166 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = ../ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -84,26 +98,12 @@
 		6C3364A31A0BBDA800DC1166 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6C6808391A0D01C1009340D8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6C68083B1A0D01CD009340D8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		6C6808401A0D03B6009340D8 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
-		6C6808411A0D03B6009340D8 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
-		6C6808431A0D03C5009340D8 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		6C6808441A0D03C5009340D8 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
-		6C6808461A119771009340D8 /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDetailViewController.h; sourceTree = "<group>"; };
-		6C6808471A119771009340D8 /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDetailViewController.m; sourceTree = "<group>"; };
-		6CBD78E11A1DA98400D5B466 /* Sharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sharing.h; sourceTree = "<group>"; };
-		6CBD78E21A1DA98400D5B466 /* Sharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sharing.m; sourceTree = "<group>"; };
-		6CC593281A140EC500CB619C /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNewUserViewController.h; sourceTree = "<group>"; };
-		6CC593291A140EC500CB619C /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNewUserViewController.m; sourceTree = "<group>"; };
-		6CC5932F1A15127700CB619C /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		6CC593301A15127700CB619C /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		6CDB1FFB1A0A782400F614DD /* Stockd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stockd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDB1FFF1A0A782400F614DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CDB20001A0A782400F614DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CDB20021A0A782400F614DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6CDB20031A0A782400F614DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6CDB20061A0A782400F614DD /* Stockd.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stockd.xcdatamodel; sourceTree = "<group>"; };
-		6CDB20081A0A782400F614DD /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		6CDB20091A0A782400F614DD /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6CDB200C1A0A782400F614DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6CDB200E1A0A782400F614DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6CDB20111A0A782400F614DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -149,12 +149,14 @@
 		6C3364A51A0BBDD000DC1166 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				6C6808401A0D03B6009340D8 /* List.h */,
-				6C6808411A0D03B6009340D8 /* List.m */,
-				6C6808431A0D03C5009340D8 /* Item.h */,
-				6C6808441A0D03C5009340D8 /* Item.m */,
-				6CBD78E11A1DA98400D5B466 /* Sharing.h */,
-				6CBD78E21A1DA98400D5B466 /* Sharing.m */,
+				69D842DA1A30E77F00AE316B /* Item.h */,
+				69D842DC1A30E77F00AE316B /* Item.m */,
+				69D842DD1A30E77F00AE316B /* List.h */,
+				69D842DE1A30E77F00AE316B /* List.m */,
+				69D842DF1A30E77F00AE316B /* Sharing.h */,
+				69D842E01A30E77F00AE316B /* Sharing.m */,
+				69D842E11A30E77F00AE316B /* Store.h */,
+				69D842E21A30E77F00AE316B /* Store.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -162,10 +164,10 @@
 		6CC5932B1A140FD500CB619C /* Login & Register */ = {
 			isa = PBXGroup;
 			children = (
-				6CC593281A140EC500CB619C /* RegisterNewUserViewController.h */,
-				6CC593291A140EC500CB619C /* RegisterNewUserViewController.m */,
-				69C644261A0A8F97007BA4CA /* LoginViewController.h */,
-				69C644271A0A8F97007BA4CA /* LoginViewController.m */,
+				69D842E81A30E79A00AE316B /* LoginViewController.h */,
+				69D842E91A30E79A00AE316B /* LoginViewController.m */,
+				69D842EA1A30E79A00AE316B /* RegisterNewUserViewController.h */,
+				69D842EB1A30E79A00AE316B /* RegisterNewUserViewController.m */,
 			);
 			name = "Login & Register";
 			sourceTree = "<group>";
@@ -173,12 +175,12 @@
 		6CC5932D1A14100200CB619C /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				69C6442F1A0A8FA9007BA4CA /* MyPantryViewController.h */,
-				69C644301A0A8FA9007BA4CA /* MyPantryViewController.m */,
-				69C644291A0A8F9D007BA4CA /* ListsViewController.h */,
-				69C6442A1A0A8F9D007BA4CA /* ListsViewController.m */,
-				6C6808461A119771009340D8 /* ListDetailViewController.h */,
-				6C6808471A119771009340D8 /* ListDetailViewController.m */,
+				69D842F21A30E7AC00AE316B /* MyPantryViewController.h */,
+				69D842F31A30E7AC00AE316B /* MyPantryViewController.m */,
+				69D842F01A30E7AC00AE316B /* ListsViewController.h */,
+				69D842F11A30E7AC00AE316B /* ListsViewController.m */,
+				69D842EE1A30E7AC00AE316B /* ListDetailViewController.h */,
+				69D842EF1A30E7AC00AE316B /* ListDetailViewController.m */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -186,10 +188,10 @@
 		6CC5932E1A15118F00CB619C /* Create Item */ = {
 			isa = PBXGroup;
 			children = (
-				6CC5932F1A15127700CB619C /* CameraViewController.h */,
-				6CC593301A15127700CB619C /* CameraViewController.m */,
-				69C6442C1A0A8FA4007BA4CA /* CreateItemViewController.h */,
-				69C6442D1A0A8FA4007BA4CA /* CreateItemViewController.m */,
+				69D842F71A30E7C200AE316B /* CameraViewController.h */,
+				69D842F81A30E7C200AE316B /* CameraViewController.m */,
+				69D842F91A30E7C200AE316B /* CreateItemViewController.h */,
+				69D842FA1A30E7C200AE316B /* CreateItemViewController.m */,
 			);
 			name = "Create Item";
 			sourceTree = "<group>";
@@ -216,22 +218,20 @@
 			isa = PBXGroup;
 			children = (
 				6C3364A51A0BBDD000DC1166 /* Data Model */,
-				6CDB20021A0A782400F614DD /* AppDelegate.h */,
-				6CDB20031A0A782400F614DD /* AppDelegate.m */,
 				6CC5932B1A140FD500CB619C /* Login & Register */,
 				6CC5932D1A14100200CB619C /* Lists */,
 				6CC5932E1A15118F00CB619C /* Create Item */,
-				69C644321A0A8FB2007BA4CA /* StoresNearbyViewController.h */,
-				69C644331A0A8FB2007BA4CA /* StoresNearbyViewController.m */,
-				6CDB20081A0A782400F614DD /* SettingsViewController.h */,
-				6CDB20091A0A782400F614DD /* SettingsViewController.m */,
+				69D842FF1A30E7CE00AE316B /* StoresNearbyViewController.h */,
+				69D843001A30E7CE00AE316B /* StoresNearbyViewController.m */,
+				69D842FD1A30E7CE00AE316B /* SettingsViewController.h */,
+				69D842FE1A30E7CE00AE316B /* SettingsViewController.m */,
+				6CDB20021A0A782400F614DD /* AppDelegate.h */,
+				6CDB20031A0A782400F614DD /* AppDelegate.m */,
 				6CDB200B1A0A782400F614DD /* Main.storyboard */,
 				6CDB200E1A0A782400F614DD /* Images.xcassets */,
 				6CDB20101A0A782400F614DD /* LaunchScreen.xib */,
 				6CDB20051A0A782400F614DD /* Stockd.xcdatamodeld */,
 				6CDB1FFE1A0A782400F614DD /* Supporting Files */,
-				69C644391A0AD099007BA4CA /* Store.h */,
-				69C6443A1A0AD099007BA4CA /* Store.m */,
 			);
 			path = Stockd;
 			sourceTree = "<group>";
@@ -379,22 +379,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CBD78E31A1DA98400D5B466 /* Sharing.m in Sources */,
-				6C6808451A0D03C5009340D8 /* Item.m in Sources */,
+				69D842FB1A30E7C200AE316B /* CameraViewController.m in Sources */,
+				69D842E41A30E77F00AE316B /* Item.m in Sources */,
 				6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */,
-				69C644311A0A8FA9007BA4CA /* MyPantryViewController.m in Sources */,
 				6CDB20011A0A782400F614DD /* main.m in Sources */,
-				69C6443B1A0AD099007BA4CA /* Store.m in Sources */,
-				6CDB200A1A0A782400F614DD /* SettingsViewController.m in Sources */,
 				6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */,
-				6CC5932A1A140EC500CB619C /* RegisterNewUserViewController.m in Sources */,
-				6CC593311A15127700CB619C /* CameraViewController.m in Sources */,
-				69C644281A0A8F97007BA4CA /* LoginViewController.m in Sources */,
-				6C6808481A119771009340D8 /* ListDetailViewController.m in Sources */,
-				69C6442B1A0A8F9D007BA4CA /* ListsViewController.m in Sources */,
-				6C6808421A0D03B6009340D8 /* List.m in Sources */,
-				69C6442E1A0A8FA4007BA4CA /* CreateItemViewController.m in Sources */,
-				69C644341A0A8FB2007BA4CA /* StoresNearbyViewController.m in Sources */,
+				69D842F51A30E7AC00AE316B /* ListsViewController.m in Sources */,
+				69D842FC1A30E7C200AE316B /* CreateItemViewController.m in Sources */,
+				69D843021A30E7CE00AE316B /* StoresNearbyViewController.m in Sources */,
+				69D842F61A30E7AC00AE316B /* MyPantryViewController.m in Sources */,
+				69D842E51A30E77F00AE316B /* List.m in Sources */,
+				69D842ED1A30E79A00AE316B /* RegisterNewUserViewController.m in Sources */,
+				69D842E61A30E77F00AE316B /* Sharing.m in Sources */,
+				69D842F41A30E7AC00AE316B /* ListDetailViewController.m in Sources */,
+				69D843011A30E7CE00AE316B /* SettingsViewController.m in Sources */,
+				69D842E71A30E77F00AE316B /* Store.m in Sources */,
+				69D842EC1A30E79A00AE316B /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
