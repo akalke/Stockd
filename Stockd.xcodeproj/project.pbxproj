@@ -12,15 +12,15 @@
 		69D842E51A30E77F00AE316B /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842DE1A30E77F00AE316B /* List.m */; };
 		69D842E61A30E77F00AE316B /* Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842E01A30E77F00AE316B /* Sharing.m */; };
 		69D842E71A30E77F00AE316B /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842E21A30E77F00AE316B /* Store.m */; };
-		69D842EC1A30E79A00AE316B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842E91A30E79A00AE316B /* LoginViewController.m */; };
-		69D842ED1A30E79A00AE316B /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842EB1A30E79A00AE316B /* RegisterNewUserViewController.m */; };
-		69D842F41A30E7AC00AE316B /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842EF1A30E7AC00AE316B /* ListDetailViewController.m */; };
-		69D842F51A30E7AC00AE316B /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842F11A30E7AC00AE316B /* ListsViewController.m */; };
-		69D842F61A30E7AC00AE316B /* MyPantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842F31A30E7AC00AE316B /* MyPantryViewController.m */; };
-		69D842FB1A30E7C200AE316B /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842F81A30E7C200AE316B /* CameraViewController.m */; };
-		69D842FC1A30E7C200AE316B /* CreateItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842FA1A30E7C200AE316B /* CreateItemViewController.m */; };
 		69D843011A30E7CE00AE316B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D842FE1A30E7CE00AE316B /* SettingsViewController.m */; };
 		69D843021A30E7CE00AE316B /* StoresNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D843001A30E7CE00AE316B /* StoresNearbyViewController.m */; };
+		69D843071A30E8CF00AE316B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D843041A30E8CF00AE316B /* LoginViewController.m */; };
+		69D843081A30E8CF00AE316B /* RegisterNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D843061A30E8CF00AE316B /* RegisterNewUserViewController.m */; };
+		69D8430D1A30E8D800AE316B /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D8430A1A30E8D800AE316B /* CameraViewController.m */; };
+		69D8430E1A30E8D800AE316B /* CreateItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D8430C1A30E8D800AE316B /* CreateItemViewController.m */; };
+		69D843151A30E8DF00AE316B /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D843101A30E8DF00AE316B /* ListDetailViewController.m */; };
+		69D843161A30E8DF00AE316B /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D843121A30E8DF00AE316B /* ListsViewController.m */; };
+		69D843171A30E8DF00AE316B /* MyPantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D843141A30E8DF00AE316B /* MyPantryViewController.m */; };
 		6C33648D1A0BBBDB00DC1166 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C33648A1A0BBBDB00DC1166 /* Bolts.framework */; };
 		6C33648E1A0BBBDB00DC1166 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C33648B1A0BBBDB00DC1166 /* Parse.framework */; };
 		6C33648F1A0BBBDB00DC1166 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C33648C1A0BBBDB00DC1166 /* ParseFacebookUtils.framework */; };
@@ -66,24 +66,24 @@
 		69D842E01A30E77F00AE316B /* Sharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sharing.m; path = "Data Objects/Sharing.m"; sourceTree = "<group>"; };
 		69D842E11A30E77F00AE316B /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Store.h; path = "Data Objects/Store.h"; sourceTree = "<group>"; };
 		69D842E21A30E77F00AE316B /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Store.m; path = "Data Objects/Store.m"; sourceTree = "<group>"; };
-		69D842E81A30E79A00AE316B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = "View Controllers/LoginViewController.h"; sourceTree = "<group>"; };
-		69D842E91A30E79A00AE316B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = "View Controllers/LoginViewController.m"; sourceTree = "<group>"; };
-		69D842EA1A30E79A00AE316B /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterNewUserViewController.h; path = "View Controllers/RegisterNewUserViewController.h"; sourceTree = "<group>"; };
-		69D842EB1A30E79A00AE316B /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterNewUserViewController.m; path = "View Controllers/RegisterNewUserViewController.m"; sourceTree = "<group>"; };
-		69D842EE1A30E7AC00AE316B /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDetailViewController.h; path = "View Controllers/ListDetailViewController.h"; sourceTree = "<group>"; };
-		69D842EF1A30E7AC00AE316B /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDetailViewController.m; path = "View Controllers/ListDetailViewController.m"; sourceTree = "<group>"; };
-		69D842F01A30E7AC00AE316B /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsViewController.h; path = "View Controllers/ListsViewController.h"; sourceTree = "<group>"; };
-		69D842F11A30E7AC00AE316B /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsViewController.m; path = "View Controllers/ListsViewController.m"; sourceTree = "<group>"; };
-		69D842F21A30E7AC00AE316B /* MyPantryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyPantryViewController.h; path = "View Controllers/MyPantryViewController.h"; sourceTree = "<group>"; };
-		69D842F31A30E7AC00AE316B /* MyPantryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyPantryViewController.m; path = "View Controllers/MyPantryViewController.m"; sourceTree = "<group>"; };
-		69D842F71A30E7C200AE316B /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = "View Controllers/CameraViewController.h"; sourceTree = "<group>"; };
-		69D842F81A30E7C200AE316B /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = "View Controllers/CameraViewController.m"; sourceTree = "<group>"; };
-		69D842F91A30E7C200AE316B /* CreateItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateItemViewController.h; path = "View Controllers/CreateItemViewController.h"; sourceTree = "<group>"; };
-		69D842FA1A30E7C200AE316B /* CreateItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateItemViewController.m; path = "View Controllers/CreateItemViewController.m"; sourceTree = "<group>"; };
 		69D842FD1A30E7CE00AE316B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = "View Controllers/SettingsViewController.h"; sourceTree = "<group>"; };
 		69D842FE1A30E7CE00AE316B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = "View Controllers/SettingsViewController.m"; sourceTree = "<group>"; };
 		69D842FF1A30E7CE00AE316B /* StoresNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoresNearbyViewController.h; path = "View Controllers/StoresNearbyViewController.h"; sourceTree = "<group>"; };
 		69D843001A30E7CE00AE316B /* StoresNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoresNearbyViewController.m; path = "View Controllers/StoresNearbyViewController.m"; sourceTree = "<group>"; };
+		69D843031A30E8CF00AE316B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = "View Controllers/Login & Register/LoginViewController.h"; sourceTree = "<group>"; };
+		69D843041A30E8CF00AE316B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = "View Controllers/Login & Register/LoginViewController.m"; sourceTree = "<group>"; };
+		69D843051A30E8CF00AE316B /* RegisterNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterNewUserViewController.h; path = "View Controllers/Login & Register/RegisterNewUserViewController.h"; sourceTree = "<group>"; };
+		69D843061A30E8CF00AE316B /* RegisterNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterNewUserViewController.m; path = "View Controllers/Login & Register/RegisterNewUserViewController.m"; sourceTree = "<group>"; };
+		69D843091A30E8D800AE316B /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = "View Controllers/Create Item/CameraViewController.h"; sourceTree = "<group>"; };
+		69D8430A1A30E8D800AE316B /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = "View Controllers/Create Item/CameraViewController.m"; sourceTree = "<group>"; };
+		69D8430B1A30E8D800AE316B /* CreateItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateItemViewController.h; path = "View Controllers/Create Item/CreateItemViewController.h"; sourceTree = "<group>"; };
+		69D8430C1A30E8D800AE316B /* CreateItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateItemViewController.m; path = "View Controllers/Create Item/CreateItemViewController.m"; sourceTree = "<group>"; };
+		69D8430F1A30E8DF00AE316B /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDetailViewController.h; path = "View Controllers/Lists/ListDetailViewController.h"; sourceTree = "<group>"; };
+		69D843101A30E8DF00AE316B /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDetailViewController.m; path = "View Controllers/Lists/ListDetailViewController.m"; sourceTree = "<group>"; };
+		69D843111A30E8DF00AE316B /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsViewController.h; path = "View Controllers/Lists/ListsViewController.h"; sourceTree = "<group>"; };
+		69D843121A30E8DF00AE316B /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsViewController.m; path = "View Controllers/Lists/ListsViewController.m"; sourceTree = "<group>"; };
+		69D843131A30E8DF00AE316B /* MyPantryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyPantryViewController.h; path = "View Controllers/Lists/MyPantryViewController.h"; sourceTree = "<group>"; };
+		69D843141A30E8DF00AE316B /* MyPantryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyPantryViewController.m; path = "View Controllers/Lists/MyPantryViewController.m"; sourceTree = "<group>"; };
 		6C33648A1A0BBBDB00DC1166 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Bolts.framework; sourceTree = "<group>"; };
 		6C33648B1A0BBBDB00DC1166 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		6C33648C1A0BBBDB00DC1166 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = ../ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -164,10 +164,10 @@
 		6CC5932B1A140FD500CB619C /* Login & Register */ = {
 			isa = PBXGroup;
 			children = (
-				69D842E81A30E79A00AE316B /* LoginViewController.h */,
-				69D842E91A30E79A00AE316B /* LoginViewController.m */,
-				69D842EA1A30E79A00AE316B /* RegisterNewUserViewController.h */,
-				69D842EB1A30E79A00AE316B /* RegisterNewUserViewController.m */,
+				69D843031A30E8CF00AE316B /* LoginViewController.h */,
+				69D843041A30E8CF00AE316B /* LoginViewController.m */,
+				69D843051A30E8CF00AE316B /* RegisterNewUserViewController.h */,
+				69D843061A30E8CF00AE316B /* RegisterNewUserViewController.m */,
 			);
 			name = "Login & Register";
 			sourceTree = "<group>";
@@ -175,12 +175,12 @@
 		6CC5932D1A14100200CB619C /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				69D842F21A30E7AC00AE316B /* MyPantryViewController.h */,
-				69D842F31A30E7AC00AE316B /* MyPantryViewController.m */,
-				69D842F01A30E7AC00AE316B /* ListsViewController.h */,
-				69D842F11A30E7AC00AE316B /* ListsViewController.m */,
-				69D842EE1A30E7AC00AE316B /* ListDetailViewController.h */,
-				69D842EF1A30E7AC00AE316B /* ListDetailViewController.m */,
+				69D8430F1A30E8DF00AE316B /* ListDetailViewController.h */,
+				69D843101A30E8DF00AE316B /* ListDetailViewController.m */,
+				69D843111A30E8DF00AE316B /* ListsViewController.h */,
+				69D843121A30E8DF00AE316B /* ListsViewController.m */,
+				69D843131A30E8DF00AE316B /* MyPantryViewController.h */,
+				69D843141A30E8DF00AE316B /* MyPantryViewController.m */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -188,10 +188,10 @@
 		6CC5932E1A15118F00CB619C /* Create Item */ = {
 			isa = PBXGroup;
 			children = (
-				69D842F71A30E7C200AE316B /* CameraViewController.h */,
-				69D842F81A30E7C200AE316B /* CameraViewController.m */,
-				69D842F91A30E7C200AE316B /* CreateItemViewController.h */,
-				69D842FA1A30E7C200AE316B /* CreateItemViewController.m */,
+				69D843091A30E8D800AE316B /* CameraViewController.h */,
+				69D8430A1A30E8D800AE316B /* CameraViewController.m */,
+				69D8430B1A30E8D800AE316B /* CreateItemViewController.h */,
+				69D8430C1A30E8D800AE316B /* CreateItemViewController.m */,
 			);
 			name = "Create Item";
 			sourceTree = "<group>";
@@ -379,22 +379,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D842FB1A30E7C200AE316B /* CameraViewController.m in Sources */,
 				69D842E41A30E77F00AE316B /* Item.m in Sources */,
 				6CDB20041A0A782400F614DD /* AppDelegate.m in Sources */,
 				6CDB20011A0A782400F614DD /* main.m in Sources */,
+				69D8430E1A30E8D800AE316B /* CreateItemViewController.m in Sources */,
 				6CDB20071A0A782400F614DD /* Stockd.xcdatamodeld in Sources */,
-				69D842F51A30E7AC00AE316B /* ListsViewController.m in Sources */,
-				69D842FC1A30E7C200AE316B /* CreateItemViewController.m in Sources */,
+				69D843161A30E8DF00AE316B /* ListsViewController.m in Sources */,
+				69D843171A30E8DF00AE316B /* MyPantryViewController.m in Sources */,
+				69D843071A30E8CF00AE316B /* LoginViewController.m in Sources */,
 				69D843021A30E7CE00AE316B /* StoresNearbyViewController.m in Sources */,
-				69D842F61A30E7AC00AE316B /* MyPantryViewController.m in Sources */,
 				69D842E51A30E77F00AE316B /* List.m in Sources */,
-				69D842ED1A30E79A00AE316B /* RegisterNewUserViewController.m in Sources */,
+				69D843081A30E8CF00AE316B /* RegisterNewUserViewController.m in Sources */,
+				69D843151A30E8DF00AE316B /* ListDetailViewController.m in Sources */,
 				69D842E61A30E77F00AE316B /* Sharing.m in Sources */,
-				69D842F41A30E7AC00AE316B /* ListDetailViewController.m in Sources */,
+				69D8430D1A30E8D800AE316B /* CameraViewController.m in Sources */,
 				69D843011A30E7CE00AE316B /* SettingsViewController.m in Sources */,
 				69D842E71A30E77F00AE316B /* Store.m in Sources */,
-				69D842EC1A30E79A00AE316B /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
