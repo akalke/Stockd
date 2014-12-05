@@ -17,6 +17,7 @@
 @interface MyPantryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property Item *items;
+@property Item *selectedItem;
 @property NSArray *pantryArray;
 @property NSMutableArray *addItemsToList;
 @property BOOL didSelectItemToEdit;
@@ -46,9 +47,7 @@
         CreateItemViewController *createItemVC = segue.destinationViewController;
         if (self.didSelectItemToEdit == YES) {
             createItemVC.editingFromMyPantry = YES;
-            
-            Item *item = [self.pantryArray objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-            createItemVC.item = item;
+            createItemVC.item = self.selectedItem;
         } else {
             createItemVC.fromMyPantry = YES;
         }
@@ -115,11 +114,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.didSelectItemToEdit = YES;
+    self.selectedItem = [self.pantryArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"createNewItemFromMyPantrySegue" sender:self];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     self.didSelectItemToEdit = YES;
+    self.selectedItem = [self.pantryArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"createNewItemFromMyPantrySegue" sender:self];
 }
 
