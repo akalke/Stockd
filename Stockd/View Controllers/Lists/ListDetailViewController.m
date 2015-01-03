@@ -18,6 +18,7 @@
 @interface ListDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addItemButton;
+@property Item *selectedItem;
 @property NSArray *items;
 @property BOOL didSelectItemToEdit;
 @end
@@ -44,9 +45,7 @@
         CreateItemViewController *createItemVC = segue.destinationViewController;
         if (self.didSelectItemToEdit == YES) {
             createItemVC.editingFromListDetails = YES;
-            
-            Item *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-            createItemVC.item = item;
+            createItemVC.item = self.selectedItem;
         } else {
             createItemVC.fromListDetails = YES;
             createItemVC.listID = self.listID;
@@ -116,11 +115,13 @@
 // Method used when cell is selected
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.didSelectItemToEdit = YES;
+    self.selectedItem = [self.items objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     self.didSelectItemToEdit = YES;
+    self.selectedItem = [self.items objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"createNewItemFromListSegue" sender:self];
 }
 

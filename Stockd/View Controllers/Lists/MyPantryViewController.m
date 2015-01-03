@@ -16,10 +16,8 @@
 
 @interface MyPantryViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property Item *items;
 @property Item *selectedItem;
 @property NSArray *pantryArray;
-@property NSMutableArray *addItemsToList;
 @property BOOL didSelectItemToEdit;
 
 @end
